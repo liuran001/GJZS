@@ -1,0 +1,17 @@
+boot_a
+boot_b
+system_a
+system_b
+modem_a
+modem_b
+oem_a
+oem_b
+vbmeta_a
+vbmeta_b
+vendor_a
+vendor_b
+frp
+persist
+splash
+logo
+misc

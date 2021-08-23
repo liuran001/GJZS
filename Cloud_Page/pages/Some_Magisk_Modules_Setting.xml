@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <text>
+        <slices>
+            <slice size="18" color="#556B2F">请确认您已安装了相关模块，以下功能页面均为原作者所有，已获得作者授权搬运</slice>
+        </slices>
+    </text>
+<group title="模块配置">
+    <pages>
+        <page id="Shadow_ScreenShots_page" title="带壳截图配置" before-load="curl -o $ShellScript/shadow_screenshots.sh -sL https://ak47biubiubiu.coding.net/p/pio/d/pio/git/raw/master/page/shadow_screenshots.sh" desc="提示非正版管理器无视即可，又不是不能用" config-sh="source $ShellScript/shadow_screenshots.sh" />
+    </pages>
+    <pages>
+        <page id="ASGuard_page" title="ASGuard配置" config-sh="cat $Pages/Magisk_Modules_Setting/ASGuard/ASGuard.xml" />
+    </pages>
+</group>

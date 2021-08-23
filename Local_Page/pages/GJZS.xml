@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<group>
+<!-- START -->
+    <switch interruptible="false">
+        <title>切换在线版</title>
+        <desc>关闭此开关将不会连接服务器，但也会缺失所有需要联网才能使用的功能，切换后会强制重启搞机助手【需要使用3.2以上版本才会生效】</desc>
+        <get>. ./switchs/Change_Local_get.sh</get>
+        <set>. ./switchs/Change_Local_set.sh</set>
+    </switch>
+<!-- END -->
+<!-- START -->
+    <action>
+        <title>自定义文件保存目录（禁止空格及非主流符号）</title>
+        <desc>针对部分强迫症用户，自定义后会重定向到指定目录</desc>
+        <param name="LU" title="可输入目录绝对路径，也可以通过文件选择器长按选定目录" desc="上面是默认路径，请自行根据需求更改目录，温馨提示：可用「MT管理器」长按目录或文件 -->点属性 -->点击目录即可复制目录绝对路径，长按目录或长按名称即可复制文件绝对路径" type="folder" editable="true" required="true" value-sh="echo $GJZS" />
+        <set>echo "$LU" &gt;$Data_Dir/GJZS_PATH</set>
+    </action>
+<!-- END -->
+<!-- START -->
+    <action shell="hidden" auto-off="true" >
+        <title>自定义 curl 命令路径</title>
+        <param name="Custom_CMD" title="自定义curl命令，格式：文件绝对路径 &#34;$@&#34;&#x000A;如果是动态库命令需要设置export LD_LIBRARY_PATH变量" desc="可在主页脚本执行器测试是否能执行，然后再设置！如果需要删除请留空然后点击确定，温馨提示：可用「MT管理器」长按目录或文件 -->点属性 -->点击目录即可复制目录绝对路径，长按目录或长按名称即可复制文件绝对路径" placeholder="事例：/system/bin/curl &#34;$@&#34;" value-sh="cat $ELF1_Path/curl2"/>
+        <set>. ./Custom_CMD.sh curl2</set>
+    </action>
+<!-- END -->
+<!-- START -->
+    <action shell="hidden" auto-off="true" >
+        <title>自定义 adb 命令路径</title>
+        <param name="Custom_CMD" title="自定义adb命令，格式：文件绝对路径 &#34;$@&#34;&#x000A;如果是动态库命令需要设置export LD_LIBRARY_PATH变量" desc="可在主页脚本执行器测试是否能执行，然后再设置！如果需要删除请留空然后点击确定，温馨提示：可用「MT管理器」长按目录或文件 -->点属性 -->点击目录即可复制目录绝对路径，长按目录或长按名称即可复制文件绝对路径" placeholder="事例：/system/bin/adb &#34;$@&#34;" value-sh="cat $ELF1_Path/adb"/>
+        <set>. ./Custom_CMD.sh adb</set>
+    </action>
+<!-- END -->
+<!-- START -->
+    <action shell="hidden" auto-off="true" >
+        <title>自定义 fastboot 命令路径</title>
+        <param name="Custom_CMD" title="自定义fastboot命令，格式：文件绝对路径 &#34;$@&#34;&#x000A;如果是动态库命令需要设置export LD_LIBRARY_PATH变量" desc="可在主页脚本执行器测试是否能执行，然后再设置！如果需要删除请留空然后点击确定，温馨提示：可用「MT管理器」长按目录或文件 -->点属性 -->点击目录即可复制目录绝对路径，长按目录或长按名称即可复制文件绝对路径" placeholder="事例：/system/bin/fastboot &#34;$@&#34;" value-sh="cat $ELF1_Path/fastboot"/>
+        <set>. ./Custom_CMD.sh fastboot</set>
+    </action>
+<!-- END -->
+<!-- START -->
+    <action confirm="true" auto-off="true" interruptible="false">
+        <title>点击清除「搞机助手重制版」全部缓存</title>
+        <desc>包括下载的文件/云端页面和脚本 以及其他乱七八糟的缓存，也可以看作强制刷新云端页面</desc>
+        <set>rm -rf $TMPDIR ~/downloader $ShellScript/cache $TMPDIR $Data_Dir/.Empty</set>
+    </action>
+<!-- END -->
+<!-- START -->
+    <action confirm="true" auto-off="true" interruptible="false">
+        <title>点击清除「搞机助手重制版」全部应用数据</title>
+        <desc>一键回到解放前</desc>
+        <set>pm clear $Package_name</set>
+    </action>
+<!-- END -->
+<!-- START -->
+    <action confirm="true" auto-off="true" interruptible="false">
+        <title>「搞机助手重制版」异常修复</title>
+        <desc>有问题可以试试，没问题就别点了</desc>
+        <set>pm clear $Package_name; am start -n $Package_name/com.projectkr.shell.SplashActivity</set>
+    </action>
+<!-- END -->
+<!-- START -->
+    <action confirm="true" auto-off="true" interruptible="false">
+        <title>一键卸载「搞机助手重制版」</title>
+        <desc>希望今日的离开是为了明日更好的重逢</desc>
+        <set>pm uninstall $Package_name</set>
+    </action>
+<!-- END -->
+</group>
