@@ -1,4 +1,5 @@
-#感谢People11
+#本脚本由　by Han | 情非得已c，编写
+#应用于搞机助手上
 
 
 mask -vc
@@ -71,8 +72,8 @@ case $Device in
         JiXing "M2011J18C" cetus Xiaomi
     ;;
 
-    MIMIX3)
-        JiXing "M1810E5A" perseus Xiaomi
+    MIMIX4)
+        JiXing "2106118C" odin Xiaomi
     ;;
 
     MI6)
@@ -145,6 +146,14 @@ case $Device in
 
     HWMX)
         JiXing "TAH-AN00" tahiti HUAWEI
+    ;;
+
+    IQ8P)
+        JiXing "V2141A" PD2141 vivo
+    ;;
+
+    IQ8)
+        JiXing "V2136A" PD2136 vivo
     ;;
 
     IQ7)
@@ -341,4 +350,4 @@ case $Device in
     ;;
 esac
 
-    [[ -f $Module/system.prop ]] && echo "「机型伪装」模块创建完成，模块将在下次重启时生效" && CQ
+    [[ -f $Module/system.prop ]] && echo "机型伪装模块创建完成，模块将在下次重启时生效" && CQ

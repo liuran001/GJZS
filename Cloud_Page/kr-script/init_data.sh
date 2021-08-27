@@ -1,6 +1,6 @@
-Configuration=2021082101
-Magisk_Warehouse_version=2021082101
-App_Store_version=2021081901
+Configuration=2021082703
+Magisk_Warehouse_version=2021082703
+App_Store_version=2021082701
 Show_Compatibility_Mode=1
 MIUI=0
 
@@ -66,12 +66,12 @@ time='2021年7月7日'
 org.lsposed.manager)
 apk='org.lsposed.manager'
 name='LSPosed 模块管理器'
-version='v1.5.1'
-versionCode='5898'
+version='v1.5.2'
+versionCode='5964'
 author='LSPosed Developers'
-description='LSPosed Xposed框架模块管理器'
+description='LSPosed Xposed框架模块管理器【这是管理器，模块请前往Magisk模块仓库安装】'
 apkfile="$PeiZhi_File/$apk-$versionCode.apk"
-time='2021年8月18日'
+time='2021年8月27日'
     if [[ $Choice = 1 ]]; then
         [[ $SDK -lt 27 ]] && abort "！$name-$version（$versionCode）不支持安卓8.1.0以下系统"
         if [[ ! -s "$apkfile" ]]; then
@@ -89,7 +89,7 @@ name='EdXposed Manager'
 version='4.6.2'
 versionCode='46200'
 author='MlgmXyysd'
-description='EDXposed框架模块管理器'
+description='EDXposed框架模块管理器【这是管理器，模块请前往Magisk模块仓库安装】'
 time='2021年2月7日'
     [[ $Choice = 1 ]] && Download -coding "21051601/apks/$1.apk" "$1.apk" 3550938 a712f351af88497bc2fb6fae009e49bf "$1.apk"
 ;;
@@ -111,7 +111,7 @@ name='梦境'
 version='0.0.7'
 versionCode='7'
 author=canyie
-description='梦境框架管理器'
+description='梦境框架管理器【这是管理器，模块请前往Magisk模块仓库安装】'
 time='2021年5月15日'
     [[ $Choice = 1 ]] && Download -coding "21051601/apks/$1.apk" "$1.apk" 2041765 33ea0e394f1fb6b92b43037392a01401 "$1.apk"
 ;;
@@ -125,6 +125,17 @@ author='未知'
 description='带有软件包的终端模拟器，需要 Android 7.0 及以上版本'
 time='2021年7月8日'
     [[ $Choice = 1 ]] && Download -file "APK/Termux/com.termux_116.apk" "$1.apk" 85732799 1ecfc3a64bcfe084f0b2758e5446636c "$1.apk"
+;;
+
+com.whatsbug.litiaotiao)
+apk='com.whatsbug.litiaotiao'
+name='李跳跳'
+version='派大星1.75'
+versionCode='20'
+author='李跳跳'
+description='且用且珍惜'
+time='2021年8月27号'
+    [[ $Choice = 1 ]] && Download -net "fleid=638115520483332096&puid=175627921" "$1.apk" 2043406 66e437f3a19e5d08d119bc6c4af7d3b6 "$1.apk"
 ;;
 
 com.kiwibrowser.browser)
@@ -273,13 +284,13 @@ name='Riru'
 version='25.4.4'
 versionCode=426
 author='Rikka  酷安@蓝莓味绿茶 '
-description='显示Riru状态'
+description='显示Riru状态【最新版的riru已经移除了此app，此为25.4.4的旧版模块中提取】'
 apkfile="$PeiZhi_File/$apk-$versionCode.apk"
 time='2021年5月15日'
     if [[ $Choice = 1 ]]; then
         if [[ ! -s "$apkfile" ]]; then
             rm -rf "$PeiZhi_File/$apk-"*.apk
-            Riru_version=1
+            Riru_version=3
             . "$Load" riru-core
             unzip -p "$Download_File" 'app.apk' >$apkfile
         fi
@@ -753,15 +764,15 @@ time='2021年8月15日'
 riru_lsposed)
 id='riru_lsposed'
 name='Riru - LSPosed'
-version='v1.5.1'
-versionCode='5898'
+version='v1.5.2'
+versionCode='5964'
 author='LSPosed Developers'
 description='一款基于Riru API开发的Xposed框架，支持运行在安卓8.1.0 ~ 12系统上。需要安装Riru v25.0.0或更高版本，Telegram: @LSPosed'
-time='2021年8月18日'
+time='2021年8月27日'
     if [[ $Choice = 1 ]]; then
         mask -v
         if [[ $MAGISK_VER_CODE -ge 23000 ]]; then
-             [[ $Choice = 1 ]] && Download -net2 "fleid=634794537023401984&puid=175627921" "$1.zip" 1841104 6853f718e9fc07555a70391fc3868806 "$1.zip"
+             [[ $Choice = 1 ]] && Download -gh "LSPosed/LSPosed/releases/download/v1.5.2/LSPosed-v1.5.2-5964-release.zip" "$1.zip" 1738856 119b8e34467fe74518f61e0ca7c86934 "$1.zip"
         else
             echo "- 检测到Magisk版本在v23以下，无法安装最新版$version（$versionCode），开始安装v1.3.4（5501）版本"
             Download -file "Modules/LSPosed/LSPosed-v1.3.4-5501-release.zip" "$1.zip" 2189720 de39ec10f67b538fbdc60b7f0e6520f7 "$1.zip"
@@ -776,9 +787,9 @@ name='Riru - EdXposed'
 version='v0.5.2.2_4683-master'
 versionCode='4683'
 author='solohsu, MlgmXyysd'
-description='一款基于Riru API开发的Xposed框架，支持运行在安卓8 ~ 11系统上。需要安装Riru v23或更高版本，Telegram: @EdXposed'
+description='一款基于Riru API开发的Xposed框架，支持运行在安卓8 ~ 11系统上。需要安装Riru v23或更高版本【请使用riru25.4.4及以下版本】，Telegram: @EdXposed'
 time='2021年2月18日'
-    [[ $Choice = 1 ]] && Download -coding "21051601/modules/EdXposed-v0.5.2.2_4683-master-release.zip" "$1.zip" 3461516 71382a57c7e7861b4695d2089e5422a9 "$1.zip"
+    [[ $Choice = 1 ]] && Riru_version=3 && Download -coding "21051601/modules/EdXposed-v0.5.2.2_4683-master-release.zip" "$1.zip" 3461516 71382a57c7e7861b4695d2089e5422a9 "$1.zip"
 ;;
 
 riru_dreamland)
@@ -802,6 +813,17 @@ author='rovo89 & topjohnwu'
 description='打包的官方Xposed框架 by @topjohnwu，支持安卓 5-8.1'
 time='2021年3月24日'
     [[ $Choice = 1 ]] && Download -file "Modules/Xposed/xposed.zip" "$1.zip" 108675627 d083690c555fa59b5f29112fc1dbb0dc "$1.zip"
+;;
+
+AUMM)
+id='AUMM'
+name='AUMM(自动更新Magisk模块)'
+version='1.0.2'
+versionCode=102
+author='快播内部工作人员'
+description='【此模块的使用有一定风险，请确保你能够应对各种应模块更新造成的突发情况！！！】这是自动更新magisk模块的模块，根据对接搞机助手重制版接口制成，每天凌晨4点自动进行检测更新模块。为方便追溯bug以及节省内存空间，log日志文件将在每周一凌晨4点进行一次删除。'
+time='2021年8月27日'
+    [[ $Choice = 1 ]] && Download -file "Modules/AUMM/AUMM-v1.0.2.zip" "$1.zip" 9566 fa97b23c84f974dcd0597b7474e4391c "$1.zip"
 ;;
 
 uperf)
@@ -1304,7 +1326,7 @@ version='v114514'
 versionCode='114514'
 author='People11'
 description='原理：通过Magisk修改prop达到机型伪装。'
-time='2021年8月8日'
+time='2021年8月27日'
 ;;
 
 com.fb.fluid)
@@ -1392,16 +1414,19 @@ riru-core-v21.3(36).zip
 '
 id='riru-core'
 name='Riru (Riru - Core)'
-version='v25.4.4.r426.05efc94'
-versionCode=426
+version='v26.1.1.r500.45d2706e83'
+versionCode=500
 author='Rikka  酷安@蓝莓味绿茶 '
-description='提供一种将代码注入zygote进程的方法，所有以Riru开头的模块必刷模块'
-time='2021年7月20日'
-if [[ $Riru_version -eq 2 ]]; then
+description='提供一种将代码注入zygote进程的方法，所有以Riru开头的模块必刷模块【需要使用EdXposed和指纹支付模块的用户请使用25.4.4版本，不要更新】'
+time='2021年8月26日'
+if [[ $Riru_version -eq 1 ]]; then
+    [[ $Choice = 1 ]] && Download -net2 "fleid=637739557593743360&puid=175627921" "$1.zip" 172560 1ee5a3f4a7c94f5dbfb4801885395ab8 "$1.zip"
+elif [[ $Riru_version -eq 2 ]]; then
     #riru-core-21.3
     [[ $Choice = 1 ]] && Download -file "Modules/Riru/riru-core-v21.3.zip" "$1-v21.3.zip" 541223 6c395f29a2cc50ae4f4efdaf87f78ca3 "$1-v21.3.zip"
-elif [[ $Riru_version -eq 1 ]]; then
-    [[ $Choice = 1 ]] && Download -file "Modules/Riru/riru-v25.4.4-release.zip" "$1.zip" 235467 cd0f5ef48c3da69997f0633d8d3d27b0 "$1.zip"
+elif [[ $Riru_version -eq 3 ]]; then
+    #riru-core-25.4.4
+    [[ $Choice = 1 ]] && Download -file "Modules/Riru/riru-v25.4.4-release.zip" "$1-25.4.4.zip" 235467 cd0f5ef48c3da69997f0633d8d3d27b0 "$1-25.4.4.zip"
 fi
 ;;
 
@@ -1414,6 +1439,17 @@ author='Rikka  酷安@蓝莓味绿茶'
 description='为「存储空间隔离（存储重定向）」v6.0.0或以上版本启用增强模式。「存储空间隔离（存储重定向）」是一个允许你控制应用程序如何使用你的文件的应用程序。'
 time='2021年8月3日'
     [[ $Choice = 1 ]] && Download -file "Modules/riru_storage_redirect/v25.0.9.zip" "$1.zip" 141687 46119f5aeda965b9dc05a5de8899dbcd "$1.zip"
+;;
+
+riru-sui)
+id='riru-sui'
+name='Sui'
+version='v12.1.3'
+versionCode=199
+author='Rikka'
+description='现代超级用户接口的实现，与Shizuku的API设计相同。该模块需要Riru v25.0.0或以上版本。'
+time='2021年8月27日'
+    [[ $Choice = 1 ]] && Download -gh "RikkaApps/Sui/releases/download/v12.1.3/sui-v12.1.3-release.zip" "$1.zip" 1081323 d68a71f992974d596ffe3b9838d2554c "$1.zip"
 ;;
 
 riru_hidemyapplist)
@@ -1433,9 +1469,9 @@ name='Riru - 指纹支付 - 微信'
 version='v3.9.21'
 versionCode='2'
 author='Jason Eric'
-description='让微信支持指纹支付 Fingerprint pay for WeChat.'
+description='让微信支持指纹支付 Fingerprint pay for WeChat.【请使用riru25.4.4及以下版本】'
 time='2020年12月7日'
-    [[ $Choice = 1 ]] && Download -coding "21051601/modules/riru-module-xfingerprint-pay-wechat-v3.9.21.zip" "$1.zip" 1371819 74360fe397f80f4c1c588d0b53d59598 "$1.zip"
+    [[ $Choice = 1 ]] && Riru_version=3 && Download -coding "21051601/modules/riru-module-xfingerprint-pay-wechat-v3.9.21.zip" "$1.zip" 1371819 74360fe397f80f4c1c588d0b53d59598 "$1.zip"
 ;;
 
 riru-module-xfingerprint-pay-qq)
@@ -1444,9 +1480,9 @@ name='Riru - 指纹支付 - QQ'
 version='v3.9.22'
 versionCode='2'
 author='Jason Eric'
-description='让QQ支持指纹支付 Fingerprint pay for QQ.'
+description='让QQ支持指纹支付 Fingerprint pay for QQ.【请使用riru25.4.4及以下版本】'
 time='2021年2月2日'
-    [[ $Choice = 1 ]] && Download -coding "21051601/modules/riru-module-xfingerprint-pay-qq-v3.9.22.zip" "$1.zip" 1220444 59b03e73329d88df922c2569a2656733 "$1.zip"
+    [[ $Choice = 1 ]] && Riru_version=3 && Download -coding "21051601/modules/riru-module-xfingerprint-pay-qq-v3.9.22.zip" "$1.zip" 1220444 59b03e73329d88df922c2569a2656733 "$1.zip"
 ;;
 
 riru-module-xfingerprint-pay-alipay)
@@ -1455,9 +1491,9 @@ name='Riru - 指纹支付 - 支付宝'
 version='v3.9.22'
 versionCode='2'
 author='Jason Eric'
-description='让支付宝支持指纹支付 Fingerprint pay for Alipay.'
+description='让支付宝支持指纹支付 Fingerprint pay for Alipay.【请使用riru25.4.4及以下版本】'
 time='2021年2月2日'
-    [[ $Choice = 1 ]] && Download -coding "21051601/modules/riru-module-xfingerprint-pay-alipay-v3.9.22.zip" "$1.zip" 1213292 5e9fba5f9b6104d1a5cfd0c6535ff26b "$1.zip"
+    [[ $Choice = 1 ]] && Riru_version=3 && Download -coding "21051601/modules/riru-module-xfingerprint-pay-alipay-v3.9.22.zip" "$1.zip" 1213292 5e9fba5f9b6104d1a5cfd0c6535ff26b "$1.zip"
 ;;
 
 riru-module-xfingerprint-pay-taobao)
@@ -1466,9 +1502,9 @@ name='Riru - 指纹支付 - 淘宝'
 version='v3.9.22'
 versionCode='2'
 author='Jason Eric'
-description='让淘宝支持指纹支付 Fingerprint pay for Taobao.'
+description='让淘宝支持指纹支付 Fingerprint pay for Taobao.【请使用riru25.4.4及以下版本】'
 time='2021年2月2日'
-    [[ $Choice = 1 ]] && Download -coding "21051601/modules/riru-module-xfingerprint-pay-taobao-v3.9.22.zip" "$1.zip" 1218749 30a4efe7b2eab2ebc1a752bc0b51a9a8 "$1.zip"
+    [[ $Choice = 1 ]] && Riru_version=3 && Download -coding "21051601/modules/riru-module-xfingerprint-pay-taobao-v3.9.22.zip" "$1.zip" 1218749 30a4efe7b2eab2ebc1a752bc0b51a9a8 "$1.zip"
 ;;
 
 coloros-magisk)

@@ -56,7 +56,7 @@
     <action confirm="true" auto-off="true" interruptible="false">
         <title>点击清除「搞机助手重制版」全部下载文件</title>
         <desc>默认下载位置在/data/data/gjzs.online/files/Configuration_File  清除后会强行重启一次助手</desc>
-        <set>rm -rf /data/data/gjzs.online/files/Configuration_File/* && am start -S $Package_name/com.projectkr.shell.SplashActivity</set>
+        <set>rm -rf /data/data/gjzs.online/files/Configuration_File/*; am start -S $Package_name/com.projectkr.shell.SplashActivity</set>
     </action>
 <!-- END -->
 <!-- START -->

@@ -517,7 +517,8 @@ cat <<Han
             <param name="ChongQi" label="是否刷入成功自动重启系统生效" type="switch" />
             <param name="Error" label="不显示模块里的错误信息" desc="注释：该错误信息log来自模块里，关闭状态时会显示完整日志等于Magisk的保存日志功能。" type="switch" value="1" />
             <param name="Compatible" label="使用兼容模式（兼容旧模块）" desc="注：该「兼容模式」需要模块作者遵守Magisk Modules开发指南规定，不更改update-binary脚本" type="switch" visible="echo $Show_Compatibility_Mode" />
-            <param name="Riru_Manger" label="是否安装Riru管理器，显示Riru状态" type="switch" />
+            <param name="Riru_Manger" label="是否安装Riru管理器，显示Riru状态" desc="最新版Riru已经去除此管理器，此为25.4.4的老版本" type="switch" />
+           <param name="old_Riru_version" label="是否安装Riru-v25.4.4版本" desc="部分模块（如EdXposed）不支持最新版Riru，需要开启此功能安装旧版" type="switch" />
         </params>
     </action>
 <!-- END -->
