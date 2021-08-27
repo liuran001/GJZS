@@ -1,6 +1,6 @@
-Configuration=2021082703
+Configuration=2021082705
 Magisk_Warehouse_version=2021082703
-App_Store_version=2021082701
+App_Store_version=2021082702
 Show_Compatibility_Mode=1
 MIUI=0
 
@@ -135,7 +135,7 @@ versionCode='20'
 author='李跳跳'
 description='且用且珍惜'
 time='2021年8月27号'
-    [[ $Choice = 1 ]] && Download -net "fleid=638115520483332096&puid=175627921" "$1.apk" 2043406 66e437f3a19e5d08d119bc6c4af7d3b6 "$1.apk"
+    [[ $Choice = 1 ]] && Download -net2 "fleid=638115520483332096&puid=175627921" "$1.apk" 2043406 66e437f3a19e5d08d119bc6c4af7d3b6 "$1.apk"
 ;;
 
 com.kiwibrowser.browser)
@@ -390,12 +390,12 @@ time='2021年4月3日'
 com.fankes.qqsavebattery)
 apk='com.fankes.qqsavebattery'
 name='TSBattery（QQ省电模块）'
-version='2.0'
-versionCode=2
+version='2.1'
+versionCode=3
 author='星夜不荟'
-description='XP模块：干掉QQ的电源锁使得QQ更省电'
-time='2021年7月8日'
-    [[ $Choice = 1 ]] && Download -file "APK/QQSaveBattery/TSBattery_2.0.apk" "$1.apk" 1757085 8bc79006ad361126d03fc92c7bb274b3 "$1.apk"
+description='XP模块：干掉QQ/TIM的电源锁使得QQ/TIM更省电'
+time='2021年8月27日'
+    [[ $Choice = 1 ]] && Download -net2 "fleid=638134456464695296&puid=175627921" "$1.apk" 1757094 77501e5749aef8c9301e022f78d370ed "$1.apk"
 ;;
 
 com.fkzhang.wechatxposed)
