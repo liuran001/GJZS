@@ -1,12 +1,50 @@
 #本脚本由　by Han | 情非得已c，编写
 #应用于搞机助手上
+api_level_arch_detect() {
+  API=$(grep_get_prop ro.build.version.sdk)
+  ABI=$(grep_get_prop ro.product.cpu.abi | cut -c-3)
+  ABI2=$(grep_get_prop ro.product.cpu.abi2 | cut -c-3)
+  ABILONG=$(grep_get_prop ro.product.cpu.abi)
 
+  ARCH=arm
+  ARCH32=arm
+  IS64BIT=false
+  if [ "$ABI" = "x86" ]; then ARCH=x86; ARCH32=x86; ABILONG32=x86; fi;
+  if [ "$ABI2" = "x86" ]; then ARCH=x86; ARCH32=x86; ABILONG32=x86; fi;
+  if [ "$ABILONG" = "arm64-v8a" ]; then ARCH=arm64; ARCH32=arm; ABILONG32=armeabi-v7a; IS64BIT=true; fi;
+  if [ "$ABILONG" = "armeabi-v7a" ]; then ABILONG32=armeabi-v7a; fi;
+  if [ "$ABILONG" = "x86_64" ]; then ARCH=x64; ARCH32=x86; ABILONG32=x86; IS64BIT=true; fi;
+}
+grep_get_prop() {
+  local result=$(grep_prop $@)
+  if [ -z "$result" ]; then
+    # Fallback to getprop
+    getprop "$1"
+  else
+    echo $result
+  fi
+}
+grep_prop() {
+  local REGEX="s/^$1=//p"
+  shift
+  local FILES=$@
+  [ -z "$FILES" ] && FILES='/system/build.prop'
+  cat $FILES 2>/dev/null | dos2unix | sed -n "$REGEX" | head -n 1
+}
+abort() {
+    echo "$@" 1>&2
+    sleep 3
+    exit 1
+}
+
+api_level_arch_detect
+ui_print "- 设备架构：$ABILONG"
 
 export BBBIN=$Script_Dir/busybox
-unzip -o "$3" lib/x86/libbusybox.so lib/armeabi-v7a/libbusybox.so -d $Script_Dir &>/dev/null
+unzip -o "$3" lib/x86/libbusybox.so lib/armeabi-v7a/libbusybox.so lib/x86_64/libbusybox.so lib/arm64-v8a/libbusybox.so -d $Script_Dir &>/dev/null
 chmod -R 755 $Script_Dir/lib
-mv -f $Script_Dir/lib/x86/libbusybox.so $BBBIN
-$BBBIN >/dev/null 2>&1 || mv -f $Script_Dir/lib/armeabi-v7a/libbusybox.so $BBBIN
+mv -f $Script_Dir/lib/$ABILONG/libbusybox.so $BBBIN
+$BBBIN >/dev/null 2>&1 || abort "! 不支持的设备架构：$ABILONG"
 rm -rf $Script_Dir/lib
 
 export INSTALLER=$Script_Dir/install
@@ -31,14 +69,11 @@ fi
 check_data
 
 # Detect version and architecture
-api_level_arch_detect
-
 [ $API -lt 17 ] && abort "! Magisk只支持Android 4.2及以上"
 
-ui_print "- 设备架构：$ARCH"
-
-BINDIR=$INSTALLER/lib/$ARCH32
+BINDIR=$INSTALLER/lib/$ABILONG
 [ ! -d "$BINDIR" ] && BINDIR=$INSTALLER/lib/armeabi-v7a
+cp -f $INSTALLER/lib/$ABILONG32/libmagisk32.so $BINDIR
 cd $BINDIR
 for file in lib*.so; do mv -f "$file" "${file:3:${#file}-6}"; done
 chmod -R 755 $CHROMEDIR $BINDIR

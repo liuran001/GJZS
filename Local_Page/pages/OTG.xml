@@ -1,5 +1,4 @@
 if ! $Have_ROOT; then
-    echo "此功能仅对ROOT用户开放"
     exit 1
 fi
     case "$ABI" in

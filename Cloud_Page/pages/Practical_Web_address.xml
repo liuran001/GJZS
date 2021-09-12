@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<group title="资源聚合">
+<!-- START -->
+    <page link="https://kamiui.ml">
+        <title>萤火虫资源站</title>
+        <desc>一个较完整的资源聚合站，ROM/Rec/刷机工具/模块/驱动等等玩机所需的资源都应有尽有</desc>
+    </page>
+<!-- END -->
 <group title="Magisk">
 <!-- START -->
     <page link="https://magiskmanager.com/">

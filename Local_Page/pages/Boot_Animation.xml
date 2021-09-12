@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <group title="第一屏">
 <!-- START -->
+    <action interruptible="false">
+        <title>whyred（红米note5专属选项）第一屏修改［内含18个动画］</title>
+        <desc>whyred（红米note5专属选项）请勿在其它机型刷入，否则后果自负！</desc>
+        <set>. ./Install_BootAnimation_Screen1.sh</set>
+        <params>
+            <param name="ChongQi" label="　是否刷入成功自动重启系统" type="switch" />
+            <param name="Default" label="　打开此开关为恢复默认" type="switch" />
+            <param name="BootAnimation_Screen1" title="选择要刷入的镜像" options-sh="cat ./Install_BootAnimation_Screen1_Option.sh" />
+         </params>
+          <lock>
+        	  if [[ -f ~/offline ]]; then
+        		  echo '此功能仅在在线版开放，请前往「搞机助手选项区」切换在线版'
+        	  else
+        		  echo 'unlocked'
+        	  fi
+          </lock>
+    </action>
+<!-- END -->
+<!-- START -->
     <page config-sh=". ./Install_BootAnimation_Screen1_Page.sh">
         <title>自定义制作第一屏/FASTBOOT界面……</title>
         <summary>只适用于使用bmp格式的，可修改开机时第一屏、FASTBOOT界面、已解锁的界面、引导验证错误页面……&#x000A;当然不同设备图片个数顺序都不一样所以采用了动态方式获取不同设备的配置，并解析出所有图片</summary>
@@ -24,6 +43,13 @@
             <param name="BootAnimation_Screen2" multiple="true" title="选择要随机的开机动画" options-sh="tail -n +2 ./Install_BootAnimation_Screen2_Option.sh" value-sh=". $Data_Dir/Random_Install_BootAnimation_Screen2.log; echo &#34;$BootAnimation_Screen2&#34;" />
             <param name="ZiDY_Screen2" title="如果你不喜欢内置的开机动画，可自定义开机动画" value-sh=". $Data_Dir/Random_Install_BootAnimation_Screen2.log; echo &#34;$ZiDY_Screen2&#34;" desc="可输入要自定义的开机动画文件绝对路径，无需重命名为bootanimation.zip。多个文件回车换行即可，警告：路径中不要有空格和特殊符号。&#x000A;温馨提示：可用「MT管理器」长按目录或文件 -->点属性 -->点击目录即可复制目录绝对路径，长按目录或长按名称即可复制文件绝对路径" />
         </params>
+          <lock>
+        	  if [[ -f ~/offline ]]; then
+        		  echo '此功能仅在在线版开放，请前往「搞机助手选项区」切换在线版'
+        	  else
+        		  echo 'unlocked'
+        	  fi
+          </lock>
     </action>
 <!-- END -->
 <!-- START -->
@@ -40,6 +66,13 @@
             <param name="BootAnimation_Screen2" title="选择要刷入的开机动画" options-sh="cat ./Install_BootAnimation_Screen2_Option.sh" required="true"/>
             <param name="ZiDY_Screen2" type="file" suffix="zip" editable="true" title="当上面选择自定义文件时才生效" desc="可输入要刷入的开机动画文件绝对路径，也可以使用文件选择器选择文件，无需重命名为bootanimation.zip。温馨提示：可用「MT管理器」长按目录或文件 -->点属性 -->点击目录即可复制目录绝对路径，长按目录或长按名称即可复制文件绝对路径" />
         </params>
+          <lock>
+        	  if [[ -f ~/offline ]]; then
+        		  echo '此功能仅在在线版开放，请前往「搞机助手选项区」切换在线版'
+        	  else
+        		  echo 'unlocked'
+        	  fi
+          </lock>
     </action>
 <!-- END -->
 <!-- START -->
@@ -55,6 +88,19 @@
         <title>查看开机动画文件路径</title>
         <set>. ./View_BootAnimation_Screen2_PATH.sh -p</set>
     </action>
+<!-- END -->
+<!-- START -->
+    <page config-sh="cat ./BootAnimation/bootanimation.xml">
+        <title>自定义制作开机动画</title>
+        <desc>由by:酷安@巴啦啦魔仙女王提供服务</desc>
+          <lock>
+        	  if [[ -f ~/offline ]]; then
+        		  echo '此功能仅在在线版开放，请前往「搞机助手选项区」切换在线版'
+        	  else
+        		  echo 'unlocked'
+        	  fi
+          </lock>
+    </page>
 <!-- END -->
 </group>
 

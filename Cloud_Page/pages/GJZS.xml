@@ -2,14 +2,14 @@
 <group>
 <!-- START -->
     <switch interruptible="false">
-        <title>切换在线版</title>
+        <title>在线/离线版切换</title>
         <desc>关闭此开关将不会连接服务器，但也会缺失所有需要联网才能使用的功能，切换后会强制重启搞机助手【需要使用3.2以上版本才会生效】</desc>
         <get>. ./switchs/Change_Local_get.sh</get>
         <set>. ./switchs/Change_Local_set.sh</set>
     </switch>
 <!-- END -->
 <!-- START -->
-    <switch interruptible="false" shell="hidden" visible="[[ ! -f ~/no_curl ]] &#38;&#38; echo 1 || echo 0">
+    <switch interruptible="false" shell="hidden" visible="[[ ! -f ~/offline ]] &#38;&#38; echo 1 || echo 0">
         <title>开关主页一言显示</title>
         <desc>如果主页加载速度慢可以关闭此功能，关闭后将显示为「在线版更新日志」，需重启应用才可生效</desc>
         <get>. ./switchs/Home_Yiyan_get.sh</get>

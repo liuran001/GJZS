@@ -2,6 +2,14 @@
 <group title="杂项">
 <!-- START -->
     <switch shell="hidden" auto-off="true" interruptible="false">
+        <title>去除MIUI应用包管理组件对第三方更新系统应用的限制</title>
+        <desc>理论上全机型通用，即时生效，若不生效请尝试使用旧版，关闭为恢复默认</desc>
+        <get>. ./switchs/MIUI/MIUI_AllowSystemPackageUpdate_Get.sh</get>
+        <set>. ./switchs/MIUI/MIUI_AllowSystemPackageUpdate_Set.sh</set>
+    </switch>
+<!-- END -->
+<!-- START -->
+    <switch shell="hidden" auto-off="true" interruptible="false">
         <title>关闭/开启MIUI隐藏性能模式开关</title>
         <desc>开启后请前往手机管家>省电与电池查看是否存在性能模式开关，需确保手机管家为最新版本，部分机型可能无效</desc>
         <get>. ./switchs/MIUI/MIUI_Performance_Mode_Get.sh</get>
@@ -37,6 +45,13 @@
             <param name="Sound" title="请选择对应功能" options-sh="printf 'install|安装\nuninstall|卸载'" />
         </params>
         <set>. ./install_apk-2.sh PackageInstaller Installation_lion</set>
+        <lock>
+        	  if [[ -f ~/offline ]]; then
+        		  echo '此功能仅在在线版开放，请前往「搞机助手选项区」切换在线版'
+        	  else
+        		  echo 'unlocked'
+        	  fi
+          </lock>
     </action>
 <!-- END -->
 <!-- START -->
@@ -48,6 +63,13 @@
             <param name="Sound" title="请选择对应功能" options-sh="printf 'install|安装\nuninstall|卸载'" />
         </params>
         <set>. ./install_apk-2.sh miwallpaper com.miui.miwallpaper</set>
+        <lock>
+        	  if [[ -f ~/offline ]]; then
+        		  echo '此功能仅在在线版开放，请前往「搞机助手选项区」切换在线版'
+        	  else
+        		  echo 'unlocked'
+        	  fi
+          </lock>
     </action>
 <!-- END -->
 <!-- START -->
@@ -58,6 +80,13 @@
             <param name="Sound" title="请选择对应功能" options-sh="printf 'install|安装\nuninstall|卸载'" />
         </params>
         <set>. ./install_apk-2.sh com.miui.miwallpaper.snowmountain</set>
+        <lock>
+        	  if [[ -f ~/offline ]]; then
+        		  echo '此功能仅在在线版开放，请前往「搞机助手选项区」切换在线版'
+        	  else
+        		  echo 'unlocked'
+        	  fi
+          </lock>
     </action>
 <!-- END -->
 <!-- START -->
@@ -68,6 +97,13 @@
             <param name="Source_File" type="file" suffix="tgz" editable="true" required="true" title="可输入文件绝对路径，也可以使用文件选择器选择文件" desc="温馨提示：可用「MT管理器」长按目录或文件 -->点属性 -->点击目录即可复制目录绝对路径，长按目录或长按名称即可复制文件绝对路径" />
             <param name="Dir" title="可输入目录绝对路径，也可以通过文件选择器长按选定目录，留空为解压到源文件目录" type="folder" editable="true" desc="上面是默认路径，请自行根据需求更改目录，温馨提示：可用「MT管理器」长按目录或文件 -->点属性 -->点击目录即可复制目录绝对路径，长按目录或长按名称即可复制文件绝对路径" value-sh="Dir=$Data_Dir/JieYa_tgz.log; if [[ -f $Dir ]]; then cat $Dir; else echo $GJZS; fi " />
         </params>
+        <lock>
+        	  if [[ -f ~/offline ]]; then
+        		  echo '此功能仅在在线版开放，请前往「搞机助手选项区」切换在线版'
+        	  else
+        		  echo 'unlocked'
+        	  fi
+          </lock>
     </action>
 <!-- END -->
 <!-- START -->

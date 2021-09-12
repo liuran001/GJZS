@@ -1,6 +1,6 @@
-Configuration=2021082705
-Magisk_Warehouse_version=2021082703
-App_Store_version=2021082702
+Configuration=2021091204
+Magisk_Warehouse_version=2021091203
+App_Store_version=2021091202
 Show_Compatibility_Mode=1
 MIUI=0
 
@@ -11,12 +11,12 @@ case "$1" in
 com.topjohnwu.magisk)
 apk='com.topjohnwu.magisk'
 name='Magisk'
-version='1eb83ad8-alpha-31'
+version='9bf835e8-alpha'
 versionCode='23001'
 author='vvb2060 & John Wu'
 description='Magisk Manager'
-time='2021年8月15日'
-    [[ $Choice = 1 ]] && Download -net2 'fleid=633765811996164096&puid=175627921' "$1.apk" 10442522 d34f501100d64f703daf12961277db43 "$1.apk"
+time='2021年9月12日'
+    [[ $Choice = 1 ]] && Download -gh 'vvb2060/magisk_files/blob/cbdcc5302daaa71e44454e6dc3c6c5895c7d85cd/app-release.apk?raw=true' "$1.apk" 10810628 09777e391443d5a46c0f41dc12b6894b "$1.apk"
 ;;
 
 com.icio.bei)
@@ -33,12 +33,12 @@ time='2021年8月8日'
 com.omarea.vtools)
 apk='com.omarea.vtools'
 name='Scene4'
-version='4.5.1'
-versionCode=202107281
+version='4.5.6'
+versionCode=202108231
 author='嘟嘟Ski'
 description='一个集高级重启、应用安装自动点击、CPU调频等多项功能于一体的工具箱。'
-time='2021年8月3日'
-    [[ $Choice = 1 ]] && Download -file "APK/Scene/Scene4_4.5.1.apk" "$1.apk" 4792632 a3040e6c7ebcdeb47241d922063907f7 "$1.apk"
+time='2021年8月23日'
+    [[ $Choice = 1 ]] && Download -file "APK/Scene/Scene4_4.5.6.apk" "$1.apk" 4805368 673fdd206e1168cdd157942ee359be4b "$1.apk"
 ;;
 
 bin.mt.plus)
@@ -66,12 +66,12 @@ time='2021年7月7日'
 org.lsposed.manager)
 apk='org.lsposed.manager'
 name='LSPosed 模块管理器'
-version='v1.5.2'
-versionCode='5964'
+version='v1.5.3'
+versionCode='5984'
 author='LSPosed Developers'
 description='LSPosed Xposed框架模块管理器【这是管理器，模块请前往Magisk模块仓库安装】'
 apkfile="$PeiZhi_File/$apk-$versionCode.apk"
-time='2021年8月27日'
+time='2021年9月4日'
     if [[ $Choice = 1 ]]; then
         [[ $SDK -lt 27 ]] && abort "！$name-$version（$versionCode）不支持安卓8.1.0以下系统"
         if [[ ! -s "$apkfile" ]]; then
@@ -302,12 +302,12 @@ time='2021年5月15日'
 com.tsng.hidemyapplist)
 apk='com.tsng.hidemyapplist'
 name='隐藏应用列表'
-version='2.0.9'
-versionCode=59
+version='2.1.3'
+versionCode=63
 author='DR-TSNG'
 description='拦截应用对应用列表的请求，使应用无法检测到特定应用/应用列表  作用域只需要系统框架'
-time='2021年8月3日'
-    [[ $Choice = 1 ]] && Download -gh "Dr-TSNG/Hide-My-Applist/releases/download/V2.0.9/V2.0.9-release.apk" "$1.apk" 2303528 eae3c11a22b711761e90683853cc5fb1 "$1.apk"
+time='2021年8月29日'
+    [[ $Choice = 1 ]] && Download -gh "Dr-TSNG/Hide-My-Applist/releases/download/V2.1.3/V2.1.3-release.apk" "$1.apk" 2277111 81467668435449340f311aca4060996a "$1.apk"
 ;;
 
 com.coderstory.toolkit)
@@ -357,12 +357,12 @@ time='2021年7月7日'
 nil.nadph.qnotified)
 apk='nil.nadph.qnotified'
 name='QNotified'
-version='0.8.20.701e851'
-versionCode=1625280100
+version='0.8.22.ef219e7'
+versionCode=1630851433
 author='reinit'
 description='XP模块：QQ辅助性功能增强'
-time='2021年7月7日'
-    [[ $Choice = 1 ]] && Download -file "APK/QNotified/QNotified_0.8.20.701e851.apk" "$1.apk" 4572948 c76749dc7c5a71be40c561bf2c30168a "$1.apk"
+time='2021年9月12日'
+    [[ $Choice = 1 ]] && Download -gh "ferredoxin/QNotified/releases/download/v0.8.22/app-release.apk" "$1.apk" 4841890 9e0416ebbcbce7103e80734edaf79201 "$1.apk"
 ;;
 
 me.kyuubiran.qqcleaner)
@@ -401,12 +401,12 @@ time='2021年8月27日'
 com.fkzhang.wechatxposed)
 apk='com.fkzhang.wechatxposed'
 name='微X模块'
-version='2.23'
-versionCode=86
+version='2.24'
+versionCode=87
 author='fkzhang'
 description='XP模块：Add extra features to Wechat. 微信增加更多功能'
-time='2021年7月20日'
-    [[ $Choice = 1 ]] && Download -file "APK/WechatXposed/WeXposed86_2.23.apk" "$1.apk" 3418874 3b2787a7481666e1ab3e69bc18f6a815 "$1.apk"
+time='2021年9月12日'
+    [[ $Choice = 1 ]] && Download -file "APK/WechatXposed/WeXposed_87_2.24.apk" "$1.apk" 4167283 b7d2c34cbc244826220b188c963c1911 "$1.apk"
 ;;
 
 com.mhook.dialog)
@@ -445,12 +445,12 @@ time='2021年6月3日'
 com.surcumference.fingerprintpay)
 apk='com.surcumference.fingerprintpay'
 name='指纹支付'
-version='3.9.22'
+version='4.0.0'
 versionCode=21
 author='eritpchy'
 description='XP模块：让微信、支付宝、淘宝和腾讯QQ在支持指纹识别的手机上使用指纹支付, 即使他们都不打算支持!'
-time='2021年2月10日'
-    [[ $Choice = 1 ]] && Download -coding "21051601/apks/$1.apk" "$1.apk" 1736690 c3f0dd5f62876f50304f83db6dfdaa0c "$1.apk"
+time='2021年9月1日'
+    [[ $Choice = 1 ]] && Download -gh "eritpchy/FingerprintPay/releases/download/4.0.0/xposed.com.surcumference.fingerprintpay.wechatfp.4.0.0.release.apk" "$1.apk" 1934174 bf41870eb06399c4ec97ff07f97d4172 "$1.apk"
 ;;
 
 moe.minamigo.MiuiEuLocalization)
@@ -500,12 +500,12 @@ time='2020年8月14日'
 chili.xposed.chimi)
 apk='chili.xposed.chimi'
 name='ChiMi'
-version='4.02.14'
-versionCode=300214
+version='4.08.10'
+versionCode=300810
 author='yonghen'
 description='XP模块：MIUI扩展插件（EdXposed/TaiChi）'
-time='2021年2月10日'
-    [[ $Choice = 1 ]] && Download -coding "21051601/apks/$1.apk" "$1.apk" 412235 7d8a7ff8039e71e05511bf5ee42dd77b "$1.apk"
+time='2021年8月10日'
+    [[ $Choice = 1 ]] && Download -gh "yonghen/chimi-/releases/download/v4.08.10/ChiMi-v4.08.10-release.apk" "$1.apk" 231835 1466b4423a8dbac3179b3f51d5429991 "$1.apk"
 ;;
 
 cn.lovesykun.miui_force_fps)
@@ -764,15 +764,15 @@ time='2021年8月15日'
 riru_lsposed)
 id='riru_lsposed'
 name='Riru - LSPosed'
-version='v1.5.2'
-versionCode='5964'
+version='v1.5.3'
+versionCode='5984'
 author='LSPosed Developers'
 description='一款基于Riru API开发的Xposed框架，支持运行在安卓8.1.0 ~ 12系统上。需要安装Riru v25.0.0或更高版本，Telegram: @LSPosed'
-time='2021年8月27日'
+time='2021年9月4日'
     if [[ $Choice = 1 ]]; then
         mask -v
         if [[ $MAGISK_VER_CODE -ge 23000 ]]; then
-             [[ $Choice = 1 ]] && Download -gh "LSPosed/LSPosed/releases/download/v1.5.2/LSPosed-v1.5.2-5964-release.zip" "$1.zip" 1738856 119b8e34467fe74518f61e0ca7c86934 "$1.zip"
+             [[ $Choice = 1 ]] && Download -gh "LSPosed/LSPosed/releases/download/v1.5.3/LSPosed-v1.5.3-5984-release.zip" "$1.zip" 1739477 bfecf260f8567cadf0e0cbb91d79f7fc "$1.zip"
         else
             echo "- 检测到Magisk版本在v23以下，无法安装最新版$version（$versionCode），开始安装v1.3.4（5501）版本"
             Download -file "Modules/LSPosed/LSPosed-v1.3.4-5501-release.zip" "$1.zip" 2189720 de39ec10f67b538fbdc60b7f0e6520f7 "$1.zip"
@@ -1023,6 +1023,18 @@ name="MIUI9 - MIUI10多合一通用模块"
 author='by：Han | 情非得已c'
 description="$name"
 time='2019年8月17日'
+;;
+
+He_zheng)
+MIUI=1
+id='He_zheng'
+name='33W亮屏满血'
+version='1.6(21.09.12)'
+versionCode=1
+author='酷安ID:鹤征'
+description='适合小米33W手机使用，亮屏动态调节充电速度，温度封顶49度及以下，避免触碰温度墙的情况下达到最快的充电速度，异常高温自动断电。不用删温控！删除温控电流无法限制！要是没温控建议刷完整包！'
+time='2021年9月12日'
+    [[ $Choice = 1 ]] && Download -file "Modules/V1.6xmlpkc.zip" "$1.zip" 10520 d22d213b6123328a12073e2598a09ecd "$1.zip"
 ;;
 
 theme_pojie)
@@ -1414,13 +1426,13 @@ riru-core-v21.3(36).zip
 '
 id='riru-core'
 name='Riru (Riru - Core)'
-version='v26.1.1.r500.45d2706e83'
-versionCode=500
+version='v26.1.2.r505.c20529bced'
+versionCode=505
 author='Rikka  酷安@蓝莓味绿茶 '
 description='提供一种将代码注入zygote进程的方法，所有以Riru开头的模块必刷模块【需要使用EdXposed和指纹支付模块的用户请使用25.4.4版本，不要更新】'
-time='2021年8月26日'
+time='2021年9月12日'
 if [[ $Riru_version -eq 1 ]]; then
-    [[ $Choice = 1 ]] && Download -net2 "fleid=637739557593743360&puid=175627921" "$1.zip" 172560 1ee5a3f4a7c94f5dbfb4801885395ab8 "$1.zip"
+    [[ $Choice = 1 ]] && Download -gh "RikkaApps/Riru/releases/download/v26.1.2/riru-v26.1.2.r505.c20529bced-release.zip" "$1.zip" 170852 8baf05175e0627d234347dca3543093f "$1.zip"
 elif [[ $Riru_version -eq 2 ]]; then
     #riru-core-21.3
     [[ $Choice = 1 ]] && Download -file "Modules/Riru/riru-core-v21.3.zip" "$1-v21.3.zip" 541223 6c395f29a2cc50ae4f4efdaf87f78ca3 "$1-v21.3.zip"
@@ -1444,23 +1456,23 @@ time='2021年8月3日'
 riru-sui)
 id='riru-sui'
 name='Sui'
-version='v12.1.3'
-versionCode=199
+version='v12.2.0'
+versionCode=227
 author='Rikka'
 description='现代超级用户接口的实现，与Shizuku的API设计相同。该模块需要Riru v25.0.0或以上版本。'
-time='2021年8月27日'
-    [[ $Choice = 1 ]] && Download -gh "RikkaApps/Sui/releases/download/v12.1.3/sui-v12.1.3-release.zip" "$1.zip" 1081323 d68a71f992974d596ffe3b9838d2554c "$1.zip"
+time='2021年9月12日'
+    [[ $Choice = 1 ]] && Download -gh "RikkaApps/Sui/releases/download/v12.2.0/sui-v12.2.0-release.zip" "$1.zip" 1120978 b5c37fc41865d084805587045d3c124e "$1.zip"
 ;;
 
 riru_hidemyapplist)
 id='riru_hidemyapplist'
 name='Riru - Hide My Applist'
-version='v0.5'
-versionCode='23'
-author='Dr.TSNG'
+version='v0.6.1'
+versionCode='26'
+author='Nullptr'
 description='Xposed模块「隐藏应用列表」的扩展，实现对文件检测的拦截。'
-time='2021年8月3日'
-    [[ $Choice = 1 ]] && Download -gh "Dr-TSNG/Hide-My-Applist/releases/download/V2.0.5/riru-hidemyapplist-v0.5-release.zip" "$1.zip" 701170 8cea4e863b1a05f0099cf1e8c88cb02f "$1.zip"
+time='2021年8月29日'
+    [[ $Choice = 1 ]] && Download -gh "Dr-TSNG/Hide-My-Applist/releases/download/V2.1.3/riru-hidemyapplist-v0.6.1-release.zip" "$1.zip" 698715 ed03c001ee91e630df0aae2d8cfe5d53 "$1.zip"
 ;;
 
 riru-module-xfingerprint-pay-wechat)
@@ -1900,8 +1912,8 @@ com.miui.miwallpaper.snowmountain)
 
 Install_Applet)
     name=Applet
-    versionCode=75
-    Install_Applet -file "Other/Applet/Applet-75.zip" "$name.zip" 7769031 742b1ac438f07659618ebc94181d354f "$name" $versionCode
+    versionCode=76
+    Install_Applet2 -file "Other/Applet/Applet-76.zip" "$name.zip" 8356666 0cd3cd36215bbf0e812cd7c7645edc38 "$name" $versionCode
 ;;
 
 binwalk)

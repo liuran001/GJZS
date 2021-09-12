@@ -13,10 +13,11 @@ fi
     mask riru-core
     if [[ -d "$Module" ]]; then
         echo "- 已安装了Riru （Riru - Core）$version($versionCode)"
-        [[ -n $versionCode && $versionCode -lt 41 && $Riru_version -eq 0 ]] && echo "！已安装的Riru （Riru - Core）版本在v22以下，已自动打开安装Riru开关" && Riru_version=1
+        [[ -n $versionCode && $versionCode -lt 41 && $Riru_version -eq 0 ]] && echo "！已安装的Riru （Riru - Core）版本在v22以下，已自动打开安装Riru开关" && Riru_version=3
+        [[ -n $versionCode && $versionCode -gt 426 ]] && echo "！已安装的Riru （Riru - Core）版本在v25.4.4以上，由于EdXposed不支持最新版Riru，已自动打开安装Riru-v25.4.4开关" && Riru_version=3
     fi
-
-        [[ $Riru_version = 1 ]] && . ./Magisk_Module/Riru_Installer.sh $Riru_version
+        [[ $Riru_version = 1 ]] && Riru_version=3
+        [[ $Riru_version = 3 ]] && . ./Magisk_Module/Riru_Installer.sh $Riru_version
         if [[ -d $DATA_DIR/com.solohsu.android.edxp.manager ]]; then abort -e "已检测到您安装了EdXposed Installer，由于作者没更新了导致无法检测到新版EDXposed，显示未安装！\n请卸载EdXposed Installer选择EdXposed_Manager才能继续安装"; fi
             [[ -f /system/lib/libjit.so ]] && abort "！一山不容二虎，请先卸载太极 · 阳模块，再来安装EDXposed吧！"
             [[ -d $Modules_Dir/riru_lsposed ]] && echo "！已安装了Riru - LSPosed版已自动禁用" && touch $Modules_Dir/riru_lsposed/disable

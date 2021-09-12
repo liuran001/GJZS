@@ -10,13 +10,18 @@
 <!-- START -->
     <text visible=". ./support/Missing_file.sh">
         <slices>
-            <slice size="18" color="#FFFF0000">已检测到Magisk需要修复运行环境&#x000A;缺失 Magisk 正常工作所需的文件，如果不修复您将无法使用模块功能，可在Magisk Manger里修复</slice>
+            <slice size="18" color="#FFFF0000">已检测到Magisk需要修复运行环境&#x000A;缺失 Magisk 正常工作所需的文件，如果不修复您将无法使用模块功能，可在Magisk Manger里修复也可以在下方点击一键修复Magisk运行环境</slice>
         </slices>
     </text>
 <!-- END -->
 </group>
 <group title="模块区">
     <pages>
+<!-- START -->
+        <page before-load=". $ShellScript/Magisk_Module/Print_Magisk_Warehouse.sh" config-sh="cat $Pages/Magisk_Warehouse.xml" locked="$LOCKED">
+            <title>Magisk模块仓库</title>
+        </page>
+<!-- END -->
 <!-- START -->
         <page id="Modules_Management_page" config-sh=". $ShellScript/Magisk_Module/Modules_Management_page.sh" locked="$LOCKED">
             <title>Magisk模块管理</title>
@@ -27,6 +32,18 @@
         </page>
 <!-- END -->
     </pages>
+<!-- START -->
+    <action>
+        <title>检查Magisk模块</title>
+        <desc>检查Magisk模块内是否有dd或rm操作（由People11提供代码）</desc>
+        <set>. ./Magisk_Module/Check_Module.sh</set>
+        <params>
+            <param name="Check_dd" label="检查dd行为" type="checkbox" value="1" />
+            <param name="Check_rm" label="检查rm行为" type="checkbox" value="1" />
+            <param name="File" title="可输入模块文件绝对路径，也可以使用文件选择器选择文件" type="file" suffix="zip" editable="true" required="true"/>
+        </params>
+    </action>
+<!-- END -->
 <!-- START -->
     <action locked="$LOCKED">
         <title>简单的查看已安装的Magisk模块信息</title>
@@ -81,6 +98,16 @@
     </switch>
 <!-- END -->
 <!-- START -->
+    <action interruptible="false" id="@Update_Magisk" reload="@Update_Magisk"  locked="$LOCKED">
+        <title>一键更新Magisk.zip &amp; Magisk Manager.apk（Alpha版）</title>
+        <desc sh=". ./Magisk_Module/Check_Magisk_Version.sh"></desc>
+        <set>. ./Install_Magisk.sh -update</set>
+        <params>
+            <param name="ChongQi" label="是否刷完模块自动重启系统" type="switch" />
+        </params>
+    </action>
+<!-- END -->
+<!-- START -->
     <action interruptible="false">
         <title>解密Magisk模块</title>
         <desc>解密一些打开模块zip文件无法查看内部源文件</desc>
@@ -98,6 +125,14 @@
         <params>
             <param name="Magisk_Manager" title="设置Magisk Manger包名" placeholder="自动识别请留空" value-sh="cat $Data_Dir/Magisk_Manager_Package_name.log"/>
         </params>
+    </action>
+<!-- END -->
+<!-- START -->
+    <action confirm="true" auto-off="true" interruptible="false"  locked="$LOCKED">
+        <title>一键修复Magisk运行环境</title>
+        <desc>一键修复进入「Magisk Manager」提示：&#x000A;需要修复运行环境&#x000A;缺失 Magisk 正常工作所需的文件。 将下载 Magisk 安装包进行修复安装，完成后自动重启，是否继续？</desc>
+        <summary>注：默认会自动重启</summary>
+        <set>. ./Install_Magisk.sh -repair</set>
     </action>
 <!-- END -->
 <!-- START -->

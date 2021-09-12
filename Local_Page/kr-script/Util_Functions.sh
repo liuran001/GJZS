@@ -1,5 +1,5 @@
 #Custom variable
-export Util_Functions_Code=2021080101
+export Util_Functions_Code=2021083104
 export SDdir=/data/media/0
 export Magisk=`$which magisk`
 if $Have_ROOT;then
@@ -21,7 +21,7 @@ export Install_Method=$ShellScript/Geek/Installation_Check.sh
 export APK_Name_list=$Data_Dir/APK_Name.log
 export APK_Name_list2=$Data_Dir/APK_Name2.log
 export jian="$Script_Dir/update-binary"
-export jian2="$Script_Dir/update-script"
+export jian2="$Script_Dir/updater-script"
 export Frame_Dir=/data/misc/$Package_name
 export Charging_control=/sys/class/power_supply/battery/input_suspend
 export Charging_control2=/sys/class/power_supply/battery/charging_enabled
@@ -30,11 +30,10 @@ export Status=$Data_Dir/Status.log
 export Termux=$DATA_DIR/com.termux/files
 export BOOTMODE=true
 export Choice=0
-export New_Version=3.0.1-Alpha
-export New_Code=2021072501
+export New_Version=3.3
+export New_Code=2021080102
 export ChongQi Configuration File File_Name Download_File File_MD5 id name version versionCode author description MODID MODNAME MODPATH MAGISK_VER MAGISK_VER_CODE LOCKED
 $Have_ROOT && LOCKED=false || LOCKED=true
-
 
 #Dynamic variable
 export Time=`date '+%s'`
@@ -212,7 +211,7 @@ Install_Applet2() {
     [[ -f "$JCe" ]] && JCe3=`cat $JCe`
 
     Start_Install2() {
-       # Download "$@"
+        [[ ! -f ~/offline ]] && Download "$@"
         
             if [[ -f "$Download_File" ]]; then
                 [[ ! -d $ELF2_Path ]] && mkdir -p "$ELF2_Path" && chown $APP_USER_ID:$APP_USER_ID $ELF2_Path || rm -rf $ELF2_Path/*
@@ -264,19 +263,37 @@ Cloud_Update() {
                 echo "- 正在$S云端页面：$Cloud_Version"
                     XiaZai -s "$CODING/$Cloud_ID" "$File"
                     if [[ -f "$File" ]]; then
+                    if [[ ! -f ~/offline ]]; then
+                        Check_MD5=`md5sum "$File" 2>/dev/null | sed 's/ .*//g'`
+                           if [[ "$Check_MD5" != "$Cloud_MD5" ]]; then
+                               rm -f $File
+                               abort2 "- 更新云端页面失败"
+                            else
                                 unzip -oq "$File" -d ~
                                     if [[ $? = 0 ]]; then
-                                        echo "- $S内置页面成功"
+                                        echo "- $S云端页面成功"
                                         echo "$Cloud_Version" >"$JCe"
                                         find ~ -exec chmod 700 {} \; -exec chown $APP_USER_ID:$APP_USER_ID {} \; &
                                         rm -f "$File"
                                     else
-                                        echo "！$S内置页面失败❌"
+                                        echo "！$S云端页面失败❌"
                                     fi
                            fi
                     else
+                    unzip -oq "$File" -d ~
+                    if [[ $? = 0 ]]; then
+                      echo "- $S内置页面成功"
+                      echo "$Cloud_Version" >"$JCe"
+                      find ~ -exec chmod 700 {} \; -exec chown $APP_USER_ID:$APP_USER_ID {} \; &
+                      rm -f "$File"
+                    else
+                      echo "！$S内置页面失败❌"
+                    fi
+                   fi
+                    else
                         abort "！未连接到网络❓"
                     fi
+            fi
 }
 
 Start_Installing_Busybox() {
@@ -292,21 +309,34 @@ Start_Installing_Busybox() {
         *) echo "！ 未知的架构 ${ABI}，无法安装busybox"; return 1;;
     esac
     
+    if [[ ! -f ~/offline ]]; then
+    Start_Install() { CloudBusybox="$8"; }
+        . "$Load" Install_busybox
+    else
     CloudBusybox=1
+    fi
 
     Start_Install() {
+    if [[ -f ~/offline ]]; then
         Download_File=$Other/busybox/busybox_$Type
+    else
+        Download "$@"
+    fi
         if [[ -f "$Download_File" ]]; then
             BusyBox2=$ELF4_Path/busybox
             [[ ! -d $ELF4_Path ]] && mkdir -p "$ELF4_Path" && chown $APP_USER_ID:$APP_USER_ID $ELF4_Path || rm -f $ELF4_Path/*
             cp "$Download_File" "$BusyBox2" && chmod 700 $BusyBox2
-            echo "- 正在安装busybox-$Type版"
+            echo "- 正在安装busybox-$Type版-$7($8)"
             "$BusyBox2" --install -s "$ELF4_Path" &>/dev/null
                 if [[ -L "$ELF4_Path/true" ]]; then
-                    echo "- busybox-$Type版安装成功。"
+                    echo "- busybox-$Type版-$7($8)安装成功。"
+                    if [[ ! -f ~/offline ]]; then
+                    echo "$8" >$JCe
+                    else
                     echo "$CloudBusybox" >$JCe
+                    fi
                     chown $APP_USER_ID:$APP_USER_ID "$BusyBox2"
-                    # rm -f $Download_File
+                    [[ ! -f ~/offline ]] && rm -f $Download_File
                 else
                     echo "！busybox安装失败❌"
                     rm -f "$BusyBox2"
@@ -317,19 +347,29 @@ Start_Installing_Busybox() {
 
         if [[ -z "$JCe2" || ! -L $ELF4_Path/true ]]; then
             echo "- 开始安装busybox"
+            if [[ -f ~/offline ]]; then
             Start_Install
+            else
+            . "$Load" Install_busybox
+            fi
         elif [[ "$JCe2" -lt "$CloudBusybox" ]]; then
             echo "- 开始更新busybox"
+            if [[ -f ~/offline ]]; then
             Start_Install
+            else
+            . "$Load" Install_busybox
+            fi
         fi
 }
 
 Installing_Busybox() {
+    [[ ! -f ~/offline ]] && Install_curl
     Start_Installing_Busybox
     . $Load Install_Applet
     [[ ! -d $lu ]] && mkdir -p $lu &>/dev/null
     [[ ! -d $lu2 ]] && mkdir -p $lu2 &>/dev/null
     [[ ! -d $lu3 ]] && mkdir -p $lu3 &>/dev/null
+[[ ! -f ~/offline ]] && Cloud_Update
 }
 
 Start_Time() {
@@ -365,6 +405,217 @@ End_Time() {
         else
             echo "- 本次$1用时：$ms毫秒"
         fi
+}
+
+CURL() {
+    local v=`getprop ro.build.version.release`
+    local model="`getprop ro.product.model`"
+    [[ -z "$v" ]] && v=10
+    [[ -z "$model" ]] && model='Redmi K30 5G'
+    
+    curl -LA "Mozilla/5.0 (Linux; Android $v; $model) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.93 Mobile Safari/537.36" "$@"
+}
+
+WGET() {
+    local v=`getprop ro.build.version.release`
+    local model="`getprop ro.product.model`"
+    [[ -z "$v" ]] && v=10
+    [[ -z "$model" ]] && model='Redmi K30 5G'
+    
+    wget -LU "Mozilla/5.0 (Linux; Android $v; $model) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.93 Mobile Safari/537.36" "$@"
+}
+
+XiaZai() {
+    local code
+    echo none >"$Status"
+    if [[ "$#" -lt 3 ]]; then
+        echo 2 >"$Status"
+        abort "！没有参数无法下载"
+    fi
+        local dir
+            dir=${3%/*}
+            if [[ ! -d "$dir" ]]; then
+                echo 2 >"$Status"
+                abort "！No such \"$dir\" directory"
+            fi
+            	CURL $1 -C - -o "$3" -w "- HTTP状态码：%{http_code}\n" -kL "$2"
+                code=$?
+                echo "$code" >"$Status"
+                [[ $code -eq 6 ]] && error "！未连接到互联网"
+                [[ $code -ne 0 ]] && error "！错误代码：$code"
+}
+
+EndMD5() {
+    md5_down=`md5sum "$Download_File" | sed 's/ .*//g'`
+    if [[ "$File_MD5" != "$md5_down" ]]; then
+        Deleting_file
+        abort2 "！ ["$File_Name"] MD5校验失败✘，如果一直无法下载请在搞机助手功能区 -->刷新搞机助手云端状态后重试，或者在关于页面里发送邮件我处理"
+    else
+        echo "- ["$File_Name"]文件MD5校验成功✔"
+        echo "- MD5=$md5_down"
+        return 0
+    fi
+}
+
+Start_Download() {
+    Check_command2() {
+        $1 -where &>/dev/null
+        return $?
+    }
+    
+    local Download_File2 File_Type YiXZ YiXZ_2 YiXZ_SuDu Remaining_Time Percentage Size2 md5_down code
+    Download_File2="$2"
+        if Check_command2 awk && Check_command2 wc && Check_command2 md5sum; then
+            Start_Time
+            XiaZai -s "$@" &
+            usleep 50000
+            code=`cat "$Status"`
+            [[ $code = 2 || $code = 6 ]] && abort
+                until [[ -f "$Download_File2" ]]; do
+                    [[ `cat "$Status"` != none ]] && break
+                done
+                    echo "- 连接服务器成功"
+                    if [[ $File_Size -ge 1048576 ]]; then
+                        File_Type=`awk "BEGIN{print $File_Size/1048576}"`MB
+                    elif [[ $File_Size -ge 1024 ]]; then
+                        File_Type=`awk "BEGIN{print $File_Size/1024}"`kb
+                    elif [[ $File_Size -le 1024 ]]; then
+                        File_Type=${File_Size}b
+                    fi
+                    echo "- 正在下载 [$File_Name2]，文件总大小：${File_Type}"
+                    echo -e "\n-----------------------------------------"
+                    [[ `cat "$Status"` != none ]] && End_Time 下载 && EndMD5
+                        until [[ $code != none ]]; do
+                           YiXZ=`wc -c < $Download_File2`
+                           sleep 1
+                           YiXZ_2=`wc -c < $Download_File2`
+                               if [[ $YiXZ -gt 0 ]]; then
+                                   YiXZ_SuDu=$(($YiXZ_2-$YiXZ))
+                                   Remaining_Time=`awk "BEGIN{print ($File_Size-$YiXZ_2)/$YiXZ_SuDu}" 2>/dev/null`
+                                   Remaining_Time=${Remaining_Time:-0}
+                                   Percentage=`awk "BEGIN{print $YiXZ_2/($File_Size/100)}" 2>/dev/null`
+                                   show_progress ${Percentage%.*}
+                                       if [[ $YiXZ_2 -ge 1048576 ]]; then
+                                           Size2=`awk "BEGIN{print $YiXZ_2/1048576}"`MB
+                                       elif [[ $YiXZ_2 -ge 1024 ]]; then
+                                           Size2=`awk "BEGIN{print $YiXZ_2/1024}"`kb
+                                       elif [[ $YiXZ_2 -le 1024 ]]; then
+                                           Size2=${YiXZ_2}b
+                                       fi
+                                           Schedule() { echo "- 已下载：${Size2}/$File_Type 已完成${Percentage}%" ; echo "-----------------------------------------"; }
+                                           if [[ $YiXZ_SuDu -ge 1048576 ]]; then
+                                               echo -n "- 正在飞一般的下载：`awk "BEGIN{print $YiXZ_SuDu/1048576}"`MB/s"; echo " 剩余时间$Remaining_Time/s"; Schedule
+                                           elif [[ $YiXZ_SuDu -ge 1024 ]]; then
+                                               echo -n "- 正在慢速下载：`awk "BEGIN{print $YiXZ_SuDu/1024}"`kb/s"; echo " 剩余时间$Remaining_Time/s"; Schedule
+                                           elif [[ $YiXZ_SuDu -lt 1024 && $YiXZ_SuDu -gt 0 ]]; then
+                                               echo -n "- 正在龟速下载：${YiXZ_SuDu}b/s"; echo " 剩余时间$Remaining_Time/s"; Schedule
+                                           elif [[ $YiXZ_SuDu -eq 0 ]]; then
+                                               code=`cat "$Status"`
+                                               if [[ $code = 0 ]]; then
+                                                   [[ $Options = -split ]] && break
+                                                   echo "- 下载完成，开始MD5校验……"
+                                                   End_Time 下载
+                                                   EndMD5
+                                               else
+                                                   Schedule
+                                                   echo "- 与服务器连接已断开，如果网络正常或别的资源可以下请私信我修复……"
+                                                   sleep 1
+                                               fi
+                                           fi
+                               fi
+                done
+        else
+        	echo "- 正在下载 [$File_Name2]配置文件……文件总大小：${File_Size}b"
+            Start_Time
+            XiaZai "" "$@"
+            End_Time 下载
+            EndMD5
+        fi
+}
+
+Download() {
+    if [[ "$#" -lt 5 ]]; then
+        abort "！没有参数无法提供下载"
+    fi
+    
+    Deleting_file() {
+        rm -rf "$PeiZhi_File/$Delete"*
+    }
+    
+    MD5() {
+        if [[ -f "$Download_File" ]]; then
+            md5_down=`md5sum "$Download_File" | sed 's/ .*//g'`
+            if [[ "$File_MD5" != "$md5_down" ]]; then
+                Deleting_file
+                echo "- 文件已升级正在重新下载"
+                return 1
+            else
+                return 0
+            fi
+        else
+            Deleting_file
+            echo "- 正在连接服务器下载中……"
+            return 1
+        fi
+    }
+    
+    
+
+    local Han Options ID File_Name2 File_Size Delete split_size Total_size n size xsize PeiZhi_File0
+    Han=0
+    Options="$1"
+    ID="$2"
+        case "$Options" in
+            -url)
+                shift
+                Link="$ID"
+            ;;
+            -net)
+                shift
+                Link="https://d0.ananas.chaoxing.com/download/$ID"
+            ;;
+            -net2)
+                shift
+                Link="https://pan-yz.chaoxing.com/download/downloadfile?$ID"
+            ;;
+            -lz)
+                shift
+                Link="http://api.funs.ml/lzy/api.php?url=$ID&type=down"
+            ;;
+            -coding)
+                shift
+                Link="https://qqcn.coding.net/p/import-rt20/d/GJZS-Warehouse/git/raw/main/$ID"
+            ;;
+            -od)
+                shift
+                Link="https://od.qqcn.site/$ID?raw"
+            ;;
+            -file)
+                shift
+                Link="https://file.qqcn.xyz/GJZS/$ID"
+            ;;
+            -gh)
+                shift
+                Link="https://github.qqcn.xyz/$ID"
+            ;;
+            -ghcdn)
+                shift
+                Link="https://cdn.jsdelivr.net/gh/$ID"
+            ;;
+            *)
+                abort "！暂不支持下载"
+            ;;
+        esac
+        
+        File_Name="$2"
+        File_Size="$3"
+        File_MD5="$4"
+        Delete="$5"
+        Download_File="$PeiZhi_File/$File_Name"
+        MD5
+        [[ $? -eq 0 ]] && return 0
+        File_Name2="$File_Name"
+        Start_Download "$Link" "$Download_File"
 }
 
 Mount_Write() {
@@ -648,13 +899,26 @@ Clean_install() {
 }
 
 Notice() {
+if [[ -f ~/offline ]]; then
 cat <<End
     <group>
         <text>
             <title>📢公告</title>
-            <desc>当前为离线模式，部分功能可能无法正常使用，不接受反馈，若需使用请更换在线模式
+            <desc>您正在使用离线版本，部分核心功能缺失，如需使用完整版请前往「搞机助手选项区」切换在线版本
             </desc>
         </text>
     </group>
 End
+else
+cat <<End >/dev/null
+#cat <<End
+    <group>
+        <text>
+            <title>📢公告</title>
+            <desc>暂无
+            </desc>
+        </text>
+    </group>
+End
+fi
 }

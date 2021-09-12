@@ -2,10 +2,18 @@
 <group>
 <!-- START -->
     <switch interruptible="false">
-        <title>切换在线版</title>
+        <title>在线/离线版切换</title>
         <desc>关闭此开关将不会连接服务器，但也会缺失所有需要联网才能使用的功能，切换后会强制重启搞机助手【需要使用3.2以上版本才会生效】</desc>
         <get>. ./switchs/Change_Local_get.sh</get>
         <set>. ./switchs/Change_Local_set.sh</set>
+    </switch>
+<!-- END -->
+<!-- START -->
+    <switch interruptible="false" shell="hidden" visible="[[ ! -f ~/offline ]] &#38;&#38; echo 1 || echo 0">
+        <title>开关主页一言显示</title>
+        <desc>如果主页加载速度慢可以关闭此功能，关闭后将显示为「在线版更新日志」，需重启应用才可生效</desc>
+        <get>. ./switchs/Home_Yiyan_get.sh</get>
+        <set>. ./switchs/Home_Yiyan_set.sh</set>
     </switch>
 <!-- END -->
 <!-- START -->
@@ -40,8 +48,15 @@
 <!-- START -->
     <action confirm="true" auto-off="true" interruptible="false">
         <title>点击清除「搞机助手重制版」全部缓存</title>
-        <desc>包括下载的文件/云端页面和脚本 以及其他乱七八糟的缓存，也可以看作强制刷新云端页面</desc>
+        <desc>乱七八糟的脚本缓存，如果页面抽风了可以试试看</desc>
         <set>rm -rf $TMPDIR ~/downloader $ShellScript/cache $TMPDIR $Data_Dir/.Empty</set>
+    </action>
+<!-- END -->
+<!-- START -->
+    <action confirm="true" auto-off="true" interruptible="false">
+        <title>点击清除「搞机助手重制版」全部下载文件</title>
+        <desc>默认下载位置在/data/data/gjzs.online/files/Configuration_File  清除后会强行重启一次助手</desc>
+        <set>rm -rf /data/data/gjzs.online/files/Configuration_File/*; am start -S $Package_name/com.projectkr.shell.SplashActivity</set>
     </action>
 <!-- END -->
 <!-- START -->

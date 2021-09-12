@@ -1,11 +1,15 @@
 show=false
 if [[ -f $Load ]]; then
+if [[ -f ~/offline ]]; then
+	show1=0
+else
 	if [[ $Version_code -lt $New_Code ]]; then
         title="发现新版本$New_Version（$New_Code）"
         show1=1
     else
         show1=0
 	fi
+fi
     show=true
 elif [[ ! -f $Core ]]; then
     title="初始化功能失败"
@@ -68,14 +72,38 @@ cat <<Han
     <pages>
     <page title="OTG功能区" config-sh="\$Pages/OTG.xml" />
         <page title="Magisk专区" config-sh="cat \$Pages/Magisk.xml" />
-        <page title="Magisk模块仓库" before-load=". \$ShellScript/Magisk_Module/Print_Magisk_Warehouse.sh" config-sh="cat \$Pages/Magisk_Warehouse.xml" locked="$LOCKED" />
-        <page title="应用/Xposed仓库" before-load=". \$ShellScript/Print_App_Store.sh" config-sh="cat \$Pages/App_Store.xml" />
+        <page title="Magisk模块仓库" before-load=". \$ShellScript/Magisk_Module/Print_Magisk_Warehouse.sh" config-sh="cat \$Pages/Magisk_Warehouse.xml" locked="$LOCKED">
+          <lock>
+        	  if [[ -f ~/offline ]]; then
+        		  echo '此功能仅在在线版开放，请前往「搞机助手选项区」切换在线版'
+        	  else
+        		  echo 'unlocked'
+        	  fi
+          </lock>
+        </page>
+        <page title="应用/Xposed仓库" before-load=". \$ShellScript/Print_App_Store.sh" config-sh="cat \$Pages/App_Store.xml">
+          <lock>
+        	  if [[ -f ~/offline ]]; then
+        		  echo '此功能仅在在线版开放，请前往「搞机助手选项区」切换在线版'
+        	  else
+        		  echo 'unlocked'
+        	  fi
+          </lock>
+        </page>
         <page title="开机页面专区" config-sh="cat \$Pages/Boot_Animation.xml" locked="$LOCKED" />
         <page title="MIUI专区" config-sh="cat \$Pages/MIUI.xml" visible="sh ./support/Check_Ui_miui.sh">
         </page>
         <page title="极客专区" config-sh="cat \$Pages/Geek.xml" locked="$LOCKED" visible="[[ -n \`which magisk\` ]] &#38;&#38; echo 0 || echo 1">
         </page>
-        <page title="ROOT专区" config-sh="cat \$Pages/ROOT.xml" locked="$LOCKED"/>
+        <page title="ROOT专区" config-sh="cat \$Pages/ROOT.xml" locked="$LOCKED">
+        <lock>
+        	  if [[ -f ~/offline ]]; then
+        		  echo '此功能仅在在线版开放，请前往「搞机助手选项区」切换在线版'
+        	  else
+        		  echo 'unlocked'
+        	  fi
+          </lock>
+        </page>
         <page title="镜像分区专区" config-sh="cat \$Pages/IMG_Function.xml" locked="$LOCKED" />
         <page title="高级重启" config-sh="cat \$Pages/Advanced_Restart.xml" locked="$LOCKED" />
         <page title="应用程序管理专区" config-sh="cat \$Pages/APK.xml" />
@@ -115,6 +143,10 @@ cat <<Han
     <page link="`echo https://coding-pages-bucket-3403475-7618161-17959-614140-1253773788.cos-website.ap-hongkong.myqcloud.com`">
         <title>捐赠</title>
         <desc>维护「搞机助手重制版」耗费了我大量的时间，你可以捐赠表示支持</desc>
+    </page>
+    <page link="`echo https://file.qqcn.xyz/GJZS/Other/Donate_Han.png`">
+        <title>给原作者捐赠</title>
+        <desc>搞机助手原作者「情非得已c」</desc>
     </page>
     <text>
         <slices>

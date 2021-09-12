@@ -1,8 +1,23 @@
-title='更新日志'
+if [[ ! -f ~/offline ]]; then
+if [[ $Version_code -eq $New_Code ]]; then
+		if [[ ! -f ~/offline && ! -f ~/off_yiyan ]]; then
+			title=`curl -s https://v1.hitokoto.cn/?encode=text&max_length=20`
+		else
+        	title='在线版更新日志'
+        fi
+    elif [[ $Version_code -lt $New_Code ]]; then
+        title="发现新版本$New_Version（$New_Code），请点击进入官网下载"
+    else
+        title="版本不对，请尝试清除数据"
+    fi
+else
+	title='离线版更新日志'
+fi
+
 cat <<Han
 <?xml version="1.0" encoding="utf-8"?>
 <group>
-    <page html="`echo https://gjzs.online/changelog_online/`">
+    <page html="`echo https://gjzs.qqcn.xyz/changelog`">
         <title>$title</title>
         <summary sh=". ./CheckUpdate.sh" />
     </page>
@@ -15,7 +30,13 @@ cat <<Han
             <slice bold="true" size="20" align="center" break="true">这是公告页，请点击右下角进入主页</slice>
         </slices>
     </text>
-    
+<group title="反馈问题">
+<!-- START -->
+    <page link="`echo mailto:help@gjzs.online`">
+        <title>邮箱</title>
+        <desc>help@gjzs.online</desc>
+    </page>
+<!-- END -->
 <group title="关于">
 <!-- START -->
     <page link="https://gjzs.qqcn.xyz">
@@ -42,7 +63,7 @@ cat <<Han
 <!-- END -->
 <!-- START -->
     <page>
-        <title>群友@深信不疑。 提供服务器支持</title>
+        <title>群友@深信不疑。和@小胖 提供服务器支持</title>
     </page>
 <!-- END -->
 </group>
@@ -52,12 +73,22 @@ cat <<Han
         <title>捐赠</title>
         <desc>维护「搞机助手重制版」耗费了我大量的时间，你可以捐赠表示支持</desc>
     </page>
+    <page link="`echo https://file.qqcn.xyz/GJZS/Other/Donate_Han.png`">
+        <title>给原作者捐赠</title>
+        <desc>搞机助手原作者「情非得已c」</desc>
+    </page>
 </group>
 
 <group title="进群交流">
 <!-- START -->
-    <page link="`echo https://gjzs.online/joinqqgroup`">
+    <page link="`echo https://gjzs.qqcn.xyz/joinqqgroup2`">
         <title>QQ一群</title>
+        <desc>群号1059362609</desc>
+    </page>
+<!-- END -->
+<!-- START -->
+    <page link="`echo https://gjzs.qqcn.xyz/joinqqgroup`">
+        <title>QQ二群</title>
         <desc>群号916958876</desc>
     </page>
 <!-- END -->

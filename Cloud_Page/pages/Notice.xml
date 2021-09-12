@@ -1,15 +1,19 @@
+if [[ ! -f ~/offline ]]; then
 if [[ $Version_code -eq $New_Code ]]; then
-		if [[ ! -f ~/no_curl && ! -f ~/off_yiyan ]]; then
-		title=`curl -s https://v1.hitokoto.cn/?encode=text&max_length=20`
+		if [[ ! -f ~/offline && ! -f ~/off_yiyan ]]; then
+			title=`curl -s https://v1.hitokoto.cn/?encode=text&max_length=20`
 		else
-        title='在线版更新日志'
+        	title='在线版更新日志'
         fi
     elif [[ $Version_code -lt $New_Code ]]; then
         title="发现新版本$New_Version（$New_Code），请点击进入官网下载"
     else
         title="版本不对，请尝试清除数据"
     fi
-    
+else
+	title='离线版更新日志'
+fi
+
 cat <<Han
 <?xml version="1.0" encoding="utf-8"?>
 <group>
@@ -26,7 +30,13 @@ cat <<Han
             <slice bold="true" size="20" align="center" break="true">这是公告页，请点击右下角进入主页</slice>
         </slices>
     </text>
-    
+<group title="反馈问题">
+<!-- START -->
+    <page link="`echo mailto:help@gjzs.online`">
+        <title>邮箱</title>
+        <desc>help@gjzs.online</desc>
+    </page>
+<!-- END -->
 <group title="关于">
 <!-- START -->
     <page link="https://gjzs.qqcn.xyz">
@@ -62,6 +72,10 @@ cat <<Han
     <page link="`echo https://coding-pages-bucket-3403475-7618161-17959-614140-1253773788.cos-website.ap-hongkong.myqcloud.com`">
         <title>捐赠</title>
         <desc>维护「搞机助手重制版」耗费了我大量的时间，你可以捐赠表示支持</desc>
+    </page>
+    <page link="`echo https://file.qqcn.xyz/GJZS/Other/Donate_Han.png`">
+        <title>给原作者捐赠</title>
+        <desc>搞机助手原作者「情非得已c」</desc>
     </page>
 </group>
 

@@ -1,5 +1,7 @@
 #Custom variable
-export Util_Functions_Code=2021081901
+export Util_Functions_Code=2021090103
+###
+#这段代码只存在于在线版
 if [[ -f ~/offline ]]; then
   rm ~/offline
   echo "即将重启搞机助手"
@@ -8,6 +10,7 @@ if [[ -f ~/offline ]]; then
   echo "重启失败，请手动清后台重进"
   sleep 15
 fi
+###
 export SDdir=/data/media/0
 export Magisk=`$which magisk`
 if $Have_ROOT;then
@@ -38,8 +41,8 @@ export Status=$Data_Dir/Status.log
 export Termux=$DATA_DIR/com.termux/files
 export BOOTMODE=true
 export Choice=0
-export New_Version=3.3
-export New_Code=2021080102
+export New_Version=3.5
+export New_Code=2021090102
 export ChongQi Configuration File File_Name Download_File File_MD5 id name version versionCode author description MODID MODNAME MODPATH MAGISK_VER MAGISK_VER_CODE LOCKED
 $Have_ROOT && LOCKED=false || LOCKED=true
 
@@ -214,12 +217,12 @@ Install_curl() {
 }
 
 
-Install_Applet() {
+Install_Applet2() {
     JCe="$PeiZhi_File/Applet_Installed.log"
     [[ -f "$JCe" ]] && JCe3=`cat $JCe`
 
     Start_Install2() {
-        Download "$@"
+        [[ ! -f ~/offline ]] && Download "$@"
         
             if [[ -f "$Download_File" ]]; then
                 [[ ! -d $ELF2_Path ]] && mkdir -p "$ELF2_Path" && chown $APP_USER_ID:$APP_USER_ID $ELF2_Path || rm -rf $ELF2_Path/*
@@ -239,11 +242,12 @@ Install_Applet() {
                                 *)
                                     echo "！ 未知的架构 ${ABI}，无法安装adb & fastboot"
                                     rm -f "$ELF2_Path/adb"
-                                    [[ $ABI = x86* ]] && mv -f "$ELF2_Path/x86/"* "$ELF2_Path"
+                                    [[ $ABI = x86 ]] && mv -f "$ELF2_Path/x86/"* "$ELF2_Path"
+                                    [[ $ABI = x86_64 ]] && mv -f "$ELF2_Path/x86_64/"* "$ELF2_Path"
                                 ;;
                             esac
                             echo "- $name-$versionCode安装成功。"
-                            rm -rf "$Download_File" $ELF2_Path/{arm,arm64,x86}
+                            rm -rf "$Download_File" $ELF2_Path/{arm,arm64,x86,x86_64}
                     fi
             fi
         }
@@ -271,6 +275,7 @@ Cloud_Update() {
                 echo "- 正在$S云端页面：$Cloud_Version"
                     XiaZai -s "$CODING/$Cloud_ID" "$File"
                     if [[ -f "$File" ]]; then
+                    if [[ ! -f ~/offline ]]; then
                         Check_MD5=`md5sum "$File" 2>/dev/null | sed 's/ .*//g'`
                            if [[ "$Check_MD5" != "$Cloud_MD5" ]]; then
                                rm -f $File
@@ -286,6 +291,17 @@ Cloud_Update() {
                                         echo "！$S云端页面失败❌"
                                     fi
                            fi
+                    else
+                    unzip -oq "$File" -d ~
+                    if [[ $? = 0 ]]; then
+                      echo "- $S内置页面成功"
+                      echo "$Cloud_Version" >"$JCe"
+                      find ~ -exec chmod 700 {} \; -exec chown $APP_USER_ID:$APP_USER_ID {} \; &
+                      rm -f "$File"
+                    else
+                      echo "！$S内置页面失败❌"
+                    fi
+                   fi
                     else
                         abort "！未连接到网络❓"
                     fi
@@ -305,11 +321,19 @@ Start_Installing_Busybox() {
         *) echo "！ 未知的架构 ${ABI}，无法安装busybox"; return 1;;
     esac
     
+    if [[ ! -f ~/offline ]]; then
     Start_Install() { CloudBusybox="$8"; }
         . "$Load" Install_busybox
+    else
+    CloudBusybox=1
+    fi
 
     Start_Install() {
+    if [[ -f ~/offline ]]; then
+        Download_File=$Other/busybox/busybox_$Type
+    else
         Download "$@"
+    fi
         if [[ -f "$Download_File" ]]; then
             BusyBox2=$ELF4_Path/busybox
             [[ ! -d $ELF4_Path ]] && mkdir -p "$ELF4_Path" && chown $APP_USER_ID:$APP_USER_ID $ELF4_Path || rm -f $ELF4_Path/*
@@ -318,9 +342,13 @@ Start_Installing_Busybox() {
             "$BusyBox2" --install -s "$ELF4_Path" &>/dev/null
                 if [[ -L "$ELF4_Path/true" ]]; then
                     echo "- busybox-$Type版-$7($8)安装成功。"
+                    if [[ ! -f ~/offline ]]; then
                     echo "$8" >$JCe
+                    else
+                    echo "$CloudBusybox" >$JCe
+                    fi
                     chown $APP_USER_ID:$APP_USER_ID "$BusyBox2"
-                    rm -f $Download_File
+                    [[ ! -f ~/offline ]] && rm -f $Download_File
                 else
                     echo "！busybox安装失败❌"
                     rm -f "$BusyBox2"
@@ -331,21 +359,29 @@ Start_Installing_Busybox() {
 
         if [[ -z "$JCe2" || ! -L $ELF4_Path/true ]]; then
             echo "- 开始安装busybox"
+            if [[ -f ~/offline ]]; then
+            Start_Install
+            else
             . "$Load" Install_busybox
+            fi
         elif [[ "$JCe2" -lt "$CloudBusybox" ]]; then
             echo "- 开始更新busybox"
+            if [[ -f ~/offline ]]; then
+            Start_Install
+            else
             . "$Load" Install_busybox
+            fi
         fi
 }
 
 Installing_Busybox() {
-    Install_curl
+    [[ ! -f ~/offline ]] && Install_curl
     Start_Installing_Busybox
     . $Load Install_Applet
     [[ ! -d $lu ]] && mkdir -p $lu &>/dev/null
     [[ ! -d $lu2 ]] && mkdir -p $lu2 &>/dev/null
     [[ ! -d $lu3 ]] && mkdir -p $lu3 &>/dev/null
-Cloud_Update
+[[ ! -f ~/offline ]] && Cloud_Update
 }
 
 Start_Time() {
@@ -383,15 +419,6 @@ End_Time() {
         fi
 }
 
-DOWN() {
-    local v=`getprop ro.build.version.release`
-    local model="`getprop ro.product.model`"
-    [[ -z "$v" ]] && v=10
-    [[ -z "$model" ]] && model='Redmi K30 5G'
-    
-    down -L -A "Mozilla/5.0 (Linux; Android $v; $model) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.93 Mobile Safari/537.36" "$@"
-}
-
 CURL() {
     local v=`getprop ro.build.version.release`
     local model="`getprop ro.product.model`"
@@ -423,11 +450,7 @@ XiaZai() {
                 echo 2 >"$Status"
                 abort "！No such \"$dir\" directory"
             fi
-            if [[ ! -f ~/no_curl ]]; then
             	CURL $1 -C - -o "$3" -w "- HTTP状态码：%{http_code}\n" -kL "$2"
-            else
-                DOWN $1 -o "$3" "$2"
-            fi
                 code=$?
                 echo "$code" >"$Status"
                 [[ $code -eq 6 ]] && error "！未连接到互联网"
@@ -456,7 +479,6 @@ Start_Download() {
     Download_File2="$2"
         if Check_command2 awk && Check_command2 wc && Check_command2 md5sum; then
             Start_Time
-            if [[ ! -f ~/no_curl ]]; then
             XiaZai -s "$@" &
             usleep 50000
             code=`cat "$Status"`
@@ -514,12 +536,6 @@ Start_Download() {
                                            fi
                                fi
                 done
-            else
-            	XiaZai "" "$@"
-            	echo "- 下载完成，开始MD5校验……"
-            	End_Time 下载
-            	EndMD5
-            fi
         else
         	echo "- 正在下载 [$File_Name2]配置文件……文件总大小：${File_Size}b"
             Start_Time
@@ -895,6 +911,17 @@ Clean_install() {
 }
 
 Notice() {
+if [[ -f ~/offline ]]; then
+cat <<End
+    <group>
+        <text>
+            <title>📢公告</title>
+            <desc>您正在使用离线版本，部分核心功能缺失，如需使用完整版请前往「搞机助手选项区」切换在线版本
+            </desc>
+        </text>
+    </group>
+End
+else
 cat <<End >/dev/null
 #cat <<End
     <group>
@@ -905,4 +932,5 @@ cat <<End >/dev/null
         </text>
     </group>
 End
+fi
 }

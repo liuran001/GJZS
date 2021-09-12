@@ -8,6 +8,9 @@ echo "Frequency=$Frequency" >> $Data_Dir/$1.log
 echo "Compulsory_Rescue=$Compulsory_Rescue" >> $Data_Dir/$1.log
 echo "Set_Time=$Set_Time" >> $Data_Dir/$1.log
 echo "Pattern=$Pattern" >> $Data_Dir/$1.log
+echo "OTA=$OTA" >> $Data_Dir/$1.log
+echo "DPI=$DPI" >> $Data_Dir/$1.log
+echo "size=$size" >> $Data_Dir/$1.log
 
 if [[ `getprop init.svc.bootanim` != "stopped" ]]; then
     abort "！未支持您的设备请联系我适配，错误代码：`getprop init.svc.bootanim`"
@@ -30,6 +33,7 @@ mask $MODID
 jian=$Module/Automatic_brick_rescue.sh
 jian2=$Module/Automatic_brick_rescue2.sh
 jian3=$Module/Number_of_brick_rescue.log
+jian4=$Module/Automatic_brick_rescue3.sh
 
 a=
 [[ -f $jian3 ]] && a=`cat $jian3`
@@ -62,6 +66,20 @@ cat <<Han >$Module_S2
 
 MODDIR=\${0%/*}
 export PATH="$PATH0:$ELF4_Path:$MAGISKTMP/.magisk/busybox"
+Han
+if [[ $OTA = 1 ]]; then
+cat <<Han >>$Module_S2
+save_version_file=\$MODDIR/save_version
+save_version=\$(cat \$save_version_file)
+now_version=\$(getprop ro.system.build.id)
+if [[ \$save_version != \$now_version ]];then
+   getprop ro.system.build.id > \$save_version_file
+   sleep 15m
+fi
+Han
+fi
+cat <<Han >>$Module_S2
+`which sh` \$MODDIR/Automatic_brick_rescue3.sh &
 `which sh` \$MODDIR/Automatic_brick_rescue2.sh
 exit 0
 Han
@@ -99,11 +117,97 @@ MODID=\${MODDIR##*/}
 Module_XinXi=\$MODDIR/module.prop
 START_LOG=\$MODDIR/Number_of_starts.log
 LOG=\$MODDIR/Number_of_brick_rescue.log
-
-
 Han
 
+
 cp -f $jian2 $jian
+cp -f $jian2 $jian4
+
+if [[ $OTA = 1 ]]; then
+cat <<Han >>$jian4
+now_version=\$(getprop ro.system.build.id)
+save_version_file=\$MODDIR/save_version
+save_version=\$(cat \$save_version_file)
+Han
+fi
+if [[ $DPI = 1 ]]; then
+cat <<Han >>$jian4
+save_dpi_file=\$MODDIR/save_dpi
+save_dpi=\$(cat \$save_dpi_file)
+Han
+fi
+if [[ $size = 1 ]]; then
+cat <<Han >>$jian4
+save_size_file=\$MODDIR/save_size
+save_size=\$(cat \$save_size_file)
+Han
+fi
+cat <<Han >>$jian4
+
+while [[ ! \$status = 1 ]]
+do
+        if [[ \`getprop init.svc.bootanim\` = "stopped" ]]; then
+Han
+if [[ $DPI = 1 ]]; then
+cat <<Han >>$jian4
+            now_dpi=\`echo -e "\\\`wm density | awk -F': ' '{print \$2}' | sed -n 2p\\\`\c"\`
+            [[ ! \$now_dpi ]] && now_dpi=\`echo -e "\\\`wm density | awk -F': ' '{print \$2}' | sed -n 1p\\\`\c"\`
+            if [[ \$save_dpi != \$now_dpi ]]; then
+            wm density \$save_dpi
+            fi
+Han
+fi
+if [[ $size = 1 ]]; then
+cat <<Han >>$jian4
+            now_size=\`echo -e "\\\`wm size | awk -F': ' '{print \$2}' | sed -n 2p\\\`\c"\`
+            [[ ! \$now_size ]] && now_size=\`echo -e "\\\`wm size | awk -F': ' '{print \$2}' | sed -n 1p\\\`\c"\`
+            if [[ \$save_size != \$now_size ]]; then
+            wm size \$save_size
+            fi
+Han
+fi
+cat <<Han >>$jian4
+            rm -f "\$START_LOG"
+            if [[ -f \$LOG ]]; then
+            Number_of_brick_rescue=\`cat \$LOG\`
+            sed -i "/^description=/c description=用途：当刷入一些模块后导致无法正常开机，触发已设置的自动救砖操作方式：在重启第2次时清除系统包名缓存和关闭SELinux模块尝试第3次开机操作。如果再重启第4次时未开机，强制禁用所有模块开机一次后仍无法进入系统后最终进入recovery模式，同时删除启动记录次数文件，重新从1开始记录开机次数。正常启动卡在第二屏等待2.5分钟后无法开机，自动禁用所有模块尝试一次开机，已为您自动救砖：\$Number_of_brick_rescue次。" "\$Module_XinXi"
+Han
+if [[ $OTA = 1 ]]; then
+cat <<Han >>$jian4
+            [[ -f \$save_version_file ]] && echo "\$now_version" > "\$save_version_file"
+Han
+fi
+cat <<Han >>$jian4
+        fi
+            status=1
+            else
+            sleep 2
+fi
+done
+Han
+
+if [[ $OTA = 1 ]]; then
+echo '- 已选择开启OTA支持'
+echo $(getprop ro.system.build.id) > $Modules_Dir/Automatic_brick_rescue/save_version
+else
+[[ -f $Modules_Dir/Automatic_brick_rescue/save_version ]] && rm $Modules_Dir/Automatic_brick_rescue/save_version
+fi
+if [[ $DPI = 1 ]]; then
+echo '- 已选择开启DPI锁定'
+echo -e "`wm density | awk -F': ' '{print $2}' | sed -n 2p`\c" > $Modules_Dir/Automatic_brick_rescue/save_dpi
+[[ ! -s $Modules_Dir/Automatic_brick_rescue/save_dpi ]] && echo -e "`wm density | awk -F': ' '{print $2}' | sed -n 1p`\c" > $Modules_Dir/Automatic_brick_rescue/save_dpi
+[[ ! -s $Modules_Dir/Automatic_brick_rescue/save_dpi ]] && echo "! DPI锁定不支持你的机型，已经自动关闭" && rm $Modules_Dir/Automatic_brick_rescue/save_dpi && DPI=0
+else
+[[ -f $Modules_Dir/Automatic_brick_rescue/save_dpi ]] && rm $Modules_Dir/Automatic_brick_rescue/save_dpi
+fi
+if [[ $size = 1 ]]; then
+echo '- 已选择开启屏幕分辨率锁定'
+echo -e "`wm size | awk -F': ' '{print $2}' | sed -n 2p`\c" > $Modules_Dir/Automatic_brick_rescue/save_size
+[[ ! -s $Modules_Dir/Automatic_brick_rescue/save_size ]] && echo -e "`wm size | awk -F': ' '{print $2}' | sed -n 1p`\c" > $Modules_Dir/Automatic_brick_rescue/save_size
+[[ ! -s $Modules_Dir/Automatic_brick_rescue/save_size ]] && echo "! 屏幕分辨率锁定不支持你的机型，已经自动关闭" && rm $Modules_Dir/Automatic_brick_rescue/save_size && size=0
+else
+[[ -f $Modules_Dir/Automatic_brick_rescue/save_size ]] && rm $Modules_Dir/Automatic_brick_rescue/save_size
+fi
 
 if [[ $Clean -eq 1 ]]; then
     echo 0 >$Status
@@ -126,6 +230,13 @@ if [[ $Clean -eq 1 ]]; then
         fi
 fi
 
+if [[ $OTA = 1 ]]; then
+cat <<Han >>$jian
+now_version=\$(getprop ro.system.build.id)
+save_version_file=\$MODDIR/save_version
+save_version=\$(cat \$save_version_file)
+Han
+fi
 
 cat <<Han >>$jian
 if [[ ! -f \$START_LOG ]]; then
@@ -135,6 +246,13 @@ else
     Frequency=\`cat \$START_LOG\`
     Frequency2="\$(expr \$Frequency + 1)"
     echo "\$Frequency2" >"\$START_LOG"
+Han
+if [[ $OTA = 1 ]]; then
+cat <<Han >>$jian
+    [[ -f \$save_version_file ]] && echo "\$now_version" > "\$save_version_file"
+Han
+fi
+cat <<Han >>$jian
 fi
 Han
 
@@ -323,15 +441,9 @@ description="用途：当刷入一些模块后导致无法正常开机，触发�
 
 
 cat <<Han >>$jian2
-    mv -f \$Module_XinXi.bak \$Module_XinXi && sed -i '34d' "\$0"
+    mv -f \$Module_XinXi.bak \$Module_XinXi && sed -i '32d' "\$0"
     sleep ${Set_Time}m
-    if [[ \`getprop init.svc.bootanim\` = "stopped" ]]; then
-        rm -f "\$START_LOG"
-        if [[ -f \$LOG ]]; then
-            Number_of_brick_rescue=\`cat \$LOG\`
-            sed -i "/^description=/c description=$description，已为您自动救砖：\$Number_of_brick_rescue次。" "\$Module_XinXi"
-        fi
-    else
+    if [[ \`getprop init.svc.bootanim\` != "stopped" ]]; then
         Statistics
 Han
 
@@ -400,14 +512,14 @@ printf "id=$MODID
 name=$name-等待重启中
 version=$version
 versionCode=$versionCode
-author=by Han　|　情非得已c
+author=by Han　|　情非得已c & 快播内部工作人员
 description=正在等待重启后，测试Magisk开机脚本是否正常执行，来判断$name是否支持您的机型。如果不支持你的机型名称将一直是：$name-等待重启中" >$Module_XinXi
 
 printf "id=$MODID
 name=$name
 version=$version
 versionCode=$versionCode
-author=by Han　|　情非得已c
+author=by Han　|　情非得已c & 快播内部工作人员
 description=$description" >$Module_XinXi.bak
 [[ -f $Module_XinXi ]] && echo -e "\n- 「$name」模块已创建模块将在下次重启手机生效！"
 

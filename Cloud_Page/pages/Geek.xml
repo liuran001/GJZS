@@ -33,6 +33,13 @@
             <param name="Way" label="请选择安装方式" options-sh="printf '0|①　初次安装\n1|②　更新/覆盖安装\n2|③　已经安装过然后更新过系统'" desc="请正确选择安装方式，否则一切后果自负。&#x000A;①　初次安装表示第一次安装，从未安装过或者已安装过但是已卸载了想重新安装&#x000A;②　更新/覆盖安装，已经装过了但是从未更新过系统&#x000A;③　已经安装过然后更新过系统，表示在更新系统前未卸载框架服务，更新系统后框架掉了想重新安装" />
         </params>
         <set>. ./Geek/Riru-Core_Installer.sh</set>
+          <lock>
+        	  if [[ -f ~/offline ]]; then
+        		  echo '此功能仅在在线版开放，请前往「搞机助手选项区」切换在线版'
+        	  else
+        		  echo 'unlocked'
+        	  fi
+          </lock>
     </action>
 <!-- END -->
 <!-- START -->
@@ -49,6 +56,13 @@
             <param name="File" type="file" suffix="zip" editable="true" title="可输入EDXposed模块文件绝对路径，也可以使用文件选择器选择文件" desc="选择③　自定义EDXposed-Magisk文件安装时才生效，温馨提示：可用「MT管理器」长按目录或文件 -->点属性 -->点击目录即可复制目录绝对路径，长按目录或长按名称即可复制文件绝对路径" />
             <param name="a" value="某些情况下您的设备可能会在安装 EdXposed 过后变得无法正常启动&#x000A;&#x000A;如果您先前从未听说过「软变砖」或「无限重启」, 又或者您不知道如何从这些情况中恢复手机，那么请不要安装或使用 EdXposed！  无论如何, 都强烈建议您做好近期的数据备份&#x000A;&#x000A;一旦使用了功能则代表您已阅读风险，出现的一切后果，请自行承担风险，与本人无关。" readonly="readonly" />
         </params>
+          <lock>
+        	  if [[ -f ~/offline ]]; then
+        		  echo '此功能仅在在线版开放，请前往「搞机助手选项区」切换在线版'
+        	  else
+        		  echo 'unlocked'
+        	  fi
+          </lock>
     </action>
 <!-- END -->
 <!-- START -->
@@ -60,6 +74,14 @@
         <params>
             <param name="Option" title="选择功能：" options-sh="printf 'install|①　安装\nuninstall|②　卸载'" required="true" />
         </params>
+          <lock>
+        	  if [[ -f ~/offline ]]; then
+        		  echo '此功能仅在在线版开放，请前往「搞机助手选项区」切换在线版'
+        	  else
+        		  echo 'unlocked'
+        	  fi
+          </lock>
+        </page>
     </action>
 <!-- END -->
 <!-- START -->
@@ -82,6 +104,13 @@
             <param name="ChongQi" label="是否安装完成自动重启系统生效" type="switch" />
             <param name="Way" label="请选择安装方式" options-sh="printf '0|①　初次安装\n1|②　更新/覆盖安装\n2|③　已经安装过然后更新过系统'" desc="请正确选择安装方式，否则一切后果自负。&#x000A;①　初次安装表示第一次安装，从未安装过或者已安装过但是已卸载了想重新安装&#x000A;②　更新/覆盖安装，已经装过了但是从未更新过系统&#x000A;③　已经安装过然后更新过系统，表示在更新系统前未卸载框架服务，更新系统后框架掉了想重新安装" />
         </params>
+          <lock>
+        	  if [[ -f ~/offline ]]; then
+        		  echo '此功能仅在在线版开放，请前往「搞机助手选项区」切换在线版'
+        	  else
+        		  echo 'unlocked'
+        	  fi
+          </lock>
     </action>
 <!-- END -->
 <!-- START -->
@@ -97,6 +126,13 @@
             </param>
             <param name="Type" label="请选择安装类型" options-sh="printf 'data|仅安装试用（不安装为系统应用）\n0|安装为系统应用'" />
         </params>
+        <lock>
+        	  if [[ -f ~/offline ]]; then
+        		  echo '此功能仅在在线版开放，请前往「搞机助手选项区」切换在线版'
+        	  else
+        		  echo 'unlocked'
+        	  fi
+          </lock>
     </action>
 <!-- END -->
 <!-- START -->

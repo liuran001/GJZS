@@ -98,7 +98,7 @@
 <!-- START -->
     <action interruptible="false">
         <title>暂停系统应用</title>
-        <desc>类似Scene的睡眠模式，应用图标会变灰</desc>
+        <desc>类似Scene的应用偏见，应用图标会变灰</desc>
         <set>for i in $package; do adb2 -c pm suspend $i; done</set>
             <param name="package" type="packages" multiple="true" options-sh="adb2 -s ./Get_Package_Name-s.sh" />
     </action>
@@ -106,7 +106,7 @@
 <!-- START -->
     <action interruptible="false">
         <title>暂停第三方应用</title>
-        <desc>类似Scene的睡眠模式，应用图标会变灰</desc>
+        <desc>类似Scene的应用偏见，应用图标会变灰</desc>
         <set>for i in $package; do adb2 -c pm suspend $i; done</set>
             <param name="package" type="packages" multiple="true" options-sh=". ./ADB/Get_Package_Name-3.sh" />
     </action>

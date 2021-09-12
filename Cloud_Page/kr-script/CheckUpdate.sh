@@ -12,6 +12,9 @@ V() {
 }
 
 if [[ -f $Core ]]; then
+if [[ -f ~/offline ]]; then
+	V 软件
+else
     if [[ $Version_code -lt $New_Code ]]; then
         echo "- 当前版本：$Version_Name（$Version_code）"
         echo "- 已发布了最新版本：$New_Version（$New_Code）"
@@ -22,6 +25,7 @@ if [[ -f $Core ]]; then
     else
         echo "！未知版本：$Version_Name（$Version_code）"
     fi
+fi
 elif [[ ! -s $Core ]]; then
         echo -e "\n！连接服务器失败❌（error：404）"
 fi
