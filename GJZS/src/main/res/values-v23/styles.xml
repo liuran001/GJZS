@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme.AppBarOverlay.Light" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="titleTextColor">?android:textColorPrimary</item>
+        <item name="subtitleTextColor">?android:textColorSecondary</item>
+        <item name="colorControlNormal">?android:textColorPrimary</item>
+        <item name="android:foregroundTint">?android:textColorSecondary</item>
+        <item name="android:foregroundTintMode">screen</item>
+        <item name="android:drawableTint">?android:textColorPrimary</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="titleTextColor">?android:textColorPrimary</item>
+        <item name="subtitleTextColor">?android:textColorSecondary</item>
+        <item name="colorControlNormal">?android:textColorPrimary</item>
+        <item name="android:foregroundTint">?android:textColorSecondary</item>
+        <item name="android:foregroundTintMode">screen</item>
+        <item name="android:drawableTint">?android:textColorPrimary</item>
+    </style>
+
+    <style name="AppThemeWallpaperLight" parent="AppTheme">
+        <item name="android:navigationBarColor">#00ffffff</item>
+        <item name="android:statusBarColor">#c0ffffff</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:colorForegroundInverse">#c0ffffff</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="cardBg">@color/cardBgLightTransparent</item>
+    </style>
+
+    <style name="AppThemeWallpaper" parent="AppThemeDark">
+        <item name="android:navigationBarColor">#a0000000</item>
+        <item name="android:statusBarColor">#a0000000</item>
+        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorForegroundInverse">#a0000000</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="cardBg">@color/cardBgDarkTransparent</item>
+    </style>
+</resources>

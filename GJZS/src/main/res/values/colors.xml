@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="window_bg_light">#F2F2F2</color>
+    <color name="window_bg_dark">#000000</color>
+    <color name="status_bg_dark">#222222</color>
+    <color name="status_bg_light">@android:color/white</color>
+    <color name="cardBgDark">#222222</color>
+    <color name="cardBgDarkTransparent">#a0000000</color>
+    <color name="cardBgLight">#ffffff</color>
+    <color name="cardBgLightTransparent">#c0ffffff</color>
+
+    <color name="color_load_low">#02d98d</color>
+    <color name="color_load_mid">#87cb00</color>
+    <color name="color_load_hight">#fc8a1b</color>
+    <color name="color_load_veryhight">#f9592f</color>
+
+    <color name="colorAccent">#4ba5ff</color>
+    <color name="colorPrimary">#80B4DD</color>
+    <color name="colorPrimaryDark">#3D9AE6</color>
+    <color name="splash_bg_color">#8199B1</color>
+</resources>

@@ -1,8 +1,0 @@
-Disable_and_recovery|禁用所有模块开机一次后再进入recovery模式
-Disable_and_fastboot|禁用所有模块开机一次后再进入FASTBOOT模式
-Disable_and_Security_mode|禁用所有模块开机一次后再进入安全模式
-Disable_and_9008|禁用所有模块开机一次后再进入9008模式（不推荐）
-recovery|自动进入recovery模式
-Security_mode|自动进入安全模式
-fastboot|自动进入FASTBOOT模式
-9008|自动进入9008模式（不推荐）

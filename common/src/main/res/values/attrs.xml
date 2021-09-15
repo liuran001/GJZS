@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="cardBg" format="color"/>
+    <declare-styleable name="ProgressState">
+        <attr name="total" format="integer" />
+        <attr name="current" format="integer" />
+    </declare-styleable>
+    <attr name="showHints">
+        <!-- Visible on screen; the default value. -->
+        <enum name="visible" value="0" />
+        <!-- Not displayed, but taken into account during layout (space is left for it). -->
+        <enum name="invisible" value="1" />
+        <!-- Completely hidden, as if the view had not been added. -->
+        <enum name="gone" value="2" />
+    </attr>
+    <!--格式为引用-->
+    <attr name="radioButtonStyle" format="reference"/>
+</resources>
