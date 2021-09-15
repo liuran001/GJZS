@@ -1,1 +1,0 @@
-appinfo -p | awk -F'"' '{print $1}'
