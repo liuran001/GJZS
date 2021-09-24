@@ -1,0 +1,71 @@
+name: Build CI
+
+on: workflow_dispatch
+#  push:
+#    branches: [ main ]
+
+env:
+  WARN_ON_PR: "artifact upload is disabled due to the workflow is trigged by pull request."
+
+jobs:
+  gradle:
+    name: Gradle CI Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        name: Clone repository
+
+      - name: Prepare Java 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+          java-package: jdk+fx
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
+
+      - name: Build project
+        run: |
+          if ${{ !!github.head_ref }}; then echo "::warning:: Gradle $WARN_ON_PR"; fi
+          gradle wrapper
+          bash gradlew build
+
+      - name: Sign APK
+        uses: r0adkll/sign-android-release@v1
+        id: sign_app
+        with:
+          releaseDirectory: app/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.SIGN_FILE_BASE64 }}
+          alias: ${{ secrets.KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+      - name: Get Apk Info
+        id: apk
+        uses: JantHsueh/get-apk-info-action@master
+        with:
+          apkPath: ${{steps.sign_app.outputs.signedReleaseFile}}
+      - name: Github Release
+        uses: actions/create-release@v1
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{steps.apk.outputs.versionCode}}
+          release_name: ${{steps.apk.outputs.versionNum}}
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: ${{steps.sign_app.outputs.signedReleaseFile}}
+          asset_name: GJZS_${{steps.apk.outputs.versionNum}}_${{steps.apk.outputs.versionCode}}.apk
+          asset_content_type: application/zip
