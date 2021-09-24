@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<group title="关于">
+<!-- START -->
+    <page link="https://gjzs.online">
+        <title>重制版发布页/官网</title>
+    </page>
+<!-- END -->
+<!-- START -->
+    <page link="https://github.com/liuran001/GJZS">
+        <title>开源地址</title>
+    </page>
+<!-- END -->
+<!-- START -->
+    <page link="https://dl.qqcn.xyz">
+        <title>模块/应用仓库[在建]</title>
+    </page>
+<!-- END -->
+<!-- START -->
+    <page link="http://www.coolapk.com/u/1169803">
+        <title>现作者酷安ID「快播内部工作人员」</title>
+    </page>
+<!-- END -->
+<!-- START -->
+    <page link="https://blog.qqcn.xyz">
+        <title>现作者博客</title>
+    </page>
+<!-- END -->
+</group>
+<group title="特别鸣谢File source">
+<!-- START -->
+    <page link="https://github.com/helloklf/kr-scripts">
+        <title>「kr-scripts」、Github：helloklf | 酷安：嘟嘟斯基</title>
+        <desc>本软件基于「kr-scripts」框架制作，原软件名：「PIO」</desc>
+    </page>
+<!-- END -->
+<!-- START -->
+    <text>
+        <slice break="0" link="https://www.coolapk.com/apk/com.omarea.vtools" size="15" color="#FF0366D6" u="1">嘟嘟斯基另一款软件Scene</slice>
+    </text>
+<!-- END -->
+<!-- START -->
+    <page link="https://github.com/topjohnwu/Magisk/releases">
+        <title>Magisk</title>
+        <desc>by：topjohnwu，感谢Magisk提供模块服务支持、以及部分Magisk素材</desc>
+    </page>
+<!-- END -->
+<!-- START -->
+    <page link="https://github.com/Magisk-Modules-Repo/busybox-ndk">
+        <title>Busybox for Android NDK</title>
+        <desc>by：osm0sis @ xda-developers</desc>
+    </page>
+<!-- END -->
+<!-- START -->
+    <page link="https://github.com/Magisk-Modules-Repo/adb-ndk">
+        <title>ADB &#38; Fastboot for Android NDK</title>
+        <desc>by：osm0sis @ xda-developers</desc>
+    </page>
+<!-- END -->
+<!-- START -->
+    <page link="https://github.com/Magisk-Modules-Repo/zipsigner">
+        <title>ZipSigner &#38; Zip_for_Android_NDK</title>
+        <desc>by：osm0sis &amp; topjohnwu @ xda-developers</desc>
+    </page>
+<!-- END -->
+<!-- START -->
+    <page link="https://www.sqlite.org/download.html">
+        <title>SQLite Download Page</title>
+    </page>
+<!-- END -->
+<!-- START -->
+    <page link="https://github.com/xpirt/sdat2img">
+        <title>sdat2img</title>
+    </page>
+<!-- END -->
+<!-- START -->
+    <page link="https://gist.github.com/ius/42bd02a5df2226633a342ab7a9c60f15">
+        <title>payload_dumper</title>
+    </page>
+<!-- END -->
+<!-- START -->
+    <page link="https://github.com/ReFirmLabs/binwalk">
+        <title>Binwalk</title>
+    </page>
+<!-- END -->
+<!-- START -->
+    <page link="https://gitee.com/sharpeter/DNA">
+        <title>DNA</title>
+    </page>
+<!-- END -->
+<!-- START -->
+    <page link="https://qqcn.coding.net/p/import-rt20/d/GJZS/git/raw/master/other/WeChat_Official_Accounts.jpg">
+        <title>原作者「情非得已c」的微信公众号：HanGJZS</title>
+    </page>
+<!-- END -->
+<!-- START -->
+    <page link="http://www.coolapk.com/u/780237">
+        <title>现阶段开机动画提供/制作者：抱抱猫People11</title>
+    </page>
+<!-- END -->
+<!-- START -->
+    <text>
+        <title>by  ꯭清꯭羽꯭ღ （qyma.yyy@qq.com）</title>
+        <desc>提供java扩展插件服务</desc>
+    </text>
+<!-- END -->
+<!-- START -->
+    <text>
+        <title>往抑云   QQ：373174103为搞机助手绘制新LOGO</title>
+    </text>
+<!-- END -->
+
+<!-- START -->
+    <text>
+        <title>特别鸣谢以下成员提供服务器下载服务</title>
+        <slices>
+            <slice size="16">2021-03-22至2021-03-28   奥奥：QQ 741500926</slice>
+            <slice break="true"></slice>
+            <slice size="16">2021-03-29至2021-04-10   潮汐怎遇潮落：QQ 2657595205</slice>
+            <slice break="true"></slice>
+            <slice size="16">2021-04-07至2021-04-10   404：QQ 481812150</slice>
+            <slice break="true"></slice>
+            <slice size="16">2021-05-26至now   深信不疑。：QQ 1097228498</slice>
+        </slices>
+    </text>
+<!-- END -->
+
+</group>
+<group title="特别鸣谢 by：Bin">
+<!-- START -->
+    <action confirm="true">
+        <title>MT管理器</title>
+        <desc>本软件全程由「MT管理器」工具编译制作</desc>
+        <set>Website http://d.binmt.cc</set>
+    </action>
+<!-- END -->
+<!-- START -->
+    <text>
+        <slice link="http://bbs.binmt.cc/" size="15" color="#FF0366D6" u="1">MT论坛bbs.binmt.cc</slice>
+    </text>
+<!-- END -->
+</group>
