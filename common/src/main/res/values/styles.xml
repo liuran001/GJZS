@@ -1,0 +1,235 @@
+<resources>
+
+    <style name="activityAnim">
+        <item name="android:activityOpenEnterAnimation">@anim/activity_open_enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/activity_open_exit</item>
+        <item name="android:activityCloseEnterAnimation">@anim/activity_close_enter</item>
+        <item name="android:activityCloseExitAnimation">@anim/activity_close_exit</item>
+        <item name="android:taskOpenEnterAnimation">@anim/task_open_enter</item>
+        <item name="android:taskOpenExitAnimation">@anim/task_open_exit</item>
+        <item name="android:taskCloseEnterAnimation">@anim/task_close_enter</item>
+        <item name="android:taskCloseExitAnimation">@anim/task_close_exit</item>
+    </style>
+
+    <style name="windowAnim">
+        <item name="android:windowExitAnimation">@anim/dialog_exit</item>
+        <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
+    </style>
+    <style name="windowAnim2">
+        <item name="android:windowEnterAnimation">@anim/dialog_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_fade_out</item>
+    </style>
+
+    <style name="custom_alert_dialog">
+        <!--<item name="android:windowLightStatusBar">true</item>-->
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:background">@null</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:backgroundDimAmount">0</item>
+        <item name="android:windowAnimationStyle">@style/windowAnim2</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:layout_margin">0dp</item>
+    </style>
+
+    <style name="SceneSpinner">
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:textAlignment">textEnd</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:background">@drawable/abc_spinner_mtrl_am_alpha</item>
+        <item name="android:backgroundTint">?android:textColorSecondary</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="SceneSwitch" parent="Widget.AppCompat.CompoundButton.Switch">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:alpha">0.8</item>
+        <item name="android:thumb">@drawable/switch_thumb</item>
+        <item name="android:track">@drawable/switch_track</item>
+        <item name="android:textAppearance">@style/textTitle</item>
+        <item name="android:textOn" />
+        <item name="android:textOff" />
+        <item name="android:showText">false</item>
+    </style>
+
+    <style name="SceneCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:button">@drawable/checkbox_style</item>
+        <item name="android:background">@null</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingBottom">2dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+    <style name="SceneRadioBox" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:button">@drawable/radio_style</item>
+        <item name="android:background">@null</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingBottom">2dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+    <style name="SceneSeekBar" parent="Widget.AppCompat.SeekBar">
+        <item name="android:thumbOffset">0dp</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:splitTrack">false</item>
+        <item name="android:maxHeight">20dp</item>
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:indeterminateDrawable">?android:colorAccent</item>
+        <item name="android:progressDrawable">@drawable/seekbar_progress_drawable</item>
+        <item name="android:minHeight">20dp</item>
+        <item name="android:thumb">@drawable/seekbar_thumb</item>
+        <item name="android:thumbTint">?android:colorAccent</item>
+        <item name="android:alpha">0.45</item>
+        <item name="android:background">@null</item>
+    </style>
+    <style name="SceneSeekbarIcon">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:alpha">0.45</item>
+        <item name="android:background">@drawable/seekbar_progress_icon</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+    <style name="SceneButton" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/btn_bg</item>
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:textSize">13dp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">?android:colorAccent</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <style name="textTitle" parent="@style/TextAppearance.AppCompat.Title">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:alpha">0.8</item>
+    </style>
+
+    <style name="textSmallTitle" parent="textTitle">
+        <item name="android:textSize">11dp</item>
+    </style>
+
+    <style name="textDefault">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="textSmall">
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+        <item name="android:textSize">11dp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="textSecondary">
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+        <item name="android:textSize">11dp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:alpha">0.5</item>
+    </style>
+
+    <style name="dialogLargeBtn" parent="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:alpha">0.8</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+    <style name="dialogConfirmBtn" parent="dialogLargeBtn">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:background">@drawable/btn_bg_large</item>
+    </style>
+
+    <style name="dialogCancelBtn" parent="dialogLargeBtn">
+        <item name="android:layout_marginStart">0dp</item>
+        <item name="android:background">@drawable/btn_bg_large_secondary</item>
+    </style>
+
+    <style name="dialogRoot">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">12dp</item>
+    </style>
+
+    <style name="dialogTitle" parent="@style/textTitle">
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="dialogDesc" parent="@style/textSmall">
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="dialogWarn" parent="@style/textSmall">
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:background">@drawable/in_card_item_inactive</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="dialog_full_screen" parent="Theme.AppCompat.Dialog">
+        <!--<item name="android:windowNoTitle">true</item>-->
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:fitsSystemWindows">false</item>
+        <!-- 浮于Activity之上 -->
+        <item name="android:windowIsFloating">false</item>
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+
+    <style name="dialog_full_screen_light" parent="@style/dialog_full_screen">
+        <item name="android:windowBackground">@android:color/background_light</item>
+        <item name="android:statusBarColor">@android:color/background_light</item>
+    </style>
+
+    <style name="dialog_full_screen_dark" parent="@style/dialog_full_screen">
+        <item name="android:windowBackground">@android:color/background_dark</item>
+        <item name="android:statusBarColor">@android:color/background_dark</item>
+    </style>
+</resources>

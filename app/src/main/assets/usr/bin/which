@@ -1,0 +1,68 @@
+which_help() {
+cat <<Han
+Script Compile author  by：Han | 情非得已c
+And applied to「搞机助手」
+
+From the \$PATH variable, search for commands (supports wildcards * and ?)
+
+Usage: which [-Option] command ……
+
+-a               Show all Command location
+-h, --help      Show help
+-v, -V          Show version information
+Han
+exit 0
+}
+
+a() { Number=$#; }
+
+
+[[ -z "$1" ]] && which_help
+ZD=false
+Code=0
+P=${PATH//:/ }
+C1=
+
+case $1 in
+    -h | --help)
+    which_help
+;;
+
+-v|-V)
+    echo "Script Compile author by：Han | 情非得已c（2020-12-16  01:41:00）"
+    exit 0
+;;
+
+-a)
+    shift
+;;
+
+-*)
+    echo "Unknown options $1 (To learn more, please use "which --help")" 1>&2
+    exit 1
+;;
+
+*)
+    ZD=true
+;;
+esac
+
+a $P
+until [[ $# -eq 0 ]]; do
+    for C in $P; do
+        for ML in $C/$1; do
+            if [[ -x "$ML" ]]; then
+                echo "$ML"
+                $ZD && break 2
+            else
+                C1=$((C1+1))
+            fi
+        done
+    done
+    [[ $Number = $C1 ]] && Code=127
+    unset C1
+    shift
+done
+
+exit ${Code}
+

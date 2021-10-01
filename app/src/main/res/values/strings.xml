@@ -1,0 +1,53 @@
+<resources>
+    <!--重要内容，谨慎修改-->
+    <string name="kr_script_config">kr-script.conf</string>
+
+    <!--是否强制获取ROOT-->
+    <bool name="force_root">false</bool>
+
+    <string name="app_name">搞机助手·R</string>
+    <string name="btn_exit">退出</string>
+    <string name="float_monitor_tips">双击悬浮窗即可关闭，或按住拖动调整位置</string>
+    <string name="permission_float">请授权显示悬浮窗权限！</string>
+    <string name="please_wait">请稍等</string>
+    <string name="title_activity_action_page">功能分页</string>
+
+    <string name="starting_title">搞机助手·R</string>
+    <string name="starting_subtitle">玩机从未如此简单</string>
+
+    <string name="author_name">酷安@快播内部工作人员</string>
+    <string name="about_title">关于 · 搞机助手·R</string>
+    <string name="appliction_desc">原作者：情非得已c</string>
+    <string name="appliction_name">搞机助手·R</string>
+    <string name="appliction_author">作者：快播内部工作人员</string>
+    <string name="engine_version_name">基于[Kr-Script4.0.3]创作</string>
+
+    <string name="tab_home">首页</string>
+    <string name="tab_favorites">主页</string>
+    <string name="tab_pages">全部</string>
+
+    <string name="monitor_laod">负载：%d%%</string>
+    <string name="monitor_core_count">%d 核心</string>
+    <string name="monitor_cache_cleared">已回收用于缓存的RAM</string>
+    <string name="monitor_ram_cleared">RAM碎片已整理</string>
+
+    <string name="copy_success">复制成功</string>
+    <string name="btn_retry">重试</string>
+
+    <string name="pio_starting">启动中…</string>
+    <string name="pop_before_start">正准备启动应用…</string>
+    <string name="pop_started">启动完成！</string>
+    <string name="pio_permission_checking">检查并获取必需权限……</string>
+    <string name="error_root">未能获得ROOT授权，如果你的手机已经ROOT，清在授权管理器弹出对话框时选择允许！</string>
+    <string name="error_su_timeout">等待ROOT授权超时，请检查授权管理器是否在后台运行！</string>
+    <string name="transparent_ui">界面透明 </string>
+    <string name="title_activity_file_selector">请选择文件</string>
+    <string name="title_activity_folder_selector">请长按选择目录</string>
+
+    <string name="power_shutdown_cmd">sync;svc power shutdown || reboot -p;</string>
+    <string name="power_reboot_cmd">sync;svc power reboot || reboot;</string>
+    <string name="power_hot_reboot_cmd">sync;am restart || busybox killall system_server;</string>
+    <string name="power_fastboot_cmd">sync;reboot bootloader;</string>
+    <string name="power_recovery_cmd">sync;reboot recovery;</string>
+    <string name="power_emergency_cmd">sync;reboot edl;</string>
+</resources>

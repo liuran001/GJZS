@@ -1,0 +1,14 @@
+boot|boot（内核）
+system
+vendor
+vbmeta|刷写vbmeta分区(用于去除AVB启动校验)
+splash|刷写splash分区(第一屏)
+logo|刷写logo分区(第一屏)"
+persist|刷写persist分区：(用于修复传感器问题)
+frp
+hboot|刷写hboot(SPL)，引导系统程序
+misc
+oem
+recovery
+userdata
+unlock|刷写unlock分区(用于解锁BL)

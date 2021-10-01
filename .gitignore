@@ -1,0 +1,14 @@
+*.iml
+.gradle
+.idea
+local.properties
+.idea/workspace.xml
+.idea/libraries
+.DS_Store
+build
+app/build
+krscript/build
+common/build
+captures
+release
+release_mini

@@ -1,0 +1,106 @@
+<resources>
+
+    <style name="AppTheme" parent="Base.Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:statusBarColor">@color/status_bg_light</item>
+        <item name="android:navigationBarColor">@android:color/white</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/activityAnim</item>
+        <item name="android:actionBarTheme">@style/AppTheme.AppBarOverlay.Light</item>
+        <item name="android:windowBackground">@color/window_bg_light</item>
+        <item name="cardBg">@color/cardBgLight</item>
+        <item name="android:switchStyle">@style/SceneSwitch</item>
+        <item name="android:seekBarStyle">@style/SceneSeekBar</item>
+        <item name="android:checkboxStyle">@style/SceneCheckBox</item>
+        <item name="android:radioButtonStyle">@style/SceneRadioBox</item>
+    </style>
+
+    <style name="AppThemeDark" parent="Theme.AppCompat">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:statusBarColor">@color/status_bg_dark</item>
+        <item name="android:windowBackground">@color/window_bg_dark</item>
+        <item name="android:navigationBarColor">@color/status_bg_dark</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/activityAnim</item>
+        <item name="android:actionBarTheme">@style/AppTheme.AppBarOverlay</item>
+        <item name="cardBg">@color/cardBgDark</item>
+        <item name="android:switchStyle">@style/SceneSwitch</item>
+        <item name="android:seekBarStyle">@style/SceneSeekBar</item>
+        <item name="android:checkboxStyle">@style/SceneCheckBox</item>
+        <item name="android:radioButtonStyle">@style/SceneRadioBox</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay.Light" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="titleTextColor">?android:textColorPrimary</item>
+        <item name="subtitleTextColor">?android:textColorSecondary</item>
+        <item name="colorControlNormal">?android:textColorPrimary</item>
+        <item name="android:foregroundTint">?android:textColorSecondary</item>
+        <item name="android:foregroundTintMode">screen</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="titleTextColor">?android:textColorPrimary</item>
+        <item name="subtitleTextColor">?android:textColorSecondary</item>
+        <item name="colorControlNormal">?android:textColorPrimary</item>
+        <item name="android:foregroundTint">?android:textColorSecondary</item>
+        <item name="android:foregroundTintMode">screen</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="textTitle">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14dp</item>
+    </style>
+
+    <style name="textSmall">
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+        <item name="android:textSize">11dp</item>
+    </style>
+
+
+    <style name="activityAnim">
+        <item name="android:activityOpenEnterAnimation">@anim/activity_open_enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/activity_open_exit</item>
+        <item name="android:activityCloseEnterAnimation">@anim/activity_close_enter</item>
+        <item name="android:activityCloseExitAnimation">@anim/activity_close_exit</item>
+        <item name="android:taskOpenEnterAnimation">@anim/task_open_enter</item>
+        <item name="android:taskOpenExitAnimation">@anim/task_open_exit</item>
+        <item name="android:taskCloseEnterAnimation">@anim/task_close_enter</item>
+        <item name="android:taskCloseExitAnimation">@anim/task_close_exit</item>
+    </style>
+
+    <style name="ListCardItem">
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginTop">@dimen/activity_vertical_margin</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/krscript_item_ripple_inactive</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+    </style>
+    <style name="ListCardItemSmall" parent="ListCardItem">
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+    </style>
+</resources>
