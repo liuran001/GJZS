@@ -43,7 +43,7 @@ cat <<Han
 
 
 <group>
-    <page link="`echo https://coding-pages-bucket-3403475-7618161-17959-614140-1253773788.cos-website.ap-hongkong.myqcloud.com`">
+    <page html="`echo https://coding-pages-bucket-3403475-7618161-17959-614140-1253773788.cos-website.ap-hongkong.myqcloud.com`">
         <title>捐赠</title>
         <desc>维护「搞机助手重制版」耗费了我大量的时间，你可以捐赠表示支持</desc>
     </page>
