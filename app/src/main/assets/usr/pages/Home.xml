@@ -143,7 +143,7 @@ cat <<Han
         <slices>
             <slice run="am force-stop $Package_name" size="15" color="#FF0366D6" u="1">完全退出</slice>
             <slice>　　　　　</slice>
-            <slice run="am start -S am start -S $Package_name/gjzs.online.SplashActivity || am start -S $Package_name/com.projectkr.shell.SplashActivity" size="15" color="#FF0366D6" u="1">重启搞机助手</slice>
+            <slice run="am start -S $Package_name/gjzs.online.SplashActivity || am start -S $Package_name/com.projectkr.shell.SplashActivity" size="15" color="#FF0366D6" u="1">重启搞机助手</slice>
         </slices>
     </text>
 </group>
