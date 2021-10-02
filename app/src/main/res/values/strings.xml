@@ -50,4 +50,18 @@
     <string name="power_fastboot_cmd">sync;reboot bootloader;</string>
     <string name="power_recovery_cmd">sync;reboot recovery;</string>
     <string name="power_emergency_cmd">sync;reboot edl;</string>
+
+    <string name="termsOfServiceSubtitle">
+        感谢您使用本应用！为了更好的为您提供服务我们制定了{terms}用户协议和隐私政策{/terms}，请您认真阅读本条款并点击下方同意按钮。若不同意本条款所述内容请卸载此应用。
+    </string>
+    <string name="termsOfServiceTitle">用户协议</string>
+    <string name="termsOfServiceUrl">https://gjzs.qqcn.xyz/Agreement</string>
+    <string name="privacyPolicyUrl">https://gjzs.qqcn.xyz/Agreement</string>
+
+    <string name="dialog_cancelText">退出</string>
+    <string name="dialog_acceptText">同意</string>
+    <string name="PoliceLine1">本应用需要获取您设备的ROOT权限，由于本应用权限较高，若不慎操作失误可能导致终端损坏，我们不为此承担任何后果</string>
+    <string name="PoliceLine2">本应用使用Microsoft
+        AppCenter的SDK进行数据统计和崩溃记录，在使用本APP时会将部分非敏感信息上传至AppCenter服务器，若您点击同意即视为您已阅读并同意AppCenter的用户协议和隐私政策
+    </string>
 </resources>

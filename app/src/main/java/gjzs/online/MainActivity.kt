@@ -5,12 +5,14 @@ import android.app.Activity
 import android.content.ComponentName
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.provider.Settings
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -37,6 +39,7 @@ import com.omarea.vtools.FloatMonitor
 import gjzs.online.permissions.CheckRootStatus
 import gjzs.online.ui.TabIconHelper
 import kotlinx.android.synthetic.main.activity_main.*
+import net.khirr.android.privacypolicy.PrivacyPolicyDialog
 
 class MainActivity : AppCompatActivity() {
     private val progressBarDialog = ProgressBarDialog(this)
@@ -50,11 +53,32 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val dialog = PrivacyPolicyDialog(this, getString(R.string.termsOfServiceUrl), getString(R.string.privacyPolicyUrl))
+        dialog.onClickListener = object : PrivacyPolicyDialog.OnClickListener {
+            override fun onAccept(isFirstTime: Boolean) {
+                Log.e("MainActivity", "Policies accepted")
+            }
+
+            override fun onCancel() {
+                Log.e("MainActivity", "Policies not accepted")
+                finish()
+            }
+        }
+        dialog.title = getString(R.string.termsOfServiceTitle)
+        dialog.termsOfServiceSubtitle = getString(R.string.termsOfServiceSubtitle)
+        dialog.addPoliceLine(getString(R.string.PoliceLine1))
+        dialog.addPoliceLine(getString(R.string.PoliceLine2))
+        dialog.cancelText = getString(R.string.dialog_cancelText)
+        dialog.acceptText = getString(R.string.dialog_acceptText)
+        dialog.acceptButtonColor = ContextCompat.getColor(this, R.color.colorAccent)
+        dialog.europeOnly = false
+        dialog.show()
+
         //supportActionBar!!.elevation = 0f
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
         setTitle(R.string.app_name)
-
+        //二改的麻烦把AppCenter密钥改了
         AppCenter.start(application, "16d4ef12-f4e7-4955-964c-42c0e84e8446", Analytics::class.java, Crashes::class.java)
 
         krScriptConfig = KrScriptConfig()
