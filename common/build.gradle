@@ -33,6 +33,7 @@ dependencies {
     //noinspection GradleDependency
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api files('libs/overscroll-release-v1.1-20160904.jar')
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     // implementation files('libs/fastscroll_v1.2_20160903.jar')
 }
 repositories {

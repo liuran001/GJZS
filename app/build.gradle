@@ -9,14 +9,15 @@ android {
     defaultConfig {
         resConfigs "zh"
         minSdkVersion 21
+        //noinspection OldTargetApi
         targetSdkVersion 29
-        //noinspection HighAppVersionCode
-        versionCode 2021100101
-        versionName "3.9"
+        versionCode(Common.getversionCode())
+        versionName "3.9" + (Common.getGitHeadRefsSuffix(rootProject))
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
         }
         release_mini {
             shrinkResources true

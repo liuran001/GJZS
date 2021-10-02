@@ -10,11 +10,11 @@
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="640dp">
+            android:layout_height="wrap_content" android:layout_marginStart="20sp" android:layout_marginTop="35sp">
         <TextView
                 android:id="@+id/start_state_text"
                 android:layout_width="match_parent"
-                android:layout_height="217dp"
+                android:layout_height="220dp"
                 android:layout_gravity="center"
                 android:minLines="8"
                 android:text="@string/pop_before_start"
