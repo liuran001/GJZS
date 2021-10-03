@@ -1,5 +1,5 @@
 #Custom variable
-export Util_Functions_Code=2021100301
+export Util_Functions_Code=2021100302
 export SDdir=/data/media/0
 export Magisk=`$which magisk`
 if $Have_ROOT;then
@@ -30,8 +30,12 @@ export Status=$Data_Dir/Status.log
 export Termux=$DATA_DIR/com.termux/files
 export BOOTMODE=true
 export Choice=0
-export New_Version=1
-export New_Code=1
+if [[ -f "$ShellScript/APP_Version.sh" ]]; then
+    `echo "$ShellScript/APP_Version.sh"`
+else
+    export New_Version=1
+    export New_Code=1
+fi
 export ChongQi Configuration File File_Name Download_File File_MD5 id name version versionCode author description MODID MODNAME MODPATH MAGISK_VER MAGISK_VER_CODE LOCKED
 $Have_ROOT && LOCKED=false || LOCKED=true
 
