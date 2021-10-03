@@ -1,5 +1,5 @@
 #Custom variable
-export Util_Functions_Code=2021100302
+export Util_Functions_Code=2021100401
 export SDdir=/data/media/0
 export Magisk=`$which magisk`
 if $Have_ROOT;then
@@ -505,25 +505,9 @@ Download() {
                 shift
                 Link="$ID"
             ;;
-            -net)
-                shift
-                Link="https://d0.ananas.chaoxing.com/download/$ID"
-            ;;
-            -net2)
-                shift
-                Link="https://pan-yz.chaoxing.com/download/downloadfile?$ID"
-            ;;
-            -lz)
-                shift
-                Link="http://api.funs.ml/lzy/api.php?url=$ID&type=down"
-            ;;
             -coding)
                 shift
                 Link="https://qqcn.coding.net/p/import-rt20/d/GJZS-Warehouse/git/raw/main/$ID"
-            ;;
-            -od)
-                shift
-                Link="https://od.qqcn.site/$ID?raw"
             ;;
             -file)
                 shift
@@ -532,10 +516,6 @@ Download() {
             -gh)
                 shift
                 Link="https://github.qqcn.xyz/$ID"
-            ;;
-            -ghcdn)
-                shift
-                Link="https://cdn.jsdelivr.net/gh/$ID"
             ;;
             -cos)
                 shift
