@@ -291,15 +291,6 @@
     </switch>
 <!-- END -->
 <!-- START -->
-    <action auto-off="true" interruptible="false">
-        <title>音效试听</title>
-        <set>. ./Charging_Sound_Effect_Play.sh</set>
-        <params>
-            <param name="music" title="请选择音乐" options-sh="tail -n +2 ./Charging_Sound_Effect_Music_Options.sh" />
-        </params>
-    </action>
-<!-- END -->
-<!-- START -->
     <action>
         <title>音效修改</title>
         <set>. ./Charging_Sound_Effect_Set.sh -system</set>

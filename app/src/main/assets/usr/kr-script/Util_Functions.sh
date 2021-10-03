@@ -1,5 +1,5 @@
 #Custom variable
-export Util_Functions_Code=2021100401
+export Util_Functions_Code=2021100402
 export SDdir=/data/media/0
 export Magisk=`$which magisk`
 if $Have_ROOT;then
@@ -780,10 +780,6 @@ Frame_installation_Check() {
     if [[ -d "$Modules_Dir/$MODID" ]]; then
         abort -e "！已检测到用Magisk模块方式安装了$MODID，无法再次安装\n模块安装目录：\"$Modules_Dir/$MODID\""
     fi
-}
-
-Play_Music() {
-    am start -n $Package_name/com.projectkr.shell.MusicPlayer --es music "$1" 1>/dev/null
 }
 
 Power() {

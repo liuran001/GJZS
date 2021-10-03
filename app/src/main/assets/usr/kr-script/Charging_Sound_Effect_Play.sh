@@ -19,4 +19,3 @@ if [[ $user_version -lt $versionCode ]]; then
     find $lu -exec chown $APP_USER_ID:$APP_USER_ID {} \; >/dev/null
 fi
     [[ $1 = -exit ]] && return 0
-    Play_Music $lu/$music

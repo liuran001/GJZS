@@ -137,7 +137,7 @@ if [[ -f $Module_File ]]; then
         echo "- 即将在2秒后重启「搞机助手」"
         error "- 桌面图标需要应用一遍当前主题才会生效"
         sleep 2
-        am start -S $Package_name/com.projectkr.shell.SplashActivity
+        am start -S $Package_name/gjzs.online.SplashActivity
 else
     mask -vc    
     Theme $1

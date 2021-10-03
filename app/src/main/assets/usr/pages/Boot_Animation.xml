@@ -118,14 +118,6 @@
     </action>
 <!-- END -->
 <!-- START -->
-    <action shell="hidden" auto-off="true" interruptible="false">
-        <title>播放开机音乐</title>
-        <set>. ./Play_Boot_Music.sh</set>
-            <param name="bootaudio" title="安装路径" options-sh=". ./Add_Boot_Music_PATH.sh" value-sh="grep_prop bootanimation $Data_Dir/Play_Boot_Music.log" required="true"/>
-            <param name="Customize_lu" title="当上面选择自定义路径时生效" placeholder="请输入您系统开机音乐文件所在的绝对路径" value-sh="grep_prop Customize_lu $Data_Dir/Play_Boot_Music.log" />
-    </action>
-<!-- END -->
-<!-- START -->
     <switch auto-off="true" interruptible="false">
         <title>锁定开机动画第二屏</title>
         <desc>打开此开关锁定后无法更改第二屏</desc>
