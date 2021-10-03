@@ -47,35 +47,35 @@
 <!-- END -->
 <!-- START -->
     <action confirm="true" auto-off="true" interruptible="false">
-        <title>点击清除「搞机助手重制版」全部缓存</title>
+        <title>点击清除「搞机助手·R」全部缓存</title>
         <desc>乱七八糟的脚本缓存，如果页面抽风了可以试试看</desc>
         <set>rm -rf $TMPDIR ~/downloader $ShellScript/cache $TMPDIR $Data_Dir/.Empty</set>
     </action>
 <!-- END -->
 <!-- START -->
     <action confirm="true" auto-off="true" interruptible="false">
-        <title>点击清除「搞机助手重制版」全部下载文件</title>
+        <title>点击清除「搞机助手·R」全部下载文件</title>
         <desc>默认下载位置在/data/data/gjzs.online/files/Configuration_File  清除后会强行重启一次助手</desc>
         <set>rm -rf /data/data/gjzs.online/files/Configuration_File/*; am start -S $Package_name/gjzs.online.SplashActivity</set>
     </action>
 <!-- END -->
 <!-- START -->
     <action confirm="true" auto-off="true" interruptible="false">
-        <title>点击清除「搞机助手重制版」全部应用数据</title>
-        <desc>一键回到解放前</desc>
+        <title>点击清除「搞机助手·R」全部应用数据</title>
+        <desc>遇到Bug可以尝试清除数据来解决</desc>
         <set>pm clear $Package_name</set>
     </action>
 <!-- END -->
 <!-- START -->
     <action confirm="true" auto-off="true" interruptible="false">
-        <title>「搞机助手重制版」异常修复</title>
-        <desc>有问题可以试试，没问题就别点了</desc>
-        <set>pm clear $Package_name; am start -n $Package_name/gjzs.online.SplashActivity</set>
+        <title>尝试修复curl</title>
+        <desc>无法正常下载文件时可以尝试此功能</desc>
+        <set>. ./Fix_Curl.sh</set>
     </action>
 <!-- END -->
 <!-- START -->
     <action confirm="true" auto-off="true" interruptible="false">
-        <title>一键卸载「搞机助手重制版」</title>
+        <title>一键卸载「搞机助手·R」</title>
         <desc>希望今日的离开是为了明日更好的重逢</desc>
         <set>pm uninstall $Package_name</set>
     </action>
