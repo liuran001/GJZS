@@ -1,6 +1,6 @@
-Configuration=2021100410
+Configuration=2021100412
 Magisk_Warehouse_version=2021100302
-App_Store_version=2021100403
+App_Store_version=2021100405
 Show_Compatibility_Mode=1
 MIUI=0
 
@@ -353,8 +353,19 @@ version='0.8.22.ef219e7'
 versionCode=1630851433
 author='reinit'
 description='XP模块：QQ辅助性功能增强'
-time='2021年9月12日'
-    [[ $Choice = 1 ]] && Download -gh "ferredoxin/QNotified/releases/download/v0.8.22/app-release.apk" "$1.apk" 4841890 9e0416ebbcbce7103e80734edaf79201 "$1.apk"
+time='2021年10月4日'
+    [[ $Choice = 1 ]] && Download -cos "QNotified_0.8.22.ef219e7.apk" "$1.apk" 4841890 9e0416ebbcbce7103e80734edaf79201 "$1.apk"
+;;
+
+com.ld.Install)
+apk='com.ld.Install'
+name='绿逗模块安装器'
+version='4.0'
+versionCode=66
+author='Hicores'
+description='XP模块：QQ辅助性功能增强'
+time='2021年10月4日'
+    [[ $Choice = 1 ]] && Download -cos "com.ld.Install_4.0.apk" "$1.apk" 1613361 f12ad81a8d102a47200e5f057613fb7d "$1.apk"
 ;;
 
 me.kyuubiran.qqcleaner)
