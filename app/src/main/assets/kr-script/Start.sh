@@ -8,7 +8,7 @@ abort() {
 }
 
 Inject() {
-	curl -V > /dev/null || Install_curl
+	curl -where &> /dev/null || Install_curl
 	curl -L -s -o "$2" "$CODING/$1"
 }
 
