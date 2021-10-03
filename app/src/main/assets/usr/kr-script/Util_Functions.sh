@@ -31,7 +31,7 @@ export Termux=$DATA_DIR/com.termux/files
 export BOOTMODE=true
 export Choice=0
 if [[ -f "$ShellScript/APP_Version.sh" ]]; then
-    `echo "$ShellScript/APP_Version.sh"`
+    . $ShellScript/APP_Version.sh
 else
     export New_Version=1
     export New_Code=1
