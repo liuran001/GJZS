@@ -18,7 +18,7 @@ else
         echo "- 当前版本：$Version_Name（$Version_code）"
         echo "- 已发布了最新版本：$New_Version（$New_Code）"
         echo "- 请前往https://gjzs.qqcn.xyz/ 下载最新版本"
-        echo "- 如果你在软件上遇到bug，可联系重制版作者QQ1939426769"
+        echo "- 如果你在软件上遇到bug，请使用邮箱反馈"
     else
         V 软件
     fi
