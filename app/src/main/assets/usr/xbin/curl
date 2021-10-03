@@ -26,7 +26,7 @@ CURL2() {
     [[ ! -n $DoH_Ser ]] && ping -w 1 8.8.8.8 > /dev/null && DoH_Ser='8.8.8.8'
     [[ ! -n $DoH_Ser ]] && ping -w 1 9.9.9.9 > /dev/null && DoH_Ser='9.9.9.9'
     [[ ! -n $DoH_Ser ]] && echo '! 网络连接异常' && exit 1
-    "$C" --doh-url "https://$DoH_Ser/dns-query" --doh-insecure --cacert $PeiZhi_File/cacert.pem "$@"
+    "$C" --doh-url "https://$DoH_Ser/dns-query" --doh-insecure --cacert ~/Configuration_File/cacert.pem "$@"
     fi
 }
 

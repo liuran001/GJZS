@@ -12,8 +12,8 @@ Inject() {
 Install_Curl() {
         echo "- curl不存在，开始下载"
         wget --no-check-certificate -nv -O $ELF1_Path/curl3 "https://file.qqcn.xyz/GJZS/Other/Curl/`getprop ro.product.cpu.abi`"
-        [[ ! -d "$PeiZhi_File" ]] && mkdir $PeiZhi_File
-        wget --no-check-certificate -nv -O $PeiZhi_File/cacert.pem "https://file.qqcn.xyz/GJZS/Other/Curl/cacert.pem"
+        [[ ! -d "~/Configuration_File" ]] && mkdir ~/Configuration_File
+        wget --no-check-certificate -nv -O ~/Configuration_File/cacert.pem "https://file.qqcn.xyz/GJZS/Other/Curl/cacert.pem"
         chmod +x $ELF1_Path/curl3
 }
 
