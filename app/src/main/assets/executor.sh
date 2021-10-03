@@ -12,17 +12,10 @@ export Have_ROOT=$({ROOT_PERMISSION})
 export ANDROID_UID=$({ANDROID_UID})
 export DATA_DIR=${HOME%/${Package_name}*}
 export PATH0="$PATH"
-if [[ -f ~/offline ]]; then
-  export Pages=$PREFIX/pages
-  export ShellScript=$PREFIX/kr-script
-  export PeiZhi_File=$PREFIX/Configuration_File
-  export Data_Dir=$PREFIX/Data_Dir
-else
-export Pages=~/pages
-export ShellScript=~/kr-script
+export Pages=$PREFIX/pages
+export ShellScript=$PREFIX/kr-script
 export PeiZhi_File=~/Configuration_File
-export Data_Dir=~/Data_Dir
-fi
+export Data_Dir=$PREFIX/Data_Dir
 export ELF1_Path="$PREFIX/bin"
 export ELF2_Path="$PREFIX/bin/xbin"
 export ELF3_Path="$PREFIX/xbin"

@@ -48,7 +48,6 @@ DATA() {
     Inject data.php "$data_MD5"
     sleep 1
 }
-if [[ ! -f ~/offline ]]; then
 DATA
 if [[ -f $data_MD5 ]]; then
   . $data_MD5
@@ -65,11 +64,16 @@ if [[ -f $data_MD5 ]]; then
         mkdir -p $PeiZhi_File
         chown $APP_USER_ID:$APP_USER_ID $PeiZhi_File
      fi
-        SCRIPT $Util_Functions_ID "$Core" $Util_Functions_MD5 功能
-        SCRIPT $init_data_ID "$Load" $init_data_MD5 配置
+        if [[ ! -f ~/offline2 ]];then
+            SCRIPT $init_data_ID "$Load" $init_data_MD5 配置
+            if [[ ! -f ~/offline ]];then
+              SCRIPT $APP_Version_ID "$ShellScript/APP_Version.sh" $APP_Version_MD5 版本信息
+              . $ShellScript/APP_Version.sh
+            fi
+        fi
+        [[ -f ~/offline2 || ! -f $Load ]] && cp -f $Load.bak $Load
 else
   echo "！未连接到互联网❓"
-fi
 fi
   . $Core
   Installing_Busybox

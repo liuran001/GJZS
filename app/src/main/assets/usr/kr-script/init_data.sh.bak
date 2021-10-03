@@ -1,0 +1,712 @@
+Configuration=1
+Magisk_Warehouse_version=1
+App_Store_version=1
+Show_Compatibility_Mode=1
+MIUI=0
+
+
+case "$1" in
+
+#应用
+com.topjohnwu.magisk)
+apk='com.topjohnwu.magisk'
+name='Magisk'
+version='9bf835e8-alpha'
+versionCode='23001'
+author='vvb2060 & John Wu'
+description='Magisk Manager'
+time='2021年9月12日'
+    [[ $Choice = 1 ]] && Download -gh 'vvb2060/magisk_files/blob/cbdcc5302daaa71e44454e6dc3c6c5895c7d85cd/app-release.apk?raw=true' "$1.apk" 10810628 09777e391443d5a46c0f41dc12b6894b "$1.apk"
+;;
+
+org.lsposed.manager)
+apk='org.lsposed.manager'
+name='LSPosed 模块管理器'
+version='v1.6.0'
+versionCode='6089'
+author='LSPosed Developers'
+description='LSPosed Xposed框架模块管理器【这是管理器，模块请前往Magisk模块仓库安装】'
+apkfile="$PeiZhi_File/$apk-$versionCode.apk"
+time='2021年10月3日'
+    if [[ $Choice = 1 ]]; then
+        [[ $SDK -lt 27 ]] && abort "！$name-$version（$versionCode）不支持安卓8.1.0以下系统"
+        if [[ ! -s "$apkfile" ]]; then
+            rm -rf "$PeiZhi_File/$apk-"*.apk
+            . "$Load" riru_lsposed
+            unzip -p "$Download_File" 'manager.apk' >$apkfile
+        fi
+    fi
+    Download_File="$apkfile"
+;;
+
+org.meowcat.edxposed.manager)
+apk='org.meowcat.edxposed.manager'
+name='EdXposed Manager'
+version='4.6.2'
+versionCode='46200'
+author='MlgmXyysd'
+description='EDXposed框架模块管理器【这是管理器，模块请前往Magisk模块仓库安装】'
+time='2021年2月7日'
+    [[ $Choice = 1 ]] && Download -coding "21051601/apks/$1.apk" "$1.apk" 3550938 a712f351af88497bc2fb6fae009e49bf "$1.apk"
+;;
+
+de.robv.android.xposed.installer)
+apk='de.robv.android.xposed.installer'
+name='Xposed Installer'
+version='3.1.5'
+versionCode='43'
+author=rovo89
+description='原版Xposed，提供Xposed模块管理，Xposed安装与卸载'
+time='2021年3月18日'
+    [[ $Choice = 1 ]] && Download -coding "21051601/apks/$1.apk" "$1.apk" 3105672 315362d994986e6584203fca282f4472 "$1.apk"
+;;
+
+top.canyie.dreamland.manager)
+apk='top.canyie.dreamland.manager'
+name='梦境'
+version='0.0.7'
+versionCode='7'
+author=canyie
+description='梦境框架管理器【这是管理器，模块请前往Magisk模块仓库安装】'
+time='2021年5月15日'
+    [[ $Choice = 1 ]] && Download -coding "21051601/apks/$1.apk" "$1.apk" 2041765 33ea0e394f1fb6b92b43037392a01401 "$1.apk"
+;;
+
+rikka.riru)
+apk='rikka.riru'
+name='Riru'
+version='25.4.4'
+versionCode=426
+author='Rikka  酷安@蓝莓味绿茶 '
+description='显示Riru状态【最新版的riru已经移除了此app，此为25.4.4的旧版模块中提取】'
+apkfile="$PeiZhi_File/$apk-$versionCode.apk"
+time='2021年5月15日'
+    if [[ $Choice = 1 ]]; then
+        if [[ ! -s "$apkfile" ]]; then
+            rm -rf "$PeiZhi_File/$apk-"*.apk
+            Riru_version=3
+            . "$Load" riru-core
+            unzip -p "$Download_File" 'app.apk' >$apkfile
+        fi
+    fi
+    Download_File="$apkfile"
+;;
+
+
+#模块
+Automatic_brick_rescue)
+id='Automatic_brick_rescue'
+name='自动神仙救砖'
+version='v2021081508'
+versionCode=43
+author='by：Han | 情非得已c & 快播内部工作人员'
+description='用途：当刷入某模块后导致无法正常开机，自动触发已设置好的救砖操作（建议用应用仓库里面那个）'
+time='2021年8月15日'
+;;
+
+riru_lsposed)
+id='riru_lsposed'
+name='Riru - LSPosed'
+version='v1.6.0'
+versionCode='6089'
+author='LSPosed Developers'
+description='一款基于Riru API开发的Xposed框架，支持运行在安卓8.1.0 ~ 12系统上。需要安装Riru v25.0.0或更高版本，Telegram: @LSPosed'
+time='2021年10月3日'
+    if [[ $Choice = 1 ]]; then
+        mask -v
+        if [[ $MAGISK_VER_CODE -ge 23000 ]]; then
+             [[ $Choice = 1 ]] && Download -cos "LSPosed-v1.6.0-6089-release.zip" "$1.zip" 1943905 31382436db397d4deec3a9922214aeca "$1.zip"
+        else
+            echo "- 检测到Magisk版本在v23以下，无法安装最新版$version（$versionCode），开始安装v1.3.4（5501）版本"
+            Download -file "Modules/LSPosed/LSPosed-v1.3.4-5501-release.zip" "$1.zip" 2189720 de39ec10f67b538fbdc60b7f0e6520f7 "$1.zip"
+        fi
+    fi
+;;
+
+riru_edxposed)
+showapk='4.6.2-pre (46200)'
+id='riru_edxposed'
+name='Riru - EdXposed'
+version='v0.5.2.2_4683-master'
+versionCode='4683'
+author='solohsu, MlgmXyysd'
+description='一款基于Riru API开发的Xposed框架，支持运行在安卓8 ~ 11系统上。需要安装Riru v23或更高版本【请使用riru25.4.4及以下版本】，Telegram: @EdXposed'
+time='2021年2月18日'
+    [[ $Choice = 1 ]] && Riru_version=3 && Download -coding "21051601/modules/EdXposed-v0.5.2.2_4683-master-release.zip" "$1.zip" 3461516 71382a57c7e7861b4695d2089e5422a9 "$1.zip"
+;;
+
+riru_dreamland)
+showapk='0.0.7(7)'
+id='riru_dreamland'
+name='Riru - Dreamland（梦境框架）'
+author='canyie'
+version='2.0_2007'
+versionCode='2007'
+description='一款基于Riru API开发的Xposed框架，支持运行在安卓 7.0 ~ 11，需要安装Riru v23或更高版本，Telegram：@DreamlandFramework, QQ群：949888394'
+time='2021年8月19日'
+    [[ $Choice = 1 ]] && Download -net2 "fleid=635149988360990720&puid=175627921" "$1.zip" 729440 95440d9a024361b58adf6eccdf0e04e3 "$1.zip"
+;;
+
+xposed)
+id='xposed'
+name='Xposed Framework（原始Xposed框架）'
+version='v90-beta3'
+versionCode='9030'
+author='rovo89 & topjohnwu'
+description='打包的官方Xposed框架 by @topjohnwu，支持安卓 5-8.1'
+time='2021年3月24日'
+    [[ $Choice = 1 ]] && Download -file "Modules/Xposed/xposed.zip" "$1.zip" 108675627 d083690c555fa59b5f29112fc1dbb0dc "$1.zip"
+;;
+
+MIUI-12_All_in_one)
+MIUI=1
+id='MIUI-12_All_in_one'
+version='v1.12'
+versionCode=12
+name="MIUI 12多合一通用模块"
+author='by：Han | 情非得已c'
+description="$name"
+time='2021年4月6日'
+    [[ $Choice = 1 ]] && Download -coding "21051601/modules/$1.zip" "$1.zip" 1125623 6a76d73f76635d53395539e13c72af07 "$1.zip"
+;;
+
+MIUI_In_Common_Use)
+MIUI=1
+id='MIUI_In_Common_Use'
+version='2019-08-17'
+versionCode='1'
+name="MIUI9 - MIUI10多合一通用模块"
+author='by：Han | 情非得已c'
+description="$name"
+time='2019年8月17日'
+;;
+
+GJZS_Theme_Color)
+MIUI=1
+id='GJZS_Theme_Color'
+version='v1'
+versionCode='1'
+name='自定义「搞机助手」主题配色'
+author='by：Han | 情非得已c'
+description="$name"
+time='2020年6月15日'
+;;
+
+Installation_lion-miui)
+MIUI=1
+Show_Compatibility_Mode=0
+id='Installation_lion-miui'
+name='安装狮-MIUI'
+version='v3.7.5-miui'
+versionCode='43'
+author='dadaewq & by：Han | 情非得已c'
+description='将MIUI的应用包管理组件替换为安装狮来静默安装应用，注：无需在「安装狮 静默安装」里做任何设置，也不需要开启「安装狮-Root」模式授权ROOT权限因为默认就可以使用「安装狮-DPM」来静默安装应用﻿'
+time='2021年8月19日'
+    [[ $Choice = 1 ]] && Download -file "Modules/MIUI/Installation_lion-miui.zip" "$1.zip" 1421892 6e0e362b2648cf8dacf758c1fb1f9136 "$1.zip"
+;;
+
+com.android.thememanager)
+MIUI=1
+Show_Compatibility_Mode=0
+    id='com.android.thememanager'
+name='主题壁纸'
+version='v1.9.3.0（930）'
+versionCode=9
+author='by：Han | 情非得已c'
+description='一些玄学优化'
+time='2021年4月7日'
+    [[ $Choice = 1 ]] && Download -file "Other/com.android.thememanager.apk" "$1.apk" 19185369 4858a32066bcac5c8cc695dcf6de0395 "$1.apk"
+;;
+
+com.miui.packageinstaller)
+id='com.miui.packageinstaller'
+name='MIUI应用包管理组件'
+version='2.0.6-v1'
+versionCode='2021062001'
+author='酷安@快播内部工作人员'
+description='将MIUI应用包管理组件替换为魔改版（基于2.0.6修改）【安装前请核心破解，否则易卡米】'
+time='2021年6月20日'
+MIUI=1
+    [[ $Choice = 1 ]] && Download -file "Modules/com.miui.packageinstaller/com.miui.packageinstaller2.0.6_v1.zip" "$1.zip" 2531191 0503f881ea2c6a6700c808295fc6721c "$1.zip"
+;;
+
+MIUI-Advanced_power_supply)
+MIUI=1
+id='MIUI-Advanced_power_supply'
+name='小米高级重启菜单'
+version='v1.3'
+versionCode=3
+author='by：Han | 情非得已c'
+description='给小米官方的电源菜单增加，重启到recovery 和 FASTBOOT，只在安卓10上测试通过其它机型自测，卡米可私信我修复'
+time='2020年12月24日'
+    [[ $Choice = 1 ]] && Download -coding "21051601/modules/$1.zip" "$1.zip" 129565 8a9c232de79f40c3355e365cade0b068 "$1.zip"
+;;
+
+Game_BianShengQi)
+MIUI=1
+Show_Compatibility_Mode=0
+id='Game_BianShengQi'
+name='MIUI开发版游戏加速变声器'
+version='v1'
+versionCode='1'
+author='淡淡的影寒'
+description='工作原理：在prop内增加ro.vendor.audio.voice.change.support=true，打开游戏加速变声器功能'
+time='2020年6月15日'
+    [[ $Choice = 1 ]] && . ./Magisk_Module/$1.sh
+;;
+
+gametools)
+MIUI=1
+id='gametools'
+name='修改游戏工具箱'
+author='酷安ID流昔枫落'
+version='基于4.1.6安全中心'
+description='修改游戏工具箱快捷方式QQ为tim，适用于MIUI11安全中心版本4.1.2，最好安装mm以防卡米'
+time='2020年8月7日'
+    [[ $Choice = 1 ]] && Download -coding "21051601/modules/$1.zip" "$1.zip" 19163791 cb08a33800824be1fe716a55afd6099a "$1.zip"
+;;
+
+10x5g_perfect_cutout)
+MIUI=1
+id='10x5g_perfect_cutout'
+name='Redmi 10x 5G 完美缺口'
+version='2.0.0'
+versionCode='2'
+author='嘟嘟Ski'
+description='优化隐藏水滴效果，此模块适用于Redmi 10x 5G 及 10x 5G Pro，系统为基于Android 10的MIUI所有版本'
+time='2020年6月25日'
+    [[ $Choice = 1 ]] && Download -file "Modules/10x5g_perfect_cutout.zip" "$1.zip" 15826 9fbd92a81175a45eeac4a8cdf0c07440 "$1.zip"
+;;
+
+10x5g_perfect_cutout2)
+MIUI=1
+id='10x5g_perfect_cutout2'
+name='Redmi 10x 5G水滴优化'
+version='2.5.0'
+versionCode='6'
+author='嘟嘟Ski'
+description='优化隐藏水滴效果，此模块仅适用于Redmi 10x 5G（不包括10x 5G Pro），且要求系统版本必须为MIUI 12.0.5。不符合要求的型号和系统版本，切勿使用！'
+time='2021年5月17日'
+    [[ $Choice = 1 ]] && Download -coding "21051601/modules/$1.zip" "$1.zip" 48984 eb82f672596c5cc6811642421f89fd8c "$1.zip"
+;;
+
+pig)
+MIUI=1
+Show_Compatibility_Mode=0
+id='pig'
+name='K30 全系列  全局猪鼻子'
+version='v1.4'
+versionCode=4
+author='by：Han | 情非得已c & Teemo_omeeT'
+description='让K30系列的药丸孔，变成猪鼻子'
+time='2021年1月30日'
+    [[ $Choice = 1 ]] && Download -coding "21051601/modules/$1.zip" "$1.zip" 3155 2b87f38a763dcc82277fbd6dee776965 "$1.zip"
+;;
+
+K30-5G_Status_bar)
+Show_Compatibility_Mode=0
+MIUI=1
+id='K30-5G_Status_bar'
+name='k30-5G猪鼻子加普通状态栏高度'
+version='v1'
+versionCode='1'
+author='by：Han | 情非得已c & Teemo_omeeT'
+description='让k30-5G的药丸孔，变成猪鼻子，加普通状态栏高度，猪鼻子由@Teemo_omeeT修改，不支持安卓11'
+time='2020年6月23日'
+    [[ $Choice = 1 ]] && Download -file "Modules/K30-5G_Status_bar.zip" "$1.zip" 31250 334935c6feef7cb2bdb8f26635930443 "$1.zip"
+;;
+
+Xiaomi_Full_frame_rate)
+MIUI=1
+Show_Compatibility_Mode=0
+id='Xiaomi_Full_frame_rate'
+name='小米系列全局高刷'
+version='v1.3'
+versionCode='3'
+author='by：Han | 情非得已c'
+description='使用模块方式冻结电量和性能，让支持小米高刷新率的设备，全局使用高刷，需要把在设置里 -->显示 -->屏幕刷新率设置为最高刷新率'
+time='2020年6月25日'
+    [[ $Choice = 1 ]] && . ./Magisk_Module/$1.sh
+;;
+
+Show_touch)
+Show_Compatibility_Mode=0
+id='Show_touch'
+name='修改显示触摸点'
+version='v1'
+versionCode=1
+author='by：Han | 情非得已c'
+description='修改显示点按操作视觉反馈触摸点'
+time='2020年12月15日'
+    [[ $Choice = 1 ]] && Download -coding "21051601/modules/$1.zip" "$1.zip" 55415 cd4efaa0ba3bb2a36c0b5436b6c5ca3a "$1.zip"
+;;
+
+Magisk_Abnormal_Repair)
+id='Magisk_Abnormal_Repair'
+name='Magisk异常修复'
+version='v1.2'
+versionCode='3'
+author='by：Han | 情非得已c'
+description='修复进入Magisk时提示：Magisk 不支持安装为系统应用，请还原为用户应用。'
+description2='修复进入Magisk时提示Running this app as a system app is not supported. Please revert the app to a user app.翻译：不支持将Magisk作为系统应用程序运行，请将该应用还原为用户应用'
+time='2021年2月25日'
+;;
+
+Hide_system_ROOT)
+Show_Compatibility_Mode=0
+id='Hide_system_ROOT'
+name='隐藏系统ROOT'
+version='v1.6'
+versionCode=6
+author='by：Han | 情非得已c'
+description='隐藏除Magisk以外的系统ROOT，只保留magisk su，因为系统ROOT的存在会让Magisk Hide失效，导致部分应用仍然会检测到ROOT，且部分机型会存在Magisk掉ROOT的情况，同时也还可以修复进入Magisk时提示
+检测到不属于 Magisk 的 su 文件，请删除其他超级用户程序。其实说白了就是存在系统ROOT导致的'
+time='2021年3月7日'
+    [[ $Choice = 1 ]] && . ./Magisk_Module/$1.sh
+;;
+
+Volume_Adjustment)
+id='Volume_Adjustment'
+name='媒体音量级别调节'
+version='v1.3'
+versionCode='3'
+author='by：Han | 情非得已c'
+description='将默认的按下音量键15次后放大至最大音量，更改为自己喜欢的数值，我只在小米上测试OK，其它机型自己测试'
+time='2020年12月12日'
+;;
+
+github-hosts)
+Show_Compatibility_Mode=0
+id='github-hosts'
+name='解决Github网址打不开'
+version='v2.0'
+versionCode=7
+author='by：Han | 情非得已c & 快播内部工作人员'
+description='解决Github网址打不开，如果失效请再次安装本模块即可'
+time='2021年8月19日'
+    [[ $Choice = 1 ]] && . ./Magisk_Module/$1.sh
+
+;;
+
+lanzou-hosts)
+Show_Compatibility_Mode=0
+id='lanzou-hosts'
+name='解决蓝奏云旧网址打不开'
+version='v1'
+versionCode=1
+author='People11'
+description='解决蓝奏云旧网址打不开'
+time='2021年8月19号'
+    [[ $Choice = 1 ]] && . ./Magisk_Module/$1.sh
+;;
+
+Freezing_system_app)
+id='Freezing_system_app'
+name='使用Magisk模块方式冻结系统应用'
+version='v1'
+versionCode='1'
+author='by：Han | 情非得已c'
+description="$name"
+time='2020年8月9日'
+;;
+
+Convert_to_system_app)
+id='Convert_to_system_app'
+name='三方应用转系统应用'
+version='v1.2'
+versionCode='2'
+author='by：Han | 情非得已c'
+description='自定义方式使用模块方式将三方应用转为系统应用'
+time='2020年8月20日'
+;;
+
+Remove_Temperature_Control)
+id='Remove_Temperature_Control'
+name='移除温控'
+version='v2021021300'
+versionCode=9
+author='by：Han | 情非得已c'
+description='用途：Magisk模块方式移除温控文件'
+time='2021年2月13日'
+;;
+
+Clone_Configuration)
+id=Clone_Configuration
+name=克隆主用户EDXposed模块配置
+version='v2021021402'
+versionCode=2
+author='by：Han | 情非得已c'
+description='免双开EDXposed Manager和Xposed模块，使双开应用同步主用户Xposed模块配置'
+time='2021年2月14日'
+;;
+
+wifi-bonding)
+Show_Compatibility_Mode=0
+id='wifi-bonding'
+name='Wifi Bonding - 让Wi-Fi带宽提速（高通）'
+version='1.14'
+versionCode='15'
+author='simonsmh'
+description='Doubles your wi-fi bandwith by modifying WCNSS_qcom_cfg.ini（通过修改WCNSS_qcom_cfg.ini，让Wi-Fi带宽提速至最大）'
+time='2020年12月13日'
+    [[ $Choice = 1 ]] && . ./Magisk_Module/$1.sh
+;;
+
+Transition_Animation)
+id='Transition_Animation'
+name='过渡动画切换（不通用）'
+version='v2020020300'
+versionCode='1'
+author='by：Han | 情非得已c'
+description='原理：通过修改Android 系统，修改过渡动画。'
+time='2020年6月15日'
+    [[ $Choice = 1 ]] && Download -net2 "fleid=605569698941321216&puid=176246092" "$1.zip" 732022 c88194b23dc79665725d6aad47851faf "$1.zip"
+;;
+
+Model_Camouflage)
+id='Model_Camouflage'
+name='机型伪装'
+version='v114514'
+versionCode='114514'
+author='People11'
+description='原理：通过Magisk修改prop达到机型伪装。'
+time='2021年8月27日'
+;;
+
+com.fb.fluid)
+id='com.fb.fluid'
+name='流体手势导航'
+version='2.0-beta11'
+versionCode='178'
+author='佚名'
+description='将流体手势导航内置为系统应用'
+time='2020年6月15日'
+    [[ $Choice = 1 ]] && Download -coding "21051601/apks/$1.apk" "$1.apk" 7562544 c70b5ca61f0093f01b2d1b86b8f26156 "$1.apk" 2.0-11 178
+;;
+
+com.omarea.gesture)
+id='com.omarea.gesture'
+name='Gesture(手势导航) '
+version='1.6.4'
+versionCode='104'
+author='嘟嘟Ski'
+description='将Gesture(手势导航) 1.6.4(104)内置为系统应用'
+time='2021年5月17日'
+    [[ $Choice = 1 ]] && Download -coding "21051601/apks/$1.apk" "$1.apk" 179024 f90dee479057ead98f57deac3fb12168 "$1.apk" 1.6.4 104
+;;
+
+emojiR)
+id='emojiR'
+name='Android11 emoji'
+version='11 beta3'
+versionCode='1'
+author='酷安@mdog Telegram@mdogfortg'
+description='Its new emoji for android 11 beta3，这是安卓11的新emoji'
+time='2020年8月14日'
+    [[ $Choice = 1 ]] && Download -file "Modules/emojiR.zip" "$1.zip" 9133455 daacac30d0c4870dbfc8fe796d24f15e "$1.zip"
+;;
+
+SELinux_OFF)
+Show_Compatibility_Mode=0
+id='SELinux_OFF'
+name='关闭SELinux'
+version='v1.3'
+versionCode='3'
+author='by：Han | 情非得已c'
+description='在每次重启/开机时，自动关闭SELinux/宽容模式/Permissive，针对部分模块需要关闭SELinux才能正常开机，以及部分Xposed模块需要关闭才生效，除非你很清楚关闭SELinux后果，否则不推荐使用本模块'
+time='2021年2月7日'
+    [[ $Choice = 1 ]] && . ./Magisk_Module/$1.sh
+;;
+
+SELinux_ON)
+Show_Compatibility_Mode=0
+id='SELinux_ON'
+name='开启SELinux'
+version='v1.3'
+versionCode='3'
+author='by：Han | 情非得已c'
+description='在每次重启/开机时，自动开启SELinux/严格模式/强制模式/Enforcing，针对部分官改ROM系统默认关闭SELinux'
+time='2021年2月7日'
+    [[ $Choice = 1 ]] && . ./Magisk_Module/$1.sh
+;;
+
+scene_swap_controller)
+id='scene_swap_controller'
+name='Scene的附加模块(二)'
+version='2.7.2'
+versionCode='2702'
+author='嘟嘟Ski'
+description='Scene的附加模块之二（ZRAM/SWAP控制器），在开机时根据配置调整虚拟内存'
+time='2021年6月14日'
+    [[ $Choice = 1 ]] && Download -file "Modules/Scene/SWAP/scene_swap_controller_2702.zip" "$1.zip" 18115 be3190e1af2ae2a84cf5b6e33092138a "$1.zip"
+;;
+
+scene_cgroup)
+id='scene_cgroup'
+name='Scene的附加模块(三)'
+version='1.0.0'
+versionCode='1'
+author='嘟嘟Ski'
+description='自动调节部分关键进程的cgroup(memory|cpu)，从资源分配策略上(理论)提高系统稳定性(流畅度方面)'
+time='2020年12月13日'
+    [[ $Choice = 1 ]] && Download -file "Modules/Scene/cgroup/scene_cgroup_1.zip" "$1.zip" 8896 c138428e8abe7bbd7c6f5748c353c659 "$1.zip"
+;;
+
+riru-core)
+List='：
+riru-core-v21.3(36).zip
+'
+id='riru-core'
+name='Riru (Riru - Core)'
+version='v26.1.2.r505.c20529bced'
+versionCode=505
+author='Rikka  酷安@蓝莓味绿茶 '
+description='提供一种将代码注入zygote进程的方法，所有以Riru开头的模块必刷模块【需要使用EdXposed和指纹支付模块的用户请使用25.4.4版本，不要更新】'
+time='2021年9月12日'
+if [[ $Riru_version -eq 1 ]]; then
+    [[ $Choice = 1 ]] && Download -gh "RikkaApps/Riru/releases/download/v26.1.2/riru-v26.1.2.r505.c20529bced-release.zip" "$1.zip" 170852 8baf05175e0627d234347dca3543093f "$1.zip"
+elif [[ $Riru_version -eq 2 ]]; then
+    #riru-core-21.3
+    [[ $Choice = 1 ]] && Download -file "Modules/Riru/riru-core-v21.3.zip" "$1-v21.3.zip" 541223 6c395f29a2cc50ae4f4efdaf87f78ca3 "$1-v21.3.zip"
+elif [[ $Riru_version -eq 3 ]]; then
+    #riru-core-25.4.4
+    [[ $Choice = 1 ]] && Download -file "Modules/Riru/riru-v25.4.4-release.zip" "$1-25.4.4.zip" 235467 cd0f5ef48c3da69997f0633d8d3d27b0 "$1-25.4.4.zip"
+fi
+;;
+
+taichi)
+id='taichi'
+name='Taichi'
+version='v7.0.5'
+versionCode='705'
+author='weishu'
+description='Use Xposed modules with Taichi in Magisk.（切换到太极 · 阳）'
+expversion='含光·8.0.3.06211300'
+time='2021年7月22日'
+    [[ $Choice = 1 ]] && Download -file "Modules/TaiChi/magisk-taichi-v7.0.5.zip" "$1.zip" 413865 4a417ff52b4b3a54c7a814d2beaf3fd3 "$1.zip"
+    [[ $exp = 1 ]] && Download -file "APK/TaiChi/me.weishu.exp_803.apk" "me.weishu.exp.apk" 8725516 2ce6f529844b030e9df8198680a3185c "me.weishu.exp.apk"
+;;
+
+mm)
+id='mm'
+name='MM管理器(叶子修改版)v3.0'
+version='2020.2.26'
+versionCode='202002260'
+author='『酷安:@永恒丶叶子』'
+description='使用方法：第三方REC→高级→在终端中运行 "/data/media/mm"、"/sdcard/mm"、"*/mm"、增加切换 magisk核心功能、增加备份还原模块!增加一键操作！'
+time='2020年6月15日'
+    [[ $Choice = 1 ]] && Download -coding "21051601/modules/$1.zip" "$1.zip" 7374 f898f49917c231fae144e1ba60a58a14 "$1.zip"
+;;
+
+busybox-ndk)
+id='busybox-ndk'
+name='Busybox for Android NDK'
+version='1.33.1'
+versionCode='13310'
+author='osm0sis @ xda-developers'
+description='Static busybox binary for all Android architectures built with the NDK（busybox可执行的二进制命令，适用于使用NDK构建的所有Android手机）'
+time='2021年3月31日'
+    [[ $Choice = 1 ]] && Download -file "Modules/Busybox/busybox-ndk-master.zip" "$1.zip" 9829609 adb80381d38b40125ef77638bfc79ab3 "$1.zip"
+;;
+
+curl)
+id=curl
+name='curl for Android NDK'
+version='v7.74.0'
+versionCode=4
+author='by：Han | 情非得已c & Github@Rui Ying'
+description='使用Android NDK构建，适用于arm arm64 x86 x86_64架构的安卓手机，由于x86和x86_64编译上的错误不知道解决未能编译出curl，所以特此引用了Github@Rui Ying的二进制curl，https://github.com/robertying/openssl-curl-android，特别鸣谢Android NDK & libssh2 & nghttp2 & openssl & curl网站'
+time='2021年2月6日'
+    [[ $Choice = 1 ]] && Download -file "Modules/Curl/curl.zip" "$1.zip" 7907878 2588203be6cdfe0d03a05d5b0ec0e9d1 "$1.zip"
+;;
+
+org.meowcat.edxposed.manager)
+    apk='org.meowcat.edxposed.manager'
+    name='EdXposed Manager'
+    version='4.5.7'
+    versionCode='45700'
+    author='MlgmXyysd'
+    description='EDXposed框架模块管理器'
+    time='2021年2月3日'
+    [[ $Choice = 1 ]] && Download -file "APK/EdXposed_Manager/org.meowcat.edxposed.manager.45700.apk" "$1.apk" 5181074 d46a9905d4561343b9906c8bdd21577e "$1.apk"
+;;
+
+EdXposed)
+List='
+EdXposed_Manager-4.5.7 (45700).apk
+Alpha-EdXposed-YAHFA-v0.4.6.4(4563).zip
+Alpha-EdXposed-SandHook-v0.4.6.4(4563).zip
+'
+[[ $Old_YAHFA = 1 ]] && Download -file "Modules/EdXposed/riru_edxposed-4563.zip" "riru_edxposed-4563.zip" 2861079 ebb0129db6b2080246e11a4607cad926 "riru_edxposed-4563.zip"
+[[ $Old_SandHook = 1 ]] && Download -file "Modules/EdXposed/riru_edxposed_sandhook-4563.zip" "riru_edxposed_sandhook-4563.zip" 3092528 6791a626ef893fb2a15047eb35d88620 "riru_edxposed_sandhook-4563.zip"
+;;
+
+exit_sideload)
+    Download_File="$PeiZhi_File/$1.zip"
+;;
+
+Card_Brush_Bag)
+    Download_File="$PeiZhi_File/Card_Brush_Bag/$3.zip"
+;;
+
+Redmi-K30-5G-recovery)
+List="
+Redmi-K30-5G-3.4.1B-0313-wzsx150.img
+Redmi-K30-5G-3.4.2B-0623-wzsx150.img"
+    [[ $Version = 11 ]] && Download -file "Other/TWRP/Redmi-K30-5G-3.4.2B-0623-wzsx150.img" "Redmi-K30-5G-11-3.4.1B-0313-wzsx150.img" 134217728 941a7ff1f4de4745b9bdd68bf895bd9f "Redmi-K30-5G-11"
+    [[ $Version = 12 ]] && Download -file "Other/TWRP/Redmi-K30-5G-3.4.1B-0313-wzsx150.img" "Redmi-K30-5G-12-3.4.2B-0623-wzsx150.img" 134217728 1a734c45512fbbecd79bb861e74968ca "Redmi-K30-5G-12"
+;;
+
+MIUI)
+    MIUI -file "Modules/MIUI1.4.7.zip" MIUI1.4.7.zip 6504587 ba44181b58d10929b7ae1fc3293dd659 MIUI
+;;
+
+Charging_Sound_Effect)
+    versionCode=1
+    [[ $Choice = 1 ]] && Download -file "Modules/Charging_Sound_Effect.zip" "$1.zip" 6297837 bb400cbb13333d3d68dc73dc4f6d3dee "$1.zip"
+;;
+
+BootAnimation_Screen1)
+    BootAnimation_Screen1 -file "Modules/BootAnimation_Screen1.zip" "$1.zip" 10697488 8a69c474a8287108a1a79b01146349a7 "$1.zip" 18
+;;
+
+Zipsigner)
+    Download -file "Other/Zipsigner-1.zip" "$1-1.zip" 5206525 8b75d8340b336f118d3c15db46b53cbb "$1-"
+;;
+
+payload_dumper-win64)
+    [[ $Choice = 1 ]] && Download -file "Other/payload_dumper-win64.zip" "$1.zip" 6755703 20029a0740cba709789ad074949bf5fa "$1.zip"
+;;
+
+Installation_lion)
+    version=3.7.5-miui
+    versionCode=42
+    [[ $Choice = 1 ]] && Download -coding "21051601/apks/$1.apk" "Installation_lion.apk" 1869340 865a0a9a40d289a36e9a8ee17bb6e774 "Installation_lion.apk"
+;;
+
+Install_Applet)
+    name=Applet
+    versionCode=79
+    Install_Applet2 -url "https://qqcn.coding.net/p/import-rt20/d/files/git/raw/master/Applet.zip" "$name.zip" 8062768 b821e54c57419aeaa5da4b03f218d9fe "$name" $versionCode
+;;
+
+binwalk)
+    version=2.3.1
+    Download -file "Other/binwalk.zip" "$1.zip" 39656863 023e3f4d48ecf496a67d283c071d3129 "$1.zip"
+;;
+
+Install_busybox)
+    name="busybox-$Type"
+    [[ $Type = arm ]] && Start_Install -url "https://qqcn.coding.net/p/import-rt20/d/files/git/raw/master/$name-selinux" "$name-selinux" 1452044 92a3d5c291124e5b8bd4d7b04c24362d "$name" 1.33.1 13310
+    [[ $Type = arm64 ]] && Start_Install -url "https://qqcn.coding.net/p/import-rt20/d/files/git/raw/master/$name-selinux" "$name-selinux" 2066520 2340fc8c0f18462fc0dffe9e591c5c01 "$name" 1.33.1 13310
+    [[ $Type = x86 ]] && Start_Install -url "https://qqcn.coding.net/p/import-rt20/d/files/git/raw/master/$name-selinux" "$name-selinux" 2094872 cd5fde5c345e711657709599f348e260 "$name" 1.33.1 13310
+    [[ $Type = x86_64 ]] && Start_Install -url "https://qqcn.coding.net/p/import-rt20/d/files/git/raw/master/$name-selinux" "$name-selinux" 2222408 195292917f4c3a3815ed352cac3bda99 "$name" 1.33.1 13310
+    [[ $Type = mips ]] && Start_Install -url "https://qqcn.coding.net/p/import-rt20/d/files/git/raw/master/$name-selinux" "$name" 1918732 7886ed84533e344c0ea0e87ff0578749 "$name" 1.33.1 13310
+    [[ $Type = mips64 ]] && Start_Install -url "https://qqcn.coding.net/p/import-rt20/d/files/git/raw/master/$name-selinux" "$name" 1939440 c8c7311463e2999af63540c51628364e "$name" 1.33.1 13310
+;;
+
+*)
+    abort "！未找到$1服务"
+;;
+esac
+true

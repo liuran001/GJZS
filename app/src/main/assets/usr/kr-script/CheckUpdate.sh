@@ -4,7 +4,6 @@
 
 V() {
     Configuration=`grep_prop Configuration $Load`
-    echo "云端页面：`cat $Data_Dir/Cloud_Version.log`"
     echo "功能版本：$Util_Functions_Code"
     echo "配置版本：$Configuration"
     echo "$1版本：$Version_Name（$Version_code）"
@@ -12,7 +11,7 @@ V() {
 }
 
 if [[ -f $Core ]]; then
-if [[ -f ~/offline ]]; then
+if [[ -f ~/offline || -f ~/offline2 ]]; then
 	V 软件
 else
     if [[ $Version_code -lt $New_Code ]]; then

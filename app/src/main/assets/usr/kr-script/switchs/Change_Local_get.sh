@@ -1,4 +1,4 @@
-if [[ ! -f ~/offline ]]; then
+if [[ ! -f ~/offline2 ]]; then
 	echo 1
 else
 	echo 0

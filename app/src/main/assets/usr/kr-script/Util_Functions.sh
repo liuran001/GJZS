@@ -1,5 +1,5 @@
 #Custom variable
-export Util_Functions_Code=2021100102
+export Util_Functions_Code=2021100301
 export SDdir=/data/media/0
 export Magisk=`$which magisk`
 if $Have_ROOT;then
@@ -30,8 +30,8 @@ export Status=$Data_Dir/Status.log
 export Termux=$DATA_DIR/com.termux/files
 export BOOTMODE=true
 export Choice=0
-export New_Version=3.8
-export New_Code=2021100101
+export New_Version=1
+export New_Code=1
 export ChongQi Configuration File File_Name Download_File File_MD5 id name version versionCode author description MODID MODNAME MODPATH MAGISK_VER MAGISK_VER_CODE LOCKED
 $Have_ROOT && LOCKED=false || LOCKED=true
 
@@ -211,8 +211,7 @@ Install_Applet2() {
     [[ -f "$JCe" ]] && JCe3=`cat $JCe`
 
     Start_Install2() {
-        [[ ! -f ~/offline ]] && Download "$@"
-        
+        Download "$@"
             if [[ -f "$Download_File" ]]; then
                 [[ ! -d $ELF2_Path ]] && mkdir -p "$ELF2_Path" && chown $APP_USER_ID:$APP_USER_ID $ELF2_Path || rm -rf $ELF2_Path/*
                 unzip -oq "$Download_File" -d "$ELF2_Path"
@@ -249,54 +248,6 @@ Install_Applet2() {
                            fi
 }
 
-Cloud_Update() {
-    local File S
-    File="$PeiZhi_File/Cloud.zip"
-    JCe="${PeiZhi_File}/Cloud_Version.log"
-    [[ -f "$JCe" ]] && JCe5=`cat "$JCe"`
-    unset S
-        if [[ -z "$JCe5" || ! -f "$Pages/Home.xml" ]]; then
-            S=初始化
-        elif [[ "$JCe5" -lt "$Cloud_Version" ]]; then
-            S=更新
-        fi
-            if [[ -n "$S" ]]; then
-                echo "- 正在$S云端页面：$Cloud_Version"
-                    XiaZai -s "$CODING/$Cloud_ID" "$File"
-                    if [[ -f "$File" ]]; then
-                    if [[ ! -f ~/offline ]]; then
-                        Check_MD5=`md5sum "$File" 2>/dev/null | sed 's/ .*//g'`
-                           if [[ "$Check_MD5" != "$Cloud_MD5" ]]; then
-                               rm -f $File
-                               abort2 "- 更新云端页面失败"
-                            else
-                                unzip -oq "$File" -d ~
-                                    if [[ $? = 0 ]]; then
-                                        echo "- $S云端页面成功"
-                                        echo "$Cloud_Version" >"$JCe"
-                                        find ~ -exec chmod 700 {} \; -exec chown $APP_USER_ID:$APP_USER_ID {} \; &
-                                        rm -f "$File"
-                                    else
-                                        echo "！$S云端页面失败❌"
-                                    fi
-                           fi
-                    else
-                    unzip -oq "$File" -d ~
-                    if [[ $? = 0 ]]; then
-                      echo "- $S内置页面成功"
-                      echo "$Cloud_Version" >"$JCe"
-                      find ~ -exec chmod 700 {} \; -exec chown $APP_USER_ID:$APP_USER_ID {} \; &
-                      rm -f "$File"
-                    else
-                      echo "！$S内置页面失败❌"
-                    fi
-                   fi
-                    else
-                        abort "！未连接到网络❓"
-                    fi
-            fi
-}
-
 Start_Installing_Busybox() {
     JCe=$PeiZhi_File/busybox_Installed.log
     [[ -f $JCe ]] && JCe2=`cat $JCe`
@@ -310,19 +261,11 @@ Start_Installing_Busybox() {
         *) echo "！ 未知的架构 ${ABI}，无法安装busybox"; return 1;;
     esac
     
-    if [[ ! -f ~/offline ]]; then
     Start_Install() { CloudBusybox="$8"; }
         . "$Load" Install_busybox
-    else
-    CloudBusybox=1
-    fi
 
     Start_Install() {
-    if [[ -f ~/offline ]]; then
-        Download_File=$Other/busybox/busybox_$Type
-    else
         Download "$@"
-    fi
         if [[ -f "$Download_File" ]]; then
             BusyBox2=$ELF4_Path/busybox
             [[ ! -d $ELF4_Path ]] && mkdir -p "$ELF4_Path" && chown $APP_USER_ID:$APP_USER_ID $ELF4_Path || rm -f $ELF4_Path/*
@@ -331,13 +274,9 @@ Start_Installing_Busybox() {
             "$BusyBox2" --install -s "$ELF4_Path" &>/dev/null
                 if [[ -L "$ELF4_Path/true" ]]; then
                     echo "- busybox-$Type版-$7($8)安装成功。"
-                    if [[ ! -f ~/offline ]]; then
                     echo "$8" >$JCe
-                    else
-                    echo "$CloudBusybox" >$JCe
-                    fi
                     chown $APP_USER_ID:$APP_USER_ID "$BusyBox2"
-                    [[ ! -f ~/offline ]] && rm -f $Download_File
+                    rm -f $Download_File
                 else
                     echo "！busybox安装失败❌"
                     rm -f "$BusyBox2"
@@ -348,29 +287,20 @@ Start_Installing_Busybox() {
 
         if [[ -z "$JCe2" || ! -L $ELF4_Path/true ]]; then
             echo "- 开始安装busybox"
-            if [[ -f ~/offline ]]; then
-            Start_Install
-            else
             . "$Load" Install_busybox
-            fi
         elif [[ "$JCe2" -lt "$CloudBusybox" ]]; then
             echo "- 开始更新busybox"
-            if [[ -f ~/offline ]]; then
-            Start_Install
-            else
             . "$Load" Install_busybox
-            fi
         fi
 }
 
 Installing_Busybox() {
-    [[ ! -f ~/offline ]] && Install_curl
+    Install_curl
     Start_Installing_Busybox
     . $Load Install_Applet
     [[ ! -d $lu ]] && mkdir -p $lu &>/dev/null
     [[ ! -d $lu2 ]] && mkdir -p $lu2 &>/dev/null
     [[ ! -d $lu3 ]] && mkdir -p $lu3 &>/dev/null
-[[ ! -f ~/offline ]] && Cloud_Update
 }
 
 Start_Time() {
@@ -906,11 +836,6 @@ Clean_install() {
 }
 
 Notice() {
-if [[ -f ~/offline ]]; then
-desc1='您正在使用离线版本，部分核心功能缺失，如需使用完整版请前往「搞机助手选项区」切换在线版本'
-else
-desc1=''
-fi
 if [[ -n $desc1 ]]; then
 cat <<End
     <group>

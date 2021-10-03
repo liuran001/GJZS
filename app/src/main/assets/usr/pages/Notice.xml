@@ -1,11 +1,11 @@
-if [[ ! -f ~/offline ]]; then
+if [[ ! -f ~/offline || -f ~/offline2 ]]; then
 if [[ $Version_code -ge $New_Code ]]; then
-        title='在线版更新日志'
+        title='更新日志'
     else
         title="发现新版本$New_Version（$New_Code），请点击进入官网下载"
     fi
 else
-	title='离线版更新日志'
+	title='更新日志'
 fi
 
 cat <<Han
