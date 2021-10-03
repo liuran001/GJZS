@@ -1,9 +1,7 @@
 if [[ -f ~/offline || -f ~/offline2 ]]; then
-        if [[ -f ~/offline2 ]]; then
-            echo '! 您必须关闭离线模式后才可开启此功能'
-            exit 1
-        fi
+    [[ -f ~/offline2 ]] && exit 1
     rm ~/offline
+    [[ -f $ShellScript/APP_Version.sh ]] && rm $ShellScript/APP_Version.sh
 else
     touch ~/offline
 fi

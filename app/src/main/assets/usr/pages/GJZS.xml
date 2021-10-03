@@ -2,14 +2,14 @@
 <group>
 <!-- START -->
     <switch interruptible="false" shell="hidden">
-        <title>离线模式开关</title>
+        <title>在线模式开关</title>
         <desc>关闭此开关将不会从服务器获取模块/应用仓库列表/更新检测/公告推送，关闭此开关后您仍可使用在线功能，但是功能可能是过时的</desc>
         <get>. ./switchs/Change_Local_get.sh</get>
         <set>. ./switchs/Change_Local_set.sh</set>
     </switch>
 <!-- END -->
 <!-- START -->
-    <switch interruptible="false" shell="hidden">
+    <switch interruptible="false" shell="hidden" visible="[[ -f ~/offline2 ]] &#38;&#38; echo 0 || echo 1">
         <title>更新检测开关</title>
         <desc>关闭此开关将不会进行更新检测和公告推送</desc>
         <get>. ./switchs/Change_Update_get.sh</get>
