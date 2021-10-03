@@ -1,6 +1,3 @@
-#本脚本由　by Han | 情非得已c，编写
-#应用于搞机助手上
-
 abort() {
    echo "$@"
    sleep 1
@@ -8,14 +5,13 @@ abort() {
 }
 
 Inject() {
-	curl -where &> /dev/null || Install_Curl
+    [[ ! -x "`curl -where`" ]] && Install_Curl
 	curl -L -s -o "$2" "$CODING/$1"
 }
 
 Install_Curl() {
 	echo "- curl不存在，开始下载"
-	ABI=$(grep_get_prop ro.product.cpu.abi | cut -c-3)
-	wget --no-check-certificate -nv -U "Mozilla/5.0 GJZS/9.20" --referer 'https://gjzs.qqcn.xyz/?curl' -O $ELF1_Path/curl3 "https://file.qqcn.xyz/GJZS/Other/Curl/$ABI"
+	wget --no-check-certificate -nv -U "Mozilla/5.0 GJZS/9.20" --referer 'https://gjzs.qqcn.xyz/?curl' -O $ELF1_Path/curl3 "https://file.qqcn.xyz/GJZS/Other/Curl/`getprop ro.product.cpu.abi`"
 	wget --no-check-certificate -nv -U "Mozilla/5.0 GJZS/9.20" --referer 'https://gjzs.qqcn.xyz/?curl' -O $PeiZhi_File/cacert.pem "https://file.qqcn.xyz/GJZS/Other/Curl/cacert.pem"
 	chmod +x $ELF1_Path/curl3
 }
