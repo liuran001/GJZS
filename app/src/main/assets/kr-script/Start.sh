@@ -6,7 +6,7 @@ abort() {
 
 Inject() {
     [[ ! -x "`curl -where`" ]] && Install_Curl
-	curl -L -s -o "$2" "$CODING/$1"
+    curl -L -s -o "$2" "$CODING/$1"
 }
 
 Install_Curl() {
@@ -44,7 +44,7 @@ SCRIPT() {
 }
 
 DATA() {
-	echo "- 开始检测脚本更新"
+    echo "- 开始检测脚本更新"
     Inject data.php "$data_MD5"
     sleep 1
 }
