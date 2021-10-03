@@ -46,14 +46,14 @@ jobs:
     - name: Rename APK
       run: cd app/build/outputs/apk/release && mv app-release-unsigned-signed.apk app-release.apk
  
-    - name: Upload artefact
+    - name: Upload Artefact
       uses: actions/upload-artifact@main
       if: steps.build.outputs.status == 'success' && !cancelled()
       with:
         name: app-release
         path: app/build/outputs/apk/release/app-release.apk
 
-    - name: upload artefact to App Center
+    - name: Upload Artefact to App Center
       if: steps.build.outputs.status == 'success' && !cancelled()
       uses: wzieba/AppCenter-Github-Action@v1.3.2
       with:
@@ -64,3 +64,12 @@ jobs:
         notifyTesters: true
         debug: false
         gitReleaseNotes: true
+
+    - name: Upload Artefact to Telegram Channel
+      if: steps.build.outputs.status == 'success' && !cancelled()
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.MESSAGEID }}
+        token: ${{ secrets.BOTTOKEN }}
+        message: ${{ github.event.head_commit.message }}
+        document: ${{ github.workspace }}/app/build/outputs/apk/release/app-release.apk
