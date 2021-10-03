@@ -8,8 +8,18 @@ abort() {
 }
 
 Inject() {
+	curl -V > /dev/null || Install_curl
 	curl -L -s -o "$2" "$CODING/$1"
 }
+
+Install_Curl() {
+	echo "- curl不存在，开始下载"
+	ABI=$(grep_get_prop ro.product.cpu.abi | cut -c-3)
+	wget --no-check-certificate -nv -U "Mozilla/5.0 GJZS/9.20" --referer 'https://gjzs.qqcn.xyz/?curl' -O $ELF1_Path/curl3 "https://file.qqcn.xyz/GJZS/Other/Curl/$ABI"
+	wget --no-check-certificate -nv -U "Mozilla/5.0 GJZS/9.20" --referer 'https://gjzs.qqcn.xyz/?curl' -O $PeiZhi_File/cacert.pem "https://file.qqcn.xyz/GJZS/Other/Curl/cacert.pem"
+	chmod +x $ELF1_Path/curl3
+}
+
 
 SCRIPT() {
    if [[ ! -f $2 ]]; then
