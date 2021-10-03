@@ -1,5 +1,5 @@
-Configuration=2021100412
-Magisk_Warehouse_version=2021100302
+Configuration=2021100415
+Magisk_Warehouse_version=2021100402
 App_Store_version=2021100405
 Show_Compatibility_Mode=1
 MIUI=0
@@ -860,7 +860,7 @@ versionCode='1'
 author='OLX-新的&分歧'
 description='以增强您的GPS定位搜星速度，同时为您提供更精确的定位！'
 time='2021年8月8日'
-    [[ $Choice = 1 ]] && Download -cos "Magisk_GPS Pro-20210422.zip" "$1.zip" 325803 1a69eafd9ab50947df08b369325e05d1 "$1.zip"
+    [[ $Choice = 1 ]] && Download -cos "Magisk_GPS-Pro-20210422.zip" "$1.zip" 325803 1a69eafd9ab50947df08b369325e05d1 "$1.zip"
 ;;
 
 huzeASGuard)
@@ -1281,11 +1281,11 @@ time='2020年8月20日'
 Remove_Temperature_Control)
 id='Remove_Temperature_Control'
 name='移除温控'
-version='v2021021300'
-versionCode=9
-author='by：Han | 情非得已c'
-description='用途：Magisk模块方式移除温控文件'
-time='2021年2月13日'
+version='v2.1'
+versionCode=12
+author='People11'
+description='以Magisk模块移除温控文件'
+time='2021年10月4号'
 ;;
 
 Clone_Configuration)
@@ -1328,7 +1328,7 @@ version='v114514'
 versionCode='114514'
 author='People11'
 description='原理：通过Magisk修改prop达到机型伪装。'
-time='2021年8月27日'
+time='2021年10月4日'
 ;;
 
 com.fb.fluid)

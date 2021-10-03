@@ -240,16 +240,16 @@ case $Device in
         JiXing "SM705" sfo Smartisan
     ;;
 
-    APP12PM)
-        JiXing "A2412" iPhone13,4 Apple
+    APP13PM)
+        JiXing "A2644" iPhone14,3 Apple
     ;;
 
     APPIPP129)
         JiXing "A2462" iPad13,11 Apple
     ;;
 
-    APPIPM5)
-        JiXing "A2125" iPad11,2 Apple
+    APPIPM6)
+        JiXing "A2569" iPad14,2 Apple
     ;;
 
     APPWS6)

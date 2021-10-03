@@ -1,31 +1,56 @@
-#本脚本由　by Han | 情非得已c，编写
-#应用于搞机助手上
-
-
 mask -vc
 mask $1
 
 [[ -d $Module ]] && rm -rf $Module
-echo "已选择移除的温控文件"
+echo "正在移除温控"
 
-O_IFS="$IFS"
-IFS=$'\n'
-for i in $thermal; do
-    echo "$i"
-    mktouch "$Module$i"
-done
-IFS="$O_IFS"
+[[ $VendorJson = 1 ]] && {
+    for i in `find "/vendor" -name "*thermal*.json" -o -name "*thermal*.conf" -type f`; do
+        echo "$i" | fgrep -iq 'android.' && continue
+        echo - $i
+        mktouch "$Module/system/$i"
+    done
+}
 
-        if [[ $Module/vendor ]]; then
-            mkdir -p $Module/system
-            mv -f $Module/vendor $Module/system/vendor
-        fi
+[[ $VendorEX = 1 ]] && {
+    for o in `find "/vendor" -name "*thermal*" ! -name "*thermal*.json" ! -name "*thermal*.conf" -type f`; do
+        echo "$o" | fgrep -iq 'android.' && continue
+        echo - $o
+        mktouch "$Module/system/$o"
+    done
+}
+
+[[ $Perf = 1 ]] && {
+    for a in `find "/vendor/etc/perf" -name "*.xml" -type f`; do
+        echo "$a" | fgrep -iq 'android.' && continue
+        echo - $a
+        mktouch "$Module/system/$a"
+    done
+    for l in `find "/vendor/etc/perf" -name "perf*" -type f`; do
+        echo "$l" | fgrep -iq 'android.' && continue
+        echo - $l
+        mktouch "$Module/system/$l"
+    done
+    for b in `find "/vendor/etc/perf" -name "*conf" -type f`; do
+        echo "$b" | fgrep -iq 'android.' && continue
+        echo - $b
+        mktouch "$Module/system/$b"
+    done
+}
+
+[[ $MIUICloudThermal = 1 ]] && {
+    rm -rf /data/thermal
+    rm -rf /data/vendor/thermal
+    touch /data/thermal
+    touch /data/vendor/thermal
+    /data/adb/magisk/busybox chattr +i  /data/thermal
+    /data/adb/magisk/busybox chattr +i  /data/vendor/thermal
+}
+
+mktouch "$Module/uninstall.sh"
+echo "/data/adb/magisk/busybox chattr -i  /data/thermal" >> "$Module/uninstall.sh"
+echo "/data/adb/magisk/busybox chattr -i  /data/vendor/thermal" >> "$Module/uninstall.sh"
 
 . $Load $1
-printf "id=$id
-name=$name
-version=$version
-versionCode=$versionCode
-author=$author
-description=$description" >$Module_XinXi
-[[ -f $Module_XinXi ]] && echo -e "\n- 「$name」模块已创建模块将在下次重启手机生效！" && CQ
+module_prop
+[[ -f $Module_XinXi ]] && echo -e "\n- 「$name」模块已创建" && CQ

@@ -45,9 +45,9 @@ STSP3|坚果 Pro 3
 STSP2S|坚果 Pro 2S
 STST2|锤子 T2
 STST1|锤子 T1
-APP12PM|苹果 iPhone 12 Pro Max
+APP13PM|苹果 iPhone 13 Pro Max
 APPIPP129|苹果 iPad Pro 12.9英寸 第5代
-APPIPM5|苹果 iPad mini 5
+APPIPM6|苹果 iPad mini 6
 APPWS6|苹果 Watch Series 6
 SAMS21U|三星 Galaxy S21 Ultra
 SAMS21P|三星 Galaxy S21+

@@ -204,13 +204,17 @@ cat <<Han
         <desc>$desc</desc>
         <set>. ./Magisk_Module/Remove_Temperature_Control.sh Remove_Temperature_Control</set>
         <params>
-            <param name="ChongQi" label="是否刷入成功自动重启系统生效" type="switch" />
-            <param name="thermal" label="选择要移除的温控文件" multiple="true" options-sh=". ./Magisk_Module/Remove_Temperature_Control_Options.sh" value-sh=". ./Magisk_Module/Remove_Temperature_Control_Options.sh -d" />
+            <param name="ChongQi" label="刷入后自动重启" type="switch" />
+            <param name="VendorJson" label="移除Vendor温控配置文件" type="checkbox" value="1" />
+            <param name="VendorEX" label="移除Vendor温控二进制文件" type="checkbox" value="0" />
+            <param name="Perf" label="移除Perf参数" type="checkbox" value="0" />
+            <param name="MIUICloudThermal" label="移除MIUI云温控" type="checkbox" value="0" />
         </params>
     </action>
 <!-- END -->
 Han
 ;;
+
 
 Model_Camouflage)
 cat <<Han
