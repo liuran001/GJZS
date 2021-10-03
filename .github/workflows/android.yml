@@ -1,0 +1,66 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+        cache: gradle
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+    - name: Build with Gradle
+      id: build
+      run: |
+        echo 'org.gradle.jvmargs=-Xmx3072m' >> gradle.properties
+        ./gradlew :app:assembleRelease
+        echo "::set-output name=status::success"
+
+    - uses: r0adkll/sign-android-release@v1.0.4
+      name: Sign app APK
+      if: steps.build.outputs.status == 'success'
+      # ID used to access action output
+      id: sign_app
+      with:
+        releaseDirectory: app/build/outputs/apk/release
+        signingKeyBase64: ${{ secrets.SIGN_FILE_BASE64 }}
+        alias: ${{ secrets.KEY_ALIAS }}
+        keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
+        keyPassword: ${{ secrets.KEY_PASSWORD }}
+      env:
+        # override default build-tools version (29.0.3) -- optional
+        BUILD_TOOLS_VERSION: "30.0.2"
+
+    - name: Rename APK
+      run: cd app/build/outputs/apk/release && mv app-release-unsigned-signed.apk app-release.apk
+ 
+    - name: Upload artefact
+      uses: actions/upload-artifact@main
+      if: steps.build.outputs.status == 'success' && !cancelled()
+      with:
+        name: app-release
+        path: app/build/outputs/apk/release/app-release.apk
+
+    - name: upload artefact to App Center
+      if: steps.build.outputs.status == 'success' && !cancelled()
+      uses: wzieba/AppCenter-Github-Action@v1.3.2
+      with:
+        appName: liuran001/gao3-ji1-zhu4-shou3-R
+        token: ${{secrets.APP_CENTER_TOKEN}}
+        group: '搞机助手·R'
+        file: app/build/outputs/apk/release/app-release.apk
+        notifyTesters: true
+        debug: false
+        gitReleaseNotes: true
