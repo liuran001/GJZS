@@ -11,8 +11,8 @@ Inject() {
 
 Install_Curl() {
 	echo "- curl不存在，开始下载"
-	wget --no-check-certificate -nv -U "Mozilla/5.0 GJZS/9.20" --referer 'https://gjzs.qqcn.xyz/?curl' -O $ELF1_Path/curl3 "https://file.qqcn.xyz/GJZS/Other/Curl/`getprop ro.product.cpu.abi`"
-	wget --no-check-certificate -nv -U "Mozilla/5.0 GJZS/9.20" --referer 'https://gjzs.qqcn.xyz/?curl' -O $PeiZhi_File/cacert.pem "https://file.qqcn.xyz/GJZS/Other/Curl/cacert.pem"
+	wget --no-check-certificate -nv -O $ELF1_Path/curl3 "https://file.qqcn.xyz/GJZS/Other/Curl/`getprop ro.product.cpu.abi`"
+	wget --no-check-certificate -nv -O $PeiZhi_File/cacert.pem "https://file.qqcn.xyz/GJZS/Other/Curl/cacert.pem"
 	chmod +x $ELF1_Path/curl3
 }
 
