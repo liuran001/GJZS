@@ -1,5 +1,5 @@
-Configuration=2021100415
-Magisk_Warehouse_version=2021100402
+Configuration=2021100416
+Magisk_Warehouse_version=2021100403
 App_Store_version=2021100405
 Show_Compatibility_Mode=1
 MIUI=0
@@ -1244,18 +1244,6 @@ description='解决Github网址打不开，如果失效请再次安装本模块�
 time='2021年8月19日'
     [[ $Choice = 1 ]] && . ./Magisk_Module/$1.sh
 
-;;
-
-lanzou-hosts)
-Show_Compatibility_Mode=0
-id='lanzou-hosts'
-name='解决蓝奏云旧网址打不开'
-version='v1'
-versionCode=1
-author='People11'
-description='解决蓝奏云旧网址打不开'
-time='2021年8月19号'
-    [[ $Choice = 1 ]] && . ./Magisk_Module/$1.sh
 ;;
 
 Freezing_system_app)
