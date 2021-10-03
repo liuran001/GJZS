@@ -1,5 +1,5 @@
-if [[ ! -f ~/offline || ! -f ~/offline2 ]]; then
-	echo 1
-else
+if [[ -f ~/offline || -f ~/offline2 ]]; then
 	echo 0
+else
+	echo 1
 fi
