@@ -67,6 +67,13 @@ cat <<Han
     </page>
 <!-- END -->
 <!-- START -->
+    <page link="`echo https://gjzs.qqcn.xyz/joinqqgroup3`">
+        <title>QQ三群</title>
+        <desc>群号571176592</desc>
+    </page>
+<!-- END -->
+
+<!-- START -->
     <page link="https://t.me/gjzs666">
         <title>TG交流群</title>
         <desc>@gjzs666</desc>
