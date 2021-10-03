@@ -7,22 +7,21 @@ CURL() {
 }
 
 CURL2() {
-	if [[ "$1" = -where ]]; then
+    if [[ "$1" = -where ]]; then
         exec echo "$C"
     fi
     if [[ "$1" = -V ]]; then
         exec "$C" "$@"
     fi
-    
-		# 因为这玩意在Android运行时无法解析直接域名（原因不明），所以搞这么麻烦
-		ping -w 1 223.5.5.5 > /dev/null && DoH_Ser='223.5.5.5'
-		[[ ! -n $DoH_Ser ]] && ping -w 1 223.6.6.6 > /dev/null && DoH_Ser='223.6.6.6'
-		[[ ! -n $DoH_Ser ]] && ping -w 1 120.53.80.136 > /dev/null && DoH_Ser='120.53.80.136'
-		[[ ! -n $DoH_Ser ]] && ping -w 1 175.24.219.66 > /dev/null && DoH_Ser='175.24.219.66'
-		[[ ! -n $DoH_Ser ]] && ping -w 1 8.8.8.8 > /dev/null && DoH_Ser='8.8.8.8'
-		[[ ! -n $DoH_Ser ]] && ping -w 1 9.9.9.9 > /dev/null && DoH_Ser='9.9.9.9'
-		[[ ! -n $DoH_Ser ]] && echo '! 网络连接异常' && exit 1
-		$ELF1_Path/curl3 --doh-url "https://$DoH_Ser/dns-query" --doh-insecure --cacert $PeiZhi_File/cacert.pem "$@"
+    # 因为这玩意在Android运行时无法解析直接域名（原因不明），所以搞这么麻烦
+    ping -w 1 223.5.5.5 > /dev/null && DoH_Ser='223.5.5.5'
+    [[ ! -n $DoH_Ser ]] && ping -w 1 223.6.6.6 > /dev/null && DoH_Ser='223.6.6.6'
+    [[ ! -n $DoH_Ser ]] && ping -w 1 120.53.80.136 > /dev/null && DoH_Ser='120.53.80.136'
+    [[ ! -n $DoH_Ser ]] && ping -w 1 175.24.219.66 > /dev/null && DoH_Ser='175.24.219.66'
+    [[ ! -n $DoH_Ser ]] && ping -w 1 8.8.8.8 > /dev/null && DoH_Ser='8.8.8.8'
+    [[ ! -n $DoH_Ser ]] && ping -w 1 9.9.9.9 > /dev/null && DoH_Ser='9.9.9.9'
+    [[ ! -n $DoH_Ser ]] && echo '! 网络连接异常' && exit 1
+    $ELF1_Path/curl3 --doh-url "https://$DoH_Ser/dns-query" --doh-insecure --cacert $PeiZhi_File/cacert.pem "$@"
 }
 
 C="$ELF1_Path/curl3"
