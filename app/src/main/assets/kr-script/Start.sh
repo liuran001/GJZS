@@ -47,7 +47,6 @@ DATA() {
     if [[ ! -f ~/offline2 ]]; then
         echo "- 开始检测脚本更新"
         Inject data.php "$data_MD5"
-        sleep 1
     fi
 }
 DATA
