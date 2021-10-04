@@ -1,6 +1,6 @@
-Configuration=2021100416
-Magisk_Warehouse_version=2021100403
-App_Store_version=2021100405
+Configuration=2021100418
+Magisk_Warehouse_version=2021100404
+App_Store_version=2021100406
 Show_Compatibility_Mode=1
 MIUI=0
 
@@ -131,11 +131,11 @@ com.yxer.packageinstalles)
 apk='com.yxer.packageinstalles'
 name='R-安装组件'
 version='1.8'
-versionCode='81'
+versionCode='82'
 author='依心所言'
 description='或许是安装狮的替代品'
 time='2021年10月4号'
-    [[ $Choice = 1 ]] && Download -cos "com.yxer.packageinstalles_v1.8_81-r.apk" "$1.apk" 1829641 3bf3b5cd4657094dea1ba57c2cf512e9 "$1.apk"
+    [[ $Choice = 1 ]] && Download -cos "com.yxer.packageinstalles_v1.8_82-r.apk" "$1.apk" 1829622 880ce336f739f2dd43f68289f5038fef "$1.apk"
 ;;
 
 com.whatsbug.litiaotiao)
@@ -1244,6 +1244,18 @@ description='解决Github网址打不开，如果失效请再次安装本模块�
 time='2021年8月19日'
     [[ $Choice = 1 ]] && . ./Magisk_Module/$1.sh
 
+;;
+
+lanzou-hosts)
+Show_Compatibility_Mode=0
+id='lanzou-hosts'
+name='解决蓝奏云旧网址打不开'
+version='v1'
+versionCode=1
+author='People11'
+description='解决蓝奏云旧网址打不开'
+time='2021年8月19号'
+    [[ $Choice = 1 ]] && . ./Magisk_Module/$1.sh
 ;;
 
 Freezing_system_app)
