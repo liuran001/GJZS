@@ -30,7 +30,7 @@ export Bin_MT2="$DATA_DIR/bin.mt.plus/files/term/usr/lib"
 export Bin_MT3="$DATA_DIR/bin.mt.plus.canary/files/term/usr/bin"
 export Bin_MT4="$DATA_DIR/bin.mt.plus.canary/files/term/usr/lib"
 export TMP=/data/local/tmp
-export CODING=https://file.qqcn.xyz/GJZS/Cloud
+export CODING=https://gjzs-1253773788.file.myqcloud.com
 
 [[ -f $Core ]] && . $Core
 

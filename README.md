@@ -20,3 +20,6 @@ cd GJZS
 感谢[kr-scripts框架](https://github.com/helloklf/kr-scripts)
 
 点上Star和帮助完善这个项目是对我们最好的捐赠
+
+### 关联项目
+- [GJZS-Server_SCF](https://github.com/liuran001/GJZS-Server_SCF)
