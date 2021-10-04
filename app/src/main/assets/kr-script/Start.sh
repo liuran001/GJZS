@@ -46,7 +46,7 @@ SCRIPT() {
 DATA() {
     if [[ ! -f ~/offline2 ]]; then
         echo "- 开始检测脚本更新"
-        Inject data.php "$data_MD5"
+        Inject init_all_MD5.sh "$data_MD5"
     fi
 }
 DATA
