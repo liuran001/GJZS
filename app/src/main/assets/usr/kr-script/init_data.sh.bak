@@ -1,6 +1,6 @@
-Configuration=2021101001
-Magisk_Warehouse_version=2021101001
-App_Store_version=2021101001
+Configuration=2021101002
+Magisk_Warehouse_version=2021101002
+App_Store_version=2021101002
 Show_Compatibility_Mode=1
 MIUI=0
 
@@ -134,7 +134,7 @@ version='1.8-beta'
 versionCode='119'
 author='依心所言'
 description='或许是安装狮的替代品'
-time='2021年10月10号'
+time='2021年10月10日'
     [[ $Choice = 1 ]] && Download -cos "com.yxer.packageinstalles_v1.8-beta_119-r.apk" "$1.apk" 1736988 7aa158ce507e19218faecc666363575f "$1.apk"
 ;;
 
@@ -145,7 +145,7 @@ version='派大星1.75'
 versionCode='20'
 author='李跳跳'
 description='且用且珍惜'
-time='2021年8月27号'
+time='2021年8月27日'
     [[ $Choice = 1 ]] && Download -cos "uploads/2021/09/20/uzAygrL2_%E6%9D%8E%E8%B7%B3%E8%B7%B3_%E6%B4%BE%E5%A4%A7%E6%98%9F1.75%20%281%29.apk" "$1.apk" 2043406 66e437f3a19e5d08d119bc6c4af7d3b6 "$1.apk"
 ;;
 
@@ -1265,7 +1265,7 @@ version='v1'
 versionCode=1
 author='People11'
 description='解决蓝奏云旧网址打不开'
-time='2021年8月19号'
+time='2021年8月19日'
     [[ $Choice = 1 ]] && . ./Magisk_Module/$1.sh
 ;;
 
@@ -1296,7 +1296,7 @@ version='v2.1'
 versionCode=12
 author='People11'
 description='以Magisk模块移除温控文件'
-time='2021年10月4号'
+time='2021年10月4日'
 ;;
 
 Clone_Configuration)
