@@ -1,6 +1,6 @@
-Configuration=2021100418
-Magisk_Warehouse_version=2021100404
-App_Store_version=2021100406
+Configuration=2021101001
+Magisk_Warehouse_version=2021101001
+App_Store_version=2021101001
 Show_Compatibility_Mode=1
 MIUI=0
 
@@ -33,12 +33,12 @@ time='2021年9月12日'
 com.omarea.vtools)
 apk='com.omarea.vtools'
 name='Scene4'
-version='4.5.6'
-versionCode=202108231
+version='4.6.9 Beta'
+versionCode=202110101
 author='嘟嘟Ski'
 description='一个集高级重启、应用安装自动点击、CPU调频等多项功能于一体的工具箱。'
-time='2021年8月23日'
-    [[ $Choice = 1 ]] && Download -file "APK/Scene/Scene4_4.5.6.apk" "$1.apk" 4805368 673fdd206e1168cdd157942ee359be4b "$1.apk"
+time='2021年10月10日'
+    [[ $Choice = 1 ]] && Download -cos "Scene4_4.6.9-Beta.apk" "$1.apk" 6890016 a18a9742fcd0be6e4a337dbff5f6c518 "$1.apk"
 ;;
 
 bin.mt.plus)
@@ -119,23 +119,23 @@ time='2021年5月15日'
 com.termux)
 apk='com.termux'
 name='Termux'
-version='0.116'
-versionCode=116
-author='未知'
-description='带有软件包的终端模拟器，需要 Android 7.0 及以上版本'
-time='2021年7月8日'
-    [[ $Choice = 1 ]] && Download -file "APK/Termux/com.termux_116.apk" "$1.apk" 85732799 1ecfc3a64bcfe084f0b2758e5446636c "$1.apk"
+version='0.117'
+versionCode=117
+author='fornwall'
+description='带有软件包的终端模拟器，需要 Android 7.0 及以上版本（安装包来自F-Droid）'
+time='2021年10月10日'
+    [[ $Choice = 1 ]] && Download -url "https://mirrors.tuna.tsinghua.edu.cn/fdroid/repo/com.termux_117.apk" "$1.apk" 85749239 fdbab48eb5919133f98f6c08be705a23 "$1.apk"
 ;;
 
 com.yxer.packageinstalles)
 apk='com.yxer.packageinstalles'
 name='R-安装组件'
-version='1.8'
-versionCode='82'
+version='1.8-beta'
+versionCode='119'
 author='依心所言'
 description='或许是安装狮的替代品'
-time='2021年10月4号'
-    [[ $Choice = 1 ]] && Download -cos "com.yxer.packageinstalles_v1.8_82-r.apk" "$1.apk" 1829622 880ce336f739f2dd43f68289f5038fef "$1.apk"
+time='2021年10月10号'
+    [[ $Choice = 1 ]] && Download -cos "com.yxer.packageinstalles_v1.8-beta_119-r.apk" "$1.apk" 1736988 7aa158ce507e19218faecc666363575f "$1.apk"
 ;;
 
 com.whatsbug.litiaotiao)
@@ -152,23 +152,34 @@ time='2021年8月27号'
 ru.zdevs.zarchiver.pro)
 apk='ru.zdevs.zarchiver.pro'
 name='ZArchiver Pro'
-version='0.9.5.8'
-versionCode=9593
-author='未知'
+version='1.0.0'
+versionCode=10003
+author='Ant-ON'
 description='解压缩神器'
-time='2021年5月15日'
-    [[ $Choice = 1 ]] && Download -file "APK/Zarchiver/ZArchiver Pro_0.9.5.8.apk" "$1.apk" 5041065 07a2ecf7841ef18c9dbf5b7c1b870d84 "$1.apk"
+time='2021年10月10日'
+    case $ABI in
+    armeabi-v7a)
+        [[ $Choice = 1 ]] && Download -cos "ZArchiver Pro_1.0.0_Test0930_arm.apk" "$1.apk" 4977849 281142beb4238c1f5c2e54e9afc3af8b "$1.apk"
+    ;;
+    arm64-v8a)
+        versionCode=10005
+        [[ $Choice = 1 ]] && Download -cos "ZArchiver Pro_1.0.0_Test0930_arm64.apk" "$1.apk" 5403238 687ae88047701e40d9a2d0f526bcbb10 "$1.apk"
+    ;;
+    *)
+        [[ $Choice = 1 ]] && echo "不支持的系统架构=$ABI"
+    ;;
+    esac
 ;;
 
-org.telegram.messenger.web)
-apk='org.telegram.messenger.web'
+org.telegram.messenger)
+apk='org.telegram.messenger'
 name='Telegram 电报'
-version='7.9.1'
-versionCode=23879
+version='8.1.2'
+versionCode=24325
 author='Telegram'
-description='Telegram是一款跨平台的即时通讯软件，需要科学上网，简体中文语言包：https://t.me/setlanguage/moecn'
-time='2021年8月3日'
-    [[ $Choice = 1 ]] && Download -file "APK/Telegram/23879.apk" "$1.apk" 59723035 b109e3762adbfa4f15786ac0cfaed068 "$1.apk"
+description='Telegram是一款跨平台的即时通讯软件，需要科学上网，简体中文语言包：https://t.me/setlanguage/moecn （此为F-Droid下载的开源版本，包名与签名会和官网下载的不一致）'
+time='2021年10月10日'
+    [[ $Choice = 1 ]] && Download -url "https://mirrors.tuna.tsinghua.edu.cn/fdroid/repo/org.telegram.messenger_24325.apk" "$1.apk" 36173108 7d89482ddcb23836e1a2a09560c21b7b "$1.apk"
 ;;
 
 com.su.assistant.pro)
@@ -283,23 +294,23 @@ time='2021年5月15日'
 com.tsng.hidemyapplist)
 apk='com.tsng.hidemyapplist'
 name='隐藏应用列表'
-version='2.1.4'
-versionCode=64
+version='2.2.1'
+versionCode=67
 author='DR-TSNG'
 description='拦截应用对应用列表的请求，使应用无法检测到特定应用/应用列表  作用域只需要系统框架【此应用诞生的初衷是为了保护隐私，请不要用来开G】'
-time='2021年10月4日'
-    [[ $Choice = 1 ]] && Download -cos "V2.1.4-release.apk" "$1.apk" 2283620 dfc29a2292d5e3bfb7b1ae0e43baeecb "$1.apk"
+time='2021年10月10日'
+    [[ $Choice = 1 ]] && Download -cos "HideMyApplist-V2.2.1.apk" "$1.apk" 4252642 63a308f346ce856537835eebb4c7afcf "$1.apk"
 ;;
 
 com.tsng.applistdetector)
 apk='com.tsng.applistdetector'
 name='应用列表检测器'
-version='1.2.2'
-versionCode=9
+version='1.3.1'
+versionCode=10
 author='DR-TSNG'
-description='检测Magisk管理器等可疑应用程序的Android示例应用程序'
-time='2021年10月4日'
-    [[ $Choice = 1 ]] && Download -cos "Applist.Detector.V1.2.2.apk" "$1.apk" 2641691 c414568f5938225661ca94467cbea1be "$1.apk"
+description='检测Magisk管理器等可疑应用程序的Android示例应用程序，可用于检测ROOT应用隐藏情况'
+time='2021年10月10日'
+    [[ $Choice = 1 ]] && Download -cos "ApplistDetector-V1.3.1.apk" "$1.apk" 4306071 b5ad5a620e4e5c5f6bc61da5f4ca68f3 "$1.apk"
 ;;
 
 com.coderstory.toolkit)
@@ -393,12 +404,12 @@ time='2021年4月3日'
 com.fankes.qqsavebattery)
 apk='com.fankes.qqsavebattery'
 name='TSBattery（QQ省电模块）'
-version='2.1'
-versionCode=3
+version='2.2'
+versionCode=5
 author='星夜不荟'
 description='XP模块：干掉QQ/TIM的电源锁使得QQ/TIM更省电'
-time='2021年8月27日'
-    [[ $Choice = 1 ]] && Download -cos "TSBattery_2.1.apk" "$1.apk" 1757094 77501e5749aef8c9301e022f78d370ed "$1.apk"
+time='2021年10月5日'
+    [[ $Choice = 1 ]] && Download -cos "TSBattery_2.2.apk" "$1.apk" 2323738 e4b860a6b3bc9d5f349307391e78a608 "$1.apk"
 ;;
 
 com.fkzhang.wechatxposed)
@@ -1457,12 +1468,12 @@ time='2021年9月12日'
 riru_hidemyapplist)
 id='riru_hidemyapplist'
 name='Riru - Hide My Applist'
-version='v0.6.1'
-versionCode='26'
+version='v0.7'
+versionCode='28'
 author='Nullptr'
 description='Xposed模块「隐藏应用列表」的扩展，实现对文件检测的拦截。'
-time='2021年8月29日'
-    [[ $Choice = 1 ]] && Download -gh "Dr-TSNG/Hide-My-Applist/releases/download/V2.1.3/riru-hidemyapplist-v0.6.1-release.zip" "$1.zip" 698715 ed03c001ee91e630df0aae2d8cfe5d53 "$1.zip"
+time='2021年10月10日'
+    [[ $Choice = 1 ]] && Download -cos "MagiskExtension-V0.7.zip" "$1.zip" 748112 e03b212f6861060893f21e43755d65db "$1.zip"
 ;;
 
 riru-module-xfingerprint-pay-wechat)
