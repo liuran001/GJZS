@@ -17,7 +17,7 @@ cat <<Han
     </page>
 </group>
 Han
-[[ ! -f ~/offline || ! -f ~/offline2 ]] && Notice
+[[ ! -f ~/offline && ! -f ~/offline2 ]] && Notice
 cat <<Han
     <text>
         <slices>

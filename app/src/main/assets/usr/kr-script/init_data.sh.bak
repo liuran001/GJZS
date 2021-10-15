@@ -1,6 +1,6 @@
-Configuration=2021101003
-Magisk_Warehouse_version=2021101002
-App_Store_version=2021101003
+Configuration=2021101503
+Magisk_Warehouse_version=2021101503
+App_Store_version=2021101501
 Show_Compatibility_Mode=1
 MIUI=0
 
@@ -55,23 +55,23 @@ time='2021年8月3日'
 bin.mt.plus.canary)
 apk='bin.mt.plus.canary'
 name='MT管理器内测版'
-version='2.9.9-beta'
-versionCode='21070100'
+version='2.10.0-beta'
+versionCode='21092700'
 author='Bin'
 description='文件管理器/安卓逆向神器，此版本为内测版可与正式版共存，因为是内测版如果你在使用中发现bug，可向QQ：243454893提交反馈问题'
-time='2021年7月7日'
-    [[ $Choice = 1 ]] && Download -file "APK/MT2_Canary/bin.mt.plus.canary_2.9.9-beta.apk" "$1.apk" 10124909 9fceca472142d390925f8072397f0ecd "$1.apk"
+time='2021年10月15日'
+    [[ $Choice = 1 ]] && Download -file "MT2.10.0-beta.apk" "$1.apk" 12584678 3585341dab81b1123ec9b5f107b5f007 "$1.apk"
 ;;
 
 org.lsposed.manager)
 apk='org.lsposed.manager'
 name='LSPosed 模块管理器'
-version='v1.6.0'
-versionCode='6089'
+version='v1.6.1'
+versionCode='6132'
 author='LSPosed Developers'
 description='LSPosed Xposed框架模块管理器【这是管理器，模块请前往Magisk模块仓库安装】'
 apkfile="$PeiZhi_File/$apk-$versionCode.apk"
-time='2021年10月3日'
+time='2021年10月15日'
     if [[ $Choice = 1 ]]; then
         [[ $SDK -lt 27 ]] && abort "！$name-$version（$versionCode）不支持安卓8.1.0以下系统"
         if [[ ! -s "$apkfile" ]]; then
@@ -130,12 +130,12 @@ time='2021年10月10日'
 com.yxer.packageinstalles)
 apk='com.yxer.packageinstalles'
 name='R-安装组件'
-version='1.8-beta'
-versionCode='119'
+version='1.9'
+versionCode='126'
 author='依心所言'
 description='或许是安装狮的替代品'
-time='2021年10月10日'
-    [[ $Choice = 1 ]] && Download -cos "com.yxer.packageinstalles_v1.8-beta_119-r.apk" "$1.apk" 1736988 7aa158ce507e19218faecc666363575f "$1.apk"
+time='2021年10月15日'
+    [[ $Choice = 1 ]] && Download -cos "com.yxer.packageinstalles_v1.9_126-r.apk" "$1.apk" 1861668 c002f5d3f1ce05e16736d73c681e94cd "$1.apk"
 ;;
 
 com.whatsbug.litiaotiao)
@@ -159,11 +159,11 @@ description='解压缩神器'
 time='2021年10月10日'
     case $ABI in
     armeabi-v7a)
-        [[ $Choice = 1 ]] && Download -cos "ZArchiver Pro_1.0.0_Test0930_arm.apk" "$1.apk" 4977849 281142beb4238c1f5c2e54e9afc3af8b "$1.apk"
+        [[ $Choice = 1 ]] && Download -cos "ZArchiver-Pro_1.0.0_Test0930_arm.apk" "$1.apk" 4977849 281142beb4238c1f5c2e54e9afc3af8b "$1.apk"
     ;;
     arm64-v8a)
         versionCode=10005
-        [[ $Choice = 1 ]] && Download -cos "ZArchiver Pro_1.0.0_Test0930_arm64.apk" "$1.apk" 5403238 687ae88047701e40d9a2d0f526bcbb10 "$1.apk"
+        [[ $Choice = 1 ]] && Download -cos "ZArchiver-Pro_1.0.0_Test0930_arm64.apk" "$1.apk" 5403238 687ae88047701e40d9a2d0f526bcbb10 "$1.apk"
     ;;
     *)
         [[ $Choice = 1 ]] && echo "不支持的系统架构=$ABI"
@@ -767,15 +767,15 @@ time='2021年8月15日'
 riru_lsposed)
 id='riru_lsposed'
 name='Riru - LSPosed'
-version='v1.6.0'
-versionCode='6089'
+version='v1.6.1'
+versionCode='6132'
 author='LSPosed Developers'
 description='一款基于Riru API开发的Xposed框架，支持运行在安卓8.1.0 ~ 12系统上。需要安装Riru v25.0.0或更高版本，Telegram: @LSPosed'
-time='2021年10月3日'
+time='2021年10月15日'
     if [[ $Choice = 1 ]]; then
         mask -v
         if [[ $MAGISK_VER_CODE -ge 23000 ]]; then
-             [[ $Choice = 1 ]] && Download -cos "LSPosed-v1.6.0-6089-release.zip" "$1.zip" 1943905 31382436db397d4deec3a9922214aeca "$1.zip"
+             [[ $Choice = 1 ]] && Download -cos "LSPosed-v1.6.1-6132-release.zip" "$1.zip" 1963179 e258fe29b436b58592dc9ef743f6d124 "$1.zip"
         else
             echo "- 检测到Magisk版本在v23以下，无法安装最新版$version（$versionCode），开始安装v1.3.4（5501）版本"
             Download -file "Modules/LSPosed/LSPosed-v1.3.4-5501-release.zip" "$1.zip" 2189720 de39ec10f67b538fbdc60b7f0e6520f7 "$1.zip"
@@ -1457,12 +1457,12 @@ time='2021年8月3日'
 riru-sui)
 id='riru-sui'
 name='Sui'
-version='v12.2.0'
-versionCode=227
+version='v12.2.1'
+versionCode=235
 author='Rikka'
 description='现代超级用户接口的实现，与Shizuku的API设计相同。该模块需要Riru v25.0.0或以上版本。'
-time='2021年9月12日'
-    [[ $Choice = 1 ]] && Download -gh "RikkaApps/Sui/releases/download/v12.2.0/sui-v12.2.0-release.zip" "$1.zip" 1120978 b5c37fc41865d084805587045d3c124e "$1.zip"
+time='2021年10月15日'
+    [[ $Choice = 1 ]] && Download -cos "sui-v12.2.1-release.zip" "$1.zip" 1121038 bcc99bfd189406ed22779031b33f0468 "$1.zip"
 ;;
 
 riru_hidemyapplist)
