@@ -1,4 +1,4 @@
-if [[ ! -f ~/offline || -f ~/offline2 ]]; then
+if [[ ! -f ~/offline || ! -f ~/offline2 ]]; then
 if [[ $Version_code -ge $New_Code ]]; then
         title='更新日志'
     else
@@ -17,7 +17,7 @@ cat <<Han
     </page>
 </group>
 Han
-Notice
+[[ ! -f ~/offline || ! -f ~/offline2 ]] && Notice
 cat <<Han
     <text>
         <slices>
