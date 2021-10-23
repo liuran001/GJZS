@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<group title="作用域修改">
+    <!-- START -->
+    <action interruptible="false">
+        <title>模块作用域添加（支持全选）</title>
+        <desc>批量添加作用域</desc>
+        <set>. ./Add_LSPosed_AppScope.sh</set>
+        <param name="Module_package" title="选择修改模块" type="app" multiple="false" options-sh=". ./Get_LSPosed_Modules.sh" />
+        <param name="APP_List" title="选择添加应用" type="app" multiple="true" options-sh=". ./Get_Package_Name-3.sh" />
+    </action>
+    <!-- END -->
+    <!-- START -->
+    <action interruptible="false">
+        <title>模块作用域清空</title>
+        <desc>快速清空作用域</desc>
+        <set>. ./Clear_LSPosed_AppScope.sh</set>
+        <param name="Module_package" title="选择清空的模块" type="app" multiple="false" options-sh=". ./Get_LSPosed_Modules.sh" />
+    </action>
+    <!-- END -->
+</group>
