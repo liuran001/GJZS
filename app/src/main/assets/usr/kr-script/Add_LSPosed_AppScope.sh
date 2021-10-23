@@ -5,7 +5,7 @@ db_sql="$TMPDIR0/modules_config.sql"
 db_File2="$TMPDIR0/modules_config.db"
 Modules_List="$TMPDIR0/Modules_List.log"
 
-[[ -f $TMPDIR0 ]] && rm -rf $TMPDIR0
+[[ -e $TMPDIR0 ]] && rm -rf $TMPDIR0
 mkdir $TMPDIR0
 
 cp $db_File $TMPDIR0
