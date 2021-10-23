@@ -38,7 +38,7 @@
     <string name="pop_before_start">正准备启动应用…</string>
     <string name="pop_started">启动完成！</string>
     <string name="pio_permission_checking">检查并获取必需权限……</string>
-    <string name="error_root">未能获得ROOT授权，如果你的手机已经ROOT，清在授权管理器弹出对话框时选择允许！</string>
+    <string name="error_root">未能获得ROOT授权，如果你的手机已经ROOT，请在授权管理器弹出对话框时选择允许！</string>
     <string name="error_su_timeout">等待ROOT授权超时，请检查授权管理器是否在后台运行！</string>
     <string name="transparent_ui">界面透明 </string>
     <string name="title_activity_file_selector">请选择文件</string>
