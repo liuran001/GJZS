@@ -5,20 +5,18 @@ db_File2="$TMPDIR/modules_config.db"
 TMPDIR0="$Script_Dir"
 Modules_List="$TMPDIR0/Modules_List.log"
 
-#复制文件到临时目录
-cp $db_File $TMPDIR0
-rm -f $Modules_List
-[[ -d "$TMPDIR0" ]] && rm -rf $TMPDIR0
-    mkdir -p $TMPDIR0
-    sqlite3 "$db_File" .dump >$db_sql
-        if [[ $? != 0 ]]; then
-            echo "开始查看sqlite3是否兼容您的设备"
-            sqlite3 --help
-            echo "! 不支持的设备"
-            exit 1
-        fi
+[[ -f $TMPDIR0 ]] && rm -rf $TMPDIR0
+mkdir $TMPDIR0
 
-#获取所有模块
+cp $db_File $TMPDIR0
+sqlite3 "$db_File" .dump >$db_sql
+if [[ $? != 0 ]]; then
+    echo "开始查看sqlite3是否兼容您的设备"
+    sqlite3 --help
+    echo "! 不支持的设备"
+    exit 1
+fi
+
 grep "INSERT INTO modules VALUES" $db_sql | awk -F "("  '{print $2}' | awk -F ")" '{print $1}' > $Modules_List
 Module_status=`grep "$Module_package" $Modules_List`
 Module_ID=`echo $Module_status | awk -F ","  '{print $1}'`
@@ -37,3 +35,4 @@ awk '!a[$0]++' $db_sql > $db_sql.tmp && mv -f $db_sql.tmp $db_sql
 sqlite3 "$db_File2" < "$db_sql"
 mv -f "$db_File2" "$db_Dir"
 echo "已清空$Module_package的作用域"
+rm -rf $TMPDIR0
