@@ -1,7 +1,7 @@
 db_Dir="/data/adb/lspd/config"
 db_File="$db_Dir/modules_config.db"
-db_sql="$TMPDIR/modules_config.sql"
-db_File2="$TMPDIR/modules_config.db"
+db_sql="$TMPDIR0/modules_config.sql"
+db_File2="$TMPDIR0/modules_config.db"
 TMPDIR0="$Script_Dir"
 Modules_List="$TMPDIR0/Modules_List.log"
 
