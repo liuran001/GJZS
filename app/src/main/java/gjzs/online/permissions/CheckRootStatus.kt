@@ -24,7 +24,7 @@ public class CheckRootStatus(var context: Context, private var next: Runnable? =
     public fun forceGetRoot() {
         if (lastCheckResult) {
             if (next != null) {
-                myHandler.post(next!!)
+                myHandler.post(next)
             }
         } else {
             var completed = false
@@ -38,7 +38,7 @@ public class CheckRootStatus(var context: Context, private var next: Runnable? =
 
                 if (lastCheckResult) {
                     if (next != null) {
-                        myHandler.post(next!!)
+                        myHandler.post(next)
                     }
                 } else {
                     myHandler.post {
@@ -60,7 +60,7 @@ public class CheckRootStatus(var context: Context, private var next: Runnable? =
                         if (context.resources.getBoolean(R.bool.force_root) != true) {
                             builder.setNeutralButton(R.string.btn_skip) { _, _ ->
                                 if (next != null) {
-                                    myHandler.post(next!!)
+                                    myHandler.post(next)
                                 }
                             }
                         }

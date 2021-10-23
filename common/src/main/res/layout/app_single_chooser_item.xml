@@ -26,13 +26,13 @@
             android:id="@+id/ItemTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lines="1"
+            android:lines="2"
             style="@style/textTitle" />
         <TextView
             android:id="@+id/ItemDesc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lines="1"
+            android:lines="3"
             style="@style/textSmall" />
     </LinearLayout>
 

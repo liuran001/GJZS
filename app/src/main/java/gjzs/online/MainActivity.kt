@@ -5,14 +5,12 @@ import android.app.Activity
 import android.content.ComponentName
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.provider.Settings
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -49,18 +47,21 @@ class MainActivity : AppCompatActivity() {
     private fun checkPermission(permission: String): Boolean = PermissionChecker.checkSelfPermission(this, permission) == PermissionChecker.PERMISSION_GRANTED
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        ThemeModeState.switchTheme(this)
         super.onCreate(savedInstanceState)
+        ThemeModeState.switchTheme(this)
         setContentView(R.layout.activity_main)
 
         val dialog = PrivacyPolicyDialog(this, getString(R.string.termsOfServiceUrl), getString(R.string.privacyPolicyUrl))
         dialog.onClickListener = object : PrivacyPolicyDialog.OnClickListener {
             override fun onAccept(isFirstTime: Boolean) {
-                Log.e("MainActivity", "Policies accepted")
+                if (!(checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE) && checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE))) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), 111)
+                    };
+                }
             }
 
             override fun onCancel() {
-                Log.e("MainActivity", "Policies not accepted")
                 finish()
             }
         }
@@ -121,12 +122,13 @@ class MainActivity : AppCompatActivity() {
             }
         }).start()
 
-
-        if (!(checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE) && checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE))) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), 111);
+        if (CheckRootStatus.lastCheckResult && krScriptConfig.allowHomePage) {
+            val home = FragmentHome()
+            val fragmentManager = supportFragmentManager
+            val transaction = fragmentManager.beginTransaction()
+            transaction.replace(R.id.main_tabhost_cpu, home)
+            transaction.commitAllowingStateLoss()
         }
-
-
     }
 
     private fun getItems(pageNode: PageNode): ArrayList<NodeInfoBase>? {

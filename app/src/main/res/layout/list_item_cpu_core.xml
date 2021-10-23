@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="6dp">
 
-            <com.projectkr.shell.ui.CpuChartBarView
+            <gjzs.online.ui.CpuChartBarView
                 android:id="@+id/core_cpu_loading_chart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

@@ -106,7 +106,7 @@ class BlurBackground(private val activity: Activity) {
 
             bp = blur(bp) //对屏幕截图模糊处理
             //将模糊处理后的图恢复到原图尺寸并显示出来
-            bp = Bitmap.createScaledBitmap(bp!!, originalW, originalH, false)
+            bp = Bitmap.createScaledBitmap(bp, originalW, originalH, false)
             setImageBitmap(bp)
             setVisibility(View.VISIBLE)
             //防止UI线程阻塞，在子线程中让背景实现淡入效果

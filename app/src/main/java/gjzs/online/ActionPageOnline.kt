@@ -38,9 +38,9 @@ class ActionPageOnline : AppCompatActivity() {
     private lateinit var themeMode: ThemeMode
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         themeMode = ThemeModeState.switchTheme(this)
 
-        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_action_page_online)
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
@@ -131,20 +131,20 @@ class ActionPageOnline : AppCompatActivity() {
                     val taskAliasId = if (extras.containsKey("taskId")) extras.getString("taskId") else UUID.randomUUID().toString()
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                        downloader.saveTaskStatus(taskAliasId!!, 0)
+                        downloader.saveTaskStatus(taskAliasId, 0)
 
                         requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), 2);
                         DialogHelper.helpInfo(this, "", getString(R.string.kr_write_external_storage))
                     } else {
-                        val downloadId = downloader.downloadBySystem(url, null, null, taskAliasId!!)
+                        val downloadId = downloader.downloadBySystem(url, null, null, taskAliasId)
                         if (downloadId != null) {
                             kr_download_url.text = url
                             val autoClose = extras.containsKey("autoClose") && extras.getBoolean("autoClose")
 
-                            downloader.saveTaskStatus(taskAliasId!!, 0)
+                            downloader.saveTaskStatus(taskAliasId, 0)
                             watchDownloadProgress(downloadId, autoClose, taskAliasId)
                         } else {
-                            downloader.saveTaskStatus(taskAliasId!!, -1)
+                            downloader.saveTaskStatus(taskAliasId, -1)
                         }
                     }
                 }
@@ -214,7 +214,7 @@ class ActionPageOnline : AppCompatActivity() {
             }
         }
 
-        kr_online_webview.loadUrl(url!!)
+        kr_online_webview.loadUrl(url)
 
         WebViewInjector(kr_online_webview,
                 object : ParamsFileChooserRender.FileChooserInterface {

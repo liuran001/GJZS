@@ -120,7 +120,7 @@ class RamChatView : View {
         val startPercent = -90f
         cyclePaint!!.color = 0x44888888 //Color.parseColor("#888888")
         cyclePaint!!.strokeCap = Paint.Cap.ROUND
-        canvas.drawArc(RectF(0f, 0f, mRadius, mRadius), 0f, 360f, false, cyclePaint!!)
+        canvas.drawArc(RectF(0f, 0f, mRadius, mRadius), 0f, 360f, false, cyclePaint)
         if (ratio == 0) {
             return
         }

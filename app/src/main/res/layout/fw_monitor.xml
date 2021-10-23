@@ -25,7 +25,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp">
 
-                <com.projectkr.shell.ui.FloatMonitorChartView
+                <gjzs.online.ui.FloatMonitorChartView
                     android:id="@+id/fw_cpu_load"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -66,7 +66,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp">
 
-                <com.projectkr.shell.ui.FloatMonitorChartView
+                <gjzs.online.ui.FloatMonitorChartView
                     android:id="@+id/fw_gpu_load"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -107,7 +107,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp">
 
-                <com.projectkr.shell.ui.FloatMonitorChartView
+                <gjzs.online.ui.FloatMonitorChartView
                     android:id="@+id/fw_ram_load"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -147,7 +147,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp">
 
-                <com.projectkr.shell.ui.FloatMonitorBatteryView
+                <gjzs.online.ui.FloatMonitorBatteryView
                     android:id="@+id/fw_battery_chart"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />

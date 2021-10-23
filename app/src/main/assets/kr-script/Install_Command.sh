@@ -19,7 +19,7 @@ if [[ $1 = -apk ]]; then
     cp -f "$jian" "$TMP/$Package_name.apk"
     pm install -r "$TMP/$Package_name.apk"
     rm -f "$TMP/$Package_name.apk"
-    $Have_ROOT && am start -S $Package_name/com.projectkr.shell.SplashActivity
+    $Have_ROOT && am start -S $Package_name/gjzs.online.SplashActivity
     exit 0
 fi
 
@@ -34,7 +34,7 @@ if [[ -f "$jian2" ]]; then
         if $Have_ROOT; then
             echo "- 已安装完成开始重启搞机助手"
             sleep 3
-            am start -S $Package_name/com.projectkr.shell.SplashActivity
+            am start -S $Package_name/gjzs.online.SplashActivity
         fi
 else
     abort "！解压文件失败"
