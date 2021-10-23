@@ -74,7 +74,7 @@ cat <<Han
         <page title="Magisk专区" config-sh="cat \$Pages/Magisk.xml" />
         <page title="Magisk模块仓库" before-load=". \$ShellScript/Magisk_Module/Print_Magisk_Warehouse.sh" config-sh="cat \$Pages/Magisk_Warehouse.xml" locked="$LOCKED" />
         <page title="应用/Xposed仓库" before-load=". \$ShellScript/Print_App_Store.sh" config-sh="cat \$Pages/App_Store.xml" />
-        <page title="LSPosed模块管理" config-sh="cat \$Pages/LSPosed.xml" visible="[[ -d \$Modules_Dir/riru_lsposed ]] &#38;&#38; echo 1 || echo 0" />
+        <page title="LSPosed模块管理" config-sh="cat \$Pages/LSPosed.xml" visible="[[ -d /data/adb/lspd ]] &#38;&#38; echo 1 || echo 0" />
         <page title="开机页面专区" config-sh="cat \$Pages/Boot_Animation.xml" locked="$LOCKED" />
         <page title="MIUI专区" config-sh="cat \$Pages/MIUI.xml" visible="sh ./support/Check_Ui_miui.sh" />
         <page title="极客专区" config-sh="cat \$Pages/Geek.xml" locked="$LOCKED" visible="[[ -n \`which magisk\` ]] &#38;&#38; echo 0 || echo 1" />
