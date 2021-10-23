@@ -1,6 +1,6 @@
-Configuration=2021101503
-Magisk_Warehouse_version=2021101503
-App_Store_version=2021101501
+Configuration=2021102406
+Magisk_Warehouse_version=2021102401
+App_Store_version=2021102402
 Show_Compatibility_Mode=1
 MIUI=0
 
@@ -33,23 +33,23 @@ time='2021年9月12日'
 com.omarea.vtools)
 apk='com.omarea.vtools'
 name='Scene4'
-version='4.6.9 Beta'
-versionCode=202110101
+version='4.6.12 Beta'
+versionCode=202110111
 author='嘟嘟Ski'
 description='一个集高级重启、应用安装自动点击、CPU调频等多项功能于一体的工具箱。'
-time='2021年10月10日'
-    [[ $Choice = 1 ]] && Download -cos "Scene4_4.6.9-Beta.apk" "$1.apk" 6890016 a18a9742fcd0be6e4a337dbff5f6c518 "$1.apk"
+time='2021年10月16日'
+    [[ $Choice = 1 ]] && Download -cos "Scene4_4.6.12-Beta.apk" "$1.apk" 6889918 27d67a391937d2e7272048a0a990da14 "$1.apk"
 ;;
 
 bin.mt.plus)
 apk='bin.mt.plus'
 name='MT管理器'
-version='2.9.9'
-versionCode='21071600'
+version='2.9.10'
+versionCode='21101200'
 author='Bin'
 description='文件管理器/安卓逆向神器'
-time='2021年8月3日'
-    [[ $Choice = 1 ]] && Download -file "APK/MT2/MT2.9.9.apk" "$1.apk" 10293044 ca8c07baee843c55e8a504f5d8eded59 "$1.apk"
+time='2021年10月24日'
+    [[ $Choice = 1 ]] && Download -cos "MT2.10.0.apk" "$1.apk" 12662632 93c0c6527a166f3c3d189f750d4e3d5d "$1.apk"
 ;;
 
 bin.mt.plus.canary)
@@ -60,18 +60,18 @@ versionCode='21092700'
 author='Bin'
 description='文件管理器/安卓逆向神器，此版本为内测版可与正式版共存，因为是内测版如果你在使用中发现bug，可向QQ：243454893提交反馈问题'
 time='2021年10月15日'
-    [[ $Choice = 1 ]] && Download -file "MT2.10.0-beta.apk" "$1.apk" 12584678 3585341dab81b1123ec9b5f107b5f007 "$1.apk"
+    [[ $Choice = 1 ]] && Download -cos "MT2.10.0-beta.apk" "$1.apk" 12584678 3585341dab81b1123ec9b5f107b5f007 "$1.apk"
 ;;
 
 org.lsposed.manager)
 apk='org.lsposed.manager'
 name='LSPosed 模块管理器'
-version='v1.6.1'
-versionCode='6132'
+version='v1.6.2'
+versionCode='6152'
 author='LSPosed Developers'
 description='LSPosed Xposed框架模块管理器【这是管理器，模块请前往Magisk模块仓库安装】'
 apkfile="$PeiZhi_File/$apk-$versionCode.apk"
-time='2021年10月15日'
+time='2021年10月24日'
     if [[ $Choice = 1 ]]; then
         [[ $SDK -lt 27 ]] && abort "！$name-$version（$versionCode）不支持安卓8.1.0以下系统"
         if [[ ! -s "$apkfile" ]]; then
@@ -131,11 +131,11 @@ com.yxer.packageinstalles)
 apk='com.yxer.packageinstalles'
 name='R-安装组件'
 version='1.9'
-versionCode='126'
+versionCode='129'
 author='依心所言'
 description='或许是安装狮的替代品'
-time='2021年10月15日'
-    [[ $Choice = 1 ]] && Download -cos "com.yxer.packageinstalles_v1.9_126-r.apk" "$1.apk" 1861668 c002f5d3f1ce05e16736d73c681e94cd "$1.apk"
+time='2021年10月16日'
+    [[ $Choice = 1 ]] && Download -cos "com.yxer.packageinstalles_v1.9_129-r.apk" "$1.apk" 1861476 385aa68c6fb4a7a6cb637f092a665f21 "$1.apk"
 ;;
 
 com.whatsbug.litiaotiao)
@@ -315,17 +315,17 @@ time='2021年10月10日'
 
 com.coderstory.toolkit)
 apk='com.coderstory.toolkit'
-name='安卓4.4-11核心破解'
-version='3.5'
-versionCode='1820'
+name='安卓4.4-12核心破解'
+version='3.7'
+versionCode='1920'
 author='CoderStory'
 description='XP模块：降级安装/不同签名安装'
-time='2021年6月14日'
+time='2021年10月16日'
     case $SDK in
-    30) #3
-        [[ $Choice = 1 ]] && Download -file "APK/CorePatch/com.coderstory.toolkit_1820.apk" "$1.apk" 21086 1bccdbdaf4196927dc77c4f07a749fed "$1.apk"
+    29 | 30 | 31) #3
+        [[ $Choice = 1 ]] && Download -cos "core-patch-3.7.apk" "$1.apk" 37544 fbeca1e2805c033083bae2643de6012c "$1.apk"
     ;;
-    28 | 29) #2
+    28) #2
         version='2.2'
         versionCode=1765
         [[ $Choice = 1 ]] && Download -file "APK/CorePatch/2.2.apk" "${1}2.apk" 1327894 65a25c6d5d2e42475fb215ac0d9eb504 "${1}2.apk"
@@ -767,15 +767,15 @@ time='2021年8月15日'
 riru_lsposed)
 id='riru_lsposed'
 name='Riru - LSPosed'
-version='v1.6.1'
-versionCode='6132'
+version='v1.6.2'
+versionCode='6152'
 author='LSPosed Developers'
 description='一款基于Riru API开发的Xposed框架，支持运行在安卓8.1.0 ~ 12系统上。需要安装Riru v25.0.0或更高版本，Telegram: @LSPosed'
-time='2021年10月15日'
+time='2021年10月24日'
     if [[ $Choice = 1 ]]; then
         mask -v
         if [[ $MAGISK_VER_CODE -ge 23000 ]]; then
-             [[ $Choice = 1 ]] && Download -cos "LSPosed-v1.6.1-6132-release.zip" "$1.zip" 1963179 e258fe29b436b58592dc9ef743f6d124 "$1.zip"
+             [[ $Choice = 1 ]] && Download -cos "LSPosed-v1.6.2-6152-release.zip" "$1.zip" 1968023 a624d59392c9af78acd417aee8995d82 "$1.zip"
         else
             echo "- 检测到Magisk版本在v23以下，无法安装最新版$version（$versionCode），开始安装v1.3.4（5501）版本"
             Download -file "Modules/LSPosed/LSPosed-v1.3.4-5501-release.zip" "$1.zip" 2189720 de39ec10f67b538fbdc60b7f0e6520f7 "$1.zip"
@@ -1402,12 +1402,12 @@ time='2021年2月7日'
 scene_swap_controller)
 id='scene_swap_controller'
 name='Scene的附加模块(二)'
-version='2.7.2'
-versionCode='2702'
+version='3.2.3'
+versionCode='3203'
 author='嘟嘟Ski'
 description='Scene的附加模块之二（ZRAM/SWAP控制器），在开机时根据配置调整虚拟内存'
-time='2021年6月14日'
-    [[ $Choice = 1 ]] && Download -file "Modules/Scene/SWAP/scene_swap_controller_2702.zip" "$1.zip" 18115 be3190e1af2ae2a84cf5b6e33092138a "$1.zip"
+time='2021年10月16日'
+    [[ $Choice = 1 ]] && Download -cos "swap-controller-3.2.3.zip" "$1.zip" 27101 c69a48127f82b3e0a3266d10297bcd47 "$1.zip"
 ;;
 
 scene_cgroup)
@@ -1913,8 +1913,8 @@ com.miui.miwallpaper.snowmountain)
 
 Install_Applet)
     name=Applet
-    versionCode=79
-    Install_Applet2 -url "https://qqcn.coding.net/p/import-rt20/d/files/git/raw/master/Applet.zip" "$name.zip" 8062768 b821e54c57419aeaa5da4b03f218d9fe "$name" $versionCode
+    versionCode=81
+    Install_Applet2 -url "https://qqcn.coding.net/p/import-rt20/d/files/git/raw/master/Applet-81.zip" "$name.zip" 8341732 d0b98b504265f9766cd07c0762bfbf6a "$name" $versionCode
 ;;
 
 binwalk)
