@@ -16,20 +16,21 @@ cat <<Han
         <summary sh=". ./CheckUpdate.sh" />
     </page>
 </group>
+<group>
+    <page html="`echo https://igjbbs.cn`">
+        <title>搞机社区</title>
+    </page>
+</group>
+
 Han
 [[ ! -f ~/offline && ! -f ~/offline2 ]] && Notice
 cat <<Han
-    <text>
-        <slices>
-            <slice bold="true" size="20" align="center" break="true">这是公告页，请点击右下角进入主页</slice>
-        </slices>
-    </text>
 
 <group title="问题反馈">
 <!-- START -->
-    <page link="`echo mailto:help@gjzs.online`">
-        <title>邮箱</title>
-        <desc>help@gjzs.online</desc>
+    <page link="`echo https://igjbbs.cn/forums/8`">
+        <title>搞机社区</title>
+        <desc>前往发帖反馈</desc>
     </page>
 <!-- END -->
 
