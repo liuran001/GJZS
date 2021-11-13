@@ -1,28 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <group title="问题反馈">
 <!-- START -->
-    <page link="`echo mailto:help@gjzs.online`">
-        <title>邮箱</title>
-        <desc>help@gjzs.online</desc>
+    <page link="`echo https://igjbbs.cn/forums/8`">
+        <title>搞机社区</title>
+        <desc>前往社区发帖反馈</desc>
     </page>
 <!-- END -->
 <group title="关于">
 <!-- START -->
-    <page link="https://gjzs.qqcn.xyz">
+    <page link="https://gjzs.online">
         <title>官网地址</title>
-        <desc>https://gjzs.qqcn.xyz</desc>
+        <desc>https://gjzs.online</desc>
     </page>
 <!-- END -->
 <!-- START -->
     <page link="https://github.com/liuran001/GJZS">
         <title>开源地址</title>
         <desc>https://github.com/liuran001/GJZS</desc>
-    </page>
-<!-- END -->
-<!-- START -->
-    <page link="http://www.coolapk.com/u/1169803">
-        <title>作者酷安</title>
-        <desc>ID「快播内部工作人员」</desc>
     </page>
 <!-- END -->
 </group>
@@ -111,26 +105,13 @@
 <!-- END -->
 <!-- START -->
     <text>
-        <title>by  ꯭清꯭羽꯭ღ （qyma.yyy@qq.com）</title>
-        <desc>提供java扩展插件服务</desc>
+        <title>莫白の   QQ：3096135245为搞机助手·R绘制LOGO</title>
     </text>
 <!-- END -->
-<!-- START -->
-    <text>
-        <title>往抑云   QQ：373174103为原搞机助手绘制新LOGO</title>
-    </text>
-<!-- END -->
-
 <!-- START -->
     <text>
         <title>特别鸣谢以下成员提供服务器下载服务</title>
         <slices>
-            <slice size="16">2021-03-22至2021-03-28   奥奥：QQ 741500926</slice>
-            <slice break="true"></slice>
-            <slice size="16">2021-03-29至2021-04-10   潮汐怎遇潮落：QQ 2657595205</slice>
-            <slice break="true"></slice>
-            <slice size="16">2021-04-07至2021-04-10   404：QQ 481812150</slice>
-            <slice break="true"></slice>
             <slice size="16">2021-05-26至now   深信不疑。：QQ 1097228498</slice>
         </slices>
     </text>
