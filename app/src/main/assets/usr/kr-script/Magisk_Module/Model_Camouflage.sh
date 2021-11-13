@@ -84,6 +84,10 @@ case $Device in
         JiXing "M1910F4E" tucana Xiaomi
     ;;
 
+    MICIVI)
+        JiXing "2109119BC" mona Xiaomi
+    ;;
+
     RMIK40P)
         JiXing "M2012K11C" haydn Xiaomi
     ;;
@@ -168,11 +172,11 @@ case $Device in
         JiXing "V2025A" PD2025 vivo
     ;;
 
-    SHARK4P)
+    SHARK4SP)
         JiXing "SHARK KSR-A0" kaiser Xiaomi
     ;;
 
-    SHARK4)
+    SHARK4S)
         JiXing "SHARK PRS-A0" penrose Xiaomi
     ;;
 
@@ -180,8 +184,8 @@ case $Device in
         JiXing "SHARK KLE-A0" klein Xiaomi
     ;;
 
-    OP9P)
-        JiXing "LE2120" lemonadep OnePlus
+    OP9RT)
+        JiXing "MT2110" martini OnePlus
     ;;
 
     OP9R)
@@ -338,6 +342,14 @@ case $Device in
 
     GGP5)
         JiXing "Pixel 5" redfin Google
+    ;;
+
+    GGP6)
+        JiXing "Pixel 6" oriole Google
+    ;;
+
+    GGP6P)
+        JiXing "Pixel 6 Pro" raven Google
     ;;
 
     GGPC)
