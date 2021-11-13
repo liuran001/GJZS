@@ -1,6 +1,6 @@
-Configuration=2021102406
-Magisk_Warehouse_version=2021102401
-App_Store_version=2021102402
+Configuration=2021111404
+Magisk_Warehouse_version=2021111401
+App_Store_version=2021111403
 Show_Compatibility_Mode=1
 MIUI=0
 
@@ -11,12 +11,12 @@ case "$1" in
 com.topjohnwu.magisk)
 apk='com.topjohnwu.magisk'
 name='Magisk'
-version='b6298f86-alpha'
-versionCode='23001'
+version='1e05f8c6-alpha'
+versionCode='23014'
 author='vvb2060 & John Wu'
 description='Magisk Manager'
-time='2021年10月4日'
-    [[ $Choice = 1 ]] && Download -cos 'magisk_b6298f86-alpha.apk' "$1.apk" 10749579 8f3073167af7a72d30ce3e5058b6e8df "$1.apk"
+time='2021年11月14日'
+    [[ $Choice = 1 ]] && Download -cos 'Magisk_1e05f8c6-alpha.apk' "$1.apk" 10345300 7787b10b5db8a285cc169032e28e4688 "$1.apk"
 ;;
 
 Han.automatic.rescue)
@@ -44,12 +44,12 @@ time='2021年10月16日'
 bin.mt.plus)
 apk='bin.mt.plus'
 name='MT管理器'
-version='2.9.10'
+version='2.10.0'
 versionCode='21101200'
 author='Bin'
 description='文件管理器/安卓逆向神器'
-time='2021年10月24日'
-    [[ $Choice = 1 ]] && Download -cos "MT2.10.0.apk" "$1.apk" 12662632 93c0c6527a166f3c3d189f750d4e3d5d "$1.apk"
+time='2021年11月14日'
+    [[ $Choice = 1 ]] && Download -cos "bin.mt.plus_2.10.0.apk" "$1.apk" 12662632 93c0c6527a166f3c3d189f750d4e3d5d "$1.apk"
 ;;
 
 bin.mt.plus.canary)
@@ -66,12 +66,12 @@ time='2021年10月15日'
 org.lsposed.manager)
 apk='org.lsposed.manager'
 name='LSPosed 模块管理器'
-version='v1.6.2'
-versionCode='6152'
+version='v1.6.3'
+versionCode='6212'
 author='LSPosed Developers'
 description='LSPosed Xposed框架模块管理器【这是管理器，模块请前往Magisk模块仓库安装】'
 apkfile="$PeiZhi_File/$apk-$versionCode.apk"
-time='2021年10月24日'
+time='2021年11月14日'
     if [[ $Choice = 1 ]]; then
         [[ $SDK -lt 27 ]] && abort "！$name-$version（$versionCode）不支持安卓8.1.0以下系统"
         if [[ ! -s "$apkfile" ]]; then
@@ -130,12 +130,12 @@ time='2021年10月10日'
 com.yxer.packageinstalles)
 apk='com.yxer.packageinstalles'
 name='R-安装组件'
-version='1.9'
-versionCode='129'
+version='1.9.1-beta'
+versionCode='167'
 author='依心所言'
-description='或许是安装狮的替代品'
-time='2021年10月16日'
-    [[ $Choice = 1 ]] && Download -cos "com.yxer.packageinstalles_v1.9_129-r.apk" "$1.apk" 1861476 385aa68c6fb4a7a6cb637f092a665f21 "$1.apk"
+description='或许是安装狮的替代品，支持安装APK/Magisk模块'
+time='2021年11月14日'
+    [[ $Choice = 1 ]] && Download -cos "com.yxer.packageinstalles_v1.9.1-beta_167-r.apk" "$1.apk" 1681122 b2467d044bf44d348b6eb9dfa221a87d "$1.apk"
 ;;
 
 com.whatsbug.litiaotiao)
@@ -767,15 +767,15 @@ time='2021年8月15日'
 riru_lsposed)
 id='riru_lsposed'
 name='Riru - LSPosed'
-version='v1.6.2'
-versionCode='6152'
+version='v1.6.3'
+versionCode='6212'
 author='LSPosed Developers'
 description='一款基于Riru API开发的Xposed框架，支持运行在安卓8.1.0 ~ 12系统上。需要安装Riru v25.0.0或更高版本，Telegram: @LSPosed'
-time='2021年10月24日'
+time='2021年11月14日'
     if [[ $Choice = 1 ]]; then
         mask -v
         if [[ $MAGISK_VER_CODE -ge 23000 ]]; then
-             [[ $Choice = 1 ]] && Download -cos "LSPosed-v1.6.2-6152-release.zip" "$1.zip" 1968023 a624d59392c9af78acd417aee8995d82 "$1.zip"
+             [[ $Choice = 1 ]] && Download -cos "LSPosed-v1.6.3-6212-riru-release.zip" "$1.zip" 2067864 3eaa2f61e0de5bc4a93b6db9fbda3f60 "$1.zip"
         else
             echo "- 检测到Magisk版本在v23以下，无法安装最新版$version（$versionCode），开始安装v1.3.4（5501）版本"
             Download -file "Modules/LSPosed/LSPosed-v1.3.4-5501-release.zip" "$1.zip" 2189720 de39ec10f67b538fbdc60b7f0e6520f7 "$1.zip"
@@ -1339,7 +1339,7 @@ version='v114514'
 versionCode='114514'
 author='People11'
 description='原理：通过Magisk修改prop达到机型伪装。'
-time='2021年10月4日'
+time='2021年11月14日'
 ;;
 
 com.fb.fluid)
@@ -1427,13 +1427,13 @@ riru-core-v21.3(36).zip
 '
 id='riru-core'
 name='Riru (Riru - Core)'
-version='v26.1.2.r505.c20529bced'
-versionCode=505
-author='Rikka  酷安@蓝莓味绿茶 '
+version='v26.1.3.r513.8e95115fd4'
+versionCode=513
+author='Rikka, yujincheng08'
 description='提供一种将代码注入zygote进程的方法，所有以Riru开头的模块必刷模块【需要使用EdXposed和指纹支付模块的用户请使用25.4.4版本，不要更新】'
-time='2021年9月12日'
+time='2021年11月7日'
 if [[ $Riru_version -eq 1 ]]; then
-    [[ $Choice = 1 ]] && Download -gh "RikkaApps/Riru/releases/download/v26.1.2/riru-v26.1.2.r505.c20529bced-release.zip" "$1.zip" 170852 8baf05175e0627d234347dca3543093f "$1.zip"
+    [[ $Choice = 1 ]] && Download -gh "RikkaApps/Riru/releases/download/v26.1.3/riru-v26.1.3.r513.8e95115fd4-release.zip" "$1.zip" 172118 39e9016e3042088439689c259c8dcfa5 "$1.zip"
 elif [[ $Riru_version -eq 2 ]]; then
     #riru-core-21.3
     [[ $Choice = 1 ]] && Download -file "Modules/Riru/riru-core-v21.3.zip" "$1-v21.3.zip" 541223 6c395f29a2cc50ae4f4efdaf87f78ca3 "$1-v21.3.zip"
