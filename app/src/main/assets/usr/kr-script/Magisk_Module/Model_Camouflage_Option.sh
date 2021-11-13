@@ -6,6 +6,7 @@ MIMIXF|小米 MIX Fold
 MIMIX4|小米 MIX 4
 MI6|小米 6
 MICC9P|小米 CC 9 Pro
+MICIVI|小米 Civi
 RMIK40P|红米 K40 Pro
 RMIK40G|红米 K40 游戏增强版
 RMIK30S|红米 K30S 至尊纪念版
@@ -27,10 +28,10 @@ IQ8|IQOO 8
 IQ7|IQOO 7
 IQN5|IQOO NEO 5
 IQ5P|IQOO 5 Pro
-SHARK4P|黑鲨 4 Pro
-SHARK4|黑鲨 4
+SHARK4SP|黑鲨 4S Pro
+SHARK4S|黑鲨 4S
 SHARK3S|黑鲨 3S
-OP9P|一加 9 Pro
+OP9RT|一加 9RT
 OP9R|一加 9R
 OP9|一加 9
 OP8P|一加 8 Pro
@@ -70,4 +71,6 @@ GGP4XL|Google Pixel 4 XL
 GGP4A|Google Pixel 4a
 GGP4A5G|Google Pixel 4a 5G
 GGP5|Google Pixel 5
+GGP6|Google Pixel 6
+GGP6P|Google Pixel 6 Pro
 GGPC|Google Pixel C
