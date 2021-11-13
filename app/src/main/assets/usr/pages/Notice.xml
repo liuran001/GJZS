@@ -17,8 +17,9 @@ cat <<Han
     </page>
 </group>
 <group>
-    <page html="`echo https://igjbbs.cn`">
+    <page link="`echo https://igjbbs.cn`">
         <title>搞机社区</title>
+        <desc>https://igjbbs.cn</desc>
     </page>
 </group>
 
