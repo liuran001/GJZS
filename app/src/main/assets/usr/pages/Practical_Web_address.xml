@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<group title="交流社区">
+<!-- START -->
+    <page link="https://igjbbs.cn">
+        <title>搞机社区</title>
+        <desc>全新社区，欢迎大佬的加入</desc>
+    </page>
+<!-- END -->
 <group title="资源聚合">
 <!-- START -->
     <page link="https://kamiui.ml">
