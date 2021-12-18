@@ -176,7 +176,8 @@ install_KJ $1
 
 ##
 if [[ -f $Pages/Home.xml ]]; then
-    unzip --help &>/dev/null && echo '1' | grep 1 | sed -n '/1/p' | md5sum &>/dev/null && Print
+    #unzip --help &>/dev/null && echo '1' | grep 1 | sed -n '/1/p' | md5sum &>/dev/null && Print
+    Print
 fi
 
 rm -rf ~/downloader/path/*
