@@ -1,4 +1,4 @@
-show=false
+show=true
 if [[ -f $Load ]]; then
 if [[ -f ~/offline || -f ~/offline2 ]]; then
 	show1=0
@@ -10,7 +10,6 @@ else
         show1=0
 	fi
 fi
-    show=true
 elif [[ ! -f $Core ]]; then
     title="初始化功能失败"
 elif [[ ! -f $Load ]]; then
