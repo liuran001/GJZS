@@ -1,5 +1,8 @@
 package com.omarea.krscript.executor;
 
+import android.content.Context;
+
+import com.omarea.common.shell.ShellTranslation;
 import com.omarea.krscript.model.ShellHandlerBase;
 
 import java.io.BufferedReader;
@@ -14,7 +17,9 @@ public class SimpleShellWatcher {
      * @param process          Runtime进程
      * @param shellHandlerBase ShellHandlerBase
      */
-    public void setHandler(Process process, final ShellHandlerBase shellHandlerBase, final Runnable onExit) {
+    public void setHandler(Context context, Process process, final ShellHandlerBase shellHandlerBase, final Runnable onExit) {
+        final ShellTranslation shellTranslation = new ShellTranslation(context);
+
         final InputStream inputStream = process.getInputStream();
         final InputStream errorStream = process.getErrorStream();
         final Thread reader = new Thread(new Runnable() {
@@ -24,7 +29,9 @@ public class SimpleShellWatcher {
                 try {
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
                     while ((line = bufferedReader.readLine()) != null) {
-                        shellHandlerBase.sendMessage(shellHandlerBase.obtainMessage(ShellHandlerBase.EVENT_REDE, line + "\n"));
+                        shellHandlerBase.sendMessage(
+                            shellHandlerBase.obtainMessage(ShellHandlerBase.EVENT_REDE, shellTranslation.resolveRow(line) + "\n")
+                        );
                     }
                 } catch (Exception ignored) {
                 }
@@ -37,7 +44,9 @@ public class SimpleShellWatcher {
                 try {
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, "UTF-8"));
                     while ((line = bufferedReader.readLine()) != null) {
-                        shellHandlerBase.sendMessage(shellHandlerBase.obtainMessage(ShellHandlerBase.EVENT_READ_ERROR, line + "\n"));
+                        shellHandlerBase.sendMessage(
+                            shellHandlerBase.obtainMessage(ShellHandlerBase.EVENT_READ_ERROR, shellTranslation.resolveRow(line) + "\n")
+                        );
                     }
                 } catch (Exception ignored) {
                 }

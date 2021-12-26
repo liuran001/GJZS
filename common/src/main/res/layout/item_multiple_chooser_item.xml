@@ -1,38 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingHorizontal="6dp"
-    android:paddingVertical="16dp">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="16dp">
 
     <LinearLayout
-        android:layout_marginStart="10dp"
-        android:layout_toStartOf="@id/ItemChecBox"
-        android:layout_centerVertical="true"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/ItemTitle"
+            android:layout_marginStart="10dp"
+            android:layout_toStartOf="@id/ItemChecBox"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lines="2"
-            style="@style/textTitle" />
+            android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/ItemDesc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lines="3"
-            style="@style/textSmall" />
+                android:id="@+id/ItemTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="false"
+                android:breakStrategy="simple"
+                android:ellipsize="end"
+                android:maxLines="2"
+                style="@style/textTitle" />
+        <TextView
+                android:id="@+id/ItemDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="false"
+                android:breakStrategy="simple"
+                android:ellipsize="end"
+                android:maxLines="2"
+                style="@style/textSmall" />
     </LinearLayout>
 
     <CheckBox
-        android:id="@+id/ItemChecBox"
-        android:focusable="false"
-        android:clickable="false"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+            android:id="@+id/ItemChecBox"
+            android:focusable="false"
+            android:clickable="false"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 </RelativeLayout>

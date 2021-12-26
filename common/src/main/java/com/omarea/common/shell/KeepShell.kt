@@ -51,21 +51,21 @@ public class KeepShell(private var rootMode: Boolean = true) {
     private var enterLockTime = 0L
 
     private var checkRootState =
-            // "if [[ \$(id -u 2>&1) == '0' ]] || [[ \$(\$UID) == '0' ]] || [[ \$(whoami 2>&1) == 'root' ]] || [[ \$(\$USER_ID) == '0' ]]; then\n" +
-            "if [[ \$(id -u 2>&1) == '0' ]] || [[ \$(\$UID) == '0' ]] || [[ \$(whoami 2>&1) == 'root' ]] || [[ \$(set | grep 'USER_ID=0') == 'USER_ID=0' ]]; then\n" +
-                    "  echo 'success'\n" +
-                    "else\n" +
-                    "if [[ -d /cache ]]; then\n" +
-                    "  echo 1 > /cache/vtools_root\n" +
-                    "  if [[ -f /cache/vtools_root ]] && [[ \$(cat /cache/vtools_root) == '1' ]]; then\n" +
-                    "    echo 'success'\n" +
-                    "    rm -rf /cache/vtools_root\n" +
-                    "    return\n" +
-                    "  fi\n" +
-                    "fi\n" +
-                    "exit 1\n" +
-                    "exit 1\n" +
-                    "fi\n"
+        // "if [[ \$(id -u 2>&1) == '0' ]] || [[ \$(\$UID) == '0' ]] || [[ \$(whoami 2>&1) == 'root' ]] || [[ \$(\$USER_ID) == '0' ]]; then\n" +
+        "if [[ \$(id -u 2>&1) == '0' ]] || [[ \$(\$UID) == '0' ]] || [[ \$(whoami 2>&1) == 'root' ]] || [[ \$(set | grep 'USER_ID=0') == 'USER_ID=0' ]]; then\n" +
+                "  echo 'success'\n" +
+                "else\n" +
+                "if [[ -d /cache ]]; then\n" +
+                "  echo 1 > /cache/vtools_root\n" +
+                "  if [[ -f /cache/vtools_root ]] && [[ \$(cat /cache/vtools_root) == '1' ]]; then\n" +
+                "    echo 'success'\n" +
+                "    rm -rf /cache/vtools_root\n" +
+                "    return\n" +
+                "  fi\n" +
+                "fi\n" +
+                "exit 1\n" +
+                "exit 1\n" +
+                "fi\n"
 
     fun checkRoot(): Boolean {
         val r = doCmdSync(checkRootState).toLowerCase(Locale.getDefault())
@@ -102,7 +102,7 @@ public class KeepShell(private var rootMode: Boolean = true) {
                 Thread(Runnable {
                     try {
                         val errorReader =
-                                p!!.errorStream.bufferedReader()
+                            p!!.errorStream.bufferedReader()
                         while (true) {
                             Log.e("KeepShellPublic", errorReader.readLine())
                         }
@@ -185,6 +185,16 @@ public class KeepShell(private var rootMode: Boolean = true) {
             mLock.unlock()
 
             currentIsIdle = true
+        }
+    }
+
+    // 执行脚本，并对结果进行ResourceID翻译
+    public fun doCmdSync(shellCommand: String, shellTranslation: ShellTranslation): String {
+        val rows = doCmdSync(shellCommand).split("\n")
+        if (rows.isNotEmpty()) {
+            return shellTranslation.resolveRows(rows)
+        } else {
+            return ""
         }
     }
 }

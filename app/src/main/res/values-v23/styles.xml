@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme.AppBarOverlay.Light" parent="ThemeOverlay.AppCompat.ActionBar">
-        <item name="titleTextColor">?android:textColorPrimary</item>
-        <item name="subtitleTextColor">?android:textColorSecondary</item>
-        <item name="colorControlNormal">?android:textColorPrimary</item>
-        <item name="android:foregroundTint">?android:textColorSecondary</item>
-        <item name="android:foregroundTintMode">screen</item>
-        <item name="android:drawableTint">?android:textColorPrimary</item>
-    </style>
+    <style name="AppTheme.AppBarOverlay.Light" parent="ThemeOverlay.AppCompat.ActionBar">textTitle</style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar">
         <item name="titleTextColor">?android:textColorPrimary</item>

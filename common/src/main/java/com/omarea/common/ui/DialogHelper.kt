@@ -87,16 +87,14 @@ class DialogHelper {
         }
 
         fun helpInfo(context: Context, message: String, onDismiss: Runnable? = null): DialogWrap {
-            return helpInfo(context, "", message, onDismiss)
+            return helpInfo(context, context.getString(R.string.help_title), message, onDismiss)
         }
 
         fun helpInfo(context: Context, title: String, message: String, onDismiss: Runnable? = null): DialogWrap {
             val layoutInflater = LayoutInflater.from(context)
             val dialog = layoutInflater.inflate(R.layout.dialog_help_info, null)
-            val alert = AlertDialog.Builder(context).setView(dialog)
-            alert.setCancelable(true)
 
-            (dialog.findViewById(R.id.dialog_help_title) as TextView).run {
+            (dialog.findViewById(R.id.confirm_title) as TextView).run {
                 if (title.isNotEmpty()) {
                     text = title
                     visibility = View.VISIBLE
@@ -105,7 +103,7 @@ class DialogHelper {
                 }
             }
 
-            (dialog.findViewById(R.id.dialog_help_info) as TextView).run {
+            (dialog.findViewById(R.id.confirm_message) as TextView).run {
                 if (message.isNotEmpty()) {
                     text = message
                     visibility = View.VISIBLE
@@ -113,17 +111,36 @@ class DialogHelper {
                     visibility = View.GONE
                 }
             }
-            if (onDismiss != null) {
-                alert.setPositiveButton(R.string.btn_confirm) { d, _ ->
+
+            val d = customDialog(context, dialog, onDismiss == null)
+            (dialog.findViewById(R.id.btn_confirm) as View).run {
+                if (onDismiss != null) {
+                    d.setOnDismissListener {
+                        onDismiss.run()
+                    }
+                }
+                setOnClickListener {
                     d.dismiss()
                 }
-                alert.setCancelable(false)
-            }
-            alert.setOnDismissListener {
-                onDismiss?.run()
             }
 
-            return animDialog(alert)
+            return d
+        }
+
+        fun helpInfo(context: Context,
+                     title: String = "",
+                     message: String = "",
+                     contentView: View,
+                     onConfirm: Runnable? = null): DialogWrap {
+            val view = getCustomDialogView(context, R.layout.dialog_help_info, title, message, contentView)
+
+            val dialog = customDialog(context, view)
+            view.findViewById<View>(R.id.btn_confirm).setOnClickListener {
+                dialog.dismiss()
+                onConfirm?.run()
+            }
+
+            return dialog
         }
 
         fun confirm(context: Context,
@@ -330,10 +347,26 @@ class DialogHelper {
             return openContinueAlert(context, R.layout.dialog_alert, title, message, onConfirm, null)
         }
 
+        fun alert(context: Context,
+                  title: String = "",
+                  message: String = "",
+                  contentView: View,
+                  onConfirm: Runnable? = null): DialogWrap {
+            val view = getCustomDialogView(context, R.layout.dialog_alert, title, message, contentView)
+
+            val dialog = customDialog(context, view)
+            view.findViewById<View>(R.id.btn_confirm).setOnClickListener {
+                dialog.dismiss()
+                onConfirm?.run()
+            }
+
+            return dialog
+        }
+
         fun customDialog(context: Context, view: View, cancelable: Boolean = true): DialogWrap {
             val useBlur = (
-                        context is Activity &&
-                        context.window.attributes.flags and WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER == 0
+                    context is Activity &&
+                            context.window.attributes.flags and WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER == 0
                     )
 
             val dialog = (if (useBlur) {
@@ -381,16 +414,6 @@ class DialogHelper {
             return setOutsideTouchDismiss(view, DialogWrap(dialog).setCancelable(cancelable))
         }
 
-        fun helpInfo(context: Context, title: Int, message: Int): DialogWrap {
-            val dialog =
-                    AlertDialog.Builder(context)
-                            .setTitle(title)
-                            .setMessage(message)
-                            .setPositiveButton(R.string.btn_confirm) { _, _ ->
-                            }
-            return animDialog(dialog)
-        }
-
         private fun isNightMode(context: Context): Boolean {
             val nightMode = AppCompatDelegate.getDefaultNightMode()
             if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
@@ -433,14 +456,22 @@ class DialogHelper {
                     try {
                         val bg = getWindowBackground(activity)
                         if (bg == Color.TRANSPARENT) {
-                            // AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-                            if (wallpaperMode || isNightMode(context)) {
-                                val d = ColorDrawable(Color.argb(255, 18, 18, 18))
+
+                            if (isFloating) {
+                                val d = ColorDrawable(bg)
                                 setBackgroundDrawable(d)
+                                setDimAmount(0.9f)
+                                return
                             } else {
-                                val d = ColorDrawable(Color.argb(255, 245, 245, 245))
-                                setBackgroundDrawable(d)
+                                if (wallpaperMode || isNightMode(context)) {
+                                    val d = ColorDrawable(Color.argb(255, 18, 18, 18))
+                                    setBackgroundDrawable(d)
+                                } else {
+                                    val d = ColorDrawable(Color.argb(255, 245, 245, 245))
+                                    setBackgroundDrawable(d)
+                                }
                             }
+
                         } else {
                             val d = ColorDrawable(bg)
                             setBackgroundDrawable(d)

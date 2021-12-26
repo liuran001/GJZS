@@ -84,7 +84,7 @@ public class ShellExecutor {
                     }
                 }
             }) : null;
-            new SimpleShellWatcher().setHandler(process, shellHandlerBase, onExit);
+            new SimpleShellWatcher().setHandler(context, process, shellHandlerBase, onExit);
 
             final OutputStream outputStream = process.getOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(outputStream);

@@ -10,16 +10,23 @@ import com.omarea.common.R
 import com.omarea.common.model.SelectItem
 
 class DialogItemChooser(
-        private val darkMode: Boolean,
-        private var items: ArrayList<SelectItem>,
-        private val multiple: Boolean = false,
-        private var callback: Callback? = null) : DialogFullScreen(
-        (if (items.size > 7) {
-            R.layout.dialog_item_chooser
-        } else {
-            R.layout.dialog_item_chooser_small
-        }),
-        darkMode
+    // 是否深色模式
+    private val darkMode: Boolean,
+    // 选择项以及选中状态
+    private var items: ArrayList<SelectItem>,
+    // 是否可多选
+    private val multiple: Boolean = false,
+    // 回调
+    private var callback: Callback? = null,
+    // 是否永远显示为小窗口（而不是全屏）
+    private val alwaysSmallDialog: Boolean? = null
+) : DialogFullScreen(
+    (if (items.size > 7 && alwaysSmallDialog != true) {
+        R.layout.dialog_item_chooser
+    } else {
+        R.layout.dialog_item_chooser_small
+    }),
+    darkMode
 ) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -88,14 +95,14 @@ class DialogItemChooser(
 
     private fun updateTitle() {
         view?.run {
-                findViewById<TextView?>(R.id.dialog_title)?.run {
-                    text = title
-                    visibility = if (title.isNotEmpty()) {
-                        View.VISIBLE
-                    } else {
-                        View.GONE
-                    }
+            findViewById<TextView?>(R.id.dialog_title)?.run {
+                text = title
+                visibility = if (title.isNotEmpty()) {
+                    View.VISIBLE
+                } else {
+                    View.GONE
                 }
+            }
         }
     }
 

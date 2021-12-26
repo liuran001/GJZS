@@ -10,6 +10,7 @@ import com.omarea.common.shared.FileWrite;
 import com.omarea.common.shared.MagiskExtend;
 import com.omarea.common.shell.KeepShell;
 import com.omarea.common.shell.KeepShellPublic;
+import com.omarea.common.shell.ShellTranslation;
 import com.omarea.krscript.FileOwner;
 import com.omarea.krscript.model.NodeInfoBase;
 
@@ -30,6 +31,7 @@ public class ScriptEnvironmen {
     private static String TOOKIT_DIR = "";
     private static boolean rooted = false;
     private static KeepShell privateShell;
+    private static ShellTranslation shellTranslation;
 
     public static boolean isInited() {
         return inited;
@@ -53,6 +55,7 @@ public class ScriptEnvironmen {
             return true;
         }
 
+        shellTranslation = new ShellTranslation(context.getApplicationContext());
         rooted = KeepShellPublic.INSTANCE.checkRoot();
 
         try {
@@ -210,7 +213,13 @@ public class ScriptEnvironmen {
 
         stringBuilder.append("\n\n");
         stringBuilder.append(environmentPath + " \"" + path + "\"");
-        return privateShell.doCmdSync(stringBuilder.toString());
+        if (shellTranslation != null) {
+            return shellTranslation.resolveRow(
+                privateShell.doCmdSync(stringBuilder.toString())
+            );
+        } else {
+            return privateShell.doCmdSync(stringBuilder.toString());
+        }
     }
 
     private static String getStartPath(Context context) {
