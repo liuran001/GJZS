@@ -70,7 +70,7 @@ jobs:
         env:
           CHANNEL_ID: ${{ secrets.TELEGRAM_TO }}
           BOT_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          FILE: app/build/outputs/apk/release/app-release.apk
+          FILE: ${{ github.workspace }}/app/build/outputs/apk/release/app-release.apk
           COMMIT_MESSAGE: |+
             New push to github\!
             ```
@@ -80,7 +80,7 @@ jobs:
             Snapshot apk is attached
         run: |
           ESCAPED=`python3 -c 'import json,os,urllib.parse; print(urllib.parse.quote(json.dumps(os.environ["COMMIT_MESSAGE"])))'`
-          curl -v "https://api.telegram.org/bot${BOT_TOKEN}/sendMediaGroup?chat_id=${CHANNEL_ID}&media=%5B%7B%22type%22:%22document%22,%20%22media%22:%22attach://release%22,%22parse_mode%22:%22MarkdownV2%22,%22caption%22:${ESCAPED}%7D%5D"  -F release="@$FILE"
+          curl -v "https://api.telegram.org/bot${{ secrets.BOTTOKEN }}/sendMediaGroup?chat_id=${{ secrets.MESSAGEID }}&media=%5B%7B%22type%22:%22document%22,%20%22media%22:%22attach://release%22,%22parse_mode%22:%22MarkdownV2%22,%22caption%22:${ESCAPED}%7D%5D"  -F release="@$FILE"
   skipped:
     runs-on: ubuntu-latest
     if: ${{ startsWith(github.event.head_commit.message, '[skip ci]') }}
@@ -89,8 +89,8 @@ jobs:
       - name: Send commit to telegram
         uses: appleboy/telegram-action@master
         with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
+          to: ${{ secrets.MESSAGEID }}
+          token: ${{ secrets.BOTTOKEN }}
           format: markdown
           message: |+
             New push to github!
