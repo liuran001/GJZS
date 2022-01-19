@@ -65,11 +65,35 @@ jobs:
         debug: false
         gitReleaseNotes: true
 
-    - name: Upload Artefact to Telegram Channel
-      if: steps.build.outputs.status == 'success' && !cancelled()
-      uses: appleboy/telegram-action@master
-      with:
-        to: ${{ secrets.MESSAGEID }}
-        token: ${{ secrets.BOTTOKEN }}
-        message: ${{ github.event.head_commit.message }}
-        document: ${{ github.workspace }}/app/build/outputs/apk/release/app-release.apk
+      - name: Post to channel
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+        env:
+          CHANNEL_ID: ${{ secrets.TELEGRAM_TO }}
+          BOT_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          FILE: app/build/outputs/apk/release/app-release.apk
+          COMMIT_MESSAGE: |+
+            New push to github\!
+            ```
+            ${{ github.event.head_commit.message }}
+            ```by `${{ github.event.head_commit.author.name }}`
+            See commit detail [here](${{ github.event.head_commit.url }})
+            Snapshot apk is attached
+        run: |
+          ESCAPED=`python3 -c 'import json,os,urllib.parse; print(urllib.parse.quote(json.dumps(os.environ["COMMIT_MESSAGE"])))'`
+          curl -v "https://api.telegram.org/bot${BOT_TOKEN}/sendMediaGroup?chat_id=${CHANNEL_ID}&media=%5B%7B%22type%22:%22document%22,%20%22media%22:%22attach://release%22,%22parse_mode%22:%22MarkdownV2%22,%22caption%22:${ESCAPED}%7D%5D"  -F release="@$FILE"
+  skipped:
+    runs-on: ubuntu-latest
+    if: ${{ startsWith(github.event.head_commit.message, '[skip ci]') }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Send commit to telegram
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          message: |+
+            New push to github!
+            *${{ github.event.head_commit.message }}* by ${{ github.event.head_commit.author.name }}
+            See commit detail [here](${{ github.event.head_commit.url }})
+            This push skipped building
