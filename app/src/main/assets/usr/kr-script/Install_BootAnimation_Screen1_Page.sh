@@ -50,6 +50,19 @@ cat <<Han
         </params>
     </action>
 </group>
+Han
+cat <<Han
+<group>
+    <action interruptible="false" >
+        <title>自选logo分区里提取图片</title>
+        <desc>从选定的logo镜像中提取出图片</desc>
+        <set>. ./Install_BootAnimation_Screen1_Format2.sh</set>
+        <params>
+            <param name="img" type="file" suffix="img" editable="true" required="true" title="选择提取的logo镜像" desc="温馨提示：可用「MT管理器」长按目录或文件 -->点属性 -->点击目录即可复制目录绝对路径，长按目录或长按名称即可复制文件绝对路径" required="true"/>
+            <param name="Pic_Dir" title="选择图片输出目录" type="folder" editable="true" required="true" desc="温馨提示：可用「MT管理器」长按目录或文件 --&gt;点属性 --&gt;点击目录即可复制目录绝对路径，长按目录或长按名称即可复制文件绝对路径" />
+        </params>
+    </action>
+</group>
 
 <group title="在线转换图片格式" >
     <page link="https://convertio.co/zh/jpg-bmp/">

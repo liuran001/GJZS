@@ -1,6 +1,6 @@
-Configuration=2021111404
-Magisk_Warehouse_version=2021111401
-App_Store_version=2021111403
+Configuration=2021122501
+Magisk_Warehouse_version=2021121801
+App_Store_version=2021112801
 Show_Compatibility_Mode=1
 MIUI=0
 
@@ -11,12 +11,12 @@ case "$1" in
 com.topjohnwu.magisk)
 apk='com.topjohnwu.magisk'
 name='Magisk'
-version='1e05f8c6-alpha'
-versionCode='23014'
+version='1c8ebfac-alpha'
+versionCode='23015'
 author='vvb2060 & John Wu'
 description='Magisk Manager'
-time='2021年11月14日'
-    [[ $Choice = 1 ]] && Download -cos 'Magisk_1e05f8c6-alpha.apk' "$1.apk" 10345300 7787b10b5db8a285cc169032e28e4688 "$1.apk"
+time='2021年11月28日'
+    [[ $Choice = 1 ]] && Download -cos 'Magisk_1c8ebfac-alpha.apk' "$1.apk" 10402316 dd03cc367025e9c852292662b17460e8 "$1.apk"
 ;;
 
 Han.automatic.rescue)
@@ -66,12 +66,12 @@ time='2021年10月15日'
 org.lsposed.manager)
 apk='org.lsposed.manager'
 name='LSPosed 模块管理器'
-version='v1.6.3'
-versionCode='6212'
+version='v1.6.5'
+versionCode='6272'
 author='LSPosed Developers'
 description='LSPosed Xposed框架模块管理器【这是管理器，模块请前往Magisk模块仓库安装】'
 apkfile="$PeiZhi_File/$apk-$versionCode.apk"
-time='2021年11月14日'
+time='2021年12月18日'
     if [[ $Choice = 1 ]]; then
         [[ $SDK -lt 27 ]] && abort "！$name-$version（$versionCode）不支持安卓8.1.0以下系统"
         if [[ ! -s "$apkfile" ]]; then
@@ -131,11 +131,11 @@ com.yxer.packageinstalles)
 apk='com.yxer.packageinstalles'
 name='R-安装组件'
 version='1.9.1-beta'
-versionCode='167'
+versionCode='175'
 author='依心所言'
 description='或许是安装狮的替代品，支持安装APK/Magisk模块'
-time='2021年11月14日'
-    [[ $Choice = 1 ]] && Download -cos "com.yxer.packageinstalles_v1.9.1-beta_167-r.apk" "$1.apk" 1681122 b2467d044bf44d348b6eb9dfa221a87d "$1.apk"
+time='2021年11月28日'
+    [[ $Choice = 1 ]] && Download -cos "com.yxer.packageinstalles_v1.9.1-beta_175-r.apk" "$1.apk" 1673296 45c40c73d1513116d602bc89ef7767b9 "$1.apk"
 ;;
 
 com.whatsbug.litiaotiao)
@@ -767,15 +767,15 @@ time='2021年8月15日'
 riru_lsposed)
 id='riru_lsposed'
 name='Riru - LSPosed'
-version='v1.6.3'
-versionCode='6212'
+version='v1.6.5'
+versionCode='6272'
 author='LSPosed Developers'
 description='一款基于Riru API开发的Xposed框架，支持运行在安卓8.1.0 ~ 12系统上。需要安装Riru v25.0.0或更高版本，Telegram: @LSPosed'
-time='2021年11月14日'
+time='2021年12月18日'
     if [[ $Choice = 1 ]]; then
         mask -v
         if [[ $MAGISK_VER_CODE -ge 23000 ]]; then
-             [[ $Choice = 1 ]] && Download -cos "LSPosed-v1.6.3-6212-riru-release.zip" "$1.zip" 2067864 3eaa2f61e0de5bc4a93b6db9fbda3f60 "$1.zip"
+             [[ $Choice = 1 ]] && Download -cos "LSPosed-v1.6.5-6272-riru-release.zip" "$1.zip" 2073642 c54751a0f312bb72c4669d212339a7fa "$1.zip"
         else
             echo "- 检测到Magisk版本在v23以下，无法安装最新版$version（$versionCode），开始安装v1.3.4（5501）版本"
             Download -file "Modules/LSPosed/LSPosed-v1.3.4-5501-release.zip" "$1.zip" 2189720 de39ec10f67b538fbdc60b7f0e6520f7 "$1.zip"

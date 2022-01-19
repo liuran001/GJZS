@@ -11,7 +11,7 @@ fi
 cat <<Han
 <?xml version="1.0" encoding="utf-8"?>
 <group>
-    <page html="`echo https://gjzs.qqcn.xyz/changelog`">
+    <page html="`echo https://gjzs.online/changelog`">
         <title>$title</title>
         <summary sh=". ./CheckUpdate.sh" />
     </page>
@@ -47,15 +47,21 @@ cat <<Han
 <group>
     <page html="`echo https://coding-pages-bucket-3403475-7618161-17959-614140-1253773788.cos-website.ap-hongkong.myqcloud.com`">
         <title>捐赠</title>
-        <desc>维护「搞机助手·R」耗费了我大量的时间，你可以捐赠表示支持</desc>
+        <desc>您可以通过微信/QQ/支付宝/支付宝红包的方式支持我的开发</desc>
     </page>
-    <page link="`echo https://file.qqcn.xyz/GJZS/Other/Donate_Han.png`">
-        <title>给原作者捐赠</title>
-        <desc>搞机助手原作者「情非得已c」</desc>
+    <page link="`echo https://afdian.net/@BDovo`">
+        <title>爱发电主页</title>
+        <desc>感谢支持</desc>
     </page>
 </group>
 
 <group title="进群交流">
+<!-- START -->
+    <page link="`echo https://www.igjbbs.cn/threads/77/`">
+        <title>QQ频道</title>
+        <desc>需更新QQ到8.8.38及更高版本</desc>
+    </page>
+<!-- END -->
 <!-- START -->
     <page link="`echo https://gjzs.qqcn.xyz/joinqqgroup2`">
         <title>QQ一群</title>
