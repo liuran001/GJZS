@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <group title="杂项">
 <!-- START -->
+    <switch shell="hidden" auto-off="true" interruptible="false" visible="[[ &#96;getprop ro.board.platform&#96; = lahaina ]] &#38;&#38; echo 1 || echo 0">
+        <title>卓越性能</title>
+        <desc>解除游戏锁频/锁帧及高温提示，请注意保护您的设备！</desc>
+        <get>getprop vtools.thermal.disguise</get>
+        <set>. ./switchs/MIUI/MIUI_ThermalDisguise_Set.sh</set>
+    </switch>
+<!-- END -->
+<!-- START -->
     <switch shell="hidden" auto-off="true" interruptible="false">
         <title>去除MIUI应用包管理组件对第三方更新系统应用的限制</title>
         <desc>理论上全机型通用，即时生效，若不生效请尝试使用旧版，关闭为恢复默认</desc>
