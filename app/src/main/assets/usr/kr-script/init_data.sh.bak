@@ -1,6 +1,6 @@
-Configuration=2021122501
-Magisk_Warehouse_version=2021121801
-App_Store_version=2021112801
+Configuration=2022012404
+Magisk_Warehouse_version=2022012404
+App_Store_version=2022012404
 Show_Compatibility_Mode=1
 MIUI=0
 
@@ -11,12 +11,12 @@ case "$1" in
 com.topjohnwu.magisk)
 apk='com.topjohnwu.magisk'
 name='Magisk'
-version='1c8ebfac-alpha'
-versionCode='23015'
+version='256d7156-alpha'
+versionCode='23018'
 author='vvb2060 & John Wu'
 description='Magisk Manager'
-time='2021年11月28日'
-    [[ $Choice = 1 ]] && Download -cos 'Magisk_1c8ebfac-alpha.apk' "$1.apk" 10402316 dd03cc367025e9c852292662b17460e8 "$1.apk"
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos 'Magisk_256d7156-alpha.apk' "$1.apk" 10369556 534502af26e489fbb1986bb7d6f98aaf "$1.apk"
 ;;
 
 Han.automatic.rescue)
@@ -32,35 +32,35 @@ time='2021年9月12日'
 
 com.omarea.vtools)
 apk='com.omarea.vtools'
-name='Scene4'
-version='4.6.12 Beta'
-versionCode=202110111
+name='Scene5 Beta'
+version='5.0.0 Beta9'
+versionCode=202201191
 author='嘟嘟Ski'
 description='一个集高级重启、应用安装自动点击、CPU调频等多项功能于一体的工具箱。'
-time='2021年10月16日'
-    [[ $Choice = 1 ]] && Download -cos "Scene4_4.6.12-Beta.apk" "$1.apk" 6889918 27d67a391937d2e7272048a0a990da14 "$1.apk"
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "com.omarea.vtools_202201191.apk" "$1.apk" 6556906 8eb108116ce98284de9029777d498759 "$1.apk"
 ;;
 
 bin.mt.plus)
 apk='bin.mt.plus'
 name='MT管理器'
-version='2.10.0'
-versionCode='21101200'
+version='2.10.1'
+versionCode='22011900'
 author='Bin'
 description='文件管理器/安卓逆向神器'
-time='2021年11月14日'
-    [[ $Choice = 1 ]] && Download -cos "bin.mt.plus_2.10.0.apk" "$1.apk" 12662632 93c0c6527a166f3c3d189f750d4e3d5d "$1.apk"
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "MT_2.10.1.apk" "$1.apk" 17235430 af0c9a9852e2248b69de05ff6c75a648 "$1.apk"
 ;;
 
 bin.mt.plus.canary)
 apk='bin.mt.plus.canary'
 name='MT管理器内测版'
-version='2.10.0-beta'
-versionCode='21092700'
+version='2.10.1-beta'
+versionCode='22011900'
 author='Bin'
 description='文件管理器/安卓逆向神器，此版本为内测版可与正式版共存，因为是内测版如果你在使用中发现bug，可向QQ：243454893提交反馈问题'
-time='2021年10月15日'
-    [[ $Choice = 1 ]] && Download -cos "MT2.10.0-beta.apk" "$1.apk" 12584678 3585341dab81b1123ec9b5f107b5f007 "$1.apk"
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "bin.mt.plus.canary_2.10.1-beta.apk" "$1.apk" 17202646 a7fa674c0f1d1c3b10e506511f002998 "$1.apk"
 ;;
 
 org.lsposed.manager)
@@ -130,12 +130,23 @@ time='2021年10月10日'
 com.yxer.packageinstalles)
 apk='com.yxer.packageinstalles'
 name='R-安装组件'
-version='1.9.1-beta'
-versionCode='175'
+version='1.9.2-beta'
+versionCode='188'
 author='依心所言'
 description='或许是安装狮的替代品，支持安装APK/Magisk模块'
-time='2021年11月28日'
-    [[ $Choice = 1 ]] && Download -cos "com.yxer.packageinstalles_v1.9.1-beta_175-r.apk" "$1.apk" 1673296 45c40c73d1513116d602bc89ef7767b9 "$1.apk"
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "com.yxer.packageinstalles_v1.9.2-beta_188-r.apk" "$1.apk" 1868846 8ce96b251eff895ffb9268d1fa095a41 "$1.apk"
+;;
+
+com.yxer.rpack.hook)
+apk='com.yxer.rpack.hook'
+name='R-安装组件-扩展'
+version='1.8.8'
+versionCode='15'
+author='依心所言'
+description='R-安装组件的Xposed扩展'
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "com.yxer.rpack.hook_v1.8.8.apk" "$1.apk" 166776 c596f83e2efdf7bb56934881561e3146 "$1.apk"
 ;;
 
 com.whatsbug.litiaotiao)
@@ -153,17 +164,17 @@ ru.zdevs.zarchiver.pro)
 apk='ru.zdevs.zarchiver.pro'
 name='ZArchiver Pro'
 version='1.0.0'
-versionCode=10003
+versionCode=10033
 author='Ant-ON'
 description='解压缩神器'
-time='2021年10月10日'
+time='2022年1月24日'
     case $ABI in
     armeabi-v7a)
-        [[ $Choice = 1 ]] && Download -cos "ZArchiver-Pro_1.0.0_Test0930_arm.apk" "$1.apk" 4977849 281142beb4238c1f5c2e54e9afc3af8b "$1.apk"
+        [[ $Choice = 1 ]] && Download -cos "ZArchiver Pro_1.0.0_10033_arm.apk" "$1.apk" 4716311 b7d2dcd8c831e9191195a7126aa54e47 "$1.apk"
     ;;
     arm64-v8a)
-        versionCode=10005
-        [[ $Choice = 1 ]] && Download -cos "ZArchiver-Pro_1.0.0_Test0930_arm64.apk" "$1.apk" 5403238 687ae88047701e40d9a2d0f526bcbb10 "$1.apk"
+        versionCode=10035
+        [[ $Choice = 1 ]] && Download -cos "ZArchiver Pro_1.0.0_10035_arm64.apk" "$1.apk" 5078903 324172d178a64d79e7eac8e1f823f9c7 "$1.apk"
     ;;
     *)
         [[ $Choice = 1 ]] && echo "不支持的系统架构=$ABI"
@@ -294,12 +305,12 @@ time='2021年5月15日'
 com.tsng.hidemyapplist)
 apk='com.tsng.hidemyapplist'
 name='隐藏应用列表'
-version='2.2.1'
-versionCode=67
+version='2.3.2'
+versionCode=73
 author='DR-TSNG'
 description='拦截应用对应用列表的请求，使应用无法检测到特定应用/应用列表  作用域只需要系统框架【此应用诞生的初衷是为了保护隐私，请不要用来开G】'
-time='2021年10月10日'
-    [[ $Choice = 1 ]] && Download -cos "HideMyApplist-V2.2.1.apk" "$1.apk" 4252642 63a308f346ce856537835eebb4c7afcf "$1.apk"
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "V2.3.2.apk" "$1.apk" 6019753 d82d541f312e6930c1151fda1f5258ce "$1.apk"
 ;;
 
 com.tsng.applistdetector)
@@ -316,14 +327,14 @@ time='2021年10月10日'
 com.coderstory.toolkit)
 apk='com.coderstory.toolkit'
 name='安卓4.4-12核心破解'
-version='3.7'
-versionCode='1920'
+version='3.8'
+versionCode='1921'
 author='CoderStory'
 description='XP模块：降级安装/不同签名安装'
-time='2021年10月16日'
+time='2022年1月24日'
     case $SDK in
     29 | 30 | 31) #3
-        [[ $Choice = 1 ]] && Download -cos "core-patch-3.7.apk" "$1.apk" 37544 fbeca1e2805c033083bae2643de6012c "$1.apk"
+        [[ $Choice = 1 ]] && Download -cos "com.coderstory.toolkit_3.8.apk" "$1.apk" 37544 2f33f7f058ec3db91227731208c505d2 "$1.apk"
     ;;
     28) #2
         version='2.2'
@@ -360,67 +371,67 @@ time='2021年7月7日'
 nil.nadph.qnotified)
 apk='nil.nadph.qnotified'
 name='QNotified'
-version='0.8.22.ef219e7'
-versionCode=1630851433
+version='1.0.0.479023d'
+versionCode=1642792513
 author='reinit'
 description='XP模块：QQ辅助性功能增强'
-time='2021年10月4日'
-    [[ $Choice = 1 ]] && Download -cos "QNotified_0.8.22.ef219e7.apk" "$1.apk" 4841890 9e0416ebbcbce7103e80734edaf79201 "$1.apk"
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "QNotified-release1.0.0.479023d.apk" "$1.apk" 5904188 bfbfaa2062e59eb10aac472506cf5fd9 "$1.apk"
 ;;
 
-com.ld.Install)
-apk='com.ld.Install'
-name='绿逗模块安装器'
-version='4.0'
-versionCode=66
+com.hicore.Inataller)
+apk='com.hicore.Inataller'
+name='小菜豆安装器4.11'
+version='4.1'
+versionCode=233
 author='Hicores'
 description='XP模块：QQ辅助性功能增强'
-time='2021年10月4日'
-    [[ $Choice = 1 ]] && Download -cos "com.ld.Install_4.0.apk" "$1.apk" 1613361 f12ad81a8d102a47200e5f057613fb7d "$1.apk"
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "com.hicore.Inataller_4.11.apk" "$1.apk" 3314068 ca332362d754c8d2a362d248a2923342 "$1.apk"
 ;;
 
 me.kyuubiran.qqcleaner)
 apk='me.kyuubiran.qqcleaner'
 name='QQ瘦身'
-version='1.7.3'
-versionCode='37'
+version='1.7.4'
+versionCode='38'
 author='KyuubiRan'
 description='XP模块：定时自动清理QQ/TIM/微信的缓存文件'
-time='2021年6月14日'
-    [[ $Choice = 1 ]] && Download -file "APK/QQCleaner/me.kyuubiran.qqcleaner_37.apk" "$1.apk" 82835 83a6162f0106157f0d8c09ca1a2265c5 "$1.apk"
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "me.kyuubiran.qqcleaner_1.7.4.apk" "$1.apk" 80842 729da5d71498723694d3dd42d819b4af "$1.apk"
 ;;
 
 com.fkzhang.qqxposed)
 apk='com.fkzhang.qqxposed'
 name='QX模块'
-version='2.8'
-versionCode=34
+version='2.9'
+versionCode=35
 author='fkzhang'
 description='XP模块：Add Extra features to QQ Mobile. QQ增加更多功能'
-time='2021年4月3日'
-    [[ $Choice = 1 ]] && Download -file "APK/QQXposed/QQXposed_34.apk" "$1.apk" 3471784 a38a2a2247ae921c262797c29be4e87e "$1.apk"
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "QQXposed35_2.9.apk" "$1.apk" 3177384 4ce72acafda0fc88a459a188295cb8fe "$1.apk"
 ;;
 
 com.fankes.qqsavebattery)
 apk='com.fankes.qqsavebattery'
-name='TSBattery（QQ省电模块）'
-version='2.2'
-versionCode=5
+name='TSBattery'
+version='3.0'
+versionCode=9
 author='星夜不荟'
-description='XP模块：干掉QQ/TIM的电源锁使得QQ/TIM更省电'
-time='2021年10月5日'
-    [[ $Choice = 1 ]] && Download -cos "TSBattery_2.2.apk" "$1.apk" 2323738 e4b860a6b3bc9d5f349307391e78a608 "$1.apk"
+description='XP模块：QQ/TIM/微信省电模块'
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "com.fankes.tsbattery_3.0.apk" "$1.apk" 2417387 9904915ce1f1a27a09b355cc2ba65db1 "$1.apk"
 ;;
 
 com.fkzhang.wechatxposed)
 apk='com.fkzhang.wechatxposed'
 name='微X模块'
-version='2.24'
-versionCode=87
+version='2.28'
+versionCode=91
 author='fkzhang'
 description='XP模块：Add extra features to Wechat. 微信增加更多功能'
-time='2021年9月12日'
-    [[ $Choice = 1 ]] && Download -file "APK/WechatXposed/WeXposed_87_2.24.apk" "$1.apk" 4167283 b7d2c34cbc244826220b188c963c1911 "$1.apk"
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "WechatXposed_p_91_2.28.apk" "$1.apk" 4187703 1c9501fd3f07f3ce583933fa8f247192 "$1.apk"
 ;;
 
 com.mhook.dialog)
@@ -459,12 +470,12 @@ time='2021年6月3日'
 com.surcumference.fingerprintpay)
 apk='com.surcumference.fingerprintpay'
 name='指纹支付'
-version='4.0.0'
+version='4.2.1'
 versionCode=21
 author='eritpchy'
 description='XP模块：让微信、支付宝、淘宝和腾讯QQ在支持指纹识别的手机上使用指纹支付, 即使他们都不打算支持!'
-time='2021年9月1日'
-    [[ $Choice = 1 ]] && Download -gh "eritpchy/FingerprintPay/releases/download/4.0.0/xposed.com.surcumference.fingerprintpay.wechatfp.4.0.0.release.apk" "$1.apk" 1934174 bf41870eb06399c4ec97ff07f97d4172 "$1.apk"
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "xposed.com.surcumference.fingerprintpay.wechatfp.4.2.1.release.apk" "$1.apk" 1935710 e7992a9847d18929d783296af82131a9 "$1.apk"
 ;;
 
 com.coderstory.flyme)
@@ -536,12 +547,12 @@ time='2021年2月23日'
 cn.coderstory.miui.water)
 apk='cn.coderstory.miui.water'
 name='淘米水'
-version='1.3'
-versionCode='4'
+version='1.7.3'
+versionCode='12'
 author='CoderStory'
 description='XP模块：小米净化同作者，一款MIUI去广告插件。仅支持最新版本的MIUI 12.5，Android版本10.0起步'
-time='2021年6月20日'
-    [[ $Choice = 1 ]] && Download -file "APK/MIUIWater/cn.coderstory.miui.water_4.apk" "$1.apk" 1258775 c2d1d4bda1ffdeace24c517b2490da93 "$1.apk"
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "1.7.3.apk" "$1.apk" 1271070 fe2814c3e8843d4068f45788d6619b90 "$1.apk"
 ;;
 
 com.mikutart.bettermiui)
@@ -569,12 +580,12 @@ time='2021年7月7日'
 pansong291.xposed.quickenergy)
 apk='pansong291.xposed.quickenergy'
 name='XQ_Crystal'
-version='1.4.9'
-versionCode=20210626
+version='1.5.0'
+versionCode=20211120
 author='未知'
 description='XP模块：支付宝扩展模块，快速收取蚂蚁森林能量'
-time='2021年7月7日'
-    [[ $Choice = 1 ]] && Download -file "APK/XQ_Crystal/XQuickEnergy_Crystal_1.4.9_release.apk" "$1.apk" 414717 49315c5fc794c8010227c67c18786d1e "$1.apk"
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "XQ_Crystal_1.5.0.apk" "$1.apk" 428444 a6f821f0ae850a9f7ce1e9feaa304ed3 "$1.apk"
 ;;
 
 com.god.vip)
@@ -602,12 +613,12 @@ time='2021年4月4日'
 club.youppgd.adhook)
 apk='club.youppgd.adhook'
 name='联璧模块'
-version='80'
-versionCode=80
+version='99'
+versionCode=99
 author='youppgd'
 description='XP模块：去除腾讯视频、爱奇艺、优酷、芒果、豆瓣的各处广告，只支持官方app'
-time='2021年7月7日'
-    [[ $Choice = 1 ]] && Download -file "APK/AdHook/club.youppgd.adhook_v80.apk" "$1.apk" 2108042 29c36a4c9c176eeced4013f92b523da1 "$1.apk"
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "adhook_v99.apk" "$1.apk" 2388501 9399a6c5b55bbccd08ae1394af579b76 "$1.apk"
 ;;
 
 cn.kwaiching.hook)
@@ -635,56 +646,23 @@ time='2020年9月6日'
 me.iacn.biliroaming)
 apk='me.iacn.biliroaming'
 name='哔哩漫游'
-version='1.4.7'
-versionCode=47
+version='1.5.5'
+versionCode=55
 author='yujincheng08'
 description='XP模块：解除B站客户端番剧区域限制的Xposed模块，并且提供其他小功能'
-time='2021年10月10日'
-    [[ $Choice = 1 ]] && Download -cos "BiliRoaming_1.4.7.apk" "$1.apk" 405590 34984ba0c154a969a86adb168963d54b "$1.apk"
-;;
-
-me.zjns.lovecloudmusic)
-apk='me.zjns.lovecloudmusic'
-name='云村清洁工'
-version='2.7.1'
-versionCode=21
-author='xmodule.org'
-description='XP模块：适用于网易云音乐'
-time='2021年3月14日'
-    [[ $Choice = 1 ]] && Download -coding "21051601/apks/$1.apk" "$1.apk" 29937 2222129d7579d6ecc8900572e3f91be8 "$1.apk"
-;;
-
-com.specher.music163)
-apk='com.specher.music163'
-name='网易云音乐插件'
-version='2.8.2'
-versionCode=21
-author='Specher'
-description='XP模块：网易云音乐插件'
-time='2020年8月14日'
-    [[ $Choice = 1 ]] && Download -coding "21051601/apks/$1.apk" "$1.apk" 29180 fab79b2c910db212d1824282094bc9f3 "$1.apk"
-;;
-
-com.raincat.unblockmusicpro)
-apk='com.raincat.unblockmusicpro'
-name='UnblockMusic Pro'
-version='2.8.3'
-versionCode=283
-author='nining377'
-description='XP模块：安卓端基于Xposed解锁网易云音乐客户端变灰歌曲'
-time='2021年3月14日'
-    [[ $Choice = 1 ]] && Download -file "APK/UnblockMusic_Pro/UnblockMusic.Pro_Xposed_2.8.3-release.apk" "$1.apk" 15762959 4ec5f22ac07f9624ba15f5517532e2ed "$1.apk"
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "BiliRoaming_1.5.5.apk" "$1.apk" 321149 0cc988933cff112d342b38099668c9ed "$1.apk"
 ;;
 
 com.raincat.dolby_beta)
 apk='com.raincat.dolby_beta'
 name='杜比大喇叭β版'
-version='210'
-versionCode=210
+version='3.4.0'
+versionCode=340
 author='nining377'
-description='XP模块：网易云音乐去广告/签到/精简美化'
-time='2021年3月29日'
-    [[ $Choice = 1 ]] && Download -coding "21051601/apks/$1.apk" "$1.apk" 1061327 9952d2805a3b86d2b4e9835979902fd2 "$1.apk"
+description='XP模块：网易云音乐去广告/签到/精简美化/解灰'
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "com.raincat.dolby_beta-3.4.0.apk" "$1.apk" 47683673 0af8a300fdae5e498c43ad0d02aa11ce "$1.apk"
 ;;
 
 me.dyq.android.SDLink)
@@ -818,17 +796,6 @@ time='2021年3月24日'
     [[ $Choice = 1 ]] && Download -file "Modules/Xposed/xposed.zip" "$1.zip" 108675627 d083690c555fa59b5f29112fc1dbb0dc "$1.zip"
 ;;
 
-AUMM)
-id='AUMM'
-name='AUMM(自动更新Magisk模块)'
-version='1.0.2'
-versionCode=102
-author='快播内部工作人员'
-description='【此模块的使用有一定风险，请确保你能够应对各种应模块更新造成的突发情况！！！】这是自动更新magisk模块的模块，根据对接搞机助手重制版接口制成，每天凌晨4点自动进行检测更新模块。为方便追溯bug以及节省内存空间，log日志文件将在每周一凌晨4点进行一次删除。'
-time='2021年8月27日'
-    [[ $Choice = 1 ]] && Download -file "Modules/AUMM/AUMM-v1.0.2.zip" "$1.zip" 9566 fa97b23c84f974dcd0597b7474e4391c "$1.zip"
-;;
-
 uperf)
 id='uperf'
 name='Uperf（YC调度）'
@@ -844,12 +811,12 @@ ttf)
 MIUI=1
 id='ttf'
 name='空字体-自动识别'
-version='0707'
-versionCode='210707'
+version='v4.2(211229)'
+versionCode='211229'
 author='余空&阿巴酱'
 description='解决MIUI使用字体模块失效及无法实现多字重问题.'
-time='2021年8月8日'
-    [[ $Choice = 1 ]] && Download -cos "ttf.zip" "$1.zip" 3489 7c4e5ad520922f95876ee19af3550f43 "$1.zip"
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "ttfv4.2.zip" "$1.zip" 30332 d603c98633f91832bcdd0927481c9161 "$1.zip"
 ;;
 
 turbo-charge)
@@ -979,17 +946,6 @@ author='Ai Sauce'
 description='一个自动更新自定义hosts订阅源的脚本，请在使用前启用设置中的Systemless Hosts'
 time='2021年4月12日'
     [[ $Choice = 1 ]] && Download -coding "21051601/modules/AnyHosts_v3.0.zip" "$1.zip" 21041 89185fd1d4202ed05e03754c4f7a888f "$1.zip"
-;;
-
-UnblockNeteaseMusic)
-id='UnblockNeteaseMusic'
-name='UnblockNeteaseMusic for Magisk'
-version='Canary'
-versionCode='20210530'
-author='依然的爱'
-description='网易云音乐解锁变灰，服务状态控制请在在终端以su权限输入UnblockNeteaseMusic以控制，默认开机自启'
-time='2021年7月20日'
-    [[ $Choice = 1 ]] && Download -file "Modules/UFM/UnblockNeteaseMusic_for_Magisk.zip" "$1.zip" 53793468 c4835b20e3196bdfc974083b81749057 "$1.zip"
 ;;
 
 zw_fileclear)
@@ -1430,7 +1386,7 @@ name='Riru (Riru - Core)'
 version='v26.1.3.r513.8e95115fd4'
 versionCode=513
 author='Rikka, yujincheng08'
-description='提供一种将代码注入zygote进程的方法，所有以Riru开头的模块必刷模块【需要使用EdXposed和指纹支付模块的用户请使用25.4.4版本，不要更新】'
+description='提供一种将代码注入zygote进程的方法，所有以Riru开头的模块必刷模块【需要使用EdXposed模块的用户请使用25.4.4版本，不要更新】'
 time='2021年11月7日'
 if [[ $Riru_version -eq 1 ]]; then
     [[ $Choice = 1 ]] && Download -gh "RikkaApps/Riru/releases/download/v26.1.3/riru-v26.1.3.r513.8e95115fd4-release.zip" "$1.zip" 172118 39e9016e3042088439689c259c8dcfa5 "$1.zip"
@@ -1465,59 +1421,103 @@ time='2021年10月15日'
     [[ $Choice = 1 ]] && Download -cos "sui-v12.2.1-release.zip" "$1.zip" 1121038 bcc99bfd189406ed22779031b33f0468 "$1.zip"
 ;;
 
-riru_hidemyapplist)
-id='riru_hidemyapplist'
-name='Riru - Hide My Applist'
-version='v0.7'
-versionCode='28'
+hidemyapplist)
+id='hidemyapplist'
+name='Enhance mode for HideMyApplist'
+version='v1.0'
+versionCode='35'
 author='Nullptr'
-description='Xposed模块「隐藏应用列表」的扩展，实现对文件检测的拦截。'
-time='2021年10月10日'
-    [[ $Choice = 1 ]] && Download -cos "MagiskExtension-V0.7.zip" "$1.zip" 748112 e03b212f6861060893f21e43755d65db "$1.zip"
+description='Xposed模块「隐藏应用列表」的扩展，实现对文件检测的拦截。（此为Riru模块，Zygisk版请前往GitHub下载）'
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "Riru-HideMyApplist-V1.0.zip" "$1.zip" 1228748 603c3cce0bf71a35161700c11a701b79 "$1.zip"
 ;;
 
 riru-module-xfingerprint-pay-wechat)
 id='riru-module-xfingerprint-pay-wechat'
 name='Riru - 指纹支付 - 微信'
-version='v3.9.21'
-versionCode='2'
+version='v4.2.1'
+versionCode='3'
 author='Jason Eric'
-description='让微信支持指纹支付 Fingerprint pay for WeChat.【请使用riru25.4.4及以下版本】'
-time='2020年12月7日'
-    [[ $Choice = 1 ]] && Riru_version=3 && Download -coding "21051601/modules/riru-module-xfingerprint-pay-wechat-v3.9.21.zip" "$1.zip" 1371819 74360fe397f80f4c1c588d0b53d59598 "$1.zip"
+description='让微信支持指纹支付 Fingerprint pay for WeChat.'
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "riru-module-xfingerprint-pay-wechat-v4.2.1-release.zip" "$1.zip" 1635489 77d44ed196f883fbbabfd3c2ed832cc0 "$1.zip"
 ;;
 
 riru-module-xfingerprint-pay-qq)
 id='riru-module-xfingerprint-pay-qq'
 name='Riru - 指纹支付 - QQ'
-version='v3.9.22'
-versionCode='2'
+version='v4.2.1'
+versionCode='3'
 author='Jason Eric'
-description='让QQ支持指纹支付 Fingerprint pay for QQ.【请使用riru25.4.4及以下版本】'
-time='2021年2月2日'
-    [[ $Choice = 1 ]] && Riru_version=3 && Download -coding "21051601/modules/riru-module-xfingerprint-pay-qq-v3.9.22.zip" "$1.zip" 1220444 59b03e73329d88df922c2569a2656733 "$1.zip"
+description='让QQ支持指纹支付 Fingerprint pay for QQ.'
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "riru-module-xfingerprint-pay-qq-v4.2.1-release.zip" "$1.zip" 1635436 2cdc78ca392bdaedf8ae376514e69a84 "$1.zip"
 ;;
 
 riru-module-xfingerprint-pay-alipay)
 id='riru-module-xfingerprint-pay-alipay'
 name='Riru - 指纹支付 - 支付宝'
-version='v3.9.22'
-versionCode='2'
+version='v4.2.1'
+versionCode='3'
 author='Jason Eric'
-description='让支付宝支持指纹支付 Fingerprint pay for Alipay.【请使用riru25.4.4及以下版本】'
-time='2021年2月2日'
-    [[ $Choice = 1 ]] && Riru_version=3 && Download -coding "21051601/modules/riru-module-xfingerprint-pay-alipay-v3.9.22.zip" "$1.zip" 1213292 5e9fba5f9b6104d1a5cfd0c6535ff26b "$1.zip"
+description='让支付宝支持指纹支付 Fingerprint pay for Alipay.'
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "riru-module-xfingerprint-pay-alipay-v4.2.1-release.zip" "$1.zip" 1635506 9a6a65f93a0f705b6f6490175f7ed26d "$1.zip"
 ;;
 
 riru-module-xfingerprint-pay-taobao)
 id='riru-module-xfingerprint-pay-taobao'
 name='Riru - 指纹支付 - 淘宝'
-version='v3.9.22'
-versionCode='2'
+version='v4.2.1'
+versionCode='3'
 author='Jason Eric'
-description='让淘宝支持指纹支付 Fingerprint pay for Taobao.【请使用riru25.4.4及以下版本】'
-time='2021年2月2日'
-    [[ $Choice = 1 ]] && Riru_version=3 && Download -coding "21051601/modules/riru-module-xfingerprint-pay-taobao-v3.9.22.zip" "$1.zip" 1218749 30a4efe7b2eab2ebc1a752bc0b51a9a8 "$1.zip"
+description='让淘宝支持指纹支付 Fingerprint pay for Taobao.'
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "riru-module-xfingerprint-pay-taobao-v4.2.1-release.zip" "$1.zip" 1635452 0fca16dca11e1331f3db804bff983f0a "$1.zip"
+;;
+
+zygisk-module-xfingerprint-pay-wechat)
+id='zygisk-module-xfingerprint-pay-wechat'
+name='Zygisk - 指纹支付 - 微信'
+version='v4.2.1'
+versionCode='3'
+author='Jason Eric'
+description='让微信支持指纹支付 Fingerprint pay for WeChat.'
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "zygisk-module-xfingerprint-pay-wechat-v4.2.1-release.zip" "$1.zip" 1634454 42f0b8b8a40534033a46aa29eace88dd "$1.zip"
+;;
+
+zygisk-module-xfingerprint-pay-qq)
+id='zygisk-module-xfingerprint-pay-qq'
+name='Zygisk - 指纹支付 - QQ'
+version='v4.2.1'
+versionCode='3'
+author='Jason Eric'
+description='让QQ支持指纹支付 Fingerprint pay for QQ.'
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "zygisk-module-xfingerprint-pay-qq-v4.2.1-release.zip" "$1.zip" 1634419 48fd539e2be4cf83610b8857a9e1c2f2 "$1.zip"
+;;
+
+zygisk-module-xfingerprint-pay-alipay)
+id='zygisk-module-xfingerprint-pay-alipay'
+name='Zygisk - 指纹支付 - 支付宝'
+version='v4.2.1'
+versionCode='3'
+author='Jason Eric'
+description='让支付宝支持指纹支付 Fingerprint pay for Alipay.'
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "zygisk-module-xfingerprint-pay-alipay-v4.2.1-release.zip" "$1.zip" 1634451 cf60f38f6a86952c23f03db0c5cbc514 "$1.zip"
+;;
+
+zygisk-module-xfingerprint-pay-taobao)
+id='zygisk-module-xfingerprint-pay-taobao'
+name='Zygisk - 指纹支付 - 淘宝'
+version='v4.2.1'
+versionCode='3'
+author='Jason Eric'
+description='让淘宝支持指纹支付 Fingerprint pay for Taobao.'
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -cos "zygisk-module-xfingerprint-pay-taobao-v4.2.1-release.zip" "$1.zip" 1634399 856093fd0c57184a918676db908b390a "$1.zip"
 ;;
 
 coloros-magisk)
@@ -1608,6 +1608,17 @@ author='Santiago'
 description='Mac地址随机化模块，连接公共WIFI更安全。安装后去开发者设置找到选项打开设置即可。'
 time='2020年6月11日'
     [[ $Choice = 1 ]] && Download -coding "21051601/modules/$1.zip" "$1.zip" 8138 f988087ed2668cf6c8888774f6ceeaf8 "$1.zip"
+;;
+
+MISANSbyFUNBOAT)
+id='MISANSbyFUNBOAT'
+name='MI SANS模块byFUNBOAT（多字重）'
+version='v4.0'
+versionCode='4'
+author='FUNBOAT'
+description='MIUI13的Mi Sans字体，九字重'
+time='2022年1月24日'
+    [[ $Choice = 1 ]] && Download -url "https://u.qqcn.xyz/rjcnED" "$1.zip" 48338760 22e5ccfc52da03f94ce8102030476a5c "$1.zip"
 ;;
 
 ziyouzhiyi)
