@@ -57,27 +57,17 @@ copy_sepolicy_rules() {
         fi
         
         # Copy all enabled sepolicy.rule
-        if [[ "$Magisk_lite_Version" != "" ]];then
-        	for r in /data/adb/lite_modules*/*/sepolicy.rule; do
-        	    [ -f "$r" ] || continue
-            	local MODDIR=${r%/*}
-            	[ -f $MODDIR/disable ] && continue
-            	[ -f $MODDIR/remove ] && continue
-            	local MODNAME=${MODDIR##*/}
-            	mkdir -p $RULESDIR/$MODNAME
-            	cp -f $r $RULESDIR/$MODNAME/sepolicy.rule
-        	done
-        else
-        	for r in /data/adb/modules*/*/sepolicy.rule; do
-        	    [ -f "$r" ] || continue
-            	local MODDIR=${r%/*}
-            	[ -f $MODDIR/disable ] && continue
-            	[ -f $MODDIR/remove ] && continue
-            	local MODNAME=${MODDIR##*/}
-            	mkdir -p $RULESDIR/$MODNAME
-            	cp -f $r $RULESDIR/$MODNAME/sepolicy.rule
-        	done
-        fi
+        spr='/data/adb/modules*/*/sepolicy.rule'
+        [[ $Magisk_Type = lite ]] && spr='/data/adb/lite_modules*/*/sepolicy.rule'
+	    for r in $spr; do
+    	    [ -f "$r" ] || continue
+        	local MODDIR=${r%/*}
+        	[ -f $MODDIR/disable ] && continue
+        	[ -f $MODDIR/remove ] && continue
+        	local MODNAME=${MODDIR##*/}
+        	mkdir -p $RULESDIR/$MODNAME
+        	cp -f $r $RULESDIR/$MODNAME/sepolicy.rule
+    	done
 }
 
 dummy() {
@@ -117,11 +107,8 @@ fi
             mkdir -p "$TMPDIR"
             unzip -oq "$ZIPFILE" "module.prop" -d $TMPDIR
                 if [[ -f $TMPDIR/module.prop ]]; then
-                	if [[ "$Magisk_lite_Version" != "" ]];then
-                		MODDIRNAME=lite_modules
-                	else
-                    	MODDIRNAME=modules
-                    fi
+                    MODDIRNAME=modules
+                    [[ $Magisk_Type = lite ]] && MODDIRNAME=lite_modules
                     MODULEROOT=/data/adb/${MODDIRNAME}_update
                     MODID=`grep_prop id $TMPDIR/module.prop`
                     MODNAME=`grep_prop name $TMPDIR/module.prop`

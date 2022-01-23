@@ -2,17 +2,13 @@
 export Util_Functions_Code=2021100402
 export SDdir=/data/media/0
 export Magisk=`$which magisk`
-if $Have_ROOT;then
+export Modules_Dir=/data/adb/modules
+if $Have_ROOT; then
 	if [[ -x $Magisk ]]; then
-		Magisk_lite_Version=$(echo `$Magisk -v` | grep "lite")
-		if [[ "$Magisk_lite_Version" != "" ]];then
-			export Modules_Dir=/data/adb/lite_modules
-		else
-			export Modules_Dir=/data/adb/modules
-		fi
+		[[ `$Magisk -v | grep 'alpha'` != '' ]] && export Magisk_Type=alpha
+		[[ `$Magisk -v | grep 'lite'` != '' ]] && export Magisk_Type=lite
+		[[ $Magisk_Type = lite ]] && export Modules_Dir=/data/adb/lite_modules
 	fi
-else
-	export Modules_Dir=/data/adb/modules
 fi
 export Script_Dir=$TMPDIR/tmp
 export install_MOD=$ShellScript/Magisk_Module/install_Module_Script.sh

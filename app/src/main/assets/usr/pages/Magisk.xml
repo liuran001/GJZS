@@ -35,7 +35,7 @@
 <!-- START -->
     <action>
         <title>检查Magisk模块</title>
-        <desc>检查Magisk模块内是否有dd或rm操作（由People11提供代码）</desc>
+        <desc>检查Magisk模块内是否有dd或rm（格机）操作</desc>
         <set>. ./Magisk_Module/Check_Module.sh</set>
         <params>
             <param name="Check_dd" label="检查dd行为" type="checkbox" value="1" />
@@ -57,7 +57,7 @@
         <params>
             <param name="ChongQi" label="是否刷完模块自动重启系统" type="switch" />
             <param name="Error" label="不显示模块里的错误信息" desc="注释：该错误信息log来自模块里，关闭状态时会显示完整日志等于Magisk的保存日志功能。" type="switch" value="1" />
-            <param name="Compatible" label="使用兼容模式（兼容旧模块）" desc="注：该「兼容模式」需要模块作者遵守Magisk Modules开发指南规定，不更改update-binary脚本" type="switch" value="1" />
+            <param name="Compatible" label="使用兼容模式（兼容旧模块）" desc="注：该「兼容模式」需要模块作者遵守Magisk Modules开发指南规定，不更改update-binary脚本" type="switch" />
             <param name="File" type="file" suffix="zip" editable="true" title="可输入模块文件绝对路径，也可以使用文件选择器选择文件" desc="温馨提示：可用「MT管理器」长按目录或文件 --&gt;点属性 --&gt;点击目录即可复制目录绝对路径，长按目录或长按名称即可复制文件绝对路径" required="true"/>
         </params>
     </action>
