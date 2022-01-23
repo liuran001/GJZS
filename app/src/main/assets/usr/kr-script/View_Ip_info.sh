@@ -4,7 +4,7 @@
 
 ip -br addr
 echo -e "\n开始查看位置IP："
-curl cip.cc
+curl cip.cc -s
 # ip.cip.cc
 # myip.ipip.net
 # ip.tool.lu
