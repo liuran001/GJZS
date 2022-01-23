@@ -1,4 +1,6 @@
 Customize|自定义
+MI12P|小米 12 Pro
+MI12PX|小米 12X
 MI11U|小米 11 Ultra
 MI10S|小米 10S
 MI10P|小米 10 Pro
@@ -15,6 +17,7 @@ RMIK30PC|红米 K30 Pro 变焦版
 RMIK30P|红米 K30 Pro
 RMIN10P|红米 Note 10 Pro
 HWP50P|华为 P50 Pro
+HWP50PK|华为 P50 Pocket
 HWP40PP|华为 P40 Pro+
 HWP40P|华为 P40 Pro
 HWM40RS|华为 Mate 40 RS
@@ -23,14 +26,18 @@ HWMX2|华为 Mate X2
 HWMP11|华为 MatePad 11
 HWMXS|华为 Mate XS
 HWMX|华为 Mate X
+IQ9P|IQOO 9 Pro
+IQ9|IQOO 9
 IQ8P|IQOO 8 Pro
 IQ8|IQOO 8
 IQ7|IQOO 7
+IQN5S|IQOO NEO 5S
 IQN5|IQOO NEO 5
 IQ5P|IQOO 5 Pro
 SHARK4SP|黑鲨 4S Pro
 SHARK4S|黑鲨 4S
 SHARK3S|黑鲨 3S
+OP10P|一加 10 Pro
 OP9RT|一加 9RT
 OP9R|一加 9R
 OP9|一加 9
@@ -74,3 +81,5 @@ GGP5|Google Pixel 5
 GGP6|Google Pixel 6
 GGP6P|Google Pixel 6 Pro
 GGPC|Google Pixel C
+WSA|适用于 Android™️ 的 Windows 子系统
+SNXPP1|Sony Xperia PRO-I
