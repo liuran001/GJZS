@@ -500,7 +500,7 @@
     </action>
 <!-- END -->
 <!-- START -->
-    <action auto-off="true" interruptible="false" visible="[[ -d &#34;$DATA_DIR/com.tmri.app.main&#34; ]] &#38;&#38; echo 1 || echo 0">
+    <action auto-off="true" interruptible="false" visible="[[ -d &#34;$DATA_DIR/cn.gov.pbc.dcep&#34; ]] &#38;&#38; echo 1 || echo 0">
         <title>修复数字人民币闪退</title>
         <desc>请先为数字人民币启用Magisk Hide/加入排除列表</desc>
         <set>pm disable cn.gov.pbc.dcep/com.secneo.apkwrapper.r.S</set>
