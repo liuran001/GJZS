@@ -1,7 +1,3 @@
-#本脚本由　by Han | 情非得已c，编写
-#应用于搞机助手上
-
-
 DaYin() { echo -e "\n-----------------------------------------------\n"; }
 abort() {
     echo "$@" 1>&2
@@ -520,7 +516,7 @@ elif [[ "$1" = mjckfy ]]; then
                                 fi
                                 appid="20170831000079437"
                                 key="vZWmk1G9usRAI3eFc9Mt"
-                                salt="123456"
+                                salt="114514"
                                 text="${appid}${FY}${salt}${key}"
                                 sign=`echo -n "$text" | md5sum`
                                 sign=`echo ${sign/ */}`

@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- START -->
-	<group visible="[[ -d /data/user/0/com.miui.tsmclient/cache/image_manager_disk_cache ]] &#38;&#38; echo 1 || echo 0">
-		<page title="NFC卡面管理" config-sh="./nfc.sh"/>
-	</group>
-<!-- END -->
 <group title="杂项">
 <!-- START -->
     <page html="https://www.testufo.com/">
@@ -13,6 +8,11 @@
 <!-- START -->
     <page html="http://nstool.netease.com/" >
         <title>网易DNS检测</title>
+    </page>
+<!-- END -->
+<!-- START -->
+    <page html="https://ip.skk.moe" >
+        <title>IP地址检测</title>
     </page>
 <!-- END -->
 <!-- START -->
@@ -195,6 +195,18 @@
         <params>
             <param name="MD5" title="可输入md5进行校验，也可以留空只查看md5" ></param>
             <param name="File" type="file" suffix="zip" editable="true" required="true" title="可输入文件绝对路径，也可以使用文件选择器选择文件" desc="温馨提示：可用「MT管理器」长按目录或文件 -->点属性 -->点击目录即可复制目录绝对路径，长按目录或长按名称即可复制文件绝对路径" />
+        </params>
+    </action>
+<!-- END -->
+
+<!-- Copy From People11 -->
+<!-- START -->
+    <action>
+        <title>字符串BASE64加解密</title>
+        <set>. ./Base64.sh</set>
+        <params>
+            <param name="Decode" label="解密模式" type="checkbox" value="0" />
+            <param name="Input" placeholder="输入想要处理的文本" editable="true" required="true" />
         </params>
     </action>
 <!-- END -->

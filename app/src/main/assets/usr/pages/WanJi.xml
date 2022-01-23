@@ -95,7 +95,7 @@
 <!-- START -->
     <action interruptible="false">
         <title>自定义修改字体大小</title>
-        <desc>部分应用可能不不会生效例如QQ用的自己的代码，不是引用的系统的</desc>
+        <desc>部分应用可能不会生效例如QQ用的自己的代码，不是引用的系统的</desc>
         <set>settings put system font_scale $size</set>
         <params>
             <param name="size" required="true" type="number" desc="推荐值08 ~ 1.5之间，否则后果自负"/>

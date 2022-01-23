@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <group title="杂项">
 <!-- START -->
+	<group visible="[[ -d /data/user/0/com.miui.tsmclient/cache/image_manager_disk_cache ]] &#38;&#38; echo 1 || echo 0">
+		<page title="NFC卡面管理" config-sh="./nfc.sh"/>
+	</group>
+<!-- END -->
+<!-- START -->
     <switch shell="hidden" auto-off="true" interruptible="false" visible="[[ &#96;getprop ro.board.platform&#96; = lahaina ]] &#38;&#38; echo 1 || echo 0">
         <title>卓越性能</title>
         <desc>解除游戏锁频/锁帧及高温提示，请注意保护您的设备！</desc>
@@ -23,6 +28,18 @@
         <get>. ./switchs/MIUI/MIUI_Performance_Mode_Get.sh</get>
         <set>. ./switchs/MIUI/MIUI_Performance_Mode_Set.sh</set>
     </switch>
+<!-- END -->
+
+<!-- Copy From People11 -->
+<!-- START -->
+    <action interruptible="false">
+        <title>打开/关闭传感器保护</title>
+        <desc>MIUI似乎去掉了关闭所有传感器的开关，可以在这里打开传感器保护</desc>
+        <set>if [[ $x == 0 ]];then service call sensor_privacy 8 i32 0; service call sensor_privacy 4 i32 0; echo "已关闭传感器保护，可以打开相机测试是否生效"; else service call sensor_privacy 8 i32 1; service call sensor_privacy 4 i32 1; echo "已打开传感器保护，可以打开相机测试是否生效"; fi</set>
+        <params>
+            <param name="x" options-sh="echo -e '0|恢复默认'\\n'1|打开传感器保护'" />
+        </params>
+    </action>
 <!-- END -->
 <!-- START -->
     <page config-sh=". $ShellScript/MIUI_ROM_Links.sh">

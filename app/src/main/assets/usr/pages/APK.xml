@@ -7,53 +7,12 @@
     </action>
 <!-- END -->
 <!-- START -->
-    <action confirm="true" auto-off="true" interruptible="false">
-        <title>修复淘宝闪退</title>
-        <desc>清理优酷和淘宝下载的热更新文件，出现淘宝或优酷闪退的，可以试试</desc>
-        <set>. ./app_simple.sh</set>
-    </action>
-<!-- END -->
-<!-- START -->
     <action interruptible="false" auto-off="true">
         <title>查看/结束三方应用进程</title>
         <desc>查看哪些第三方应用在后台运行，选中即可结束运行</desc>
         <set>. ./Kill_APK-3.sh -k</set>
             <param name="package" type="app" multiple="true" options-sh=". ./Kill_APK-3.sh" />
     </action>
-<!-- END -->
-<!-- START -->
-    <action auto-off="true" interruptible="false" visible="[[ -d &#34;$DATA_DIR/com.tencent.mobileqq&#34; ]] &#38;&#38; echo 1 || echo 0">
-        <title>去除QQ个性化风格</title>
-        <set>. ./QQ_Personalized_style_set.sh</set>
-        <pages>
-            <param name="Bubble" title="去除QQ聊天气泡" options-sh="printf 'false|默认\ntrue|禁用'" />
-            <param name="Drop_Expression" title="去除聊天界面掉表情" options-sh="printf 'false|默认\ntrue|禁用'" />
-            <param name="Font" title="去除字体特效" options-sh="printf 'false|默认\ntrue|禁用'" />
-            <param name="Expression" title="去除表情推介" options-sh="printf 'false|默认\ntrue|禁用'" />
-            <param name="Head_Pendant" title="去除头像挂件" options-sh="printf 'false|默认\ntrue|禁用'" />
-        </pages>
-    </action>
-<!-- END -->
-<!-- START -->
-    <action auto-off="true1" interruptible="false" visible="[[ -d &#34;$DATA_DIR/top.trumeet.mipush&#34; ]] &#38;&#38; echo 1 || echo 0">
-        <title>清空mipush注册信息</title>
-        <desc>清空第三方mipush全部注册信息，注册异常时可使用，慎点</desc>
-        <set>. ./mipush_clear.sh</set>
-    </action>
-<!-- END -->
-<!-- START -->
-    <action auto-off="true1" interruptible="false" visible="[[ -d &#34;$DATA_DIR/com.google.android.gsf&#34; ]] &#38;&#38; echo 1 || echo 0">
-        <title>进入「Google设置」</title>
-        <set>am start -n com.google.android.gms/.app.settings.GoogleSettingsLink &#38;&gt;/dev/null</set>
-    </action>
-<!-- END -->
-<!-- START -->
-    <switch auto-off="true" interruptible="false" id="Google_Service" visible=". ./support/Google_Service.sh">
-        <title>Google服务</title>
-        <desc>关闭此开关以临时禁用Google框架</desc>
-        <get>. ./switchs/Google_Service_Get.sh</get>
-        <set>. ./switchs/Google_Service_Set.sh</set>
-    </switch>
 <!-- END -->
 </group>
 
@@ -509,5 +468,83 @@
             <param name="View_APK5" title="请输入包名来查看该应用的电量消耗情况" />
         </params>
     </action>
+<!-- END -->
+</group>
+<group title="其他">
+<!-- START -->
+    <action auto-off="true" interruptible="false" visible="[[ -d &#34;$DATA_DIR/com.taobao.taobao&#34; ]] &#38;&#38; echo 1 || echo 0">
+        <title>修复淘宝闪退</title>
+        <desc>清理优酷和淘宝下载的热更新文件</desc>
+        <set>. ./app_simple.sh</set>
+    </action>
+<!-- END -->
+<!-- START -->
+    <action auto-off="true" interruptible="false" visible="[[ -d &#34;$DATA_DIR/com.tencent.mm&#34; ]] &#38;&#38; echo 1 || echo 0">
+        <title>打开微信调试页面</title>
+        <desc>可在该页面关闭一些广告</desc>
+        <set>am start com.tencent.mm/com.tencent.mm.plugin.brandservice.ui.timeline.BizTestUI</set>
+    </action>
+<!-- END -->
+<!-- START -->
+    <action auto-off="true" interruptible="false" visible="[[ -d &#34;$DATA_DIR/com.tencent.mm&#34; ]] &#38;&#38; echo 1 || echo 0">
+        <title>打开微信维修厂</title>
+        <desc>可以对微信进行一些更深入的调整</desc>
+        <set>am start com.tencent.mm/com.tencent.mm.plugin.repairer.ui.RepairerMainUI</set>
+    </action>
+<!-- END -->
+<!-- START -->
+    <action auto-off="true" interruptible="false" visible="[[ -d &#34;$DATA_DIR/com.tencent.mm&#34; ]] &#38;&#38; echo 1 || echo 0">
+        <title>打开微信HardCoder配置页面</title>
+        <desc>可以对微信自带的调度系统进行配置</desc>
+        <set>am start com.tencent.mm/com.tencent.mm.ui.tools.HardCoderSettingUI</set>
+    </action>
+<!-- END -->
+<!-- START -->
+    <action auto-off="true" interruptible="false" visible="[[ -d &#34;$DATA_DIR/com.tmri.app.main&#34; ]] &#38;&#38; echo 1 || echo 0">
+        <title>修复数字人民币闪退</title>
+        <desc>请先为数字人民币启用Magisk Hide/加入排除列表</desc>
+        <set>pm disable cn.gov.pbc.dcep/com.secneo.apkwrapper.r.S</set>
+    </action>
+<!-- END -->
+<!-- START -->
+    <action auto-off="true" interruptible="false" visible="[[ -d &#34;$DATA_DIR/com.tmri.app.main&#34; ]] &#38;&#38; echo 1 || echo 0">
+        <title>修复12123闪退</title>
+        <desc>请先为12123启用Magisk Hide/加入排除列表</desc>
+        <set>pm disable com.tmri.app.main/x.t.i.a.n</set>
+    </action>
+<!-- END -->
+<!-- START -->
+    <action auto-off="true" interruptible="false" visible="[[ -d &#34;$DATA_DIR/com.tencent.mobileqq&#34; ]] &#38;&#38; echo 1 || echo 0">
+        <title>去除QQ个性化风格</title>
+        <set>. ./QQ_Personalized_style_set.sh</set>
+        <pages>
+            <param name="Bubble" title="去除QQ聊天气泡" options-sh="printf 'false|默认\ntrue|禁用'" />
+            <param name="Drop_Expression" title="去除聊天界面掉表情" options-sh="printf 'false|默认\ntrue|禁用'" />
+            <param name="Font" title="去除字体特效" options-sh="printf 'false|默认\ntrue|禁用'" />
+            <param name="Expression" title="去除表情推介" options-sh="printf 'false|默认\ntrue|禁用'" />
+            <param name="Head_Pendant" title="去除头像挂件" options-sh="printf 'false|默认\ntrue|禁用'" />
+        </pages>
+    </action>
+<!-- END -->
+<!-- START -->
+    <action auto-off="true1" interruptible="false" visible="[[ -d &#34;$DATA_DIR/top.trumeet.mipush&#34; ]] &#38;&#38; echo 1 || echo 0">
+        <title>清空MIPush注册信息</title>
+        <desc>清空第三方MIPush全部注册信息，注册异常时可使用，慎点</desc>
+        <set>. ./mipush_clear.sh</set>
+    </action>
+<!-- END -->
+<!-- START -->
+    <action auto-off="true" interruptible="false" visible="[[ -d &#34;$DATA_DIR/com.google.android.gsf&#34; ]] &#38;&#38; echo 1 || echo 0">
+        <title>进入Google设置</title>
+        <set>am start com.google.android.gms/.app.settings.GoogleSettingsLink &#38;&gt;/dev/null</set>
+    </action>
+<!-- END -->
+<!-- START -->
+    <switch auto-off="true" interruptible="false" id="Google_Service" visible=". ./support/Google_Service.sh">
+        <title>Google服务</title>
+        <desc>关闭此开关以临时禁用Google框架</desc>
+        <get>. ./switchs/Google_Service_Get.sh</get>
+        <set>. ./switchs/Google_Service_Set.sh</set>
+    </switch>
 <!-- END -->
 </group>
