@@ -81,13 +81,10 @@ copy_sepolicy_rules() {
 }
 
 dummy() {
+    rm -rf $Script_Dir &>/dev/null
+    mkdir -p $Script_Dir
+    unzip -p "$ZIPFILE" 'META-INF/com/google/android/update-binary' &>$jian
     echo "- 正在安装「$M」……"
-    $Magisk --install-module "$ZIPFILE"
-    if [[ $? != 0 ]]; then
-        echo '! 刷入失败，尝试旧方法'
-        rm -rf $Script_Dir &>/dev/null
-        mkdir -p $Script_Dir
-        unzip -p "$ZIPFILE" 'META-INF/com/google/android/update-binary' &>$jian
         if [[ -s $jian ]]; then
             sh $jian dummy 1 "$ZIPFILE"
         else
@@ -98,7 +95,6 @@ dummy() {
             abort "！未找到update-binary文件，无法刷入"
         fi
         rm -rf $Script_Dir &>/dev/null
-    fi
 }
 
 
