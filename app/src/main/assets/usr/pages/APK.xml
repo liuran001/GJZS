@@ -514,6 +514,13 @@
     </action>
 <!-- END -->
 <!-- START -->
+    <action auto-off="true" interruptible="false" visible="[[ -d &#34;$DATA_DIR/com.shanghaionstar&#34; ]] &#38;&#38; echo 1 || echo 0">
+        <title>修复安吉星闪退</title>
+        <desc>请先为安吉星启用Magisk Hide</desc>
+        <set>pm disable com.shanghaionstar/com.secneo.apkwrapper.r.S</set>
+    </action>
+<!-- END -->
+<!-- START -->
     <action auto-off="true" interruptible="false" visible="[[ -d &#34;$DATA_DIR/com.tencent.mobileqq&#34; ]] &#38;&#38; echo 1 || echo 0">
         <title>去除QQ个性化风格</title>
         <set>. ./QQ_Personalized_style_set.sh</set>
