@@ -41,7 +41,7 @@ jobs:
         keyPassword: ${{ secrets.KEY_PASSWORD }}
       env:
         # override default build-tools version (29.0.3) -- optional
-        BUILD_TOOLS_VERSION: "30.0.2"
+        BUILD_TOOLS_VERSION: "28.0.3"
 
     - name: Rename APK
       run: cd app/build/outputs/apk/release && mv app-release-unsigned-signed.apk app-release.apk
