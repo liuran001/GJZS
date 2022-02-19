@@ -2,14 +2,14 @@
 #代码来自https://u.qqcn.xyz/QkccEM
 local downloadUrl="$1"
 local md5="$2"
-downloader_result=""
+export downloader_result=""
 local hisotry="$HOME/downloader/path/$md5"
 if [[ -f "$hisotry" ]]; then
     local abs_path=`cat "$hisotry"`
     if [[ -f "$abs_path" ]]; then
         local local_file=`md5sum "$abs_path"`
         if [[ "$local_file" = "$md5" ]]; then
-            downloader_result="$abs_path"
+            export downloader_result="$abs_path"
             return
         fi
     fi
@@ -28,10 +28,8 @@ do
             break
         elif [[ "$status" -gt 0 ]]; then
             echo "progress:[$status/100]"
-            # echo '已下载：'$status
         elif [[ "$status" = '-1' ]]; then
             echo '文件下载失败' 1>&2
-            # 退出
             return 10
         fi
     fi
@@ -40,10 +38,10 @@ done
 if [[ "$md5" != "" ]]; then
     local hisotry="$HOME/downloader/path/$md5"
     if [[ -f "$hisotry" ]]; then
-        downloader_result=`cat "$hisotry"`
+        export downloader_result=`cat "$hisotry"`
     else
         echo '下载完成，但文件MD5与预期的不一致' 1>&2
     fi
 else
-    downloader_result=`cat $HOME/downloader/result/$task_id`
+    export downloader_result=`cat $HOME/downloader/result/$task_id`
 fi
