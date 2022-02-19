@@ -13,7 +13,7 @@ Install_Curl() {
         echo "- curl不存在，开始下载"
         . $Core
         downloader "$ELF1_Path/curl3" "https://mscdnfile.qqcn.xyz/GJZS/Other/Curl/`getprop ro.product.cpu.abi`"
-        downloader "~/cacert.pem" "https://mscdnfile.qqcn.xyz/GJZS/Other/Curl/cacert.pem"
+        downloader ~/cacert.pem "https://mscdnfile.qqcn.xyz/GJZS/Other/Curl/cacert.pem"
         chmod +x $ELF1_Path/curl3
 }
 
