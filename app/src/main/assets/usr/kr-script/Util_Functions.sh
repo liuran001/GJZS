@@ -1,5 +1,5 @@
 #Custom variable
-export Util_Functions_Code=2022022001
+export Util_Functions_Code=2022022002
 export SDdir=/data/media/0
 export Magisk=`$which magisk`
 export Modules_Dir=/data/adb/modules
@@ -531,6 +531,56 @@ Download() {
         [[ $? -eq 0 ]] && return 0
         File_Name2="$File_Name"
         Start_Download "$Link" "$Download_File" "$Referer"
+}
+
+downloader() {
+    #代码来自https://u.qqcn.xyz/QkccEM
+    local downloadUrl="$2"
+    local md5="$3"
+    downloader_result=""
+    local hisotry="$HOME/downloader/path/$md5"
+    if [[ -f "$hisotry" ]]; then
+        local abs_path=`cat "$hisotry"`
+        if [[ -f "$abs_path" ]]; then
+            local local_file=`md5sum "$abs_path"`
+            if [[ "$local_file" = "$md5" ]]; then
+                downloader_result="$abs_path"
+                return
+            fi
+        fi
+    fi
+    local task_id=`cat /proc/sys/kernel/random/uuid`
+    activity="$Package_name/.ActionPageOnline"
+    am start -a android.intent.action.MAIN -n "$activity" --es downloadUrl "$downloadUrl" --ez autoClose true --es taskId "$task_id" 1 > /dev/null
+    local task_path="$HOME/downloader/status/$task_id"
+    local result_path="$HOME/downloader/result/$task_id"
+    while [[ '1' = '1' ]]
+    do
+        if [[ -f "$task_path" ]]; then
+            local status=`cat "$task_path"`
+            if [[ "$status" = 100 ]] || [[ -f "$result_path" ]]; then
+                echo "progress:[$status/100]"
+                break
+            elif [[ "$status" -gt 0 ]]; then
+                echo "progress:[$status/100]"
+            elif [[ "$status" = '-1' ]]; then
+                echo '文件下载失败' 1>&2
+                return 10
+            fi
+        fi
+        sleep 1
+    done
+    if [[ "$md5" != "" ]]; then
+        local hisotry="$HOME/downloader/path/$md5"
+        if [[ -f "$hisotry" ]]; then
+            downloader_result=`cat "$hisotry"`
+        else
+            echo '下载完成，但文件MD5与预期的不一致' 1>&2
+        fi
+    else
+        downloader_result=`cat $HOME/downloader/result/$task_id`
+    fi
+    [[ -f $downloader_result ]] && cp $downloader_result "$1"
 }
 
 Mount_Write() {
