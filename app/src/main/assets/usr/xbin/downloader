@@ -15,28 +15,9 @@ if [[ -f "$hisotry" ]]; then
         fi
     fi
 fi
-
 local task_id=`cat /proc/sys/kernel/random/uuid`
 activity="$Package_name/.ActionPageOnline"
 am start -a android.intent.action.MAIN -n "$activity" --es downloadUrl "$downloadUrl" --ez autoClose true --es taskId "$task_id" 1 > /dev/null
-local task_path="$START_DIR/downloader/status/$task_id"
-local result_path="$START_DIR/downloader/result/$task_id"
-while [[ '1' = '1' ]]
-do
-    if [[ -f "$task_path" ]]; then
-        local status=`cat "$task_path"`
-        if [[ "$status" = 100 ]] || [[ -f "$result_path" ]]; then
-            echo "progress:[$status/100]"
-            break
-        elif [[ "$status" -gt 0 ]]; then
-            echo "progress:[$status/100]"
-        elif [[ "$status" = '-1' ]]; then
-            echo '文件下载失败' 1>&2
-            return 10
-        fi
-    fi
-    sleep 1
-done
 if [[ "$md5" != "" ]]; then
     local hisotry="$START_DIR/downloader/path/$md5"
     if [[ -f "$hisotry" ]]; then
