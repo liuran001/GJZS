@@ -11,10 +11,12 @@ Inject() {
 
 Install_Curl() {
         echo "- curl不存在，开始下载"
-        wget --no-check-certificate -nv -O $ELF1_Path/curl3 "https://file.qqcn.xyz/GJZS/Other/Curl/`getprop ro.product.cpu.abi`"
-        [[ ! -d "~/Configuration_File" ]] && mkdir ~/Configuration_File
-        wget --no-check-certificate -nv -O ~/cacert.pem "https://file.qqcn.xyz/GJZS/Other/Curl/cacert.pem"
+        downloader "https://mscdnfile.qqcn.xyz/GJZS/Other/Curl/`getprop ro.product.cpu.abi`"
+        mv -f "$downloader_result" $ELF1_Path/curl3
+        downloader "https://mscdnfile.qqcn.xyz/GJZS/Other/Curl/cacert.pem"
+        mv -f "$downloader_result" ~/cacert.pem
         chmod +x $ELF1_Path/curl3
+        
 }
 
 
@@ -46,7 +48,7 @@ SCRIPT() {
 DATA() {
     if [[ ! -f ~/offline2 ]]; then
         echo "- 开始检测脚本更新"
-        Inject init_all_MD5.sh "$data_MD5"
+        Inject data.php "$data_MD5"
     fi
 }
 DATA

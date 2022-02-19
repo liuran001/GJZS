@@ -1,5 +1,5 @@
 #Custom variable
-export Util_Functions_Code=2021100402
+export Util_Functions_Code=2022022001
 export SDdir=/data/media/0
 export Magisk=`$which magisk`
 export Modules_Dir=/data/adb/modules
@@ -507,7 +507,7 @@ Download() {
             ;;
             -file)
                 shift
-                Link="https://file.qqcn.xyz/GJZS/$ID"
+                Link="https://mscdnfile.qqcn.xyz/GJZS/$ID"
             ;;
             -gh)
                 shift
@@ -515,9 +515,7 @@ Download() {
             ;;
             -cos)
                 shift
-                Link="https://file-1253773788.file.myqcloud.com/$ID"
-                #大佬行行好吧，腾讯云COS好贵的，打了我付不起（
-                Referer="`echo 'aHR0cHM6Ly9nanpzLnFxY24ueHl6Lz90ZW5jZW50X2Nvc19xaXVxaXVkYWxhb2J1eWFvc2h1YWxpdWxpYW5nCg=='|base64 -d`"
+                Link="https://mscdnfile.qqcn.xyz/file/$ID"
             ;;
             *)
                 abort "！暂不支持下载"
