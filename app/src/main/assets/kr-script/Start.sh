@@ -11,14 +11,11 @@ Inject() {
 
 Install_Curl() {
         echo "- curl不存在，开始下载"
-        downloader "https://mscdnfile.qqcn.xyz/GJZS/Other/Curl/`getprop ro.product.cpu.abi`"
-        mv -f "$downloader_result" $ELF1_Path/curl3
-        downloader "https://mscdnfile.qqcn.xyz/GJZS/Other/Curl/cacert.pem"
-        mv -f "$downloader_result" ~/cacert.pem
+        . $Core
+        downloader "$ELF1_Path/curl3" "https://mscdnfile.qqcn.xyz/GJZS/Other/Curl/`getprop ro.product.cpu.abi`"
+        downloader "~/cacert.pem" "https://mscdnfile.qqcn.xyz/GJZS/Other/Curl/cacert.pem"
         chmod +x $ELF1_Path/curl3
-        
 }
-
 
 SCRIPT() {
    if [[ ! -f $2 ]]; then
@@ -74,7 +71,6 @@ if [[ -f $data_MD5 ]]; then
               . $ShellScript/APP_Version.sh
             fi
         fi
-        [[ -f ~/offline2 || ! -f $Load ]] && cp -f $Load.bak $Load
 else
   echo "！未连接到互联网❓"
 fi
