@@ -66,6 +66,7 @@ if [[ -f $data_MD5 ]]; then
      fi
         if [[ ! -f ~/offline2 ]];then
             SCRIPT $init_data_ID "$Load" $init_data_MD5 配置
+            [[ ! -f "$Load" ]] && cp "$Load".bak "$Load"
             if [[ ! -f ~/offline ]];then
               SCRIPT $APP_Version_ID "$ShellScript/APP_Version.sh" $APP_Version_MD5 版本信息
               . $ShellScript/APP_Version.sh
