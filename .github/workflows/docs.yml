@@ -40,10 +40,14 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: Install dependencies
-        run: yarn --frozen-lockfile
+        run: |
+          cd docs
+          yarn --frozen-lockfile
 
       - name: Build documentation site
-        run: yarn docs:release
+        run: |
+          cd docs
+          yarn vuepress build
 
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v2.2.0
