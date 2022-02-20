@@ -3,6 +3,8 @@ name: Android CI
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+      - 'docs/**'
   workflow_dispatch:
 
 jobs:
