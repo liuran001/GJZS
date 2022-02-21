@@ -31,7 +31,7 @@ cat <<Han
     </text>
 </group>
 Han
-exit 1
+exit 0
 }
 
 install_KJ() {
