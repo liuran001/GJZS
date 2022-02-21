@@ -76,7 +76,7 @@
 <!-- START -->
     <action interruptible="false">
         <title>禁用所有Magisk模块</title>
-        <set>. ./ADB/Card_Brush_Bag.sh -mask 禁用所有Magisk模块-1.0 禁用所有Magisk模块</set>
+        <set>. ./ADB/Card_Brush_Bag.sh -mask 禁用所有Magisk模块-2.0 禁用所有Magisk模块</set>
         <params>
             <param name="File_Dir" title="可输入目录绝对路径，也可以通过文件选择器长按选定目录" type="folder" editable="true" required="true" desc="上面是默认路径，请自行根据需求更改目录，温馨提示：可用「MT管理器」长按目录或文件 -->点属性 -->点击目录即可复制目录绝对路径，长按目录或长按名称即可复制文件绝对路径" value-sh="Dir=$Data_Dir/Card_Brush_Bag.log; if [[ -f $Dir ]]; then cat $Dir; else echo $GJZS; fi " />
         </params>
@@ -85,7 +85,7 @@
 <!-- START -->
     <action interruptible="false">
         <title>卸载Riru &#38; Riru EDXposed卡刷包</title>
-        <set>. ./ADB/Card_Brush_Bag.sh -edxp 删除Riru和EDXposed-1.0 删除Riru和EDXposed</set>
+        <set>. ./ADB/Card_Brush_Bag.sh -edxp 删除Riru和EDXposed-2.0 删除Riru和EDXposed</set>
         <params>
             <param name="File_Dir" title="可输入目录绝对路径，也可以通过文件选择器长按选定目录" type="folder" editable="true" required="true" desc="上面是默认路径，请自行根据需求更改目录，温馨提示：可用「MT管理器」长按目录或文件 -->点属性 -->点击目录即可复制目录绝对路径，长按目录或长按名称即可复制文件绝对路径" value-sh="Dir=$Data_Dir/Card_Brush_Bag.log; if [[ -f $Dir ]]; then cat $Dir; else echo $GJZS; fi " />
         </params>
@@ -94,7 +94,7 @@
 <!-- START -->
     <action interruptible="false">
         <title>卸载Riru &#38; Riru LSPosed卡刷包</title>
-        <set>. ./ADB/Card_Brush_Bag.sh -lspxp 删除Riru和LSPosed-1.0 删除Riru和LSPosed-1.0</set>
+        <set>. ./ADB/Card_Brush_Bag.sh -lspxp 删除Riru和LSPosed-2.0 删除Riru和LSPosed-1.0</set>
         <params>
             <param name="File_Dir" title="可输入目录绝对路径，也可以通过文件选择器长按选定目录" type="folder" editable="true" required="true" desc="上面是默认路径，请自行根据需求更改目录，温馨提示：可用「MT管理器」长按目录或文件 -->点属性 -->点击目录即可复制目录绝对路径，长按目录或长按名称即可复制文件绝对路径" value-sh="Dir=$Data_Dir/Card_Brush_Bag.log; if [[ -f $Dir ]]; then cat $Dir; else echo $GJZS; fi " />
         </params>
