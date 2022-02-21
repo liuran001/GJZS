@@ -10,6 +10,10 @@ export const zh: NavbarConfig = [
     link: '/Changelog/',
   },
   {
+    text: '支持',
+    link: '/Support/',
+  },
+  {
     text: '友情链接',
     children: [
       {
