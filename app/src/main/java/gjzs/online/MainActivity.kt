@@ -37,7 +37,6 @@ import com.omarea.vtools.FloatMonitor
 import gjzs.online.permissions.CheckRootStatus
 import gjzs.online.ui.TabIconHelper
 import kotlinx.android.synthetic.main.activity_main.*
-import net.khirr.android.privacypolicy.PrivacyPolicyDialog
 
 class MainActivity : AppCompatActivity() {
     private val progressBarDialog = ProgressBarDialog(this)
@@ -50,30 +49,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         ThemeModeState.switchTheme(this)
         setContentView(R.layout.activity_main)
-
-        val dialog = PrivacyPolicyDialog(this, getString(R.string.termsOfServiceUrl), getString(R.string.privacyPolicyUrl))
-        dialog.onClickListener = object : PrivacyPolicyDialog.OnClickListener {
-            override fun onAccept(isFirstTime: Boolean) {
-                if (!(checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE) && checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE))) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), 111)
-                    };
-                }
-            }
-
-            override fun onCancel() {
-                finish()
-            }
-        }
-        dialog.title = getString(R.string.termsOfServiceTitle)
-        dialog.termsOfServiceSubtitle = getString(R.string.termsOfServiceSubtitle)
-        dialog.addPoliceLine(getString(R.string.PoliceLine1))
-        dialog.addPoliceLine(getString(R.string.PoliceLine2))
-        dialog.cancelText = getString(R.string.dialog_cancelText)
-        dialog.acceptText = getString(R.string.dialog_acceptText)
-        dialog.acceptButtonColor = ContextCompat.getColor(this, R.color.colorAccent)
-        dialog.europeOnly = false
-        dialog.show()
 
         //supportActionBar!!.elevation = 0f
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
@@ -128,6 +103,10 @@ class MainActivity : AppCompatActivity() {
             val transaction = fragmentManager.beginTransaction()
             transaction.replace(R.id.main_tabhost_cpu, home)
             transaction.commitAllowingStateLoss()
+        }
+
+        if (!(checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE) && checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE))) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), 111);
         }
     }
 
