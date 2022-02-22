@@ -11,9 +11,17 @@ Inject() {
 
 Install_Curl() {
         echo "- curl不存在，开始下载"
-        . $Core
-        downloader "$ELF1_Path/curl3" "https://mscdnfile.qqcn.xyz/GJZS/Other/Curl/`getprop ro.product.cpu.abi`"
-        downloader ~/cacert.pem "https://mscdnfile.qqcn.xyz/GJZS/Other/Curl/cacert.pem"
+        Curl_URL='https://mscdnfile.qqcn.xyz/GJZS/Other/Curl'
+        if $Have_ROOT; then
+            . $Core
+            downloader "$ELF1_Path/curl3" "$Curl_URL/`getprop ro.product.cpu.abi`"
+            [[ ! -f "$ELF1_Path/curl3" ]] && downloader "$ELF1_Path/curl3" "$Curl_URL/armeabi-v7a"
+            downloader ~/cacert.pem "$Curl_URL/cacert.pem"
+        else
+            wget -O $ELF1_Path/curl3 "$Curl_URL/`getprop ro.product.cpu.abi`"
+            [[ ! -f "$ELF1_Path/curl3" ]] && wget -O $ELF1_Path/curl3 "$Curl_URL/armeabi-v7a"
+            wget -O ~/cacert.pem "$Curl_URL/cacert.pem"
+        fi
         chmod +x $ELF1_Path/curl3
 }
 
