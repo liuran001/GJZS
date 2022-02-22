@@ -11,7 +11,7 @@ Inject() {
 
 Install_Curl() {
         echo "- curl不存在，开始下载"
-        Curl_URL='https://mscdnfile.qqcn.xyz/GJZS/Other/Curl'
+        Curl_URL='http://mscdnfile.qqcn.xyz/GJZS/Other/Curl'
         if $Have_ROOT; then
             . $Core
             downloader "$ELF1_Path/curl3" "$Curl_URL/`getprop ro.product.cpu.abi`"
