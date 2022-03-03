@@ -17,8 +17,8 @@ export const zh: NavbarConfig = [
     text: '友情链接',
     children: [
       {
-        text: '搞机社区',
-        link: 'https://www.igjbbs.cn',
+        text: '柚坛社区',
+        link: 'https://uotan.cn',
       },
       {
         text: '一个云盘',
@@ -27,6 +27,10 @@ export const zh: NavbarConfig = [
       {
         text: '作者个人主页',
         link: 'https://bdovo.xyz',
+      },
+      {
+        text: '服务器状态查看',
+        link: 'https://status.qqcn.xyz',
       },
     ],
   },
