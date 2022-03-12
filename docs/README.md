@@ -18,5 +18,5 @@ features:
     details: 不需要一分钱即可以个人用途使用「搞机助手·R」。
   - title: 安全
     details: 每个功能均经过人工测试，确保大多数用户正常后才引入到应用内。
-footer: GPL-3.0 Licensed | Copyright © 2021-2022 笨蛋ovo
+footer: 闽公网安备35021102001358号 | 闽ICP备2022001843号-1
 ---

@@ -1,3 +1,7 @@
+---
+footer: 闽公网安备35021102001358号 | 闽ICP备2022001843号-1
+---
+
 # 下载
 
 [稳定版下载（密码gjzs）](https://qqcn.lanzouo.com/b02c3lqsd) ｜ [测试版（CI构建版）下载](https://install.appcenter.ms/users/liuran001/apps/gao3-ji1-zhu4-shou3-r/distribution_groups/%e6%90%9e%e6%9c%ba%e5%8a%a9%e6%89%8b%c2%b7r)
