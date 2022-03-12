@@ -1,8 +1,3 @@
----
-title: 支持
-footer: 闽公网安备35021102001358号 | 闽ICP备2022001843号-1
----
-
 # 支持
 
 **我们仅对来自官方渠道的由我们官方发布的「搞机助手·R」的反馈，我们不对任何非官方渠道来源APP提供支持**
@@ -29,3 +24,5 @@ footer: 闽公网安备35021102001358号 | 闽ICP备2022001843号-1
 - TG频道：[搞机助手·R 公告(@gjzs666_channel)](https://t.me/gjzs666_channel)
 - TG频道：[搞机助手·R CI构建发布(@gjzs666_CI)](https://t.me/gjzs666_CI)
 - TG群组：[|ZH/EN|\|SFW| 搞机助手·R 交流群(@gjzs666)](https://t.me/gjzs666)
+
+<div class="footer">GPL-3.0 Licensed | Copyright © 2021-2022 笨蛋ovo<br><a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35021102001358"><img src="beian.png"/>闽公网安备35021102001358号</a> | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><span>闽ICP备2022001843号-1</span></a></div>

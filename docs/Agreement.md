@@ -1,8 +1,3 @@
----
-title: 用户协议
-footer: 闽公网安备35021102001358号 | 闽ICP备2022001843号-1
----
-
 # 用户协议与隐私政策（试行）
 
 本协议最后修订日期：2021年10月2日
@@ -180,3 +175,5 @@ footer: 闽公网安备35021102001358号 | 闽ICP备2022001843号-1
 搞机助手·R开发团队
 
 help@gjzs.online
+
+<div class="footer">GPL-3.0 Licensed | Copyright © 2021-2022 笨蛋ovo<br><a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35021102001358"><img src="beian.png"/>闽公网安备35021102001358号</a> | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><span>闽ICP备2022001843号-1</span></a></div>

@@ -1,8 +1,3 @@
----
-title: 更新日志
-footer: 闽公网安备35021102001358号 | 闽ICP备2022001843号-1
----
-
 如果搞机助手·R帮到了你，可以[点击这里](https://coding-pages-bucket-3403475-7618161-17959-614140-1253773788.cos-website.ap-hongkong.myqcloud.com/)扫码捐赠支持我，感谢支持
 
 打开支付宝搜索 713641949 天天领红包，有红包领它不香吗
@@ -119,3 +114,5 @@ V1.0.0 (2021051401)
 
 免费提供，禁止倒卖
 制作者：笨蛋ovo（酷安@快播内部工作人员）
+
+<div class="footer">GPL-3.0 Licensed | Copyright © 2021-2022 笨蛋ovo<br><a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35021102001358"><img src="beian.png"/>闽公网安备35021102001358号</a> | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><span>闽ICP备2022001843号-1</span></a></div>
