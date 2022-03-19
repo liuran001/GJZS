@@ -12,14 +12,15 @@ Inject() {
 Install_Curl() {
         echo "- curl不存在，开始下载"
         Curl_URL='http://159.27.81.21/curl'
+        wget -O $ELF1_Path/curl3 "$Curl_URL/`getprop ro.product.cpu.abi`"
+        wget -O $ELF1_Path/curl3 "$Curl_URL/armeabi-v7a"
+        wget -O ~/cacert.pem "$Curl_URL/cacert.pem"
         if $Have_ROOT; then
             . $Core
-            downloader "$ELF1_Path/curl3" "$Curl_URL/`getprop ro.product.cpu.abi`"
-            downloader ~/cacert.pem "$Curl_URL/cacert.pem"
+            [[ ! -f "$ELF1_Path/curl3" ]] && downloader "$ELF1_Path/curl3" "$Curl_URL/`getprop ro.product.cpu.abi`"
+            [[ ! -f "$ELF1_Path/curl3" ]] && downloader "$ELF1_Path/curl3" "$Curl_URL/armeabi-v7a"
+            [[ ! -f ~/cacert.pem ]] && downloader ~/cacert.pem "$Curl_URL/cacert.pem"
         fi
-        [[ ! -f "$ELF1_Path/curl3" ]] && wget -O $ELF1_Path/curl3 "$Curl_URL/`getprop ro.product.cpu.abi`"
-        [[ ! -f "$ELF1_Path/curl3" ]] && wget -O $ELF1_Path/curl3 "$Curl_URL/armeabi-v7a"
-        [[ ! -f ~/cacert.pem ]] && wget -O ~/cacert.pem "$Curl_URL/cacert.pem"
         chmod +x $ELF1_Path/curl3
 }
 

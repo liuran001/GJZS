@@ -1,5 +1,5 @@
 #Custom variable
-export Util_Functions_Code=2022022002
+export Util_Functions_Code=2022032001
 export SDdir=/data/media/0
 export Magisk=`$which magisk`
 export Modules_Dir=/data/adb/modules
@@ -377,14 +377,18 @@ XiaZai() {
 }
 
 EndMD5() {
-    md5_down=`md5sum "$Download_File" | sed 's/ .*//g'`
-    if [[ "$File_MD5" != "$md5_down" ]]; then
-        Deleting_file
-        abort2 "！ ["$File_Name"] MD5校验失败✘，如果一直无法下载请在搞机助手功能区 -->刷新搞机助手云端状态后重试，或者在关于页面里发送邮件我处理"
+    if [[ "$File_MD5" = '' ]];then
+        echo '- 无MD5信息，跳过检验' 
     else
-        echo "- ["$File_Name"]文件MD5校验成功✔"
-        echo "- MD5=$md5_down"
-        return 0
+        md5_down=`md5sum "$Download_File" | sed 's/ .*//g'`
+        if [[ "$File_MD5" != "$md5_down" ]]; then
+           Deleting_file
+           abort2 "！ ["$File_Name"] MD5校验失败✘，如果一直无法下载请在搞机助手功能区 -->刷新搞机助手云端状态后重试，或者在关于页面里发送邮件我处理"
+        else
+           echo "- ["$File_Name"]文件MD5校验成功✔"
+           echo "- MD5=$md5_down"
+          return 0
+        fi
     fi
 }
 
@@ -475,18 +479,23 @@ Download() {
     
     MD5() {
         if [[ -f "$Download_File" ]]; then
-            md5_down=`md5sum "$Download_File" | sed 's/ .*//g'`
-            if [[ "$File_MD5" != "$md5_down" ]]; then
+            if [[ "$File_MD5" = '' ]];then
                 Deleting_file
-                echo "- 文件已升级正在重新下载"
                 return 1
             else
-                return 0
+                md5_down=`md5sum "$Download_File" | sed 's/ .*//g'`
+                if [[ "$File_MD5" != "$md5_down" ]]; then
+                    Deleting_file
+                    echo "- 文件已升级正在重新下载"
+                    return 1
+                else
+                    return 0
+                fi
             fi
         else
-            Deleting_file
-            echo "- 正在连接服务器下载中……"
-            return 1
+                Deleting_file
+                echo "- 正在连接服务器下载中……"
+                return 1
         fi
     }
     
@@ -523,14 +532,18 @@ Download() {
         esac
         
         File_Name="$2"
-        File_Size="$3"
+        if [[ "$3" != '' ]]; then
+            File_Size="$3"
+        else
+            File_Size=`CURL --head "$Link" -sL | grep Content-Length | awk '{print $2}'`
+        fi
         File_MD5="$4"
         Delete="$5"
         Download_File="$PeiZhi_File/$File_Name"
         MD5
         [[ $? -eq 0 ]] && return 0
         File_Name2="$File_Name"
-        Start_Download "$Link" "$Download_File" "$Referer"
+        Start_Download "$Link" "$Download_File"
 }
 
 downloader() {
