@@ -33,9 +33,9 @@
 <!-- END -->
     </pages>
 <!-- START -->
-    <action>
+    <action id='CheckModule'>
         <title>检查Magisk模块</title>
-        <desc>检查Magisk模块内是否有dd或rm（格机）操作</desc>
+        <desc>检查Magisk模块内是否有dd或rm（格机）操作（长按添加桌面快捷方式）</desc>
         <set>. ./Magisk_Module/Check_Module.sh</set>
         <params>
             <param name="Check_dd" label="检查dd行为" type="checkbox" value="1" />

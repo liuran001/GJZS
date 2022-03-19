@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <group title="杂项">
 <!-- START -->
-	<group visible="[[ -d /data/user/0/com.miui.tsmclient/cache/image_manager_disk_cache ]] &#38;&#38; echo 1 || echo 0">
-		<page title="NFC卡面管理" config-sh="./nfc.sh"/>
-	</group>
+    <page title="NFC卡面管理" config-sh="./nfc.sh" visible="[[ -d /data/user/0/com.miui.tsmclient/cache/image_manager_disk_cache ]] &#38;&#38; echo 1 || echo 0"/>
 <!-- END -->
 <!-- START -->
     <switch shell="hidden" auto-off="true" interruptible="false" visible="[[ &#96;getprop ro.board.platform&#96; = lahaina ]] &#38;&#38; echo 1 || echo 0">
