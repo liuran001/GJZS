@@ -16,12 +16,8 @@ android {
     }
     buildTypes {
         release {
+            shrinkResources true
             minifyEnabled true
-            shrinkResources true
-        }
-        release_mini {
-            shrinkResources true
-            minifyEnabled = true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

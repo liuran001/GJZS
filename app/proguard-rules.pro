@@ -19,3 +19,10 @@
 -keepclassmembers class * implements java.io.Serializable{*;}
 
 -keep class com.omarea.krscript.model.**{*;}
+
+# 方法名等混淆指定配置
+-obfuscationdictionary proguard-dic.txt
+# 类名混淆指定配置
+-classobfuscationdictionary proguard-dic.txt
+# 包名混淆指定配置
+-packageobfuscationdictionary proguard-dic.txt
