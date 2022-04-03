@@ -1,4 +1,4 @@
-$Have_ROOT && PATH="${ELF4_Path}:$DATA_DIR/com.termux/files/usr/bin:${Bin_MT1}:${Bin_MT3}:$DATA_DIR/com.omarea.vtools/files/toolkit:/data/adb/magisk:${PATH0}" || PATH="${ELF4_Path}:${PATH0}"
+$Have_ROOT && PATH="/data/adb/magisk:${PATH0}:${ELF4_Path}:$DATA_DIR/com.termux/files/usr/bin:${Bin_MT1}:${Bin_MT3}:$DATA_DIR/com.omarea.vtools/files/toolkit" || PATH="${ELF4_Path}:${PATH0}"
 C=
 while read i; do
     $i &>/dev/null
