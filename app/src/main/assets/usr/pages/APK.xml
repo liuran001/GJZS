@@ -554,4 +554,11 @@
         <set>. ./switchs/Google_Service_Set.sh</set>
     </switch>
 <!-- END -->
+<!-- START -->
+    <action confirm="true">
+        <title>一键修复Google Play服务耗电异常</title>
+        <desc>此问题大多发生在第三方ROM或使用模块伪装为Pixel后，由于Play服务不断尝试进行系统更新而耗电异常（修复方法来源Nekogram作者，可能存在副作用）</desc>
+        <set>pm disable com.google.android.gms/.chimera.GmsIntentOperationService</set>
+    </action>
+<!-- END -->
 </group>
