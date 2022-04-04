@@ -71,6 +71,34 @@
     </action>
 <!-- END -->
 <!-- START -->
+    <action shell="hidden" confirm="true">
+        <title>一键修复原神数据异常</title>
+        <desc>能正常使用的就不要使用了</desc>
+        <set>chmod 000 $DATA_DIR/com.miHoYo.Yuanshen/files/tss_tmp</set>
+    </action>
+<!-- END -->
+<!-- START -->
+    <action shell="hidden" confirm="true">
+        <title>一键修复原神b服数据异常</title>
+        <desc>能正常使用的就不要使用了</desc>
+        <set>chmod 000 $DATA_DIR/com.miHoYo.ys.bilibili/files/tss_tmp</set>
+    </action>
+<!-- END -->
+<!-- START -->
+    <action shell="hidden" confirm="true">
+        <title>一键修复原神小米服数据异常</title>
+        <desc>能正常使用的就不要使用了</desc>
+        <set>chmod 000 $DATA_DIR/com.miHoYo.ys.mi/files/tss_tmp</set>
+    </action>
+<!-- END -->
+<!-- START -->
+    <action shell="hidden" confirm="true">
+        <title>一键修复原神国际服数据异常</title>
+        <desc>能正常使用的就不要使用了</desc>
+        <set>chmod 000 $DATA_DIR/com.miHoYo.GenshinImpact/files/tss_tmp</set>
+    </action>
+<!-- END -->
+<!-- START -->
     <action confirm="true" interruptible="false">
         <title>修复系统软件异常崩溃、闪退、应用名异常</title>
         <summary>警告：默认会强制重启生效</summary>
