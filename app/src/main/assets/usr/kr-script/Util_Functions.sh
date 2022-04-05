@@ -403,7 +403,6 @@ Start_Download() {
         if Check_command2 awk && Check_command2 wc && Check_command2 md5sum; then
             Start_Time
             XiaZai -sL "$@" &
-            usleep 50000
             code=`cat "$Status"`
             [[ $code = 2 || $code = 6 ]] && abort
                 until [[ -f "$Download_File2" ]]; do
@@ -421,9 +420,9 @@ Start_Download() {
                     echo -e "\n-----------------------------------------"
                     [[ `cat "$Status"` != none ]] && End_Time 下载 && EndMD5
                         until [[ $code != none ]]; do
-                           YiXZ=`wc -c < $Download_File2`
+                           YiXZ=`ls -l $Download_File2 | awk '{print $5}'`
                            sleep 1
-                           YiXZ_2=`wc -c < $Download_File2`
+                           YiXZ_2=`ls -l $Download_File2 | awk '{print $5}'`
                                if [[ $YiXZ -gt 0 ]]; then
                                    YiXZ_SuDu=$(($YiXZ_2-$YiXZ))
                                    Remaining_Time=`awk "BEGIN{print ($File_Size-$YiXZ_2)/$YiXZ_SuDu}" 2>/dev/null`
