@@ -162,8 +162,8 @@
         <set>. ./Electricity_camouflage.sh</set>
         <params>
             <param name="Percentage0" label="勾选这里为恢复默认" desc="当勾选时下方修改会无效" type="checkbox" />
-            <param name="Percentage1" title="防止你很皮，限制输入3-100范围的值，不然输入0立马关机，输入过大又会导致无电池图标。注意：留空为恢复默认状态" type="int" max="100" min="3" required="0" maxlength="3" />
-            <param name="Percentage2" title="你也可以选择滑动方案调整" desc="只有当上方输入框没有填写数值时，滑动修改才会生效！" max="100" min="3" type="seekbar" />
+            <param name="Percentage1" title="防止你很皮，限制输入1-100范围的值，不然输入0立马关机，输入过大又会导致无电池图标。注意：留空为恢复默认状态" type="int" max="100" min="1" required="0" maxlength="3" />
+            <param name="Percentage2" title="你也可以选择滑动方案调整" desc="只有当上方输入框没有填写数值时，滑动修改才会生效！" max="100" min="1" type="seekbar" />
         </params>
     </action>
 <!-- END -->
