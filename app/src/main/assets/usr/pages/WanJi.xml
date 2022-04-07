@@ -75,7 +75,15 @@
 </group>
 <group title="系统相关调试">
 <!-- START -->
-    <switch interruptible="false" visible=". ./support/Android7+.sh">
+    <switch interruptible="false" visible=". ./support/Android.sh 29">
+        <title>强制显示桌面图标</title>
+        <desc>在 Android 10 或更高版本，应用不再允许隐藏桌面图标，关闭该选项以关闭比系统功能。</desc>
+        <get>. ./switchs/Show_Hidden_App_Get.sh</get>
+        <set>. ./switchs/Show_Hidden_App_Set.sh</set>
+    </switch>
+<!-- END -->
+<!-- START -->
+    <switch interruptible="false" visible=". ./support/Android.sh 24">
         <title>开启Freeform（多窗口模式）</title>
         <desc>打开此开关为开启</desc>
         <get>. ./switchs/Freeform_get.sh</get>
