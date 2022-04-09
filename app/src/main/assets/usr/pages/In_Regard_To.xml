@@ -1,34 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <group title="问题反馈">
 <!-- START -->
-    <page link="`echo https://igjbbs.cn/forums/8`">
-        <title>搞机社区</title>
-        <desc>前往社区发帖反馈</desc>
+    <page link="`echo https://support.qq.com/product/383388`">
+        <title>腾讯兔小巢</title>
+        <desc>前往发帖反馈</desc>
     </page>
 <!-- END -->
 <group title="关于">
 <!-- START -->
-    <page link="https://gjzs.online">
+    <page link="https://gjzs.qqcn.xyz">
         <title>官网地址</title>
-        <desc>https://gjzs.online</desc>
+        <desc>https://gjzs.qqcn.xyz</desc>
     </page>
 <!-- END -->
 <!-- START -->
     <page link="https://github.com/liuran001/GJZS">
         <title>开源地址</title>
-        <desc>https://github.com/liuran001/GJZS</desc>
-    </page>
-<!-- END -->
-</group>
-<group>
-<!-- START -->
-    <page link="http://www.coolapk.com/u/462071">
-        <title>酷安@午夜神</title>
-    </page>
-<!-- END -->
-<!-- START -->
-    <page>
-        <title>群友@深信不疑。和@小胖 提供服务器支持</title>
+        <desc>搞机助手·R 基于GPL-3.0协议开放源代码</desc>
     </page>
 <!-- END -->
 </group>
@@ -36,7 +24,7 @@
 <!-- START -->
     <page link="https://github.com/helloklf/kr-scripts">
         <title>「kr-scripts」、Github：helloklf | 酷安：嘟嘟斯基</title>
-        <desc>本软件基于「kr-scripts」框架制作，原软件名：「PIO」</desc>
+        <desc>本软件基于「kr-scripts」框架制作</desc>
     </page>
 <!-- END -->
 <!-- START -->
@@ -114,21 +102,6 @@
         <slices>
             <slice size="16">2021-05-26至now   深信不疑。：QQ 1097228498</slice>
         </slices>
-    </text>
-<!-- END -->
-
-</group>
-<group title="特别鸣谢 by：Bin">
-<!-- START -->
-    <action confirm="true">
-        <title>MT管理器</title>
-        <desc>本软件全程由「MT管理器」工具编译制作</desc>
-        <set>Website http://d.binmt.cc</set>
-    </action>
-<!-- END -->
-<!-- START -->
-    <text>
-        <slice link="http://bbs.binmt.cc/" size="15" color="#FF0366D6" u="1">MT论坛bbs.binmt.cc</slice>
     </text>
 <!-- END -->
 </group>
