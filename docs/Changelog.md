@@ -1,4 +1,4 @@
-## 注意：此页面长期未更新，若需获取更新日志请关注[TG频道](https://t.me/gjzs666_channel)或参阅[GitHub提交日志](https://github.com/liuran001/GJZS/commits/main)
+## 注意：此页面长期未更新，若需获取更新日志请关注[TG频道](https://t.me/s/gjzs666_channel)或参阅[GitHub提交日志](https://github.com/liuran001/GJZS/commits/main)
 
 如果搞机助手·R帮到了你，可以[点击这里](https://coding-pages-bucket-3403475-7618161-17959-614140-1253773788.cos-website.ap-hongkong.myqcloud.com/)扫码捐赠支持我，感谢支持
 
