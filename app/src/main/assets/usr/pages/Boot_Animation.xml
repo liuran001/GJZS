@@ -22,7 +22,7 @@
 
 <group title="第二屏">
 <!-- START -->
-    <action interruptible="true" visible=". ./support/Check_Brand_NO_samsung.sh">
+    <action interruptible="true">
         <title>随机开机动画第二屏</title>
         <summary>随机方式在开机后安装下一次的开机动画，让你永远也猜不到下一次开机是啥开机动画</summary>
         <set>. ./Random_Install_BootAnimation_Screen2.sh</set>
@@ -39,7 +39,7 @@
     </action>
 <!-- END -->
 <!-- START -->
-    <action interruptible="true" visible=". ./support/Check_Brand_NO_samsung.sh">
+    <action interruptible="true">
         <title>开机动画第二屏修改</title>
         <set>. ./Install_BootAnimation_Screen2.sh</set>
         <params>
