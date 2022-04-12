@@ -60,7 +60,6 @@
         <params>
             <param name="Option" title="选择功能：" options-sh="printf 'install|①　安装\nuninstall|②　卸载'" required="true" />
         </params>
-        </page>
     </action>
 <!-- END -->
 <!-- START -->
