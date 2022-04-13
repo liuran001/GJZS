@@ -11,7 +11,7 @@ fi
 cat <<Han
 <?xml version="1.0" encoding="utf-8"?>
 <group>
-    <page html="`echo https://gjzs.online/changelog`">
+    <page html="`echo https://gjzsr.com/changelog`">
         <title>$title</title>
         <summary sh=". ./CheckUpdate.sh" />
     </page>
@@ -50,12 +50,6 @@ cat <<Han
 </group>
 
 <group title="进群交流">
-<!-- START -->
-    <page link="`echo https://www.igjbbs.cn/threads/77/`">
-        <title>QQ频道</title>
-        <desc>需更新QQ到8.8.38及更高版本</desc>
-    </page>
-<!-- END -->
 <!-- START -->
     <page link="https://t.me/gjzs666">
         <title>TG交流群</title>
