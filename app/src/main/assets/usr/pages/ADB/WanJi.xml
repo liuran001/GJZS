@@ -86,7 +86,7 @@
         <title>自定义dpi（屏幕密度）</title>
         <set>. ./ADB/dpi.sh</set>
         <params>
-            <param name="dpi" title="请输入你要修改的dpi值，留空为恢复默认，为了保险默认限制为3位数字，设置过低可能会导致部分软件闪退哦﻿⊙∀⊙！" type="int" min="220" max="700" maxlength="3"/>
+            <param name="dpi" title="请输入你要修改的dpi值，留空为恢复默认" type="int" maxlength="3"/>
         </params>
     </action>
 <!-- END -->
