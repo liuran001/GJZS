@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -14,6 +15,7 @@ import androidx.core.content.PermissionChecker
 import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import com.omarea.common.shell.ShellExecutor
 import com.omarea.krscript.executor.ScriptEnvironmen
 import gjzs.online.permissions.CheckRootStatus
@@ -24,6 +26,16 @@ import java.io.DataOutputStream
 class SplashActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //签名校验
+        val signCheck = SignCheck(this, "ED:F1:DA:BE:37:90:D3:16:E8:C7:52:C8:9D:AD:3E:13:0A:FC:61:39")
+        if (!signCheck.check()) {
+            Toast.makeText(this, "警告：签名校验失败，安装包被篡改，请前往官方渠道下载最新版本！", Toast.LENGTH_LONG).show()
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://gjzsr.com/SignCheckFailed.html"))
+            startActivity(intent)
+            finish()
+            return
+        }
 
         if (ScriptEnvironmen.isInited()) {
             if (isTaskRoot) {

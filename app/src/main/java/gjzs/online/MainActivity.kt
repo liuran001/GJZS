@@ -46,6 +46,9 @@ class MainActivity : AppCompatActivity() {
     private fun checkPermission(permission: String): Boolean = PermissionChecker.checkSelfPermission(this, permission) == PermissionChecker.PERMISSION_GRANTED
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        //二改的麻烦把AppCenter密钥改了
+        AppCenter.start(application, "16d4ef12-f4e7-4955-964c-42c0e84e8446", Analytics::class.java, Crashes::class.java)
+
         super.onCreate(savedInstanceState)
         ThemeModeState.switchTheme(this)
         setContentView(R.layout.activity_main)
@@ -54,11 +57,8 @@ class MainActivity : AppCompatActivity() {
         val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
         setTitle(R.string.app_name)
-        //二改的麻烦把AppCenter密钥改了
-        AppCenter.start(application, "16d4ef12-f4e7-4955-964c-42c0e84e8446", Analytics::class.java, Crashes::class.java)
 
         krScriptConfig = KrScriptConfig()
-
 
         main_tabhost.setup()
         val tabIconHelper = TabIconHelper(main_tabhost, this)

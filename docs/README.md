@@ -4,7 +4,7 @@ title: 主页
 heroImage: /images/logo.png
 actions:
   - text: 下载
-    link: /Download/
+    link: /Download.html
     type: primary
   - text: 开源地址
     link: https://github.com/liuran001/GJZS
