@@ -25,3 +25,8 @@ Fork自[kr-scripts框架](https://github.com/helloklf/kr-scripts)，感谢框架
 
 ### 关联项目
 - [~~GJZS-Server_SCF~~](https://github.com/liuran001/GJZS-Server_SCF)（已废弃）
+
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/liuran001/GJZS.svg)](https://starchart.cc/liuran001/GJZS)
