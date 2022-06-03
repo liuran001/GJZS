@@ -32,13 +32,13 @@ class SplashActivity : Activity() {
         val signCode = String(Base64.decode("RUQ6RjE6REE6QkU6Mzc6OTA6RDM6MTY6RTg6Qzc6NTI6Qzg6OUQ6QUQ6M0U6MTM6MEE6RkM6NjE6Mzk=",Base64.DEFAULT))
         val signCheck = SignCheck(this, signCode)
         val webCode = String(Base64.decode("aHR0cHM6Ly9nanpzci5jb20vU2lnbkNoZWNrRmFpbGVkLmh0bWw=",Base64.DEFAULT))
-        val toastCode = String(Base64.decode("6K2m5ZGK77ya562+5ZCN5qCh6aqM5aSx6LSl77yM5a6J6KOF5YyF6KKr56+h5pS577yM6K+35YmN5b6A5a6Y5pa55rig6YGT5LiL6L295pyA5paw54mI5pys77yB",Base64.DEFAULT))
         if (!signCheck.check()) {
-            Toast.makeText(this, toastCode, Toast.LENGTH_LONG).show()
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(webCode))
             startActivity(intent)
-            android.os.Process.killProcess(android.os.Process.myPid());
-            System.exit(0);
+            android.os.Process.killProcess(android.os.Process.myPid())
+            System.exit(0)
+            finish()
+            return
         }
 
         if (ScriptEnvironmen.isInited()) {

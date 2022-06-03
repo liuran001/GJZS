@@ -24,6 +24,9 @@
         <meta-data
             android:name="android.max_aspect"
             android:value="2.8" />
+        <meta-data
+            android:name="Easy Go Client"
+            android:value="true" />
 
         <activity
             android:name=".ActionPage"
