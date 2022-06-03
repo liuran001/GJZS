@@ -9,7 +9,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.provider.Settings
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.Menu
@@ -33,8 +32,6 @@ import com.omarea.krscript.config.PageConfigSh
 import com.omarea.krscript.model.*
 import com.omarea.krscript.ui.ActionListFragment
 import com.omarea.krscript.ui.ParamsFileChooserRender
-import com.omarea.vtools.FloatMonitor
-import gjzs.online.permissions.CheckRootStatus
 import gjzs.online.ui.TabIconHelper
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -62,11 +59,6 @@ class MainActivity : AppCompatActivity() {
 
         main_tabhost.setup()
         val tabIconHelper = TabIconHelper(main_tabhost, this)
-        if (CheckRootStatus.lastCheckResult && krScriptConfig.allowHomePage) {
-            tabIconHelper.newTabSpec(getString(R.string.tab_home), getDrawable(R.drawable.tab_home)!!, R.id.main_tabhost_cpu)
-        } else {
-            main_tabhost_cpu.visibility = View.GONE
-        }
         main_tabhost.setOnTabChangedListener {
             tabIconHelper.updateHighlight()
         }
@@ -96,14 +88,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }).start()
-
-        if (CheckRootStatus.lastCheckResult && krScriptConfig.allowHomePage) {
-            val home = FragmentHome()
-            val fragmentManager = supportFragmentManager
-            val transaction = fragmentManager.beginTransaction()
-            transaction.replace(R.id.main_tabhost_cpu, home)
-            transaction.commitAllowingStateLoss()
-        }
 
         if (!(checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE) && checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE))) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), 111);
@@ -289,9 +273,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
-
-        menu.findItem(R.id.action_graph).isVisible = (main_tabhost_cpu.visibility == View.VISIBLE)
-
         return true
     }
 
@@ -314,39 +295,6 @@ class MainActivity : AppCompatActivity() {
                 transparentUi.isChecked = themeConfig.getAllowTransparentUI()
 
                 DialogHelper.customDialog(this, layout)
-            }
-            R.id.option_menu_reboot -> {
-                DialogPower(this).showPowerMenu()
-            }
-            R.id.action_graph -> {
-                if (FloatMonitor.isShown == true) {
-                    FloatMonitor(this).hidePopupWindow()
-                    return false
-                }
-                if (Build.VERSION.SDK_INT >= 23) {
-                    if (Settings.canDrawOverlays(this)) {
-                        FloatMonitor(this).showPopupWindow()
-                        Toast.makeText(this, getString(R.string.float_monitor_tips), Toast.LENGTH_LONG).show()
-                    } else {
-                        //若没有权限，提示获取
-                        //val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
-                        //startActivity(intent);
-                        val intent = Intent()
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        intent.action = "android.settings.APPLICATION_DETAILS_SETTINGS"
-                        intent.data = Uri.fromParts("package", this.packageName, null)
-
-                        Toast.makeText(applicationContext, getString(R.string.permission_float), Toast.LENGTH_LONG).show()
-
-                        try {
-                            startActivity(intent)
-                        } catch (ex: Exception) {
-                        }
-                    }
-                } else {
-                    FloatMonitor(this).showPopupWindow()
-                    Toast.makeText(this, getString(R.string.float_monitor_tips), Toast.LENGTH_LONG).show()
-                }
             }
         }
         return super.onOptionsItemSelected(item)

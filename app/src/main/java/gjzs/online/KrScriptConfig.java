@@ -14,19 +14,16 @@ public class KrScriptConfig {
 
     private final static String TOOLKIT_DIR = "toolkit_dir";
     private final static String TOOLKIT_DIR_DEFAULT = "file:///android_asset/kr-script/toolkit";
-
     private final static String EXECUTOR_CORE = "executor_core";
     private final static String PAGE_LIST_CONFIG = "page_list_config";
     private final static String PAGE_LIST_CONFIG_SH = "page_list_config_sh";
     private final static String FAVORITE_CONFIG = "favorite_config";
     private final static String FAVORITE_CONFIG_SH = "favorite_config_sh";
-    private final static String ALLOW_HOME_PAGE = "allow_home_page";
     private final static String BEFORE_START_SH = "before_start_sh";
     private static HashMap<String, String> configInfo;
     private final String EXECUTOR_CORE_DEFAULT = "file:///android_asset/kr-script/executor.sh";
     private final String PAGE_LIST_CONFIG_DEFAULT = "file:///android_asset/kr-script/pages/more.xml";
     private final String FAVORITE_CONFIG_DEFAULT = "file:///android_asset/kr-script/pages/favorites.xml";
-    private final String ALLOW_HOME_PAGE_DEFAULT = "1";
     private final String BEFORE_START_SH_DEFAULT = ""; //"file:///android_asset/kr-script/before_start.sh";
 
     public KrScriptConfig init(Context context) {
@@ -35,7 +32,6 @@ public class KrScriptConfig {
             configInfo.put(EXECUTOR_CORE, EXECUTOR_CORE_DEFAULT);
             configInfo.put(PAGE_LIST_CONFIG, PAGE_LIST_CONFIG_DEFAULT);
             configInfo.put(FAVORITE_CONFIG, FAVORITE_CONFIG_DEFAULT);
-            configInfo.put(ALLOW_HOME_PAGE, ALLOW_HOME_PAGE_DEFAULT);
             configInfo.put(TOOLKIT_DIR, TOOLKIT_DIR_DEFAULT);
             configInfo.put(BEFORE_START_SH, BEFORE_START_SH_DEFAULT);
 
@@ -112,13 +108,6 @@ public class KrScriptConfig {
         return null;
     }
 
-    public boolean getAllowHomePage() {
-        if (configInfo != null && configInfo.containsKey(ALLOW_HOME_PAGE)) {
-            String value = configInfo.get(ALLOW_HOME_PAGE);
-            return value != null && value.equals("1");
-        }
-        return ALLOW_HOME_PAGE_DEFAULT.equals("1");
-    }
 
     public String getBeforeStartSh() {
         if (configInfo != null && configInfo.containsKey(BEFORE_START_SH)) {
