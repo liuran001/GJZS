@@ -7,7 +7,6 @@ android {
     buildToolsVersion '28.0.3'
 
     defaultConfig {
-        resConfigs "zh"
         minSdkVersion 21
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 28

@@ -8,11 +8,11 @@ cd $Data_Dir/.Empty
 sc="$ShellScript/Shell2.sh"
 echo "$CMD" >$sc
 
-echo -e "- 当前输入的命令：\n"
+echo -e "- $currently_entered_command: \n"
 cat $sc
 echo -e "\n------------------------------------------------\n"
-echo -e "- 执行结果：\n"
+echo -e "- $execution_results: \n"
 Start_Time
 . $sc
 echo -e "\n------------------------------------------------\n"
-End_Time 执行
+End_Time $execute

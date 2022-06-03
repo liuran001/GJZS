@@ -10,6 +10,7 @@ export Version_code=$({PACKAGE_VERSION_CODE})
 export PREFIX=$({TOOLKIT})
 export Have_ROOT=$({ROOT_PERMISSION})
 export ANDROID_UID=$({ANDROID_UID})
+export LANGUAGE=$({LANGUAGE})
 export DATA_DIR=${HOME%/${Package_name}*}
 export PATH0="$PATH"
 export Pages=$PREFIX/pages
@@ -33,6 +34,12 @@ export TMP=/data/local/tmp
 export CODING=https://s2.gjzsr.com/gjzs
 
 [[ -f $Core ]] && . $Core
+
+if [ $LANGUAGE == "zh-rCN" ]; then
+  [ -f "$Data_Dir/i18n/string.ini" ] && source $Data_Dir/i18n/string.ini
+else
+  [ -f "$Data_Dir/i18n/stringeng.ini" ] && source $Data_Dir/i18n/stringeng.ini
+fi
 
 if [[ -f "$1" ]]; then
     cd "$ShellScript"

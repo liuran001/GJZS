@@ -4,7 +4,7 @@
     <action interruptible="false">
         <title>安装单个应用</title>
         <summary>支持apk/apks/xapk/apex文件，请确定开发者选项里的USB安装是否打开，如果初次安装那个应用，需要在弹出安装提示界面时选择继续安装才可以</summary>
-        <set>. ./ADB/install_apk.sh</set>
+        <set>source ./ADB/install_apk.sh</set>
         <params>
             <param name="Delete_APK" label="是否安装成功后自动删除安装包" type="switch" />
             <param name="File" type="file" editable="true" required="true" title="可输入文件绝对路径，也可以使用文件选择器选择文件" desc="温馨提示：可用「MT管理器」长按目录或文件 -->点属性 -->点击目录即可复制目录绝对路径，长按目录或长按名称即可复制文件绝对路径" />

@@ -5,34 +5,34 @@
     <!--是否强制获取ROOT-->
     <bool name="force_root">false</bool>
 
-    <string name="app_name">搞机助手·R</string>
-    <string name="btn_exit">退出</string>
-    <string name="please_wait">请稍等</string>
-    <string name="title_activity_action_page">功能分页</string>
+    <string name="app_name">GJZS·R</string>
+    <string name="btn_exit">Exit</string>
+    <string name="please_wait">Please wait...</string>
+    <string name="title_activity_action_page">Action Page</string>
 
-    <string name="starting_title">搞机助手·R</string>
-    <string name="starting_subtitle">玩机从未如此简单</string>
+    <string name="starting_title">GJZS·R</string>
+    <string name="starting_subtitle">English is in beta</string>
 
-    <string name="author_name">酷安@笨蛋ovo_qaq</string>
-    <string name="about_title">关于 · 搞机助手·R</string>
-    <string name="appliction_desc">原作者：情非得已c</string>
-    <string name="appliction_name">搞机助手·R</string>
-    <string name="appliction_author">作者：笨蛋ovo（@liuran001）</string>
-    <string name="engine_version_name">基于[Kr-Script4.0.3]创作</string>
+    <string name="author_name">BDovo (liuran001)</string>
+    <string name="about_title">About · GJZS·R</string>
+    <string name="appliction_desc">Original Author: 情非得已c</string>
+    <string name="appliction_name">GJZS·R</string>
+    <string name="appliction_author">Developer: BDovo (@liuran001)</string>
+    <string name="engine_version_name">Based on [Kr-Script4.0.3]</string>
 
-    <string name="tab_favorites">概览</string>
-    <string name="tab_pages">功能</string>
+    <string name="tab_favorites">Overview</string>
+    <string name="tab_pages">Functions</string>
 
-    <string name="copy_success">复制成功</string>
-    <string name="btn_retry">重试</string>
+    <string name="copy_success">Copy success.</string>
+    <string name="btn_retry">Retry</string>
 
-    <string name="pio_starting">启动中…</string>
-    <string name="pop_before_start">正准备启动应用…</string>
-    <string name="pop_started">启动完成！</string>
-    <string name="pio_permission_checking">检查并获取必需权限……</string>
-    <string name="error_root">未能获得ROOT授权！</string>
-    <string name="error_su_timeout">获取ROOT授权超时！</string>
-    <string name="transparent_ui">界面透明 </string>
-    <string name="title_activity_file_selector">请选择文件</string>
-    <string name="title_activity_folder_selector">请长按选择目录</string>
+    <string name="pio_starting">STARTING</string>
+    <string name="pop_before_start">Preparing to start the app...</string>
+    <string name="pop_started">Started.</string>
+    <string name="pio_permission_checking">Permission checking...</string>
+    <string name="error_root">Cannot get ROOT access, some functions are not available.</string>
+    <string name="error_su_timeout">ROOT authorization timeout, please check your ROOT manager.</string>
+    <string name="transparent_ui">Transparent UI </string>
+    <string name="title_activity_file_selector">Please select a file...</string>
+    <string name="title_activity_folder_selector">Please select a folder by long press...</string>
 </resources>

@@ -12,6 +12,7 @@ import com.omarea.common.shell.KeepShell;
 import com.omarea.common.shell.KeepShellPublic;
 import com.omarea.common.shell.ShellTranslation;
 import com.omarea.krscript.FileOwner;
+import com.omarea.krscript.R;
 import com.omarea.krscript.model.NodeInfoBase;
 
 import java.io.DataOutputStream;
@@ -261,6 +262,7 @@ public class ScriptEnvironmen {
         params.put("START_DIR", getStartPath(context));
         // params.put("EXECUTOR_PATH", environmentPath);
         params.put("TEMP_DIR", context.getCacheDir().getAbsolutePath());
+        params.put("LANGUAGE", context.getString(R.string.LANGUAGE));
 
         FileOwner fileOwner = new FileOwner(context);
         int androidUid = fileOwner.getUserId();

@@ -1,8 +1,13 @@
 rm -rf ~/downloader/path/*
 [[ ! -d ~/Flag ]] && mkdir ~/Flag
-if [[ -f ~/Flag/NFO ]]; then
-    . "$Pages/Home.xml"
-    exit 0
+if [[ -f ~/Flag/Enable ]]; then
+    if [ $LANGUAGE == "zh-rCN" ]; then
+      . "$Pages/i18n/zh-rCN/Home.sh"
+      exit 0
+    else
+      . "$Pages/Home.sh"
+      exit 0
+    fi
 fi
 cat <<EOL
 <?xml version="1.0" encoding="utf-8"?>
@@ -27,7 +32,7 @@ cat <<EOL
     <action reload="true" auto-off="true">
         <title>我已阅读并同意以上条款</title>
         <desc>点击之后需要等待几秒以加载功能</desc>
-        <script>touch ~/Flag/NFO</script>
+        <script>touch ~/Flag/Enable</script>
     </action>
 </group>
 <group>

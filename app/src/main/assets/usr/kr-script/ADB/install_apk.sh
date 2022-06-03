@@ -9,8 +9,6 @@ abort() {
     exit 1
 }
 
-. $Core
-
 IFS=$'\n'
 suffix=${File##*.}
 name=`basename "$File"`
