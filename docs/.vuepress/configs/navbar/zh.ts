@@ -17,20 +17,20 @@ export const zh: NavbarConfig = [
     text: '友情链接',
     children: [
       {
-        text: '柚坛社区',
-        link: 'https://uotan.cn',
-      },
-      {
-        text: '一个云盘',
-        link: 'https://pan.igjbbs.cn',
-      },
-      {
         text: '作者个人主页',
         link: 'https://bdovo.xyz',
       },
       {
+        text: '作者个人博客',
+        link: 'https://blog.qqcn.xyz',
+      },
+      {
         text: '服务器状态查看',
         link: 'https://status.qqcn.xyz',
+      },
+      {
+        text: '倾城极速',
+        link: 'https://qcjs.cc/',
       },
     ],
   },
