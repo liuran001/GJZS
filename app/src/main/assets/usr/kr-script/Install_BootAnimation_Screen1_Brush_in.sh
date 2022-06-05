@@ -1,7 +1,3 @@
-#本脚本由　by Han | 情非得已c，编写
-#应用于搞机助手上
-
-
 lu=$PeiZhi_File/BootAnimation_Screen1/Customize
 lu2=$GJZS/Customize_BootAnimation_Screen1
 jian=$lu/Configuration.log
@@ -13,7 +9,7 @@ echo "- 开始复制到临时目录"
 cp -f $img $tmp
 
 
-echo "- 开始检查已选择的图片是否符号规格"
+echo "- 开始检查已选择的图片是否符合规格"
 Start_Time
 echo 0 >"$Status"
 for i in `seq $Picture`; do
