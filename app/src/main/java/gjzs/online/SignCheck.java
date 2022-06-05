@@ -1,21 +1,26 @@
 package gjzs.online;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.os.Build;
+import android.os.IBinder;
+import android.os.Parcel;
+import android.system.Os;
 import android.util.Log;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import org.lsposed.hiddenapibypass.HiddenApiBypass;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateEncodingException;
-import java.security.cert.CertificateFactory;
-import java.security.cert.X509Certificate;
+import java.util.Objects;
 
 public class SignCheck {
-    private Context context;
+    private final Context context;
     private String cer = null;
     private String realCer = null;
     private static final String TAG = "SignCheck";
@@ -38,80 +43,132 @@ public class SignCheck {
     /**
      * 设置正确的签名
      *
-     * @param realCer
      */
     public void setRealCer(String realCer) {
         this.realCer = realCer;
     }
 
+    private byte[] getBytesSHA1(byte[] bytes) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-1");
+            digest.update(bytes);
+            return digest.digest();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private String getSHA1SignFromPackageInfo(PackageInfo info) {
+        Signature[] signatures;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+            signatures = info.signatures;
+        } else {
+            signatures = info.signingInfo.getApkContentsSigners();
+        }
+        if (signatures != null && signatures.length > 0) {
+            return byte2HexFormatted(Objects.requireNonNull(getBytesSHA1(signatures[0].toByteArray())));
+        }
+        throw new RuntimeException("???");
+    }
+
+    private static int getTransactionId(String className, String transactionName) throws Throwable {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            HiddenApiBypass.setHiddenApiExemptions("");
+        }
+        Field declaredField = Class.forName(className).getDeclaredField(transactionName);
+        declaredField.setAccessible(true);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            HiddenApiBypass.clearHiddenApiExemptions();
+        }
+        return declaredField.getInt(null);
+    }
+
+    private static int getCurrentUser() {
+        return Os.geteuid() / 100000;
+    }
+
+    private PackageInfo getPackageInfo() {
+        int flag = Build.VERSION.SDK_INT < Build.VERSION_CODES.P ? PackageManager.GET_SIGNATURES : PackageManager.GET_SIGNING_CERTIFICATES;
+        PackageManager pm = context.getPackageManager();
+        try {
+            return pm.getPackageInfo(context.getPackageName(), flag);
+        } catch (Throwable tr) {
+            return null;
+        }
+    }
+
+    @SuppressLint({"BlockedPrivateApi", "DiscouragedPrivateApi", "PrivateApi"})
+    private PackageInfo getPackageInfoInternal() throws Throwable {
+        Parcel data = Parcel.obtain();
+        Parcel reply = Parcel.obtain();
+        try {
+            Class<?> serviceManagerClazz = Class.forName("android.os.ServiceManager");
+            Method getServiceMethod = serviceManagerClazz.getDeclaredMethod("getService", String.class);
+            getServiceMethod.setAccessible(true);
+            IBinder binder = (IBinder) getServiceMethod.invoke(null, "package");
+            Class<?> stubClazz = Class.forName("android.content.pm.IPackageManager$Stub");
+            Method getDefaultImplMethod;
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+                getDefaultImplMethod = stubClazz.getDeclaredMethod("getDefaultImpl");
+            } else {
+                getDefaultImplMethod = HiddenApiBypass.getDeclaredMethod(stubClazz, "getDefaultImpl");
+            }
+            getDefaultImplMethod.setAccessible(true);
+            Object defaultImpl = getDefaultImplMethod.invoke(null);
+            Class<?> iPackageManagerClazz = Class.forName("android.content.pm.IPackageManager");
+            Method getPackageInfoMethod;
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+                getPackageInfoMethod = iPackageManagerClazz.getDeclaredMethod("getPackageInfo", String.class, int.class, int.class);
+            } else {
+                getPackageInfoMethod = HiddenApiBypass.getDeclaredMethod(iPackageManagerClazz, "getPackageInfo", String.class, int.class, int.class);
+            }
+            getPackageInfoMethod.setAccessible(true);
+
+            PackageInfo result;
+            data.writeInterfaceToken("android.content.pm.IPackageManager");
+            data.writeString(context.getPackageName());
+            int flag = Build.VERSION.SDK_INT < Build.VERSION_CODES.P ? PackageManager.GET_SIGNATURES : PackageManager.GET_SIGNING_CERTIFICATES;
+            data.writeInt(flag);
+            data.writeInt(getCurrentUser());
+            boolean status = binder.transact(getTransactionId("android.content.pm.IPackageManager$Stub", "TRANSACTION_getPackageInfo"), data, reply, 0);
+            if (!status && defaultImpl != null) {
+                Log.e(TAG, "Parcel transact failed");
+                return (PackageInfo) getPackageInfoMethod.invoke(defaultImpl, context.getPackageName(), flag, getCurrentUser());
+            }
+            reply.readException();
+            if (reply.readInt() != 0) {
+                result = PackageInfo.CREATOR.createFromParcel(reply);
+            } else {
+                result = null;
+            }
+            return result;
+        } catch (Throwable tr) {
+            Log.e(TAG, Log.getStackTraceString(tr));
+            throw tr;
+        } finally {
+            data.recycle();
+            reply.recycle();
+        }
+    }
+
+
     /**
      * 获取应用的签名
      *
-     * @return
      */
     public String getCertificateSHA1Fingerprint() {
-        //获取包管理器
-        PackageManager pm = context.getPackageManager();
-
-        //获取当前要获取 SHA1 值的包名，也可以用其他的包名，但需要注意，
-        //在用其他包名的前提是，此方法传递的参数 Context 应该是对应包的上下文。
-        String packageName = context.getPackageName();
-
-        //返回包括在包中的签名信息
-        int flags = PackageManager.GET_SIGNATURES;
-
-        PackageInfo packageInfo = null;
-
+        PackageInfo packageInfo;
         try {
-            //获得包的所有内容信息类
-            packageInfo = pm.getPackageInfo(packageName, flags);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+            packageInfo = getPackageInfoInternal();
+        } catch (Throwable tr) {
+            packageInfo = getPackageInfo();
         }
-
-        //签名信息
-        Signature[] signatures = packageInfo.signatures;
-        byte[] cert = signatures[0].toByteArray();
-
-        //将签名转换为字节数组流
-        InputStream input = new ByteArrayInputStream(cert);
-
-        //证书工厂类，这个类实现了出厂合格证算法的功能
-        CertificateFactory cf = null;
-
-        try {
-            cf = CertificateFactory.getInstance("X509");
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (packageInfo == null) {
+            throw new RuntimeException("???");
         }
-
-        //X509 证书，X.509 是一种非常通用的证书格式
-        X509Certificate c = null;
-
-        try {
-            c = (X509Certificate) cf.generateCertificate(input);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        String hexString = null;
-
-        try {
-            //加密算法的类，这里的参数可以使 MD4,MD5 等加密算法
-            MessageDigest md = MessageDigest.getInstance("SHA1");
-
-            //获得公钥
-            byte[] publicKey = md.digest(c.getEncoded());
-
-            //字节到十六进制的格式转换
-            hexString = byte2HexFormatted(publicKey);
-
-        } catch (NoSuchAlgorithmException e1) {
-            e1.printStackTrace();
-        } catch (CertificateEncodingException e) {
-            e.printStackTrace();
-        }
-        return hexString;
+        Log.e(TAG, (getSHA1SignFromPackageInfo(packageInfo)));
+        return (getSHA1SignFromPackageInfo(packageInfo));
     }
 
     //这里是将获取到得编码进行16 进制转换
@@ -138,15 +195,12 @@ public class SignCheck {
      * @return true 签名正常 false 签名不正常
      */
     public boolean check() {
-
         if (this.realCer != null) {
             cer = cer.trim();
             realCer = realCer.trim();
-            if (this.cer.equals(this.realCer)) {
-                return true;
-            }
-        }else {
-            Log.e(TAG, "未给定真实的签名 SHA-1 值");
+            return this.cer.equals(this.realCer);
+        } else {
+            Log.e(TAG, "real sign is null");
         }
         return false;
     }
