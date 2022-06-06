@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'stringfog'
+
+stringfog {
+    implementation 'com.github.megatronking.stringfog.xor.StringFogImpl'
+    enable true
+    fogPackages = ['gjzs.online']
+    debug false
+}
 
 android {
     compileSdkVersion 28
@@ -35,6 +43,9 @@ dependencies {
     implementation 'com.microsoft.appcenter:appcenter-analytics:4.3.1'
     implementation 'com.microsoft.appcenter:appcenter-crashes:4.3.1'
     implementation 'org.lsposed.hiddenapibypass:hiddenapibypass:4.3'
+    implementation 'com.github.megatronking.stringfog:xor:3.0.0'
+    implementation 'com.drakeet.about:about:2.5.1'
+    implementation 'com.drakeet.multitype:multitype:4.3.0'
 }
 repositories {
     mavenCentral()

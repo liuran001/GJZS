@@ -11,12 +11,12 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Base64
-import androidx.core.app.ActivityCompat
-import androidx.core.content.PermissionChecker
 import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.PermissionChecker
 import com.omarea.common.shell.ShellExecutor
 import com.omarea.krscript.executor.ScriptEnvironmen
 import gjzs.online.permissions.CheckRootStatus
@@ -29,16 +29,17 @@ class SplashActivity : Activity() {
         super.onCreate(savedInstanceState)
 
         //签名校验
-        val signCode = String(Base64.decode("RUQ6RjE6REE6QkU6Mzc6OTA6RDM6MTY6RTg6Qzc6NTI6Qzg6OUQ6QUQ6M0U6MTM6MEE6RkM6NjE6Mzk=",Base64.DEFAULT))
-        val signCheck = SignCheck(this, signCode)
-        val webCode = String(Base64.decode("aHR0cHM6Ly9nanpzci5jb20vU2lnbkNoZWNrRmFpbGVkLmh0bWw=",Base64.DEFAULT))
-        if (!signCheck.check()) {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(webCode))
-            startActivity(intent)
-            android.os.Process.killProcess(android.os.Process.myPid())
-            System.exit(0)
-            finish()
-            return
+        if (!BuildConfig.DEBUG) {
+            val signCode = String(Base64.decode("RUQ6RjE6REE6QkU6Mzc6OTA6RDM6MTY6RTg6Qzc6NTI6Qzg6OUQ6QUQ6M0U6MTM6MEE6RkM6NjE6Mzk=", Base64.DEFAULT))
+            val signCheck = SignCheck(this, signCode)
+            val webCode = String(Base64.decode("aHR0cHM6Ly9nanpzci5jb20vU2lnbkNoZWNrRmFpbGVkLmh0bWw=", Base64.DEFAULT))
+            if (!signCheck.check()) {
+                Toast.makeText(this, "警告：您安装的是非官方应用，请立即卸载，并前往 gjzsr.com 下载官方正版！", Toast.LENGTH_LONG).show()
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(webCode))
+                startActivity(intent)
+                finish()
+                return
+            }
         }
 
         if (ScriptEnvironmen.isInited()) {
@@ -58,21 +59,21 @@ class SplashActivity : Activity() {
      * 界面主题样式调整
      */
     private fun updateThemeStyle() {
-        getWindow().setNavigationBarColor(getColorAccent())
+        window.navigationBarColor = getColorAccent()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            window.setNavigationBarColor(getColor(R.color.splash_bg_color))
+            window.navigationBarColor = getColor(R.color.splash_bg_color)
         } else {
-            window.setNavigationBarColor(resources.getColor(R.color.splash_bg_color))
+            window.navigationBarColor = resources.getColor(R.color.splash_bg_color)
         }
 
         //  得到当前界面的装饰视图
         if (Build.VERSION.SDK_INT >= 21) {
-            val decorView = getWindow().getDecorView();
+            val decorView = window.decorView
             //让应用主题内容占用系统状态栏的空间,注意:下面两个参数必须一起使用 stable 牢固的
             val option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-            decorView.setSystemUiVisibility(option);
+            decorView.systemUiVisibility = option
             //设置状态栏颜色为透明
-            getWindow().setStatusBarColor(Color.TRANSPARENT)
+            window.statusBarColor = Color.TRANSPARENT
         }
     }
 
@@ -188,7 +189,8 @@ class SplashActivity : Activity() {
                         someIgnored = true
                     }
                     notificationMessageRows.add(log)
-                    logView.setText(notificationMessageRows.joinToString("\n", if (someIgnored) "……\n" else "").trim())
+                    logView.text =
+                        notificationMessageRows.joinToString("\n", if (someIgnored) "……\n" else "").trim()
                 }
             }
         }
@@ -199,7 +201,7 @@ class SplashActivity : Activity() {
     }
 
     private class BeforeStartThread(private var context: Context, private val config: KrScriptConfig, private var updateLogViewHandler: UpdateLogViewHandler) : Thread() {
-        val params = config.getVariables();
+        val params = config.variables
 
         override fun run() {
             try {

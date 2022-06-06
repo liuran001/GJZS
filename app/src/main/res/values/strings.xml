@@ -13,13 +13,6 @@
     <string name="starting_title">GJZS·R</string>
     <string name="starting_subtitle">English is in beta</string>
 
-    <string name="author_name">BDovo (liuran001)</string>
-    <string name="about_title">About · GJZS·R</string>
-    <string name="appliction_desc">Original Author: 情非得已c</string>
-    <string name="appliction_name">GJZS·R</string>
-    <string name="appliction_author">Developer: BDovo (@liuran001)</string>
-    <string name="engine_version_name">Based on [Kr-Script4.0.3]</string>
-
     <string name="tab_favorites">Overview</string>
     <string name="tab_pages">Functions</string>
 
@@ -32,7 +25,9 @@
     <string name="pio_permission_checking">Permission checking...</string>
     <string name="error_root">Cannot get ROOT access, some functions are not available.</string>
     <string name="error_su_timeout">ROOT authorization timeout, please check your ROOT manager.</string>
-    <string name="transparent_ui">Transparent UI </string>
+    <string name="transparent_ui">Transparent UI</string>
     <string name="title_activity_file_selector">Please select a file...</string>
     <string name="title_activity_folder_selector">Please select a folder by long press...</string>
+    <string name="card_content">"GJZS·R" is a utility application for Android enthusiasts. \n\nThis app was first developed by 情非得已c, and later maintained by BDovo (@liuran001), and renamed as GJZS·R.</string>
+    <string name="title_activity_about_page">About</string>
 </resources>

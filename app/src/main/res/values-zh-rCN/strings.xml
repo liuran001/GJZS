@@ -13,13 +13,6 @@
     <string name="starting_title">搞机助手·R</string>
     <string name="starting_subtitle">玩机从未如此简单</string>
 
-    <string name="author_name">笨蛋ovo（liuran001）</string>
-    <string name="about_title">关于 · 搞机助手·R</string>
-    <string name="appliction_desc">原作者：情非得已c</string>
-    <string name="appliction_name">搞机助手·R</string>
-    <string name="appliction_author">作者：笨蛋ovo（@liuran001）</string>
-    <string name="engine_version_name">基于[Kr-Script4.0.3]创作</string>
-
     <string name="tab_favorites">概览</string>
     <string name="tab_pages">功能</string>
 
@@ -32,7 +25,9 @@
     <string name="pio_permission_checking">检查并获取必需权限……</string>
     <string name="error_root">未能获得ROOT授权！</string>
     <string name="error_su_timeout">获取ROOT授权超时！</string>
-    <string name="transparent_ui">界面透明 </string>
+    <string name="transparent_ui">界面透明</string>
     <string name="title_activity_file_selector">请选择文件</string>
     <string name="title_activity_folder_selector">请长按选择目录</string>
+    <string name="card_content">搞机助手·R 是一款提供给Android玩机爱好者的实用工具应用。\n\n此APP最早由 情非得已c 开发，后由 笨蛋ovo 继续维护，并更名为 搞机助手·R。\n\n搞机千万条，安全第一条。\n搞机不规范，亲人两行泪。</string>
+    <string name="title_activity_about_page">关于</string>
 </resources>
