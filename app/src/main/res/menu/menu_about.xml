@@ -11,5 +11,11 @@
         android:title="@string/transparent_ui"
         app:showAsAction="never"
         tools:ignore="HardcodedText"/>
+    <item
+        android:id="@+id/appcenter_switch"
+        android:checkable="true"
+        android:title="@string/appcenter_switch"
+        app:showAsAction="never"
+        tools:ignore="HardcodedText"/>
 
 </menu>

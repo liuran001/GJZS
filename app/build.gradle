@@ -19,7 +19,7 @@ android {
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 28
         versionCode(Common.getversionCode())
-        versionName "4.7" + (Common.getGitHeadRefsSuffix(rootProject))
+        versionName "4.9" + (Common.getGitHeadRefsSuffix(rootProject))
     }
     buildTypes {
         release {

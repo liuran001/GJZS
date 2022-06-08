@@ -30,4 +30,5 @@
     <string name="title_activity_folder_selector">请长按选择目录</string>
     <string name="card_content">搞机助手·R 是一款提供给Android玩机爱好者的实用工具应用。\n\n此APP最早由 情非得已c 开发，后由 笨蛋ovo 继续维护，并更名为 搞机助手·R。\n\n搞机千万条，安全第一条。\n搞机不规范，亲人两行泪。</string>
     <string name="title_activity_about_page">关于</string>
+    <string name="appcenter_switch">App Center 统计开关</string>
 </resources>

@@ -9,7 +9,9 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.util.Base64
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -40,9 +42,14 @@ class MainActivity : AppCompatActivity() {
     private fun checkPermission(permission: String): Boolean = PermissionChecker.checkSelfPermission(this, permission) == PermissionChecker.PERMISSION_GRANTED
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //二改的麻烦把AppCenter密钥改了
-        AppCenter.start(application, "16d4ef12-f4e7-4955-964c-42c0e84e8446", Analytics::class.java, Crashes::class.java)
-
+        val appcenterStatus = AppCenterStatus(this)
+        val signCode = String(Base64.decode("RUQ6RjE6REE6QkU6Mzc6OTA6RDM6MTY6RTg6Qzc6NTI6Qzg6OUQ6QUQ6M0U6MTM6MEE6RkM6NjE6Mzk=", Base64.DEFAULT))
+        val signCheck = SignCheck(this, signCode)
+        if (appcenterStatus.getAppCenterStatus() && signCheck.check()) {
+            AppCenter.start(application, "16d4ef12-f4e7-4955-964c-42c0e84e8446", Analytics::class.java, Crashes::class.java)
+        } else {
+            Log.d("AppCenter", "AppCenter is disabled")
+        }
         super.onCreate(savedInstanceState)
         ThemeModeState.switchTheme(this)
         setContentView(R.layout.activity_main)

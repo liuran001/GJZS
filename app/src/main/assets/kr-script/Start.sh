@@ -5,23 +5,7 @@ abort() {
 }
 
 Inject() {
-    [[ ! -x "`curl -where`" ]] && Install_Curl
     curl -L -s -o "$2" "$CODING/$1"
-}
-
-Install_Curl() {
-        echo "- $curl_not_found"
-        Curl_URL='http://159.27.81.21/curl'
-        wget -O $ELF1_Path/curl3 "$Curl_URL/`getprop ro.product.cpu.abi`"
-        wget -O $ELF1_Path/curl3 "$Curl_URL/armeabi-v7a"
-        wget -O ~/cacert.pem "$Curl_URL/cacert.pem"
-        if $Have_ROOT; then
-            . $Core
-            [[ ! -f "$ELF1_Path/curl3" ]] && downloader "$ELF1_Path/curl3" "$Curl_URL/`getprop ro.product.cpu.abi`"
-            [[ ! -f "$ELF1_Path/curl3" ]] && downloader "$ELF1_Path/curl3" "$Curl_URL/armeabi-v7a"
-            [[ ! -f ~/cacert.pem ]] && downloader ~/cacert.pem "$Curl_URL/cacert.pem"
-        fi
-        chmod +x $ELF1_Path/curl3
 }
 
 SCRIPT() {

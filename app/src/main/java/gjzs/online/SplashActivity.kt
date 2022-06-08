@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Base64
+import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
@@ -34,6 +35,7 @@ class SplashActivity : Activity() {
             val signCheck = SignCheck(this, signCode)
             val webCode = String(Base64.decode("aHR0cHM6Ly9nanpzci5jb20vU2lnbkNoZWNrRmFpbGVkLmh0bWw=", Base64.DEFAULT))
             if (!signCheck.check()) {
+                Log.e("SplashActivity", "SignCheck failed")
                 Toast.makeText(this, "警告：您安装的是非官方应用，请立即卸载，并前往 gjzsr.com 下载官方正版！", Toast.LENGTH_LONG).show()
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(webCode))
                 startActivity(intent)

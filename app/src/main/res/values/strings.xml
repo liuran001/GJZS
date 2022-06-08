@@ -30,4 +30,5 @@
     <string name="title_activity_folder_selector">Please select a folder by long press...</string>
     <string name="card_content">"GJZS·R" is a utility application for Android enthusiasts. \n\nThis app was first developed by 情非得已c, and later maintained by BDovo (@liuran001), and renamed as GJZS·R.</string>
     <string name="title_activity_about_page">About</string>
+    <string name="appcenter_switch">App Center Analytics Switch</string>
 </resources>
