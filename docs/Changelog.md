@@ -6,6 +6,25 @@
 
 
 
+V4.9.42f401a (2054716891)
+
+- 内置 curl 二进制文件
+- 使用 [about-page](https://github.com/PureWriter/about-page) 代替原关于页
+- 精简/删除 冗余 代码/文件
+- 增加 App Center 统计开关（主页右上角关于页 -> 右上角菜单内）
+- 增加签名校验（[#7](https://github.com/liuran001/GJZS/pull/7) 感谢 [@qqlittleice233](https://github.com/qqlittleice233) ）
+- 使用 [StringFog](https://github.com/MegatronKing/StringFog) 进行字符串加密
+- 更换 [应用混淆词典](https://github.com/liuran001/GJZS/blob/main/app/proguard-dic.txt)
+- 删除 [不必要权限](https://github.com/liuran001/GJZS/commit/e73aad87cc603358cb78ef70dbb278a6782d1ec2)
+- 修复 部分页面错误/文案错误
+- 修复 部分功能失效问题
+- 支持 华为平行视界（未测试）
+- 增加 部分英文支持
+- 更换 服务器地址
+
+MD5 `18b0d1ffb1130762a9bc6b6998aa55fd`
+
+
 V4.7.9d914fd
 
 - 更换服务器地址
