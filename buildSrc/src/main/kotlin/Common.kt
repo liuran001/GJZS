@@ -58,12 +58,12 @@ object Common {
             }
             repo.close()
             println("commit Count: $commitCount")
-            val targetVersionCode = commitCount + 1700000000 // 兼容性方案 整数好看点
+            val targetVersionCode = commitCount + 2100000000 // 兼容性方案 整数好看点
             println("target versionCode: $targetVersionCode")
             return targetVersionCode
         } else {
             println("WARN: .git/HEAD does NOT exist")
-            return 1700000000
+            return 2100000000
         }
     }
 
