@@ -31,6 +31,7 @@ class AboutActivity : AbsAboutActivity() {
         items.add(Category("Developers"))
         items.add(Contributor(R.drawable.avatar_developer, "笨蛋ovo (@liuran001)", "Developer", "https://bdovo.xyz"))
         items.add(Contributor(R.drawable.avatar_qqlittleice233, "QQ little ice", "Contributor", "https://github.com/qqlittleice233"))
+        items.add(Contributor(R.drawable.avatar_qwq233, "James Clef", "Contributor", "https://github.com/qwq233"))
         items.add(Contributor(R.drawable.avatar_original_developer, "情非得已c", "Original Developer", "https://u.qqcn.xyz/ZxZ3T2"))
         items.add(Contributor(R.drawable.avatar_icon_designer, "莫白の", "Icon Designer", "https://u.qqcn.xyz/RhtXwJ"))
         items.add(Category("Open Source Licenses"))
