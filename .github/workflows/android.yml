@@ -30,24 +30,6 @@ jobs:
         echo 'org.gradle.jvmargs=-Xmx3072m' >> gradle.properties
         ./gradlew :app:assembleRelease
         echo "::set-output name=status::success"
-
-    - uses: r0adkll/sign-android-release@v1.0.4
-      name: Sign app APK
-      if: steps.build.outputs.status == 'success'
-      # ID used to access action output
-      id: sign_app
-      with:
-        releaseDirectory: app/build/outputs/apk/release
-        signingKeyBase64: ${{ secrets.SIGN_FILE_BASE64 }}
-        alias: ${{ secrets.KEY_ALIAS }}
-        keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
-        keyPassword: ${{ secrets.KEY_PASSWORD }}
-      env:
-        # override default build-tools version (29.0.3) -- optional
-        BUILD_TOOLS_VERSION: "28.0.3"
-
-    - name: Rename APK
-      run: cd app/build/outputs/apk/release && mv app-release-unsigned-signed.apk app-release.apk
  
     - name: Upload Artefact
       uses: actions/upload-artifact@main
