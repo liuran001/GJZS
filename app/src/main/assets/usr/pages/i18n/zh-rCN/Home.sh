@@ -70,8 +70,8 @@ cat <<Han
 <group title="功能区">
     <pages>
     <page title="OTG功能区" config-sh="\$Pages/i18n/zh-rCN/OTG.xml" />
-        <page title="Magisk专区" config-sh="cat \$Pages/i18n/zh-rCN/Magisk.xml" />
-        <page title="Magisk模块仓库" before-load=". \$ShellScript/Magisk_Module/Print_Magisk_Warehouse.sh" config-sh="cat \$Pages/i18n/zh-rCN/Magisk_Warehouse.xml" locked="$LOCKED" />
+        <page title="Magisk专区" config-sh="cat \$Pages/Magisk.xml" />
+        <page title="Magisk模块仓库" before-load=". \$ShellScript/Magisk_Module/Print_Magisk_Warehouse.sh" config-sh="cat \$Pages/Magisk_Warehouse.xml" locked="$LOCKED" />
         <page title="应用/Xposed仓库" before-load=". \$ShellScript/Print_App_Store.sh" config-sh="cat \$Pages/i18n/zh-rCN/App_Store.xml" />
         <page title="LSPosed模块管理" config-sh="cat \$Pages/i18n/zh-rCN/LSPosed.xml" visible="[[ -d /data/adb/lspd ]] &#38;&#38; echo 1 || echo 0" />
         <page title="开机页面专区" config-sh="cat \$Pages/i18n/zh-rCN/Boot_Animation.xml" locked="$LOCKED" />
