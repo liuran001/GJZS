@@ -1,7 +1,6 @@
 # 搞机助手·R
 `原「搞机助手重制版」`
 
-[![Build status](https://build.appcenter.ms/v0.1/apps/080dec73-22f0-473e-ba2e-66e511218893/branches/main/badge)](https://appcenter.ms)
 [![Android CI](https://github.com/liuran001/GJZS/actions/workflows/android.yml/badge.svg?branch=main)](https://install.appcenter.ms/users/liuran001/apps/gao3-ji1-zhu4-shou3-r/distribution_groups/%e6%90%9e%e6%9c%ba%e5%8a%a9%e6%89%8b%c2%b7r)
 
 ## 下载
