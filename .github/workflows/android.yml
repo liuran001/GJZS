@@ -29,6 +29,7 @@ jobs:
       run: |
         echo 'org.gradle.jvmargs=-Xmx3072m' >> gradle.properties
         ./gradlew :app:assembleRelease
+        echo "APkFileName=$(find app/build/outputs/apk/release -name "*.apk")" >> $GITHUB_ENV
         echo "::set-output name=status::success"
  
     - name: Upload Artefact
@@ -36,7 +37,7 @@ jobs:
       if: steps.build.outputs.status == 'success' && !cancelled()
       with:
         name: app-release
-        path: app/build/outputs/apk/release/app-release.apk
+        path: ${{ env.APkFileName }}
 
     - name: Upload Artefact to App Center
       if: steps.build.outputs.status == 'success' && !cancelled()
@@ -45,7 +46,7 @@ jobs:
         appName: liuran001/gao3-ji1-zhu4-shou3-R
         token: ${{secrets.APP_CENTER_TOKEN}}
         group: '搞机助手·R'
-        file: app/build/outputs/apk/release/app-release.apk
+        file: ${{ env.APkFileName }}
         notifyTesters: true
         debug: false
         gitReleaseNotes: true
@@ -56,15 +57,14 @@ jobs:
       env:
         CHANNEL_ID: ${{ secrets.TELEGRAM_TO }}
         BOT_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-        FILE: ${{ github.workspace }}/app/build/outputs/apk/release/app-release.apk
+        FILE: ${{ github.workspace }}/${{ env.APkFileName }}
         COMMIT_MESSAGE: |+
-          GitHub有[新提交](${{ github.event.head_commit.url }})了！
-          提交内容：
+          New push to github\!
           ```
           ${{ github.event.head_commit.message }}
-          ```提交者 `${{ github.event.head_commit.author.name }}`
-          
-          注：CI版存在风险，请谨慎使用！
+          ```by `${{ github.event.head_commit.author.name }}`
+          See commit detail [here](${{ github.event.head_commit.url }})
+          Snapshot apk is attached
       run: |
         ESCAPED=`python3 -c 'import json,os,urllib.parse; print(urllib.parse.quote(json.dumps(os.environ["COMMIT_MESSAGE"])))'`
         curl -v "https://api.telegram.org/bot${{ secrets.BOTTOKEN }}/sendMediaGroup?chat_id=${{ secrets.MESSAGEID }}&media=%5B%7B%22type%22:%22document%22,%20%22media%22:%22attach://release%22,%22parse_mode%22:%22MarkdownV2%22,%22caption%22:${ESCAPED}%7D%5D"  -F release="@$FILE"

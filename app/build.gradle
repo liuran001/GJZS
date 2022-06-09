@@ -38,9 +38,25 @@ android {
         release {
             shrinkResources true
             minifyEnabled true
+            zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             if (System.getenv("KEYSTORE_PATH") != null) {
                 signingConfig signingConfigs.release
+            }
+            applicationVariants.all { variant ->
+                def suffix
+                if (variant.buildType.name == 'release') {
+                    suffix = 'release'
+                } else {
+                    suffix = 'debug'
+                }
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        def fileName = "GJZS·R_v${defaultConfig.versionName}_${defaultConfig.versionCode}_${suffix}.apk"
+                        output.outputFileName = fileName
+                    }
+                }
             }
         }
     }
