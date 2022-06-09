@@ -28,7 +28,10 @@ jobs:
       id: build
       run: |
         echo 'org.gradle.jvmargs=-Xmx3072m' >> gradle.properties
+        echo "${{secrets.SIGN_FILE_BASE64}}" > signfile.txt
+        export KEYSTORE_PATH=signfile.txt
         ./gradlew :app:assembleRelease
+        rm signfile.txt
         echo "APkFileName=$(find app/build/outputs/apk/release -name "*.apk")" >> $GITHUB_ENV
         echo "::set-output name=status::success"
  
