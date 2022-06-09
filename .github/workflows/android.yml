@@ -26,12 +26,16 @@ jobs:
         cache: gradle
     - name: Build with Gradle
       id: build
+      env:
+        KEYSTORE_PATH: "./keystore.jks"
+        KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+        KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+        KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
       run: |
         echo 'org.gradle.jvmargs=-Xmx3072m' >> gradle.properties
-        echo "${{secrets.SIGN_FILE_BASE64}}" > signfile.txt
-        export KEYSTORE_PATH=signfile.txt
+        echo ${{ secrets.SIGN_FILE_BASE64 }} | base64 -d > keystore.jks
         ./gradlew :app:assembleRelease
-        rm signfile.txt
+        rm keystore.jks
         echo "APkFileName=$(find app/build/outputs/apk/release -name "*.apk")" >> $GITHUB_ENV
         echo "::set-output name=status::success"
  
