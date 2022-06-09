@@ -12,7 +12,7 @@ stringfog {
 
 android {
     compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    buildToolsVersion '32.0.0'
 
     defaultConfig {
         minSdkVersion 21
@@ -40,8 +40,8 @@ dependencies {
     implementation project(':common') // 添加依赖模块
     implementation project(':krscript') // 添加依赖模块
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
-    implementation 'com.microsoft.appcenter:appcenter-analytics:4.3.1'
-    implementation 'com.microsoft.appcenter:appcenter-crashes:4.3.1'
+    implementation 'com.microsoft.appcenter:appcenter-analytics:4.4.3'
+    implementation 'com.microsoft.appcenter:appcenter-crashes:4.4.3'
     implementation 'org.lsposed.hiddenapibypass:hiddenapibypass:4.3'
     implementation 'com.github.megatronking.stringfog:xor:3.0.0'
     implementation 'com.drakeet.about:about:2.5.1'
