@@ -27,7 +27,7 @@ jobs:
     - name: Build with Gradle
       id: build
       env:
-        KEYSTORE_PATH: "./keystore.jks"
+        KEYSTORE_PATH: "../keystore.jks"
         KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
         KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
         KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
