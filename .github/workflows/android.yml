@@ -33,7 +33,7 @@ jobs:
         KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
       run: |
         echo 'org.gradle.jvmargs=-Xmx3072m' >> gradle.properties
-        echo ${{ secrets.SIGN_FILE_BASE64 }} | base64 -d > keystore.jks
+        echo "${{ secrets.SIGN_FILE_BASE64 }}" | base64 -d > keystore.jks
         ./gradlew :app:assembleRelease
         rm keystore.jks
         echo "APkFileName=$(find app/build/outputs/apk/release -name "*.apk")" >> $GITHUB_ENV
