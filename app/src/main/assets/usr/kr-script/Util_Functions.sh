@@ -1,5 +1,5 @@
 #Custom variable
-export Util_Functions_Code=2022032001
+export Util_Functions_Code=2022071801
 export SDdir=/data/media/0
 export Magisk=`$which magisk`
 export Modules_Dir=/data/adb/modules
@@ -98,7 +98,7 @@ adb() (
     if [[ $# -eq 0 ]]; then
         exec "$ADB"
     fi
-    
+
     case "$1" in
         help | --help | kill-server | start-server | reconnect | devices | keygen | tcpip | connect | disconnect | usb | wait-for-*)
            exec "$ADB" "$@"
@@ -107,8 +107,8 @@ adb() (
             "$ADB" kill-server
             exec "$ADB" start-server
     esac
-    
-    
+
+
     [[ -z `"$ADB" devices | egrep -vi 'List of.*'` ]] && error "！无设备连接" && exit 126
     exec "$ADB" "$@"
 )
@@ -118,16 +118,16 @@ fastboot() (
     if [[ $# -eq 0 ]]; then
         exec "$FASTBOOT"
     fi
-    
+
     case "$1" in
         help | --help | -h | devices)
         : ;;
-        
+
         *)
             [[ -z `"$FASTBOOT" devices` ]] && error "！无设备连接" && exit 126
         ;;
     esac
-    
+
     exec "$FASTBOOT" "$@"
 )
 
@@ -149,7 +149,7 @@ show_progress() {
     [[ -n $2 ]] && echo "progress:[$1/$2]" || echo "progress:[$1/100]"
 }
 
-adb2() { 
+adb2() {
     if [[ "$#" -eq 0 ]]; then
         adb shell
         if [[ $? -ne 0 ]]; then
@@ -186,7 +186,7 @@ Install_curl() {
     [[ ! -f $Load ]] && return 1
     local jian jian2
     . $Load curl
-    
+
     jian=$TMPDIR/curl.zip
     jian2=$Script_Dir/META-INF/com/google/android/update-binary
     WGET -c -O $jian "http://d0.ananas.chaoxing.com/download/$url"
@@ -195,7 +195,7 @@ Install_curl() {
     rm -rf $Script_Dir
     mkdir -p $Script_Dir
     unzip -oq "$jian" 'META-INF/com/google/android/update-binary' -d $Script_Dir
-    
+
     if [[ -f "$jian2" ]]; then
         sh "$jian2" $Package_name 1 "$jian"
         PATH="$PATH"
@@ -223,7 +223,7 @@ Install_Applet2() {
                                 arm64*)
                                     mv -f "$ELF2_Path/arm64/"* "$ELF2_Path"
                                 ;;
-                                
+
                                 arm*)
                                     mv -f "$ELF2_Path/arm/"* "$ELF2_Path"
                                 ;;
@@ -260,7 +260,7 @@ Start_Installing_Busybox() {
         mips*) Type=mips;;
         *) echo "！ 未知的架构 ${ABI}，无法安装busybox"; return 1;;
     esac
-    
+
     Start_Install() { CloudBusybox="$8"; }
         . "$Load" Install_busybox
 
@@ -318,7 +318,7 @@ End_Time() {
     ms1=`expr $ns / 1000000`
     ms2=`expr $ns % 1000000`
     [[ -n "$ms2" ]] && ms=$ms1.$ms2 || ms=$ms1
-    
+
         if [[ $s -ge 3600 ]]; then
             h=`expr $s / 3600`
             h=`expr $s % 3600`
@@ -343,7 +343,7 @@ CURL() {
     local model="`getprop ro.product.model`"
     [[ -z "$v" ]] && v=11
     [[ -z "$model" ]] && model='Redmi K30 5G'
-    
+
     curl -A "Mozilla/5.0 (Linux; Android $v; $model) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.62 Mobile Safari/537.36 GJZS/9.20" "$@"
 }
 
@@ -352,7 +352,7 @@ WGET() {
     local model="`getprop ro.product.model`"
     [[ -z "$v" ]] && v=11
     [[ -z "$model" ]] && model='Redmi K30 5G'
-    
+
     wget -U "Mozilla/5.0 (Linux; Android $v; $model) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.62 Mobile Safari/537.36 GJZS/9.20" "$@"
 }
 
@@ -378,7 +378,7 @@ XiaZai() {
 
 EndMD5() {
     if [[ "$File_MD5" = '' ]];then
-        echo '- 无MD5信息，跳过检验' 
+        echo '- 无MD5信息，跳过检验'
     else
         md5_down=`md5sum "$Download_File" | sed 's/ .*//g'`
         if [[ "$File_MD5" != "$md5_down" ]]; then
@@ -397,7 +397,7 @@ Start_Download() {
         $1 -where &>/dev/null
         return $?
     }
-    
+
     local Download_File2 File_Type YiXZ YiXZ_2 YiXZ_SuDu Remaining_Time Percentage Size2 md5_down code
     Download_File2="$2"
         if Check_command2 awk && Check_command2 wc && Check_command2 md5sum; then
@@ -471,11 +471,11 @@ Download() {
     if [[ "$#" -lt 5 ]]; then
         abort "！没有参数无法提供下载"
     fi
-    
+
     Deleting_file() {
         rm -rf "$PeiZhi_File/$Delete"*
     }
-    
+
     MD5() {
         if [[ -f "$Download_File" ]]; then
             if [[ "$File_MD5" = '' ]];then
@@ -497,8 +497,8 @@ Download() {
                 return 1
         fi
     }
-    
-    
+
+
 
     local Han Options ID File_Name2 File_Size Delete split_size Total_size n size xsize PeiZhi_File0
     Han=0
@@ -515,15 +515,15 @@ Download() {
             ;;
             -file)
                 shift
-                Link="https://mscdnfile.qqcn.xyz/GJZS/$ID"
+                Link="https://s1.gjzsr.com:2083/GJZS/$ID"
             ;;
             -gh)
                 shift
-                Link="https://github.qqcn.xyz/$ID"
+                Link="https://ghproxy.com/?q=https://github.com/$ID"
             ;;
             -cos)
                 shift
-                Link="https://mscdnfile.qqcn.xyz/file/$ID"
+                Link="https://s1.gjzsr.com:2083/file/$ID"
             ;;
             *)
                 abort "！暂不支持下载"
