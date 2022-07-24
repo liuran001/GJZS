@@ -13,10 +13,10 @@ SCRIPT() {
       Inject $1 $2
       Check_MD5=`md5sum $2 2>/dev/null | sed 's/ .*//g'`
          if [[ $Check_MD5 = $3 ]]; then
-            echo "- $init $4 $successfully"
+            echo "- 初始化 $4 成功"
          else
             rm -f $2
-            echo "- $init $4 $failed"
+            echo "! 初始化 $4 失败"
          fi
     elif [[ -f $2 ]]; then
       Check_MD5=`md5sum $2 2>/dev/null | sed 's/ .*//g'`
@@ -24,10 +24,10 @@ SCRIPT() {
            Inject $1 $2
             Check_MD5=`md5sum $2 | sed 's/ .*//g'`
                if [[ $Check_MD5 = $3 ]]; then
-                  echo "- $update $4 $successfully"
+                  echo "- 更新 $4 成功"
                else
                   rm -f $2
-                  echo "- $update $4 $failed"
+                  echo "! 更新 $4 失败"
                fi
          fi
      fi
@@ -35,7 +35,7 @@ SCRIPT() {
 
 DATA() {
     if [[ ! -f ~/offline2 ]]; then
-        echo "- $detecting_for_script_update"
+        echo "- 开始检测脚本更新"
         Inject data.php "$data_MD5"
     fi
 }
@@ -43,10 +43,10 @@ DATA
 if [[ -f $data_MD5 ]]; then
   . $data_MD5
   if [[ $? -ne 0 ]]; then
-     echo -e "\n$server_expired (error：404)"
-     echo "$please_update_app"
+     echo -e "\n！服务器已过期 (error：404)"
+     echo "请前往 https://gjzsr.com 更新至最新版本"
      sleep 3
-     echo -e "\n\n$error_details`cat $data_MD5`"
+     echo -e "\n\n错误详情`cat $data_MD5`"
      sleep 3
      exit 6
   fi
@@ -56,17 +56,17 @@ if [[ -f $data_MD5 ]]; then
         chown $APP_USER_ID:$APP_USER_ID $PeiZhi_File
      fi
         if [[ ! -f ~/offline2 ]];then
-            SCRIPT $init_data_ID "$Load" $init_data_MD5 $configuration_file
+            SCRIPT $init_data_ID "$Load" $init_data_MD5 配置
             [[ ! -f "$Load" ]] && cp "$Load".bak "$Load"
             if [[ ! -f ~/offline ]];then
-              SCRIPT $APP_Version_ID "$ShellScript/APP_Version.sh" $APP_Version_MD5 $version_info
+              SCRIPT $APP_Version_ID "$ShellScript/APP_Version.sh" $APP_Version_MD5 版本信息
               . $ShellScript/APP_Version.sh
             fi
         fi
 else
-  echo "! $disconnect_internet"
+  echo "！未连接到互联网❓"
 fi
   . $Core
   Installing_Busybox
-  echo "- $finished"
+  echo "- 完成！"
   exit 0

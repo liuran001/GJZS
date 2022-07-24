@@ -35,12 +35,6 @@ export CODING=https://s2.gjzsr.com/gjzs
 
 [[ -f $Core ]] && . $Core
 
-if [ $LANGUAGE == "zh-rCN" ]; then
-  [ -f "$Data_Dir/i18n/string.ini" ] && source $Data_Dir/i18n/string.ini
-else
-  [ -f "$Data_Dir/i18n/stringeng.ini" ] && source $Data_Dir/i18n/stringeng.ini
-fi
-
 if [[ -f "$1" ]]; then
     cd "$ShellScript"
     . "$@" &

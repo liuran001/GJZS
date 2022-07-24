@@ -1,13 +1,8 @@
 rm -rf ~/downloader/path/*
 [[ ! -d ~/Flag ]] && mkdir ~/Flag
 if [[ -f ~/Flag/Enable ]]; then
-    if [ $LANGUAGE == "zh-rCN" ]; then
-      . "$Pages/i18n/zh-rCN/Home.sh"
-      exit 0
-    else
-      . "$Pages/Home.sh"
-      exit 0
-    fi
+    . "$Pages/Home.sh"
+    exit 0
 fi
 cat <<EOL
 <?xml version="1.0" encoding="utf-8"?>
