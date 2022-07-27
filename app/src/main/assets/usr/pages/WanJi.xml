@@ -75,9 +75,17 @@
 </group>
 <group title="系统相关调试">
 <!-- START -->
+<switch interruptible="false" visible=". ./support/Android.sh 28">
+    <title>显示旋转建议图标</title>
+    <desc>在 Android 9 或更高版本，固定屏幕旋转方向时发生旋转，系统会在导航栏（或左下角）生成快捷旋转按钮。关闭此开关以关闭此系统功能。（注：部分定制UI下此功能无效）</desc>
+    <get>. ./switchs/Show_Rotate_Suggestions_Get.sh</get>
+    <set>. ./switchs/Show_Rotate_Suggestions_Set.sh</set>
+</switch>
+<!-- END -->
+<!-- START -->
     <switch interruptible="false" visible=". ./support/Android.sh 29">
         <title>强制显示桌面图标</title>
-        <desc>在 Android 10 或更高版本，应用不再允许隐藏桌面图标，关闭该选项以关闭比系统功能。</desc>
+        <desc>在 Android 10 或更高版本，应用不再允许隐藏桌面图标，关闭该选项以关闭此系统功能。</desc>
         <get>. ./switchs/Show_Hidden_App_Get.sh</get>
         <set>. ./switchs/Show_Hidden_App_Set.sh</set>
     </switch>

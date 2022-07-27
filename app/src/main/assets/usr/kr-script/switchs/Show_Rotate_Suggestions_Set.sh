@@ -1,0 +1,1 @@
+[[ `settings get secure show_rotation_suggestions` = 0 ]] && settings put secure show_rotation_suggestions 1 || settings put secure show_rotation_suggestions 0
