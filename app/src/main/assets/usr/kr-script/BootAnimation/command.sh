@@ -6,7 +6,7 @@ mkdir -p $FILE
 if [[ ! -f $FFMPEG ]]
 then
 	echo "--联网下载ffmpeg，稍等"
-	curl -o ${FFMPEG} -L "https://file.qqcn.xyz/GJZS/Other/ffmpeg_all"
+	curl -o ${FFMPEG} -L "https://s1.gjzsr.com:2083/GJZS/Other/ffmpeg_all"
 fi
 
 md5sum $FFMPEG | grep $FFMPEGMD5 > /dev/null
