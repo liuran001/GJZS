@@ -15,6 +15,7 @@ echo "正在移除温控"
 [[ $VendorEX = 1 ]] && {
     for o in `find "/vendor" -name "*thermal*" ! -name "*thermal*.json" ! -name "*thermal*.conf" -type f`; do
         echo "$o" | fgrep -iq 'android.' && continue
+        echo "$o" | fgrep -iq 'lib64' && continue
         echo - $o
         mktouch "$Module/system/$o"
     done
