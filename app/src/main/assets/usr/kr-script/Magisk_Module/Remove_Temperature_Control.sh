@@ -12,10 +12,12 @@ echo "正在移除温控"
     done
 }
 
-[[ $VendorEX = 1 ]] && {
+[[ $Vendor32 = 1 ]] && {
     for o in `find "/vendor" -name "*thermal*" ! -name "*thermal*.json" ! -name "*thermal*.conf" -type f`; do
         echo "$o" | fgrep -iq 'android.' && continue
-        echo "$o" | fgrep -iq 'lib64' && continue
+        if [[ $Vendor64 == 0 ]];then
+            echo "$o" | fgrep -iq 'lib64' && continue
+        fi
         echo - $o
         mktouch "$Module/system/$o"
     done
@@ -40,12 +42,20 @@ echo "正在移除温控"
 }
 
 [[ $MIUICloudThermal = 1 ]] && {
-    rm -rf /data/thermal
+    if [ -d "/data/thermal" ];then
+        rm -rf /data/thermal
+        touch /data/thermal
+        /data/adb/magisk/busybox chattr +i  /data/thermal
+    else
+        echo "MIUI云控的/data/thermal已经被移除了哦"
+    fi
+    if [ -d "/data/vendor/thermal" ];then
     rm -rf /data/vendor/thermal
-    touch /data/thermal
     touch /data/vendor/thermal
-    /data/adb/magisk/busybox chattr +i  /data/thermal
     /data/adb/magisk/busybox chattr +i  /data/vendor/thermal
+    else
+        echo "MIUI云控的/data/vendor/thermal已经被移除了哦"
+    fi
 }
 
 mktouch "$Module/uninstall.sh"
