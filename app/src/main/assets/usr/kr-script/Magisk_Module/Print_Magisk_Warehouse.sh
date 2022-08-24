@@ -200,13 +200,14 @@ Remove_Temperature_Control)
 cat <<Han
 <!-- START -->
     <action interruptible="false">
-        <title>$name</title>
-        <desc>$desc</desc>
+        <title>移除温控</title>
+        <desc>版本：v2.1&#x000A;版本号：13&#x000A;作者：People11 &#38; 黑弩&#x000A;描述：以Magisk模块移除温控文件&#x000A;更新于：2022年8月24日</desc>
         <set>. ./Magisk_Module/Remove_Temperature_Control.sh Remove_Temperature_Control</set>
         <params>
             <param name="ChongQi" label="刷入后自动重启" type="switch" />
             <param name="VendorJson" label="移除Vendor温控配置文件" type="checkbox" value="1" />
-            <param name="VendorEX" label="移除Vendor温控二进制文件" type="checkbox" value="0" />
+            <param name="Vendor32" label="移除Vendor32位温控二进制文件" type="checkbox" value="0" />
+            <param name="Vendor64" label="移除Vendor64位温控二进制文件(部分机型会导致卡第一屏)" type="checkbox" value="0" />
             <param name="Perf" label="移除Perf参数" type="checkbox" value="0" />
             <param name="MIUICloudThermal" label="移除MIUI云温控" type="checkbox" value="0" />
         </params>
