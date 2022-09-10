@@ -15,6 +15,7 @@ echo "正在移除温控"
 [[ $Vendor32 = 1 ]] && {
     for o in `find "/vendor" -name "*thermal*" ! -name "*thermal*.json" ! -name "*thermal*.conf" -type f`; do
         echo "$o" | fgrep -iq 'android.' && continue
+        echo "$o" | fgrep -iq 'mi_thermald' && continue
         if [[ $Vendor64 == 0 ]];then
             echo "$o" | fgrep -iq 'lib64' && continue
         fi
