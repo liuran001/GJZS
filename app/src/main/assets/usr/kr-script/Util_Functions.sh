@@ -528,6 +528,7 @@ Download() {
             -lanzou)
                 shift
                 Link=$(get_lanzou_directlink "$ID")
+	    ;;
             *)
                 abort "！暂不支持下载"
             ;;
