@@ -20,4 +20,4 @@ features:
     details: 每个功能均经过人工测试，确保大多数用户正常后才引入到应用内。
 ---
 
-<div class="footer">GPL-3.0 Licensed | Copyright © 2021-2022 笨蛋ovo</div>
+<div class="footer">GPL-3.0 Licensed | Copyright © 2021-2023 笨蛋ovo</div>

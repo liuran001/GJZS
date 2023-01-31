@@ -174,4 +174,4 @@
 
 搞机助手·R开发团队
 
-help@gjzs.online
+support@gjzsr.com
