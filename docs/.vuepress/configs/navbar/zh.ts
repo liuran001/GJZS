@@ -18,18 +18,10 @@ export const zh: NavbarConfig = [
     children: [
       {
         text: '作者个人主页',
-        link: 'https://bdovo.xyz',
-      },
+        link: 'https://bdovo.cc',
+      }
       {
-        text: '作者个人博客',
-        link: 'https://blog.qqcn.xyz',
-      },
-      {
-        text: '服务器状态查看',
-        link: 'https://status.qqcn.xyz',
-      },
-      {
-        text: '倾城极速',
+        text: '倾城极速机场',
         link: 'https://qcjs.cc/',
       },
     ],
