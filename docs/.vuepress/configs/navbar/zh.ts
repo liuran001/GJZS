@@ -19,7 +19,7 @@ export const zh: NavbarConfig = [
       {
         text: '作者个人主页',
         link: 'https://bdovo.cc',
-      }
+      },
       {
         text: '倾城极速机场',
         link: 'https://qcjs.cc/',
