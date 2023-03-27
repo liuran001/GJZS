@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<group title="问题反馈">
-<!-- START -->
-    <page link="`echo https://support.qq.com/product/383388`">
-        <title>腾讯兔小巢</title>
-        <desc>前往发帖反馈</desc>
-    </page>
-<!-- END -->
 <group title="关于">
 <!-- START -->
-    <page link="https://gjzs.qqcn.xyz">
+    <page link="https://gjzsr.com">
         <title>官网地址</title>
-        <desc>https://gjzs.qqcn.xyz</desc>
+        <desc>https://gjzsr.com</desc>
+    </page>
+<!-- END -->
+<!-- START -->
+    <page link="https://gjzs.app">
+        <title>下载更新</title>
+        <desc>https://gjzs.app</desc>
     </page>
 <!-- END -->
 <!-- START -->
@@ -82,11 +81,6 @@
     </page>
 <!-- END -->
 <!-- START -->
-    <page link="https://qqcn.coding.net/p/import-rt20/d/GJZS/git/raw/master/other/WeChat_Official_Accounts.jpg">
-        <title>原作者「情非得已c」的微信公众号：HanGJZS</title>
-    </page>
-<!-- END -->
-<!-- START -->
     <page link="http://www.coolapk.com/u/780237">
         <title>现阶段开机动画提供/制作者：抱抱猫People11</title>
     </page>
@@ -94,14 +88,6 @@
 <!-- START -->
     <text>
         <title>莫白の   QQ：3096135245为搞机助手·R绘制LOGO</title>
-    </text>
-<!-- END -->
-<!-- START -->
-    <text>
-        <title>特别鸣谢以下成员提供服务器下载服务</title>
-        <slices>
-            <slice size="16">2021-05-26至now   深信不疑。：QQ 1097228498</slice>
-        </slices>
     </text>
 <!-- END -->
 </group>

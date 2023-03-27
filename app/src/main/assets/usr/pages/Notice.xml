@@ -21,14 +21,6 @@ Han
 [[ ! -f ~/offline && ! -f ~/offline2 ]] && Notice
 cat <<Han
 
-<group title="问题反馈">
-<!-- START -->
-    <page link="`echo https://support.qq.com/product/383388`">
-        <title>腾讯兔小巢</title>
-        <desc>前往发帖反馈</desc>
-    </page>
-<!-- END -->
-
 <group title="关于">
 <!-- START -->
     <page config-sh="cat \$Pages/In_Regard_To.xml">
@@ -51,15 +43,15 @@ cat <<Han
 
 <group title="进群交流">
 <!-- START -->
-    <page link="https://t.me/gjzs666">
+    <page link="https://t.me/gjzsr">
         <title>TG交流群</title>
-        <desc>@gjzs666</desc>
+        <desc>@gjzsr</desc>
     </page>
 <!-- END -->
 <!-- START -->
-    <page link="https://t.me/gjzs666_channel">
+    <page link="https://t.me/gjzsr_channel">
         <title>TG通知频道</title>
-        <desc>@gjzs666_channel</desc>
+        <desc>@gjzsr_channel</desc>
     </page>
 <!-- END -->
 </group>

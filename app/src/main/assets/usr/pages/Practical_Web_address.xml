@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<group title="交流社区">
-<!-- START -->
-    <page link="https://igjbbs.cn">
-        <title>搞机社区</title>
-        <desc>全新社区，欢迎大佬的加入</desc>
-    </page>
-<!-- END -->
 <group title="资源聚合">
 <!-- START -->
     <page link="https://kamiui.ml">
@@ -14,11 +7,6 @@
     </page>
 <!-- END -->
 <group title="Magisk">
-<!-- START -->
-    <page link="https://magiskmanager.com/">
-        <title>Magisk Manager官网</title>
-    </page>
-<!-- END -->
 <!-- START -->
     <page link="https://github.com/topjohnwu/Magisk/releases">
         <title>Magisk Manager：Github下载网址</title>
@@ -43,19 +31,12 @@
 <!-- END -->
 <!-- START -->
     <page link="https://github.com/LSPosed/LSPosed/releases">
-        <title>Riru LSPosed：Github发布页</title>
-        <desc>需下载Riru搭配使用！然后下载LSPosed Manager.apk进行模块管理</desc>
+        <title>LSPosed：Github发布页</title>
     </page>
 <!-- END -->
 <!-- START -->
     <page link="https://github.com/ElderDrivers/EdXposed/releases/">
         <title>Riru EdXposed：Github发布页</title>
-        <desc>需下载Riru搭配使用！然后下载EdXposed Manager.apk进行模块管理</desc>
-    </page>
-<!-- END -->
-<!-- START -->
-    <page link="https://ci.appveyor.com/project/ElderDrivers/edxposed/build/artifacts">
-        <title>Riru EdXposed：Snapshot Versions（非官方版本）</title>
         <desc>需下载Riru搭配使用！然后下载EdXposed Manager.apk进行模块管理</desc>
     </page>
 <!-- END -->

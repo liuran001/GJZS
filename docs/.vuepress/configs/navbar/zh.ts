@@ -22,7 +22,7 @@ export const zh: NavbarConfig = [
       },
       {
         text: '倾城极速机场',
-        link: 'https://qcjs.cc/',
+        link: 'https://qcjs.pro',
       },
     ],
   },
