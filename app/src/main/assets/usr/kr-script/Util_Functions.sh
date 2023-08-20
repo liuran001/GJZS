@@ -1,5 +1,5 @@
 #Custom variable
-export Util_Functions_Code=2022121801
+export Util_Functions_Code=2023082001
 export SDdir=/data/media/0
 export Magisk=`$which magisk`
 export Modules_Dir=/data/adb/modules
@@ -344,7 +344,7 @@ CURL() {
     [[ -z "$v" ]] && v=11
     [[ -z "$model" ]] && model='Redmi K30 5G'
     
-    curl -A "Mozilla/5.0 (Linux; Android $v; $model) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.62 Mobile Safari/537.36 GJZS/9.20" "$@"
+    curl -A "Mozilla/5.0 (Linux; Android $v; $model) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.62 Mobile Safari/537.36 GJZS/9.20" -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Accept-Encoding: deflate, sdch, br' -H 'Accept-Language: zh-CN,zh;q=0.8' -H 'Cache-Control: max-age=0' -H 'Connection: keep-alive' -H 'Upgrade-Insecure-Requests: 1' "$@"
 }
 
 WGET() {
@@ -369,7 +369,7 @@ XiaZai() {
                 echo 2 >"$Status"
                 abort "！No such \"$dir\" directory"
             fi
-            	[[ "$#" -eq 4 ]] && CURL $1 -C - -o "$3" -w "- HTTP状态码：%{http_code}\n" -kL "$2" -e "$4" || CURL $1 -C - -o "$3" -w "- HTTP状态码：%{http_code}\n" -kL "$2"
+            	[[ "$#" -eq 4 ]] && CURL "$1" -C - -o "$3" -w "- HTTP状态码：%{http_code}\n" -kL "$2" -e "$4" || CURL $1 -C - -o "$3" -w "- HTTP状态码：%{http_code}\n" -kL "$2"
                 code=$?
                 echo "$code" >"$Status"
                 [[ $code -eq 6 ]] && error "！未连接到互联网"
@@ -511,11 +511,11 @@ Download() {
             ;;
             -coding)
                 shift
-                Link="https://qqcn.coding.net/p/import-rt20/d/GJZS-Warehouse/git/raw/main/$ID"
+                Link="https://file.obdo.cc/d/%E5%85%AC%E5%BC%80/gjzs/warehouse/$ID"
             ;;
             -file)
                 shift
-                Link="http://52.130.147.67:12082/GJZS/$ID"
+                Link="https://file.obdo.cc/d/%E5%85%AC%E5%BC%80/gjzs/GJZS/$ID"
             ;;
             -gh)
                 shift
@@ -523,11 +523,11 @@ Download() {
             ;;
             -cos)
                 shift
-                Link="http://52.130.147.67:12082/file/$ID"
+                Link="https://file.obdo.cc/d/%E5%85%AC%E5%BC%80/gjzs/file/$ID"
             ;;
             -lanzou)
                 shift
-                Link=$(get_lanzou_directlink "$ID")
+                Link="$(get_lanzou_directlink "$ID")"
 	    ;;
             *)
                 abort "！暂不支持下载"
@@ -613,6 +613,7 @@ Check_Mount() {
         mount | grep -m 1 /system 1>&2
         abort
     fi
+    
 }
 
 Mount_system() {
@@ -847,9 +848,9 @@ get_lanzou_directlink() {
     fileid=$(echo "$1" | awk -F '/' '{print $NF}')
     url="https://wwa.lanzoux.com/tp/$fileid"
     html=$(curl "$url")
-    tedomain=$(echo "$html" | awk -F 'var tedomain' '{printf $2}' | awk -F "'" '{printf $2}')
-    domianload=$(echo "$html" | awk -F 'var domianload' '{printf $2}' | awk -F "'" '{printf $2}')
+    tedomain=$(echo "$html" | awk -F 'var vkjxld' '{printf $2}' | awk -F "'" '{printf $2}')
+    domianload=$(echo "$html" | awk -F 'var hyggid' '{printf $2}' | awk -F "'" '{printf $2}')
     downurl="$tedomain""$domianload"
     directlink=$(curl -I "$downurl" | grep location | awk -F 'location: ' '{print $2}')
-    echo "$directlink"
+    echo "$directlink" | sed "s/\r//g" | xargs echo -n
 }
