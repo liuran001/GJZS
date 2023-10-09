@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="generator" content="VuePress 2.0.0-beta.35">
+    <style>
+      :root {
+        --c-bg: #fff;
+      }
+      html.dark {
+        --c-bg: #22272e;
+      }
+      html, body {
+        background-color: var(--c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem('vuepress-color-scheme');
+			const systemDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+			if (userMode === 'dark' || (userMode !== 'light' && systemDarkMode)) {
+				document.documentElement.classList.toggle('dark', true);
+			}
+    </script>
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png"><link rel="manifest" href="/manifest.webmanifest"><meta name="application-name" content="搞机助手·R"><meta name="apple-mobile-web-app-title" content="搞机助手·R"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png"><meta name="msapplication-TileColor" content="#3eaf7c"><meta name="theme-color" content="#3eaf7c"><title>搞机助手·R</title><meta name="description" content="为Android玩机爱好者提供一些便利功能">
+    <link rel="modulepreload" href="/assets/app.8f0ed104.js"><link rel="modulepreload" href="/assets/404.html.31292b39.js"><link rel="modulepreload" href="/assets/404.html.37b0c78d.js"><link rel="modulepreload" href="/assets/plugin-vue_export-helper.21dcd24c.js">
+    <link rel="stylesheet" href="/assets/style.c9462e06.css">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="theme-container"><div class="theme-default-content"><h1>404</h1><blockquote>我们怎么到这来了？</blockquote><a href="/" class="">返回首页</a></div></div><!----><!--]--></div>
+    <script type="module" src="/assets/app.8f0ed104.js" defer></script>
+  </body>
+</html>
