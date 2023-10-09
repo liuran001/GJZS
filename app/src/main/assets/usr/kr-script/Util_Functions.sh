@@ -1,14 +1,19 @@
 #Custom variable
-export Util_Functions_Code=2023082001
+export Util_Functions_Code=2023101001
 export SDdir=/data/media/0
 export Magisk=`$which magisk`
+export Ksud=`$which ksud`
 export Modules_Dir=/data/adb/modules
 if $Have_ROOT; then
 	if [[ -x $Magisk ]]; then
 		[[ `$Magisk -v | grep 'alpha'` != '' ]] && export Magisk_Type=alpha
 		[[ `$Magisk -v | grep 'lite'` != '' ]] && export Magisk_Type=lite
 		[[ $Magisk_Type = lite ]] && export Modules_Dir=/data/adb/lite_modules
-	fi
+	elif [[ `$Ksud -V | grep 'ksud'` != '' ]]; then
+        export Magisk_Type=ksu
+        export Ksu_Kernel_Version=`$Ksud debug version | awk -F ': ' '{printf $2}'`
+        export Ksu_Manager_Version=`$Ksud -V | awk -F ' ' '{printf $2}'`
+    fi
 fi
 export Script_Dir=$TMPDIR/tmp
 export install_MOD=$ShellScript/Magisk_Module/install_Module_Script.sh
@@ -52,6 +57,10 @@ export lu3=$GJZS/XianShua
 
 #Function
 mask() {
+        if [[ $Magisk_Type = ksu ]]; then
+            echo "已安装KernelSU内核版本：$Ksu_Kernel_Version"
+            echo "已安装KernelSU管理器版本：$Ksu_Manager_Version"
+        else
         export Magisk=`$which magisk`
         export MAGISKTMP=`$Magisk --path 2>/dev/null`
         [[ -z "$MAGISKTMP" ]] && export MAGISKTMP=/sbin
@@ -90,6 +99,7 @@ mask() {
                 version=`grep_prop version "$Module_XinXi"`
                 versionCode=`grep_prop versionCode "$Module_XinXi"`
             fi
+        fi
         fi
 }
 
@@ -178,33 +188,6 @@ adbsu() {
             $b && adb shell su -c \'"$@"\' || echo "Link@" | adb shell su
         fi
 }
-
-Install_curl() {
-    curl -where &>/dev/null && return 0
-    unzip --help &>/dev/null || return 1
-    wget -where &>/dev/null || return 1
-    [[ ! -f $Load ]] && return 1
-    local jian jian2
-    . $Load curl
-    
-    jian=$TMPDIR/curl.zip
-    jian2=$Script_Dir/META-INF/com/google/android/update-binary
-    WGET -c -O $jian "http://d0.ananas.chaoxing.com/download/$url"
-    [[ ! -f "$jian" ]] && abort "！下载文件失败"
-    echo "- 开始安装curl"
-    rm -rf $Script_Dir
-    mkdir -p $Script_Dir
-    unzip -oq "$jian" 'META-INF/com/google/android/update-binary' -d $Script_Dir
-    
-    if [[ -f "$jian2" ]]; then
-        sh "$jian2" $Package_name 1 "$jian"
-        PATH="$PATH"
-    else
-        abort "！解压文件失败"
-    fi
-    rm -f $jian
-}
-
 
 Install_Applet2() {
     JCe="$PeiZhi_File/Applet_Installed.log"
@@ -295,7 +278,6 @@ Start_Installing_Busybox() {
 }
 
 Installing_Busybox() {
-    Install_curl
     Start_Installing_Busybox
     . $Load Install_Applet
     [[ ! -d $lu ]] && mkdir -p $lu &>/dev/null

@@ -8,6 +8,21 @@
 
 
 . $Core
+
+# START:KernelSU
+if [[ $Magisk_Type = ksu ]]; then
+    echo '检测到 KernelSU，执行标准模块安装方式'
+    echo '注意：目前 KernelSU 为实验性支持，可能存在未知问题'
+    echo '---'
+    ZIPFILE="$3"
+    $Ksud module install "$ZIPFILE"
+    echo '---'
+    echo '安装线程退出'
+    exit 0
+fi
+# END:KernelSU
+
+# Magisk
 if [[ $1 = -Do_Not_Check ]]; then
     shift
     mask
