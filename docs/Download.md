@@ -1,6 +1,6 @@
 # 下载
 
-[点此一键下载最新稳定版](https://gjzs.app)
+[点此下载最新稳定版](https://gjzs.app)
 
 [稳定版下载](https://github.com/liuran001/GJZS/releases) ｜ [测试版（CI构建版）下载](https://install.appcenter.ms/users/liuran001/apps/gao3-ji1-zhu4-shou3-r/distribution_groups/%e6%90%9e%e6%9c%ba%e5%8a%a9%e6%89%8b%c2%b7r)
 

@@ -21,3 +21,5 @@
 - TG频道：[搞机助手·R 公告(@gjzsr_channel)](https://t.me/gjzsr_channel)
 - TG频道：[搞机助手·R CI构建发布(@gjzsr_CI)](https://t.me/gjzsr_CI)
 - TG群组：[搞机助手·R 交流群(@gjzsr)](https://t.me/gjzsr)
+- QQ频道: [搞机社区](https://obdo.cc/gjzsqc)
+- QQ群: 471041284
