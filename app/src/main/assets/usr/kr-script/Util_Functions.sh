@@ -57,11 +57,6 @@ export lu3=$GJZS/XianShua
 
 #Function
 mask() {
-        if [[ $Magisk_Type = ksu ]]; then
-            echo "已安装KernelSU内核版本：$Ksu_Kernel_Version"
-            echo "已安装KernelSU管理器版本：$Ksu_Manager_Version"
-        else
-        export Magisk=`$which magisk`
         export MAGISKTMP=`$Magisk --path 2>/dev/null`
         [[ -z "$MAGISKTMP" ]] && export MAGISKTMP=/sbin
         if [[ "$1" == '-v' ]]; then
@@ -69,20 +64,26 @@ mask() {
                 MAGISK_VER=`$Magisk -v | sed 's/:.*//'`
                 MAGISK_VER_CODE=`$Magisk -V`
             else
-                abort "！未检测到Magisk，请确定Magisk Manager主页已显示安装了Magisk"
+                [[ $Magisk_Type != 'ksu' ]] && abort "！未检测到Magisk，请确定Magisk Manager主页已显示安装了Magisk"
             fi
         elif [[ "$1" == '-vc' ]]; then
             if [[ -x $Magisk ]]; then
                 MAGISK_VER=`$Magisk -v | sed 's/:.*//'`
                 MAGISK_VER_CODE=`$Magisk -V`
             else
-                abort "！未检测到Magisk，请确定Magisk Manager主页已显示安装了Magisk"
+                [[ $Magisk_Type != 'ksu' ]] && abort "！未检测到Magisk，请确定Magisk Manager主页已显示安装了Magisk"
             fi
                 if [[ -d $Modules_Dir ]]; then
-                    echo "已安装Magisk版本：$MAGISK_VER（$MAGISK_VER_CODE）"
-                    [[ $MAGISK_VER_CODE -lt 19000 ]] && abort "！未适配Magisk 19.0以下的版本，19.0以下版本采用magisk.img方式挂载模块"
-                    echo "---------------------------------------------------------"
-                    [[ `sh $ShellScript/support/Missing_file.sh` = 1 ]] && abort -e "已检测到Magisk需要修复运行环境\n缺失 Magisk 正常工作所需的文件，如果不修复您将无法使用模块功能，可在Magisk Manger里修复也可以在Magisk专区一键修复Magisk运行环境" || return 0
+                    if [[ $Magisk_Type = ksu ]]; then
+                        echo "已安装KernelSU内核版本：$Ksu_Kernel_Version"
+                        echo "已安装KernelSU管理器版本：$Ksu_Manager_Version"
+                        echo "---------------------------------------------------------"
+                    else
+                        echo "已安装Magisk版本：$MAGISK_VER（$MAGISK_VER_CODE）"
+                        [[ $MAGISK_VER_CODE -lt 19000 ]] && abort "！未适配Magisk 19.0以下的版本，19.0以下版本采用magisk.img方式挂载模块"
+                        echo "---------------------------------------------------------"
+                        [[ `sh $ShellScript/support/Missing_file.sh` = 1 ]] && abort -e "已检测到Magisk需要修复运行环境\n缺失 Magisk 正常工作所需的文件，如果不修复您将无法使用模块功能，可在Magisk Manger里修复也可以在Magisk专区一键修复Magisk运行环境" || return 0
+                    fi
                 fi
         elif [[ -n "$1" ]]; then
             Module="$Modules_Dir/$1"
@@ -99,7 +100,6 @@ mask() {
                 version=`grep_prop version "$Module_XinXi"`
                 versionCode=`grep_prop versionCode "$Module_XinXi"`
             fi
-        fi
         fi
 }
 
