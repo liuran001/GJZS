@@ -1,7 +1,7 @@
 {
   "devDependencies": {
     "vitepress": "^1.0.0-rc.36",
-    "vue": "^3.4.6"
+    "vue": "^3.4.7"
   },
   "scripts": {
     "dev": "vitepress dev",
