@@ -1,23 +1,48 @@
----
-home: true
-title: 主页
-heroImage: /images/logo.png
-actions:
-  - text: 下载
-    link: /Download.html
-    type: primary
-  - text: 开源地址
-    link: https://github.com/liuran001/GJZS
-    type: secondary
-features:
-  - title: 易用
-    details: 下载，安装，打开，授予权限，做自己想做的事，没了 :D
-  - title: 开源
-    details: 如同这个文档一样基于GPL-3.0协议开放源代码。
-  - title: 免费
-    details: 不需要一分钱即可以个人用途使用「搞机助手·R」。
-  - title: 安全
-    details: 每个功能均经过人工测试，确保大多数用户正常后才引入到应用内。
----
+# 搞机助手·R 官方网站
 
-<div class="footer">GPL-3.0 Licensed | Copyright © 2021-2023 笨蛋ovo</div>
+## 开发
+
+本站基于 [VitePress](https://vitepress.dev) 建立，网站内容均使用 Markdown 格式书写
+
+### 1. 克隆源码
+
+```bash
+git clone https://github.com/liuran001/GJZS.git
+cd GJZS/docs
+```
+
+### 2. 安装依赖
+
+```bash
+# 使用 npm
+npm install
+
+# 使用 yarn
+yarn
+
+# 使用 pnpm
+pnpm install
+```
+
+### 3. 进行本地预览
+
+```bash
+# 使用 npm
+npm run dev
+
+# 使用 yarn
+yarn dev
+
+# 使用 pnpm
+pnpm run dev
+```
+
+## 贡献
+
+欢迎提出 Issue 和 Pull request
+
+如果您想将网站内容翻译为其他语言，您需要在本项目根目录新增您语言的文件夹 (如 [en](/docs/en))，同时需要在 [.vitepress/locales](/docs/.vitepress/locales) 中新增您语言的配置文件
+
+## 感谢
+
+贡献者列表参阅 [Contributors](https://github.com/liuran001/GJZS/graphs/contributors)

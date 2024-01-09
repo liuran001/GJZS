@@ -3,7 +3,7 @@
 <!-- START -->
     <switch interruptible="false" shell="hidden">
         <title>在线模式开关</title>
-        <desc>关闭此开关将不会从服务器获取模块/应用仓库列表/更新检测/公告推送，关闭此开关后您仍可使用在线功能，但是功能可能是过时的</desc>
+        <desc>关闭此开关将不再从服务器获取模块/应用仓库列表/更新检测/公告推送，关闭此开关后您仍可使用在线功能，但功能将是过时的</desc>
         <get>. ./switchs/Change_Local_get.sh</get>
         <set>. ./switchs/Change_Local_set.sh</set>
     </switch>
@@ -64,13 +64,6 @@
         <title>点击清除「搞机助手·R」全部应用数据</title>
         <desc>遇到Bug可以尝试清除数据来解决</desc>
         <set>pm clear $Package_name</set>
-    </action>
-<!-- END -->
-<!-- START -->
-    <action confirm="true" auto-off="true" interruptible="false">
-        <title>尝试修复curl</title>
-        <desc>无法正常下载文件时可以尝试此功能</desc>
-        <set>. ./Fix_Curl.sh</set>
     </action>
 <!-- END -->
 <!-- START -->

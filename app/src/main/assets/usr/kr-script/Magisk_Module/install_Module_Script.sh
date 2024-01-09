@@ -8,6 +8,7 @@
 
 
 . $Core
+
 if [[ $1 = -Do_Not_Check ]]; then
     shift
     mask
@@ -31,6 +32,18 @@ POSTFSDATA=false
 LATESTARTSERVICE=false
 PERSISTDIR=$MAGISKTMP/.magisk/mirror/persist
 PATH="$PATH:$MAGISKTMP/.magisk/busybox"
+
+
+ksu_install() {
+    echo '检测到 KernelSU，执行标准模块安装方式'
+    echo '注意：目前 KernelSU 为实验性支持，可能存在未知问题'
+    echo '---'
+    $Ksud module install "$ZIPFILE"
+    echo '---'
+    echo '安装线程退出'
+    CQ
+    exit 0
+}
 
 
 copy_sepolicy_rules() {
@@ -71,6 +84,8 @@ copy_sepolicy_rules() {
 }
 
 dummy() {
+    [[ $Magisk_Type = ksu ]] && ksu_install 
+
     rm -rf $Script_Dir &>/dev/null
     mkdir -p $Script_Dir
     unzip -p "$ZIPFILE" 'META-INF/com/google/android/update-binary' &>$jian
@@ -102,6 +117,7 @@ fi
     fi
         if [[ $Compatible -eq 1 ]]; then
             echo "- 正在已「兼容模式」安装「$M」……"
+            [[ $Magisk_Type = ksu ]] && ksu_install
             . $ShellScript/Geek/util_functions.sh
             rm -rf "$TMPDIR"
             mkdir -p "$TMPDIR"

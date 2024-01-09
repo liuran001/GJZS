@@ -9,51 +9,46 @@ on:
   workflow_dispatch:
 
 jobs:
-  docs:
+  build:
     runs-on: ubuntu-latest
 
     env:
-      NODE_VERSION: '16'
+      NODE_VERSION: '18'
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Handle yarn cache
-        uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-${{ env.NODE_VERSION }}-yarn-
-            ${{ runner.os }}-node-
+          cache: 'yarn'
+          cache-dependency-path: yarn.lock
 
       - name: Install dependencies
         run: |
           cd docs
           yarn --frozen-lockfile
 
-      - name: Build documentation site
+      - name: Build site
         run: |
           cd docs
-          yarn vuepress build
+          yarn build
 
-      - name: Deploy to GitHub Pages
-        uses: crazy-max/ghaction-github-pages@v2.2.0
+      - name: Upload Artefact
+        if: success()
+        uses: actions/upload-artifact@main
         with:
-          repo: liuran001/GJZS
-          target_branch: gh_page
-          build_dir: docs/.vuepress/dist
-        env:
-          GH_PAT: ${{ secrets.GH_PAGES_TOKEN }}
+          name: dist
+          path: docs/.vitepress/dist
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/.vitepress/dist
+          publish_branch: gh_page
+          cname: gjzsr.com # if wanna deploy to custom domain
+ 

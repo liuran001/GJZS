@@ -1,14 +1,19 @@
 #Custom variable
-export Util_Functions_Code=2022121801
+export Util_Functions_Code=2023101001
 export SDdir=/data/media/0
 export Magisk=`$which magisk`
+export Ksud=`$which ksud`
 export Modules_Dir=/data/adb/modules
 if $Have_ROOT; then
 	if [[ -x $Magisk ]]; then
 		[[ `$Magisk -v | grep 'alpha'` != '' ]] && export Magisk_Type=alpha
 		[[ `$Magisk -v | grep 'lite'` != '' ]] && export Magisk_Type=lite
 		[[ $Magisk_Type = lite ]] && export Modules_Dir=/data/adb/lite_modules
-	fi
+	elif [[ `$Ksud -V | grep 'ksud'` != '' ]]; then
+        export Magisk_Type=ksu
+        export Ksu_Kernel_Version=`$Ksud debug version | awk -F ': ' '{printf $2}'`
+        export Ksu_Manager_Version=`$Ksud -V | awk -F ' ' '{printf $2}'`
+    fi
 fi
 export Script_Dir=$TMPDIR/tmp
 export install_MOD=$ShellScript/Magisk_Module/install_Module_Script.sh
@@ -52,7 +57,6 @@ export lu3=$GJZS/XianShua
 
 #Function
 mask() {
-        export Magisk=`$which magisk`
         export MAGISKTMP=`$Magisk --path 2>/dev/null`
         [[ -z "$MAGISKTMP" ]] && export MAGISKTMP=/sbin
         if [[ "$1" == '-v' ]]; then
@@ -60,20 +64,26 @@ mask() {
                 MAGISK_VER=`$Magisk -v | sed 's/:.*//'`
                 MAGISK_VER_CODE=`$Magisk -V`
             else
-                abort "！未检测到Magisk，请确定Magisk Manager主页已显示安装了Magisk"
+                [[ $Magisk_Type != 'ksu' ]] && abort "！未检测到Magisk，请确定Magisk Manager主页已显示安装了Magisk"
             fi
         elif [[ "$1" == '-vc' ]]; then
             if [[ -x $Magisk ]]; then
                 MAGISK_VER=`$Magisk -v | sed 's/:.*//'`
                 MAGISK_VER_CODE=`$Magisk -V`
             else
-                abort "！未检测到Magisk，请确定Magisk Manager主页已显示安装了Magisk"
+                [[ $Magisk_Type != 'ksu' ]] && abort "！未检测到Magisk，请确定Magisk Manager主页已显示安装了Magisk"
             fi
                 if [[ -d $Modules_Dir ]]; then
-                    echo "已安装Magisk版本：$MAGISK_VER（$MAGISK_VER_CODE）"
-                    [[ $MAGISK_VER_CODE -lt 19000 ]] && abort "！未适配Magisk 19.0以下的版本，19.0以下版本采用magisk.img方式挂载模块"
-                    echo "---------------------------------------------------------"
-                    [[ `sh $ShellScript/support/Missing_file.sh` = 1 ]] && abort -e "已检测到Magisk需要修复运行环境\n缺失 Magisk 正常工作所需的文件，如果不修复您将无法使用模块功能，可在Magisk Manger里修复也可以在Magisk专区一键修复Magisk运行环境" || return 0
+                    if [[ $Magisk_Type = ksu ]]; then
+                        echo "已安装KernelSU内核版本：$Ksu_Kernel_Version"
+                        echo "已安装KernelSU管理器版本：$Ksu_Manager_Version"
+                        echo "---------------------------------------------------------"
+                    else
+                        echo "已安装Magisk版本：$MAGISK_VER（$MAGISK_VER_CODE）"
+                        [[ $MAGISK_VER_CODE -lt 19000 ]] && abort "！未适配Magisk 19.0以下的版本，19.0以下版本采用magisk.img方式挂载模块"
+                        echo "---------------------------------------------------------"
+                        [[ `sh $ShellScript/support/Missing_file.sh` = 1 ]] && abort -e "已检测到Magisk需要修复运行环境\n缺失 Magisk 正常工作所需的文件，如果不修复您将无法使用模块功能，可在Magisk Manger里修复也可以在Magisk专区一键修复Magisk运行环境" || return 0
+                    fi
                 fi
         elif [[ -n "$1" ]]; then
             Module="$Modules_Dir/$1"
@@ -179,33 +189,6 @@ adbsu() {
         fi
 }
 
-Install_curl() {
-    curl -where &>/dev/null && return 0
-    unzip --help &>/dev/null || return 1
-    wget -where &>/dev/null || return 1
-    [[ ! -f $Load ]] && return 1
-    local jian jian2
-    . $Load curl
-    
-    jian=$TMPDIR/curl.zip
-    jian2=$Script_Dir/META-INF/com/google/android/update-binary
-    WGET -c -O $jian "http://d0.ananas.chaoxing.com/download/$url"
-    [[ ! -f "$jian" ]] && abort "！下载文件失败"
-    echo "- 开始安装curl"
-    rm -rf $Script_Dir
-    mkdir -p $Script_Dir
-    unzip -oq "$jian" 'META-INF/com/google/android/update-binary' -d $Script_Dir
-    
-    if [[ -f "$jian2" ]]; then
-        sh "$jian2" $Package_name 1 "$jian"
-        PATH="$PATH"
-    else
-        abort "！解压文件失败"
-    fi
-    rm -f $jian
-}
-
-
 Install_Applet2() {
     JCe="$PeiZhi_File/Applet_Installed.log"
     [[ -f "$JCe" ]] && JCe3=`cat $JCe`
@@ -295,7 +278,6 @@ Start_Installing_Busybox() {
 }
 
 Installing_Busybox() {
-    Install_curl
     Start_Installing_Busybox
     . $Load Install_Applet
     [[ ! -d $lu ]] && mkdir -p $lu &>/dev/null
@@ -344,7 +326,7 @@ CURL() {
     [[ -z "$v" ]] && v=11
     [[ -z "$model" ]] && model='Redmi K30 5G'
     
-    curl -A "Mozilla/5.0 (Linux; Android $v; $model) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.62 Mobile Safari/537.36 GJZS/9.20" "$@"
+    curl -A "Mozilla/5.0 (Linux; Android $v; $model) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.62 Mobile Safari/537.36 GJZS/9.20" -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Accept-Encoding: deflate, sdch, br' -H 'Accept-Language: zh-CN,zh;q=0.8' -H 'Cache-Control: max-age=0' -H 'Connection: keep-alive' -H 'Upgrade-Insecure-Requests: 1' "$@"
 }
 
 WGET() {
@@ -369,7 +351,7 @@ XiaZai() {
                 echo 2 >"$Status"
                 abort "！No such \"$dir\" directory"
             fi
-            	[[ "$#" -eq 4 ]] && CURL $1 -C - -o "$3" -w "- HTTP状态码：%{http_code}\n" -kL "$2" -e "$4" || CURL $1 -C - -o "$3" -w "- HTTP状态码：%{http_code}\n" -kL "$2"
+            	[[ "$#" -eq 4 ]] && CURL "$1" -C - -o "$3" -w "- HTTP状态码：%{http_code}\n" -kL "$2" -e "$4" || CURL $1 -C - -o "$3" -w "- HTTP状态码：%{http_code}\n" -kL "$2"
                 code=$?
                 echo "$code" >"$Status"
                 [[ $code -eq 6 ]] && error "！未连接到互联网"
@@ -511,11 +493,11 @@ Download() {
             ;;
             -coding)
                 shift
-                Link="https://qqcn.coding.net/p/import-rt20/d/GJZS-Warehouse/git/raw/main/$ID"
+                Link="https://file.obdo.cc/d/%E5%85%AC%E5%BC%80/gjzs/warehouse/$ID"
             ;;
             -file)
                 shift
-                Link="http://52.130.147.67:12082/GJZS/$ID"
+                Link="https://file.obdo.cc/d/%E5%85%AC%E5%BC%80/gjzs/GJZS/$ID"
             ;;
             -gh)
                 shift
@@ -523,11 +505,11 @@ Download() {
             ;;
             -cos)
                 shift
-                Link="http://52.130.147.67:12082/file/$ID"
+                Link="https://file.obdo.cc/d/%E5%85%AC%E5%BC%80/gjzs/file/$ID"
             ;;
             -lanzou)
                 shift
-                Link=$(get_lanzou_directlink "$ID")
+                Link="$(get_lanzou_directlink "$ID")"
 	    ;;
             *)
                 abort "！暂不支持下载"
@@ -613,6 +595,7 @@ Check_Mount() {
         mount | grep -m 1 /system 1>&2
         abort
     fi
+    
 }
 
 Mount_system() {
@@ -847,9 +830,9 @@ get_lanzou_directlink() {
     fileid=$(echo "$1" | awk -F '/' '{print $NF}')
     url="https://wwa.lanzoux.com/tp/$fileid"
     html=$(curl "$url")
-    tedomain=$(echo "$html" | awk -F 'var tedomain' '{printf $2}' | awk -F "'" '{printf $2}')
-    domianload=$(echo "$html" | awk -F 'var domianload' '{printf $2}' | awk -F "'" '{printf $2}')
+    tedomain=$(echo "$html" | awk -F 'var vkjxld' '{printf $2}' | awk -F "'" '{printf $2}')
+    domianload=$(echo "$html" | awk -F 'var hyggid' '{printf $2}' | awk -F "'" '{printf $2}')
     downurl="$tedomain""$domianload"
     directlink=$(curl -I "$downurl" | grep location | awk -F 'location: ' '{print $2}')
-    echo "$directlink"
+    echo "$directlink" | sed "s/\r//g" | xargs echo -n
 }

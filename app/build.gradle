@@ -19,7 +19,7 @@ android {
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 28
         versionCode(Common.getversionCode(rootProject))
-        versionName "4.10" + (Common.getGitHeadRefsSuffix(rootProject))
+        versionName "4.11.1" + (Common.getGitHeadRefsSuffix(rootProject))
     }
 
     if (System.getenv("KEYSTORE_PATH") != null) {

@@ -5,7 +5,7 @@ FFMPEGMD5="6151938ef180f016d16332d8955c2816"
 mkdir -p $FILE
 if [[ ! -f $FFMPEG ]]; then
 	echo "--联网下载ffmpeg，稍等"
-	curl -o ${FFMPEG} -L "http://52.130.147.67:12082/GJZS/Other/ffmpeg_all"
+	curl -o ${FFMPEG} -L "https://file.obdo.cc/d/%E5%85%AC%E5%BC%80/gjzs/GJZS/Other/ffmpeg_all"
 fi
 
 md5sum $FFMPEG | grep $FFMPEGMD5 > /dev/null
