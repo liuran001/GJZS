@@ -1,0 +1,1 @@
+import{_ as a,c as p,o as e,U as r}from"./chunks/framework.s-vJCezn.js";const m=JSON.parse('{"title":"用户协议与隐私政策（试行）","description":"","frontmatter":{},"headers":[],"relativePath":"Agreement.md","filePath":"Agreement.md"}'),t={name:"Agreement.md"},o=r("",87),h=[o];function l(i,n,d,s,c,u){return e(),p("div",null,h)}const q=a(t,[["render",l]]);export{m as __pageData,q as default};

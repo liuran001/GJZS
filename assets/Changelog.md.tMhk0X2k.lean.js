@@ -1,1 +1,0 @@
-import{_ as l,c as i,o as e,U as t}from"./chunks/framework.F-SyL-18.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"Changelog.md","filePath":"Changelog.md"}'),r={name:"Changelog.md"},a=t("",51),o=[a];function p(n,u,c,s,g,d){return e(),i("div",null,o)}const b=l(r,[["render",p]]);export{_ as __pageData,b as default};

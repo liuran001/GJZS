@@ -1,0 +1,1 @@
+import{_ as r,c as e,o as t,U as a}from"./chunks/framework.s-vJCezn.js";const g=JSON.parse('{"title":"支持","description":"","frontmatter":{},"headers":[],"relativePath":"Support.md","filePath":"Support.md"}'),o={name:"Support.md"},s=a("",9),l=[s];function n(p,i,c,_,h,d){return t(),e("div",null,l)}const m=r(o,[["render",n]]);export{g as __pageData,m as default};
